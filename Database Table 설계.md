@@ -12,7 +12,9 @@ profile image(path)
 
 description  
 
-language 1, 2, 3  
+language 1, 2, 3(native, fluent,learning)  
+
+nationality  
 
 join date  
 
