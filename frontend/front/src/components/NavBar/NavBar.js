@@ -7,11 +7,14 @@ function NavBar() {
 
   return (
     <div>
-    <Navbar bg="light" variant="light" fixed="top">
+    <Navbar bg="light" variant="light" >
     <Container>
-    <Nav classMane="logo">
-      <Navbar.Brand href="/home">Navbar</Navbar.Brand>
-    </Nav>
+    <Nav.Item>
+      <Nav.Link className="logo" href="/">EONEO</Nav.Link>
+
+    </Nav.Item>
+   
+  
     <Nav className="register">
       
       <Nav.Link href="/login">Login</Nav.Link>
