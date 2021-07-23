@@ -1,0 +1,10 @@
+.logo {
+  display: flex;
+  justify-content: center;
+  text-decoration-color: #685de2;
+}
+
+
+.register {
+  text-align: right;
+}
