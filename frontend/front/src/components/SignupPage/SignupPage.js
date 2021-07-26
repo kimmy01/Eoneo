@@ -1,60 +1,51 @@
 import React from 'react'
-import { Form, Button, Col, Row } from 'react-bootstrap'
+import { Form, Button, Col, Row, InputGroup, FormControl } from 'react-bootstrap'
+import "./SignupPage.css"
+
 function Signup () {
   return (
     <div class="container">
-       <Form className="mt-4">
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email: </Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+      <h1 className="main-title">Sign up</h1>
+      <Form className="mt-4">
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email: </Form.Label>
+          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Name</Form.Label>
-        <Form.Control type="password" placeholder="FirstName LastName" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Username</Form.Label>
-        <Form.Control type="password" placeholder="Username" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Confirm Password</Form.Label>
-        <Form.Control type="password" placeholder="ConfirmPassword" />
-      </Form.Group>
-      <fieldset>
-    <Form.Group as={Row} className="mb-3">
-      {/* <Form.Label as="legend" column sm={2}>
-        이용약관
-      </Form.Label> */}
-      <Col sm={10}>
-        <Form.Check
-          type="radio"
-          label="first radio"
-          name="formHorizontalRadios"
-          id="formHorizontalRadios1"
-        />
-        <Form.Check
-          type="radio"
-          label="second radio"
-          name="formHorizontalRadios"
-          id="formHorizontalRadios2"
-        />
-        <Form.Check
-          type="radio"
-          label="third radio"
-          name="formHorizontalRadios"
-          id="formHorizontalRadios3"
-        />
-      </Col>
-    </Form.Group>
-  </fieldset>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Name</Form.Label>
+          <Form.Control type="password" placeholder="FirstName LastName" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Username</Form.Label>
+          <Form.Control type="password" placeholder="Username" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control type="password" placeholder="ConfirmPassword" />
+        </Form.Group>
+    
+      <div className="form-center">
+        <div style={{height:24}}>
+          <Form.Check style={{display:'inline-block'}} type="checkbox"  label="이용약관 " />
+          <p style={{display:'inline-block'}}> &nbsp;  보기</p>
+        </div>
+
+        <div style={{height:24}}>
+          <Form.Check style={{display:'inline-block'}} type="checkbox"  label="개인정보 수집 이용 동의" />
+          <p style={{display:'inline-block'}}> &nbsp;  보기</p>
+        </div>
+        <Form.Check type="checkbox"  label="만 14세 이상입니다" />
+        <Form.Check type="checkbox"  label="이메일 소식받기(선택)" />
+      </div>
+  
       <style type="text/css">
         {`
           .btn-flat {
@@ -69,18 +60,17 @@ function Signup () {
         `}
       </style>
       
-      <div className="button">  
-      
-        <Button variant="flat" type="submit">
+      <div>  
+        <Button className="button" variant="flat" type="submit">
           Signup
         </Button>
-        </div>
+      </div>
         <hr/>
-        <div className="button">
-        <Button variant="social" type="submit">
+
+      <div>
+        <Button className="button" variant="social" type="submit">
           Social Signup
         </Button>
-        
       </div>
     </Form>
     </div>

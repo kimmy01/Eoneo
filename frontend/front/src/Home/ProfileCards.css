@@ -1,0 +1,14 @@
+
+
+.box {
+    width: 100px;
+    height: 100px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: orange;
+    transition: all 0.5s linear;
+  }
+
+.box:hover {
+    transform: rotateY( 180deg )
+  }

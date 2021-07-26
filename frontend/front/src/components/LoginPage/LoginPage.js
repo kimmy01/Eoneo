@@ -8,9 +8,10 @@ function LoginPage() {
 
   return (
     <div class="container">
+    <h1 className="main-title">Login</h1>
     <Form className="mt-4">
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email: </Form.Label>
+        <Form.Label>Email </Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
@@ -21,7 +22,24 @@ function LoginPage() {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" placeholder="Password" />
       </Form.Group>
-      <style type="text/css">
+
+      <div>
+        <Button className="button" variant="flat" type="submit">
+          Login
+        </Button>
+      </div>
+
+      <hr/>
+
+      <div>
+        <Button className="button" variant="social" type="submit">
+          Social Login
+        </Button>
+      </div>
+
+     </Form>
+     
+     <style type="text/css">
         {`
           .btn-flat {
             background-color: #685de2;
@@ -34,21 +52,13 @@ function LoginPage() {
           }
         `}
       </style>
-      <div className="button">
 
-        <Button variant="flat" type="submit">
-          Login
-        </Button>
-          </div>
-          <hr/>
-          <div className="button">
-        <Button variant="social" type="submit">
-          Social Login
-        </Button>
-      </div>
-    </Form>
+
+
     </div>
   )
+
+  
 }
 
 export default LoginPage

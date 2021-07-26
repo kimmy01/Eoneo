@@ -1,4 +1,10 @@
 .button {
   display: block;
   justify-content: center;
+  margin: auto;
+}
+
+.main-title{
+  color:#463cbd;
+  text-align: center;
 }
