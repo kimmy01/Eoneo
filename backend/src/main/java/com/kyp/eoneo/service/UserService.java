@@ -46,10 +46,10 @@ public class UserService {
     @Transactional(readOnly = true)
     public Optional<User> getUserWithAuthorities(String email) {
         return userRepository.findOneWithAuthoritiesByEmail(email);
-    } //username을 파라미터로 받아서 어떠한 username이든 username에 해당하는 user객체와 권한정보를 가져오는 메소드
+    } //email을 파라미터로 받아서 어떠한 email이든 email에 해당하는 user객체와 권한정보를 가져오는 메소드
 
     @Transactional(readOnly = true)
     public Optional<User> getMyUserWithAuthorities() {
         return SecurityUtil.getCurrentEmail().flatMap(userRepository::findOneWithAuthoritiesByEmail);
-    } //현재 SecurityContext에 저장된 username의 정보만 받아오는 메소드
+    } //현재 SecurityContext에 저장된 email의 정보만 받아오는 메소드
 }

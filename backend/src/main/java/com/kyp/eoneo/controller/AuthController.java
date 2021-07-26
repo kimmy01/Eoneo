@@ -29,7 +29,7 @@ public class AuthController {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
     } //TokenProvider, AuthenticationManagerBuilder 주입
 
-    @PostMapping("/authenticate") //로그인 api 경로 : /api/authenticate
+    @PostMapping("/authenticate") //로그인 api 경로 : /api/authenticate 토큰 생성해서 보내주기
     public ResponseEntity<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto) { //username, password로 파라미터 받음
 
         UsernamePasswordAuthenticationToken authenticationToken =
