@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Form, Button} from 'react-bootstrap'
+import { Form, Button, Container} from 'react-bootstrap'
 import './LoginPage.css'
 
 function LoginPage() {
@@ -7,7 +7,7 @@ function LoginPage() {
   // const [Password, setPassword] = useState("")
 
   return (
-    <div class="container">
+    <Container>
     <h1 className="main-title">Login</h1>
     <Form className="mt-4">
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -55,7 +55,7 @@ function LoginPage() {
 
 
 
-    </div>
+    </Container>
   )
 
   

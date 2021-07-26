@@ -1,11 +1,32 @@
 .logo {
+
+  font-weight: bold;
+  font-size: large;
+  color: #685de2 !important;
+
+}
+
+.mynav {
+  width: 100%;
   display: flex;
   justify-content: center;
-  color: #685de2;
 
 }
 
+.mynavItem {
+  width: 33%;
 
-.register {
+}
+
+.item2 {
+  display: flex;
+  justify-content: center;
+}
+
+.item3 {
+  display: flex;
+  justify-content: flex-end;
+}
+/* .register {
   text-align: right;
-}
+} */
