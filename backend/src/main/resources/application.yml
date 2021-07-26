@@ -1,0 +1,27 @@
+spring:
+  devtools:
+    liverreload:
+      enabled: true
+    restart:
+      enabled: false
+  freemarker:
+    cache: false
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://13.124.171.154:3306/eoneo?serverTimezone=UTC&characterEncoding=UTF-8
+    username: kyp
+    password: qwerty2570#
+
+    jpa:
+      show-sql: true
+      hibernate:
+        format_sql: true
+
+    logging:
+      level:
+        org:
+          hibernate:
+            SQL: DEBUG
+            type:
+              trace
