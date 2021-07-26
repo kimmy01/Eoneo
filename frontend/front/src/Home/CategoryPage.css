@@ -1,0 +1,28 @@
+.box{
+    /* background-color: blueviolet; */
+    height: 500px;
+    width: 500px;
+    max-width: 585px;
+
+}
+.box-sticky{
+    position: -webkit-sticky;
+    position: sticky;
+    /* background-color: skyblue; */
+    top: 20px;
+    height: 500px;
+    width: 500px;
+    margin-right: 50px;
+    max-height: 650px;
+}
+
+.mainbox {
+    max-width: 1200px;
+    margin: auto;
+    justify-content: center;
+    display: flex;
+}
+/* .dummy {
+    background-color: cornflowerblue;
+    height: 300px;
+} */
