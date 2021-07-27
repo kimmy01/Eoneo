@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://13.124.171.154:3306/eoneo?serverTimezone=Asia/Seoul
+    username: kyp
+    password: qwerty2570#
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #MySQL
+    open-in-view: false #웹요청이 완료될 때까지 동일한 Entity Manager 갖도록 해줌
+    show-sql: true #console에 JPA실행 쿼리 출력
+    hibernate:
+      format_sql: true
+      ddl-auto: none #데이터베이스 초기화 전략 설정(아무것도 실행x)
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+jwt:
+  header: Authorization
+  # kyp-project-eoneo-kyp-project-eoneo-kyp-project-eoneo-kyp-project-eoneo-kyp-project-eoneo
+  secret: a3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8=
+  token-validity-in-seconds: 86400
