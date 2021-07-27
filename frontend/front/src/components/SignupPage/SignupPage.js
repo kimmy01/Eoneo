@@ -62,13 +62,13 @@ function Signup (props) {
           </Form.Text>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3" >
           <Form.Label>Name</Form.Label>
-          <Form.Control type="password" placeholder="FirstName LastName" value={Name} onChange={onNameHandler}/>
+          <Form.Control type="text" placeholder="FirstName LastName" value={Name} onChange={onNameHandler}/>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Username</Form.Label>
-          <Form.Control type="password" placeholder="Username" />
+        <Form.Group className="mb-3" >
+          <Form.Label>Nickname</Form.Label>
+          <Form.Control type="text" placeholder="Nickname" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
