@@ -5,10 +5,13 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Builder
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"chatRoomId", "id"})
@@ -30,6 +33,9 @@ public class ChatRoom {
 
     private LocalDateTime startedTime;
 
+    @OneToMany(mappedBy = "chatRoom", fetch = FetchType.LAZY)
+    private List<ChatMessage> chats = new ArrayList<>();
+
     public User getUser1() {
         return user1;
     }
@@ -42,7 +48,9 @@ public class ChatRoom {
         return user2;
     }
 
-
+    public Long getId() {
+        return id;
+    }
 
     public void setUser2(User user2) {
         this.user2 = user2;

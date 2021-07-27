@@ -1,6 +1,7 @@
 package com.kyp.eoneo.service;
 
 import com.kyp.eoneo.dto.ChatRoomDto;
+import com.kyp.eoneo.entity.ChatMessage;
 import com.kyp.eoneo.entity.ChatRoom;
 import com.kyp.eoneo.entity.User;
 import com.kyp.eoneo.repository.ChatRoomRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Service
@@ -18,9 +20,7 @@ public class ChatRoomService {
     @Autowired
     ChatRoomRepository chatRoomRepository;
 
-    public ChatRoomDto getChatRoomInfo(String roomId) {
-        return null;
-    }
+
 
 
     public ChatRoomDto createChatRoom(ChatRoomDto chatRoomDto) {
@@ -33,5 +33,25 @@ public class ChatRoomService {
                 .build();
         this.chatRoomRepository.createChatRoom(chatRoom);
        return chatRoomDto;
+    }
+
+
+    public ChatRoom getChats(String roomId) {
+        ChatRoom chatRoom = chatRoomRepository.findAll(roomId);
+        List<ChatMessage> chats= chatRoom.getChats();
+        for(ChatMessage cm : chats){
+            System.out.println(cm.toString());
+        }
+        return chatRoom;
+
+    }
+
+    public List<ChatRoom> getChatRoomList(Long userId) {
+        List<ChatRoom> lists = chatRoomRepository.findChatRoomList(userId);
+//        for(ChatRoom cr : lists){
+//            System.out.println(cr.getChatRoomId());
+//        }
+
+        return lists;
     }
 }

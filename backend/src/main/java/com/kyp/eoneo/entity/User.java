@@ -17,7 +17,7 @@ import java.util.*;
 @NoArgsConstructor
 public class User {
 
-    @JsonIgnore
+//    @JsonIgnore
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

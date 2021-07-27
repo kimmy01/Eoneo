@@ -1,13 +1,13 @@
 package com.kyp.eoneo.dto;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ChatRoomDto {
     private long user1Id;
     private long user2Id;
