@@ -17,7 +17,7 @@ function ProfileCards () {
                   <Card.Img style={{ borderRadius: 150, height: 250, width: 250 }} variant="top" src={Test} />
                 </div>
                 <div className="back">
-                  <p style={{height: 30}}>ddd</p>
+                  <p style={{height: 30}}>dddd</p>
                   <p>kkkk</p>
                 </div>
               </div>
