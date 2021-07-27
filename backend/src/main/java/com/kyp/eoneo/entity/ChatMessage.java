@@ -1,17 +1,25 @@
 package com.kyp.eoneo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "chatmessage")
 public class ChatMessage {
     @Id @GeneratedValue
     private Long id;
-    private Long chatroom_id;
-    private Long message_sender;
-    private String message_content;
-    private LocalDateTime message_sendtime;
+    @ManyToOne
+    @JoinColumn(name = "chatroom_id", referencedColumnName = "id")
+    private ChatRoom chatRoom;
+    private Long messageSender;
+    private String messageContent;
+    private LocalDateTime messageSendtime;
     private int attachment;
 }

@@ -2,12 +2,14 @@ package com.kyp.eoneo.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class ChatMessageDto {
-    private Long chatroom_id;
-    private Long send_user_id;
+    private String chatRoomId;
+    private Long sendUserId;
     private String message;
-    private int message_type;
+    private int messageType;
 }
