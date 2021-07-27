@@ -6,31 +6,27 @@ function ProfileCards () {
   return (
     
     <div class="container" style={{ marginTop:'40px'}}>
-      <div className="box">dddd</div>
-
-
-
-
-
-
-
       
+
       <Row xs={1} md={2} lg={4} className="g-4">
-  {Array.from({ length: 12 }).map((_, idx) => (
-    <Col>
-      <Card className ="box:hover">
-        <Card.Body>
-        <Card.Img style={{ borderRadius: 150 }} variant="top" src={Test} />
-        <hr/>
-          <Card.Title>Username</Card.Title>
-          <Card.Text>
-            Userprofile
-          </Card.Text>
-        </Card.Body>
-      </Card>
-    </Col>
-  ))}
-</Row>
+        {Array.from({ length: 12 }).map((_, idx) => (
+          <Col>
+            <div className="cardbox">
+              <div className="content">
+                <div className="front">
+                  <Card.Img style={{ borderRadius: 150, height: 250, width: 250 }} variant="top" src={Test} />
+                </div>
+                <div className="back">
+                  <p style={{height: 30}}>ddd</p>
+                  <p>kkkk</p>
+                </div>
+              </div>
+            </div>
+          </Col>
+        ))}
+      </Row>
+
+
     </div>
   )
 }
