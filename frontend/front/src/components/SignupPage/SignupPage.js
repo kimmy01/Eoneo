@@ -37,7 +37,7 @@ function Signup (props) {
     let body = {
       email: Email,
       password: Password,
-      name: Name,
+      username: Name,
     }
     dispatch(registerUser(body))
     .then(response => {

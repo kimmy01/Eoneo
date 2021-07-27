@@ -26,12 +26,13 @@ function LoginPage(props) {
     }
     dispatch(loginUser(body))
       .then(response => {
-        if(response.payload.loginSuccess) {
-          props.history.push('/') // 로그인하면 메인페이지로
-        } else {
-          alert('ERROR')
-        }
-       
+        // if(response.payload.loginSuccess) {
+        //   props.history.push('/') // 로그인하면 메인페이지로
+        // } else {
+        //   alert('ERROR')
+        // }
+        console.log(response)
+        props.history.push('/')
       })
    
   }
