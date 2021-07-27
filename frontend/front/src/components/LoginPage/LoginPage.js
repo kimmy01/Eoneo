@@ -1,18 +1,48 @@
 import React, {useState} from 'react'
 import { Form, Button, Container} from 'react-bootstrap'
 import './LoginPage.css'
+import {useDispatch} from 'react-redux'
+import {loginUser} from '../../../src/_actions/user_actions'
+import {withRouter } from 'react-router-dom'
 
-function LoginPage() {
-  // const [Email, setEmail] = useState("")
-  // const [Password, setPassword] = useState("")
+function LoginPage(props) {
+  const dispatch = useDispatch()
+  const [Email, setEmail] = useState("")
+  const [Password, setPassword] = useState("")
+  const onEmailHandler = (event) => {
+    setEmail(event.currentTarget.value)
+  }
+
+  const onPasswordHandler = (event) => {
+    setPassword(event.currentTarget.value)
+  }
+  
+  const onSubmitHandler = (event) => {
+    event.preventDefault()
+
+    let body = {
+      email: Email,
+      password: Password
+    }
+    dispatch(loginUser(body))
+      .then(response => {
+        if(response.payload.loginSuccess) {
+          props.history.push('/') // 로그인하면 메인페이지로
+        } else {
+          alert('ERROR')
+        }
+       
+      })
+   
+  }
 
   return (
     <Container>
     <h1 className="main-title">Login</h1>
-    <Form className="mt-4">
+    <Form className="mt-4" onSubmit={onSubmitHandler}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email </Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Control type="email" placeholder="Enter email" value={Email} onChange={onEmailHandler}/>
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
         </Form.Text>
@@ -20,7 +50,7 @@ function LoginPage() {
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Control type="password" placeholder="Password" value={Password} onChange={onPasswordHandler}/>
       </Form.Group>
 
       <div>
@@ -61,4 +91,4 @@ function LoginPage() {
   
 }
 
-export default LoginPage
+export default withRouter(LoginPage)
