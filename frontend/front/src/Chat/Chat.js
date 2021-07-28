@@ -1,68 +1,88 @@
-import React, {useState, useEffect} from 'react';
-import io from 'socket.io-client';
-import TextField from '@material-ui/core/TextField';
+import React, { useEffect, useRef, useState } from "react";
+import * as StompJs from "@stomp/stompjs";
+import * as SockJS from "sockjs-client";
 
-
-const socket =  io.connect('http://localhost:8080')
+const ROOM_SEQ = 1;
 
 function Chat () {
-  const [state, setState] = useState({message:'', name:''})
-  const [chat,setChat] =useState([])
+  const client = useRef({});
+  const [chatMessages, setChatMessages] = useState([]);
+  const [message, setMessage] = useState("");
 
-  useEffect(()=>{
-    socket.on('message',({name,message})=>{
-      setChat([...chat,{name,message}])
-    })
-  })
+  useEffect(() => {
+    connect();
 
-  const onTextChange = e =>{
-    setState({...state,[e.target.name]: e.target.value})
-  }
+    return () => disconnect();
+  }, []);
 
-  const onMessageSubmit =(e)=>{
-    e.preventDefault()
-    const {name, message} =state
-    socket.emit('message',{name, message})
-    setState({message : '',name})
-  }
+  const connect = () => {
+    client.current = new StompJs.Client({
+      brokerURL: "ws://localhost:8080/ws-stomp/websocket", // 웹소켓 서버로 직접 접속
+      //webSocketFactory: () => new SockJS("/ws-stomp"), // proxy를 통한 접속
+      connectHeaders: {
+        "auth-token": "spring-chat-auth-token",
+      },
+      debug: function (str) {
+        console.log(str);
+      },
+      reconnectDelay: 5000,
+      heartbeatIncoming: 4000,
+      heartbeatOutgoing: 4000,
+      onConnect: () => {
+        subscribe();
+      },
+      onStompError: (frame) => {
+        console.error(frame);
+      },
+    });
 
+    client.current.activate();
+  };
 
-  const renderChat =()=>{
-    return chat.map(({name, message},index)=>(
-      <div key={index}>
-        <h3>{name}:<span>{message}</span></h3>
-      </div>
-    ))
-  }
+  const disconnect = () => {
+    client.current.deactivate();
+  };
+
+  const subscribe = () => {
+    client.current.subscribe(`/sub/chat/${ROOM_SEQ}`, ({ body }) => {
+      setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
+    });
+  };
+
+  const publish = (message) => {
+    if (!client.current.connected) {
+      return;
+    }
+
+    client.current.publish({
+      destination: "/pub/chat",
+      body: JSON.stringify({ roomSeq: ROOM_SEQ, message }),
+    });
+
+    setMessage("");
+  };
 
   return (
-    <div className='card'>
-      <form onSubmit={onMessageSubmit}>
-        <h1>Message</h1>
-        <div className="name-field">
-          <TextField 
-          name ="name" 
-          onChange={e=> onTextChange(e)} 
-          value={state.name}
-          label="Name"/>
-        </div>
-        <div >
-          <TextField 
-          name ="message" 
-          onChange={e=> onTextChange(e)} 
-          value={state.message}
-          id="outlined-multiline-static"
-          variant="outlined"
-          label="Message"/>
-        </div>
-        <button>Send Message</button>
-      </form>
-      <div className="render-chat">
-        <h1>Chat log</h1>
-        {renderChat()}
+    <div>
+      {chatMessages && chatMessages.length > 0 && (
+        <ul>
+          {chatMessages.map((_chatMessage, index) => (
+            <li key={index}>{_chatMessage.message}</li>
+          ))}
+        </ul>
+      )}
+      <div>
+        <input
+          type={"text"}
+          placeholder={"message"}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyPress={(e) => e.which === 13 && publish(message)}
+        />
+        <button onClick={() => publish(message)}>send</button>
       </div>
     </div>
   );
-}
+};
 
-export default Chat
+export default Chat;
