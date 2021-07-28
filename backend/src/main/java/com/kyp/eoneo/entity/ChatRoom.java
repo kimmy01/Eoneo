@@ -33,7 +33,7 @@ public class ChatRoom {
 
     private LocalDateTime startedTime;
 
-    @OneToMany(mappedBy = "chatRoom", fetch = FetchType.LAZY)
+//    @OneToMany(mappedBy = "chatRoom", fetch = FetchType.LAZY)
     private List<ChatMessage> chats = new ArrayList<>();
 
     public User getUser1() {

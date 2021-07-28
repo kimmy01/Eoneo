@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 public class ChatMessage {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "chatroom_id", referencedColumnName = "id")
+//    @ManyToOne
+//    @JoinColumn(name = "chatroom_id", referencedColumnName = "id")
     private ChatRoom chatRoom;
     private Long messageSender;
     private String messageContent;
