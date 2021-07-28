@@ -1,10 +1,11 @@
+// messageTye = 0이면, 문자 1이면 이미지 2이면 음성
 import React, { useEffect, useRef, useState } from "react";
 import * as StompJs from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
 
-const ROOM_SEQ = 1;
+const ROOM_SEQ = "6caf6c54-1747-42aa-97d6-a287244cbacb";
 
-function Chat () {
+const Chat = () => {
   const client = useRef({});
   const [chatMessages, setChatMessages] = useState([]);
   const [message, setMessage] = useState("");
@@ -17,8 +18,8 @@ function Chat () {
 
   const connect = () => {
     client.current = new StompJs.Client({
-      brokerURL: "ws://localhost:8080/ws-stomp/websocket", // 웹소켓 서버로 직접 접속
-      //webSocketFactory: () => new SockJS("/ws-stomp"), // proxy를 통한 접속
+      // brokerURL: "ws:http://localhost:8080/chatEonoe-websocket", // 웹소켓 서버로 직접 접속
+      webSocketFactory: () => new SockJS("http://localhost:8080/chatEonoe-websocket"), // proxy를 통한 접속 //internet explore
       connectHeaders: {
         "auth-token": "spring-chat-auth-token",
       },
@@ -43,23 +44,33 @@ function Chat () {
     client.current.deactivate();
   };
 
+  //문제의 원인
   const subscribe = () => {
-    client.current.subscribe(`/sub/chat/${ROOM_SEQ}`, ({ body }) => {
+    client.current.subscribe(`/subscribe/${ROOM_SEQ}`, ({ body }) => {
       setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
     });
+    console.log("chatMessages:")
+    console.log(chatMessages)
   };
 
   const publish = (message) => {
     if (!client.current.connected) {
       return;
     }
+    let messagesdata = {
+        chatRoomId: '6caf6c54-1747-42aa-97d6-a287244cbacb',
+        sendUserId: '2', //
+        message: message,
+        messageType: '0',
+    };
 
     client.current.publish({
-      destination: "/pub/chat",
-      body: JSON.stringify({ roomSeq: ROOM_SEQ, message }),
+      destination: "/publish/chat/message",
+      body: JSON.stringify(messagesdata),
     });
 
     setMessage("");
+    console.log(messagesdata)
   };
 
   return (
