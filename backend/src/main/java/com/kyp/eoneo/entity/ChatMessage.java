@@ -18,7 +18,7 @@ public class ChatMessage {
     private Long id;
 //    @ManyToOne
 //    @JoinColumn(name = "chatroom_id", referencedColumnName = "id")
-    private ChatRoom chatRoom;
+//    private ChatRoom chatRoom;
     private Long messageSender;
     private String messageContent;
     @CreatedDate
