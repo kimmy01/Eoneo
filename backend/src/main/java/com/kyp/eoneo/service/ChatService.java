@@ -16,7 +16,7 @@ public class ChatService {
 
     public void save(ChatMessageDto chatMessagDto){
         ChatMessage chatMessage = ChatMessage.builder()
-                .chatRoom(chatRepository.findChatRoomId(chatMessagDto.getChatRoomId()))
+                .chatroomId(chatRepository.findChatRoomId(chatMessagDto.getChatRoomId()).getId())
                 .messageSender(chatMessagDto.getSendUserId())
                 .messageContent(chatMessagDto.getMessage())
                 .attachment(chatMessagDto.getMessageType())

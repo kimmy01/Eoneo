@@ -9,6 +9,7 @@ import com.kyp.eoneo.entity.ChatRoom;
 import com.kyp.eoneo.service.ChatRoomService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -34,30 +35,15 @@ public class ChatRoomController {
     @GetMapping("/rooms/{userId}")
     public ChatRoomDtoWrapper<List<ChatRoomDto>> getChatRoomWithUser(@PathVariable Long userId){
       log.info("한 유저가 가지고 있는 모든 room 다 가져오기" + userId);
-      List<ChatRoom> list = chatRoomService.getChatRoomList(userId);
-      List<ChatRoomDto> rooms = list.stream()
-                                .map(m -> new ChatRoomDto(m.getUser1().getId(), m.getUser2().getId(), m.getChatRoomId()))
-                                .collect(Collectors.toList());
-      return new ChatRoomDtoWrapper<List<ChatRoomDto>>(rooms);
+      List<ChatRoomDto> list = chatRoomService.getChatRoomList(userId);
+      return new ChatRoomDtoWrapper<List<ChatRoomDto>>(list.size(), list);
     }
 
 //채팅방 id에 해당하는 chatMessage 가져오기
     @GetMapping("/room/{roomId}")
     public ChatMessageDtoWrapper getChatRoomInfo(@PathVariable String roomId){
         log.info(roomId);
-        ChatRoom chatRoom = chatRoomService.getChats(roomId);
-        Collections.sort(chatRoom.getChats(), new Comparator<ChatMessage>() {
-            @Override
-            public int compare(ChatMessage o1, ChatMessage o2) {
-                return o1.getMessageSendtime().compareTo(o2.getMessageSendtime());
-            }
-        });
-//        데이터가 많을 때, N+1문제가 발생할 수도 있으나 일단은 고려하지 않음
-        List<ChatMessageDto> chats = chatRoom.getChats().stream()
-                .map(m ->  new ChatMessageDto(m.getMessageSender(), m.getMessageContent(), m.getAttachment())
-                )
-                .collect(Collectors.toList());
-
-        return new ChatMessageDtoWrapper(chatRoom.getUser1().getId(), chatRoom.getUser2().getId(), chatRoom.getChatRoomId(), chats);
+        ChatMessageDtoWrapper chatMessageDtoWrapper = chatRoomService.getChats(roomId);
+        return  chatMessageDtoWrapper;
     }
 }

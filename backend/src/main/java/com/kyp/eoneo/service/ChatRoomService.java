@@ -1,6 +1,8 @@
 package com.kyp.eoneo.service;
 
+import com.kyp.eoneo.dto.ChatMessageDto;
 import com.kyp.eoneo.dto.ChatRoomDto;
+import com.kyp.eoneo.dto.wrapper.ChatMessageDtoWrapper;
 import com.kyp.eoneo.entity.ChatMessage;
 import com.kyp.eoneo.entity.ChatRoom;
 import com.kyp.eoneo.entity.User;
@@ -36,18 +38,15 @@ public class ChatRoomService {
     }
 
 
-    public ChatRoom getChats(String roomId) {
-        ChatRoom chatRoom = chatRoomRepository.findAll(roomId);
-        List<ChatMessage> chats= chatRoom.getChats();
-        for(ChatMessage cm : chats){
-            System.out.println(cm.toString());
-        }
-        return chatRoom;
+    public ChatMessageDtoWrapper getChats(String roomId) {
+        ChatRoom chatRoom = chatRoomRepository.getChatRoomPK(roomId);
+        List<ChatMessageDto> chats= chatRoomRepository.findChats(chatRoom.getId());
+        return new ChatMessageDtoWrapper(chatRoom.getUser1().getId(), chatRoom.getUser2().getId(), roomId, (long) chats.size(), chats);
 
     }
 
-    public List<ChatRoom> getChatRoomList(Long userId) {
-        List<ChatRoom> lists = chatRoomRepository.findChatRoomList(userId);
+    public List<ChatRoomDto> getChatRoomList(Long userId) {
+        List<ChatRoomDto> lists = chatRoomRepository.findChatRoomList(userId);
 //        for(ChatRoom cr : lists){
 //            System.out.println(cr.getChatRoomId());
 //        }

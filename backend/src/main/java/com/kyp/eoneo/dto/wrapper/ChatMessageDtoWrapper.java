@@ -11,8 +11,9 @@ import java.util.List;
 @Getter
 @Setter
 public class ChatMessageDtoWrapper {
-    private Long userMe;
-    private Long userNotMe;
+    private Long user1;
+    private Long user2;
     private String chatRoomId;
+    private Long chatsSize;
     private List<ChatMessageDto> chats;
 }

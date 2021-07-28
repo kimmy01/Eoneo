@@ -9,11 +9,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChatRoomDto {
-    private long user1Id;
-    private long user2Id;
+    private Long user1Id;
+    private Long user2Id;
     private String chatRoomId;
 
-    public static ChatRoomDto create(@NonNull long user1Id, @NonNull long user2Id){
+    public static ChatRoomDto create(@NonNull Long user1Id, @NonNull Long user2Id){
         ChatRoomDto created = new ChatRoomDto();
         created.chatRoomId = UUID.randomUUID().toString();
         created.user1Id = user1Id;

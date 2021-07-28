@@ -11,5 +11,6 @@ import java.util.List;
 @Getter
 @Setter
 public class ChatRoomDtoWrapper<T> {
+    private int chatRoomSize;
     private List<ChatRoomDto> chatRoomList;
 }
