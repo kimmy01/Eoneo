@@ -10,6 +10,7 @@ import NavBar from './components/NavBar/NavBar'
 import LoginPage from './components/LoginPage/LoginPage'
 import SignupPage from './components/SignupPage/SignupPage'
 import CategoryPage from './Home/CategoryPage';
+import Chat from '../src/Chat/Chat.js'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/main" component={CategoryPage} />
           <Route exact path="/login" component={ LoginPage } />        
           <Route exact path="/signup" component={ SignupPage } />       
+          <Route exact path="/chat" component={Chat} />
 
         </Switch>
     </Router>
