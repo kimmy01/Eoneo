@@ -35,7 +35,7 @@ const Chat = () => {
       // api : /api/chatroom/room/{roomId}
 
       onConnect: () => {
-        subscribe();
+        firstsubscribe();
       },
       onStompError: (frame) => {
         console.error(frame);
@@ -51,7 +51,12 @@ const Chat = () => {
 
   const subscribe = () => {
     client.current.subscribe(`/subscribe/${ROOM_SEQ}`, ({ body }) => {
-      console.log("body")
+      setChatMessages((chatMessages) => [...chatMessages, JSON.parse(body)]);
+    });
+  };
+
+  const firstsubscribe = () => {
+    client.current.subscribe(`/api/chatroom/room/${ROOM_SEQ}`, ({ body }) => {
       setChatMessages((chatMessages) => [...chatMessages, JSON.parse(body)]);
     });
   };
