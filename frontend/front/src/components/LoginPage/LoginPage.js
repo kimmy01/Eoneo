@@ -4,6 +4,9 @@ import './LoginPage.css'
 import {useDispatch} from 'react-redux'
 import {loginUser} from '../../../src/_actions/user_actions'
 import {withRouter } from 'react-router-dom'
+// import GoogleLogin from 'react-google-login'
+
+// const clientId = "OAuth Web Client ID"
 
 function LoginPage(props) {
   const dispatch = useDispatch()
@@ -16,7 +19,7 @@ function LoginPage(props) {
   const onPasswordHandler = (event) => {
     setPassword(event.currentTarget.value)
   }
-  
+   
   const onSubmitHandler = (event) => {
     event.preventDefault()
 
@@ -36,6 +39,23 @@ function LoginPage(props) {
       })
    
   }
+
+  // const onSuccess = async(response) => {
+  //   console.log(response);
+    
+        // const { googleId, profileObj : { email, name } } = response;
+        
+        // await onSocial({
+        //     socialId : googleId,
+        //     socialType : 'google',
+        //     email,
+        //     nickname : name
+        // });
+  // }
+
+//   const onFailure = (error) => {
+//     console.log(error);
+// }
 
   return (
     <Container>
@@ -65,6 +85,13 @@ function LoginPage(props) {
       <div>
         <Button className="button" variant="social" type="submit">
           Social Login
+        {/* <div>
+            <GoogleLogin
+                clientId={clientId}
+                responseType={"id_token"}
+                onSuccess={onSuccess}
+                onFailure={onFailure}/>
+        </div> */}
         </Button>
       </div>
 
