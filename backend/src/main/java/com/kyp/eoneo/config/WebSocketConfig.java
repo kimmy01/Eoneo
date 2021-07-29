@@ -1,6 +1,7 @@
 package com.kyp.eoneo.config;
 
 import com.kyp.eoneo.config.interceptor.MyChannelInterceptor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -8,23 +9,26 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
+    private final MyChannelInterceptor myChannelInterceptor;
+
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/chatEonoe-websocket").setAllowedOriginPatterns("*").withSockJS();
+        registry.addEndpoint("/chatEonoe-websocket").setAllowedOrigins("http://localhost:3000").withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/subscribe"); //topic <- 메시지를 유저 또는 destination에 보내기 위한 prefixes
+        registry.enableSimpleBroker("/ "); //topic <- 메시지를 유저 또는 destination에 보내기 위한 prefixes
         registry.setApplicationDestinationPrefixes("/publish");  //app <- @MessageMapping으로 가는 친구, 구독한다고 알리는 느낌!
     }
 
     @Override
     public void configureClientInboundChannel(ChannelRegistration registration) {
-        registration.interceptors(new MyChannelInterceptor());
+        registration.interceptors(myChannelInterceptor);
     }
 }

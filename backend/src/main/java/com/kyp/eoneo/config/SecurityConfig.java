@@ -20,18 +20,19 @@ import org.springframework.web.filter.CorsFilter;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final TokenProvider tokenProvider;
-//    private final CorsFilter corsFilter;
+    //    private final CorsFilter corsFilter;
+    private CorsConfig corsConfig;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
     public SecurityConfig( //객체 주입
                            TokenProvider tokenProvider,
-//                           CorsFilter corsFilter,
+                           CorsConfig corsConfig,
                            JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
                            JwtAccessDeniedHandler jwtAccessDeniedHandler
     ) {
         this.tokenProvider = tokenProvider;
-//        this.corsFilter = corsFilter;
+        this.corsConfig = corsConfig;
         this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
         this.jwtAccessDeniedHandler = jwtAccessDeniedHandler;
     }
@@ -58,8 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // token을 사용하는 방식이기 때문에 csrf를 disable합니다.
                 .csrf().disable()
 
-//                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
-
+                .cors().configurationSource(corsConfig.corsFilter()) //jwt 관련 적용해야할 부분
+                .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint) //예외처리 시 우리가 만든 클래스 추가
                 .accessDeniedHandler(jwtAccessDeniedHandler)
@@ -79,6 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/hello").permitAll()
                 .antMatchers("/api/authenticate").permitAll()
+                .antMatchers("/chatEonoe-websocket/**").permitAll()
                 .antMatchers("/api/signup").permitAll() //로그인, 회원가입 API 토큰 없는 상태에서 요청
 
                 .anyRequest().authenticated()
