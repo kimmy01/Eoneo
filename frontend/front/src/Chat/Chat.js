@@ -29,6 +29,11 @@ const Chat = () => {
       reconnectDelay: 5000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
+      
+
+      // db랑 연결하는 코드를 따로 만들어야함!!!!
+      // api : /api/chatroom/room/{roomId}
+
       onConnect: () => {
         subscribe();
       },
@@ -44,13 +49,11 @@ const Chat = () => {
     client.current.deactivate();
   };
 
-  //문제의 원인
   const subscribe = () => {
     client.current.subscribe(`/subscribe/${ROOM_SEQ}`, ({ body }) => {
-      setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
+      console.log("body")
+      setChatMessages((chatMessages) => [...chatMessages, JSON.parse(body)]);
     });
-    console.log("chatMessages:")
-    console.log(chatMessages)
   };
 
   const publish = (message) => {
@@ -68,10 +71,21 @@ const Chat = () => {
       destination: "/publish/chat/message",
       body: JSON.stringify(messagesdata),
     });
+   
 
     setMessage("");
+    console.log("messagedata:")
     console.log(messagesdata)
+    
   };
+
+  const viewMessage = (event) => {
+    console.log(chatMessages)
+  }
+
+  const enrollMessage = (event) => {
+    setChatMessages({'message':'hi'})
+  }
 
   return (
     <div>
@@ -92,6 +106,9 @@ const Chat = () => {
         />
         <button onClick={() => publish(message)}>send</button>
       </div>
+      
+      <button onClick={enrollMessage}>enroll</button>
+      <button onClick={viewMessage}>messages</button>
     </div>
   );
 };
