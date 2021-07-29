@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChatController {
 
     //서비스로 가야함
+    @Autowired
     private final SimpMessagingTemplate template;
     @Autowired
     ChatService chatService;
@@ -31,6 +32,6 @@ public class ChatController {
     public void message(@Payload ChatMessageDto chatMessage){
         log.info("메세지 내용 " + chatMessage);
         chatService.save(chatMessage);
-        template.convertAndSend("/subscribe" + chatMessage.getChatRoomId(), chatMessage);
+        template.convertAndSend("/subscribe/" + chatMessage.getChatRoomId(), chatMessage);
     }
 }
