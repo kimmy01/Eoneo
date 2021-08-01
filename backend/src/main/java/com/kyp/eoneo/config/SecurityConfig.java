@@ -80,8 +80,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/hello").permitAll()
                 .antMatchers("/api/authenticate").permitAll()
-                .antMatchers("/chatEonoe-websocket/**").permitAll()
                 .antMatchers("/api/signup").permitAll() //로그인, 회원가입 API 토큰 없는 상태에서 요청
+                .antMatchers("/chatEonoe-websocket/**").permitAll()
+                .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll()
 
                 .anyRequest().authenticated()
 

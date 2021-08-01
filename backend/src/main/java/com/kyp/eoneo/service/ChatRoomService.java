@@ -30,7 +30,7 @@ public class ChatRoomService {
         user1.setId(chatRoomDto.getUser1Id());
         User user2 = new User();
         user2.setId(chatRoomDto.getUser2Id());
-        ChatRoom chatRoom = ChatRoom.builder().chatRoomId(chatRoomDto.getChatRoomId())
+        ChatRoom chatRoom = ChatRoom.builder().id(chatRoomDto.getChatRoomId())
                  .user1(user1).user2(user2).startedTime(LocalDateTime.now())
                 .build();
         this.chatRoomRepository.createChatRoom(chatRoom);
@@ -39,7 +39,7 @@ public class ChatRoomService {
 
 
     public ChatMessageDtoWrapper getChats(String roomId) {
-        ChatRoom chatRoom = chatRoomRepository.getChatRoomPK(roomId);
+        ChatRoom chatRoom = chatRoomRepository.getChatRoomInfo(roomId);
         List<ChatMessageDto> chats= chatRoomRepository.findChats(chatRoom.getId());
         return new ChatMessageDtoWrapper(chatRoom.getUser1().getId(), chatRoom.getUser2().getId(), roomId, (long) chats.size(), chats);
 
@@ -52,5 +52,9 @@ public class ChatRoomService {
 //        }
 
         return lists;
+    }
+
+    public void deleteUserChatRoom(String roomId, Long userId) {
+        chatRoomRepository.deleteUserChatRoom(roomId, userId);
     }
 }

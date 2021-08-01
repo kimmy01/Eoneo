@@ -17,8 +17,8 @@ import java.util.UUID;
 @EqualsAndHashCode(of = {"chatRoomId", "id"})
 @Table(name = "CHATROOM")
 public class ChatRoom {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    @Id
+    private  String id;
 
     @ManyToOne
     @JoinColumn(name = "user1_id", referencedColumnName = "id")
@@ -28,13 +28,20 @@ public class ChatRoom {
     @JoinColumn(name = "user2_id", referencedColumnName = "id")
     private User user2;
 
-    @Column(name = "chatroomDisId")
-    private String chatRoomId;
 
     private LocalDateTime startedTime;
 
 //    @OneToMany(mappedBy = "chatRoom", fetch = FetchType.LAZY)
 //    private List<ChatMessage> chats = new ArrayList<>();
+
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
 
     public User getUser1() {
         return user1;
@@ -48,27 +55,9 @@ public class ChatRoom {
         return user2;
     }
 
-    public Long getId() {
-        return id;
-    }
 
     public void setUser2(User user2) {
         this.user2 = user2;
     }
 
-    public String getChatRoomId() {
-        return chatRoomId;
-    }
-
-    public void setChatRoomId(String chatRoomId) {
-        this.chatRoomId = chatRoomId;
-    }
-
-    public LocalDateTime getStartedTime() {
-        return startedTime;
-    }
-
-    public void setStartedTime(LocalDateTime startedTime) {
-        this.startedTime = startedTime;
-    }
 }

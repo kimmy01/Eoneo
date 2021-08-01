@@ -18,10 +18,9 @@ public class ChatMessage {
     private Long id;
 //    @ManyToOne
 //    @JoinColumn(name = "chatroom_id", referencedColumnName = "id")
-    private Long chatroomId;
+    private String chatroomId;
     private Long messageSender;
     private String messageContent;
-    @CreatedDate
     private LocalDateTime messageSendtime;
 
     @PrePersist
