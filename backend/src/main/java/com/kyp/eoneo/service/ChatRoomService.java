@@ -54,7 +54,7 @@ public class ChatRoomService {
         return lists;
     }
 
-    public void deleteUserChatRoom(String roomId, Long userId) {
-        chatRoomRepository.deleteUserChatRoom(roomId, userId);
+    public int deleteUserChatRoom(String roomId, Long userId) {
+        return chatRoomRepository.deleteUserChatRoom(roomId, userId);
     }
 }

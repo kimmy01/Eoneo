@@ -22,11 +22,11 @@ public class ChatMessage {
     private Long messageSender;
     private String messageContent;
     private LocalDateTime messageSendtime;
+    private boolean isRead;
 
     @PrePersist
     public void joinedAt(){
         this.messageSendtime = LocalDateTime.now();
     }
 
-    private int attachment;
 }

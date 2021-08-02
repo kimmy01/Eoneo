@@ -28,7 +28,7 @@ public class ChatRoomRepository {
     }
 
     public List<ChatMessageDto> findChats(String id) {
-        List<ChatMessageDto> chatRoomDtos = em.createQuery("select new com.kyp.eoneo.dto.ChatMessageDto(cm.messageSender, cm.messageContent, cm.attachment) from ChatMessage cm where cm.chatroomId = :id order by cm.messageSendtime", ChatMessageDto.class)
+        List<ChatMessageDto> chatRoomDtos = em.createQuery("select new com.kyp.eoneo.dto.ChatMessageDto(cm.messageSender, cm.messageContent) from ChatMessage cm where cm.chatroomId = :id order by cm.messageSendtime", ChatMessageDto.class)
                 .setParameter("id", id)
                 .getResultList();
         return chatRoomDtos;
@@ -48,35 +48,33 @@ public class ChatRoomRepository {
     }
 
     @Modifying
-    public void deleteUserChatRoom(String roomId, Long userId) {
-        em.createQuery("update ChatRoom cr set cr.user1 = null where cr.id = :chatRoomID and cr.user1.id = :userId")
+    public int deleteUserChatRoom(String roomId, Long userId) {
+        int returnValue = 0;
+        int result1 = em.createQuery("update ChatRoom cr set cr.user1 = null where cr.id = :chatRoomID and cr.user1.id = :userId")
                 .setParameter("chatRoomID", roomId)
                 .setParameter("userId", userId)
                 .executeUpdate();
 
-        em.createQuery("update ChatRoom cr set cr.user2 = null where cr.id = :chatRoomID and cr.user2.id = :userId")
+       int result2 =  em.createQuery("update ChatRoom cr set cr.user2 = null where cr.id = :chatRoomID and cr.user2.id = :userId")
                 .setParameter("chatRoomID", roomId)
                 .setParameter("userId", userId)
                 .executeUpdate();
 
-        bothAllDelete(roomId);
+
+       if(result1 <= 0 && result2 <= 0) {
+           returnValue = deleteChatRoom(roomId);
+           return returnValue;
+       }
+        returnValue = result1 > 0 ? result1 : result2;
+       return  returnValue;
     }
 
-    public void bothAllDelete(String roomId){
-        ChatRoom chatRoom = em.createQuery("select cr from ChatRoom cr where cr.id = :chatRoomId ", ChatRoom.class)
-                .setParameter("chatRoomId", roomId)
-                .getSingleResult();
 
-        if(chatRoom.getUser1() == null && chatRoom.getUser2() == null){
-            deleteChatRoom(roomId);
-        }
-
-    }
-
-    private void deleteChatRoom(String roomId) {
-        em.createQuery("delete from ChatRoom cr where cr.id = :chatRoomId")
+    private int deleteChatRoom(String roomId) {
+        int returnValue = em.createQuery("delete from ChatRoom cr where cr.id = :chatRoomId")
                 .setParameter("chatRoomId", roomId)
                 .executeUpdate();
+        return returnValue;
     }
 
 }

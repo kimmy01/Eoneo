@@ -13,12 +13,11 @@ public class ChatMessageDto {
     private String chatRoomId;
     private Long sendUserId;
     private String message;
-    private int messageType;
 
-    public ChatMessageDto(Long sendUserId, String message, int messageType) {
+    public ChatMessageDto(Long sendUserId, String message) {
 //        this.chatRoomId = -1;
         this.sendUserId = sendUserId;
         this.message = message;
-        this.messageType = messageType;
+
     }
 }
