@@ -1,9 +1,6 @@
 package com.kyp.eoneo.config;
 
-import com.kyp.eoneo.util.jwt.JwtAccessDeniedHandler;
-import com.kyp.eoneo.util.jwt.JwtAuthenticationEntryPoint;
-import com.kyp.eoneo.util.jwt.JwtSecurityConfig;
-import com.kyp.eoneo.util.jwt.TokenProvider;
+import com.kyp.eoneo.util.jwt.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -57,8 +54,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 // token을 사용하는 방식이기 때문에 csrf를 disable합니다.
-                .csrf().disable()
+                .csrf()
+//                .ignoringAntMatchers("/chatEonoe-websocket/**")
+//                .and()
+//                .headers()
 
+                .and()
                 .cors().configurationSource(corsConfig.corsFilter()) //jwt 관련 적용해야할 부분
                 .and()
                 .exceptionHandling()

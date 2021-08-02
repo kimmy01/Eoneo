@@ -5,6 +5,7 @@ import com.kyp.eoneo.dto.ChatRoomDto;
 import com.kyp.eoneo.entity.ChatMessage;
 import com.kyp.eoneo.entity.ChatRoom;
 //import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.kyp.eoneo.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
@@ -77,5 +78,14 @@ public class ChatRoomRepository {
         return returnValue;
     }
 
+    public boolean isRightUser(User user1) {
+        List<User> user = em.createQuery("select  u from User u where u.id = :id", User.class)
+                .setParameter("id", user1.getId())
+                .getResultList();
+        if(user.isEmpty()) return false;
+//        데이터는 있지만, 탈퇴한 유저일 경우
+//        else(user.)
+        return true;
+    }
 }
 

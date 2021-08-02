@@ -39,7 +39,7 @@ public class ChatRoomController {
         //예외처리
         //다른 사용자가 탈퇴했거나 존재하지 않을 때
         ChatRoomDto chatRoom = ChatRoomDto.create(chatRoomDto.getUser1Id(), chatRoomDto.getUser2Id());
-       return ResponseEntity.status(200).body(CommonResponse.of(chatRoomService.createChatRoom(chatRoom), true, "방생성 성공", 200));
+       return ResponseEntity.status(200).body(CommonResponse.of(chatRoomService.createChatRoom(chatRoom), true, "방생성 성공", 201));
     }
 //특정 유저가 가지고 있는 모든 채팅방 리스트
     @ApiOperation(value = "채팅방 리스트", notes = "특정 사용자의 모든 채팅 리스트를 보여준다.")
@@ -71,7 +71,7 @@ public class ChatRoomController {
         //해당 채팅방 id가 없을 경우
         //해당 user가 없을 경우
         if(chatRoomService.deleteUserChatRoom(roomId, userId) > 0){
-            return ResponseEntity.status(200).body(CommonResult.of(true, "방 삭제 성공", 200));
+            return ResponseEntity.status(200).body(CommonResult.of(true, "방 삭제 성공", 201));
         }
         return null;
     }

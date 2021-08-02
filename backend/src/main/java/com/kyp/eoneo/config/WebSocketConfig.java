@@ -16,6 +16,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     private final MyChannelInterceptor myChannelInterceptor;
 
+
+
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/chatEonoe-websocket").setAllowedOrigins("http://localhost:3000").withSockJS();
