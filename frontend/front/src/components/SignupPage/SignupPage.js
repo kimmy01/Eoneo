@@ -1,5 +1,5 @@
 import React, {useState } from 'react'
-import { Form, Button, Col, Row, InputGroup, FormControl } from 'react-bootstrap'
+import { Form, Button} from 'react-bootstrap'
 import "./SignupPage.css"
 import { useDispatch } from 'react-redux'
 import {registerUser} from '../../../src/_actions/user_actions'

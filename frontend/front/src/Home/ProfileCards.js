@@ -5,11 +5,11 @@ import './ProfileCards.css'
 function ProfileCards () {
   return (
     
-    <div class="container" style={{ marginTop:'40px'}}>
+    <div class="container" style={{ marginTop:'40px', marginBottom:"40px"}}>
       
 
       <Row xs={1} md={2} lg={4} className="g-4">
-        {Array.from({ length: 12 }).map((_, idx) => (
+        {Array.from({ length: 8 }).map((_, idx) => (
           <Col>
             <div className="cardbox">
               <div className="content">

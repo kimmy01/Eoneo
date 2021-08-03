@@ -1,10 +1,9 @@
 import React from 'react'
 import {  Image } from 'react-bootstrap'
-// import NavBar from '../components/NavBar/NavBar'
 import MainImage from '../assets/Home/main.jpg' 
 import ProfileCards from './ProfileCards'
 import './Home.css'
-// import Chat from '../Chat/Chat'
+import Footer from '../components/Footer/Footer'
 
 
 function Home () {
@@ -13,11 +12,17 @@ function Home () {
       <a href="/chat">
         Chat
       </a>
+      <a href="/videochat">
+        VideoChat
+      </a>
       <div className="image">
         <Image src={MainImage} width='900' height='600' alt="mainimage"/>
       </div>
       <div className="cards"> 
-      <ProfileCards />
+       <ProfileCards />
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   )
