@@ -56,4 +56,5 @@ public class UserController {
     public ResponseEntity<UserDetailDto> updateUserDetail(@RequestBody UserDetailDto userDetailDto){
         return ResponseEntity.ok(userDetailService.updateUserDetail(userDetailDto));
     }
+
 }

@@ -1,9 +1,7 @@
 package com.kyp.eoneo.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,10 +9,12 @@ import java.io.Serializable;
 @Entity
 @Table(name = "user_lang")
 @Getter @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserLanguage implements Serializable {
 
+    @JsonIgnore
     @Id
     @OneToOne
     @JoinColumn(name = "id", referencedColumnName = "id")

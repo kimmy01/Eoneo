@@ -63,7 +63,7 @@ public class User {
     @OneToOne(mappedBy = "user")
     private UserDetail userDetail;
 
-    @JsonIgnore
+//    @JsonIgnore
     @OneToOne(mappedBy = "user")
     private UserLanguage userLanguage;
 }

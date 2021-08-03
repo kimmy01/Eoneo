@@ -1,9 +1,7 @@
 package com.kyp.eoneo.repository;
 
 import com.kyp.eoneo.dto.UserDetailDto;
-import com.kyp.eoneo.entity.Country;
-import com.kyp.eoneo.entity.User;
-import com.kyp.eoneo.entity.UserDetail;
+import com.kyp.eoneo.entity.*;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +16,10 @@ public class UserDetailRepository {
 
     public void createUserDetail(UserDetail userDetail){
         em.persist(userDetail);
+    }
+
+    public void createUserLanguage(UserLanguage userLanguage){
+        em.persist(userLanguage);
     }
 
 //    public UserDetailDto findUserDetail(User user){
@@ -54,6 +56,21 @@ public class UserDetailRepository {
                 .setParameter("nickname", nickname)
                 .setParameter("description", description)
                 .setParameter("profile_image", profile_image)
+                .executeUpdate();
+    }
+
+    @Modifying
+    public void updateUserLanguage(UserLanguage userLanguage){
+        User user = userLanguage.getUser();
+        Language fluentLanguage = userLanguage.getFluentLanguage();
+        Language nativeLanguage = userLanguage.getNativeLanguage();
+        Language wantLanguage = userLanguage.getWantLanguage();
+
+        em.createQuery("update UserLanguage ul set ul.fluentLanguage = :fluentLanguage, ul.nativeLanguage = :nativeLanguage, ul.wantLanguage = :wantLanguage where ul.user = :user")
+                .setParameter("fluentLanguage", fluentLanguage)
+                .setParameter("nativeLanguage", nativeLanguage)
+                .setParameter("wantLanguage", wantLanguage)
+                .setParameter("user", user)
                 .executeUpdate();
     }
 }
