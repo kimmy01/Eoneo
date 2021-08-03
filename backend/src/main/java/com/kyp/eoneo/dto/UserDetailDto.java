@@ -1,0 +1,34 @@
+package com.kyp.eoneo.dto;
+
+import com.kyp.eoneo.entity.Country;
+import com.kyp.eoneo.entity.User;
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserDetailDto {
+    private Long userid;
+    private String nationality;
+    private int gender;
+    private String nickname;
+    private String description;
+    private String profile_image;
+
+    public static UserDetailDto create(@NonNull Long userid,
+                                       @NonNull String nationality,
+                                       @NonNull int gender,
+                                       @NonNull String nickname,
+                                       @NonNull String description,
+                                       @NonNull String profile_image){
+        UserDetailDto created = new UserDetailDto();
+        created.userid = userid;
+        created.nationality = nationality;
+        created.gender = gender;
+        created.nickname = nickname;
+        created.description = description;
+        created.profile_image = profile_image;
+        return created;
+    }
+}

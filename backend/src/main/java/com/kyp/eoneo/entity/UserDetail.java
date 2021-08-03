@@ -3,6 +3,7 @@ package com.kyp.eoneo.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "user_detail")
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDetail {
+public class UserDetail implements Serializable {
     @Id
     @Column(name = "id")
     private Long id;

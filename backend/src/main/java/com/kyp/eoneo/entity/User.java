@@ -58,9 +58,9 @@ public class User {
         prefTopic.setUser_id(this);
     }
 
-    @OneToOne(mappedBy = "id")
+    @OneToOne(mappedBy = "user")
     private UserDetail userDetail;
 
-    @OneToOne(mappedBy = "id")
+    @OneToOne(mappedBy = "user")
     private UserLanguage userLanguage;
 }

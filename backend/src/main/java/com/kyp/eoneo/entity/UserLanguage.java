@@ -6,19 +6,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "user_lang")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserLanguage {
+public class UserLanguage implements Serializable {
 
     @Id
-    @Column(name = "id")
-    private Long id;
-
-    @MapsId
     @OneToOne
     @JoinColumn(name = "id", referencedColumnName = "id")
     private User user;

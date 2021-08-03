@@ -20,7 +20,6 @@ public class Language {
     @Column(name = "code")
     private String code;
 
-    @Id
     @Column(name = "language")
     private String language;
 }

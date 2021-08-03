@@ -1,7 +1,9 @@
 package com.kyp.eoneo.controller;
 
+import com.kyp.eoneo.dto.UserDetailDto;
 import com.kyp.eoneo.dto.UserDto;
 import com.kyp.eoneo.entity.User;
+import com.kyp.eoneo.entity.UserDetail;
 import com.kyp.eoneo.service.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,8 +16,11 @@ import javax.validation.Valid;
 public class UserController {
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    private final UserDetailService userDetailService;
+
+    public UserController(UserService userService, UserDetailService userDetailService) {
         this.userService = userService;
+        this.userDetailService = userDetailService;
     }
 
     @GetMapping("/hello") //Test
@@ -41,4 +46,9 @@ public class UserController {
     public ResponseEntity<User> getUserInfo(@PathVariable String username) {
         return ResponseEntity.ok(userService.getUserWithAuthorities(username).get());
     } //UserService에서 만들었던 username 파라미터를 기준으로 유저 정보와 권한 정보를 리턴하는 api
+
+    @PostMapping("/userdetail")
+    public ResponseEntity<UserDetailDto> createUserDetail(@RequestBody UserDetailDto userDetailDto){
+        return ResponseEntity.ok(userDetailService.createUserDetail(userDetailDto));
+    }
 }
