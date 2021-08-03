@@ -38,6 +38,7 @@ public class UserService {
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .username(userDto.getUsername())
                 .authorities(Collections.singleton(authority))
+                .firstLogin(userDto.getFirstLogin())
                 .build();
 
         return userRepository.save(user); //DB에 존재하지 않는 유저라면 Authority와 User 정보를 생성해서 UserRepository의 save 메소드를 이용해서 DB에 정보 저장

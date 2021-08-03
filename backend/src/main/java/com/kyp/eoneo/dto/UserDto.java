@@ -1,6 +1,7 @@
 package com.kyp.eoneo.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kyp.eoneo.entity.UserDetail;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -19,4 +20,9 @@ public class UserDto {
 
     @NotNull
     private String username;
+
+    @NotNull
+    private int firstLogin;
+
+    private UserDetail userDetail;
 }

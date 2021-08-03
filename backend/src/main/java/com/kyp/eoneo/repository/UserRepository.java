@@ -1,7 +1,6 @@
 package com.kyp.eoneo.repository;
 
 import com.kyp.eoneo.entity.User;
-import com.kyp.eoneo.entity.UserDetail;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 

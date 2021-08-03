@@ -40,8 +40,26 @@ public class UserDetailService {
         return userDetailDto;
     }
 
-    public void updateUserDetail(UserDetailDto userDetailDto){
-        userDetailRepository.updateUserDetail(userDetailDto.getUserid(), userDetailDto.getNationality(), userDetailDto.getGender()
-        , userDetailDto.getNickname(), userDetailDto.getDescription(), userDetailDto.getProfile_image());
+    public UserDetailDto updateUserDetail(UserDetailDto userDetailDto){
+
+        User user = userRepository.findUserById(userDetailDto.getUserid());
+
+        Country country = new Country();
+        country.setCode(userDetailDto.getNationality());
+
+        UserDetail userDetail = UserDetail.builder().user(user)
+                .nationality(country).gender(userDetailDto.getGender())
+                .nickname(userDetailDto.getNickname())
+                .description(userDetailDto.getDescription())
+                .profile_image(userDetailDto.getProfile_image())
+                .build();
+
+        this.userDetailRepository.updateUserDetail(userDetail);
+        return userDetailDto;
+
+//        this.userDetailRepository.updateUserDetail(userDetailDto.getUserid(), country, userDetailDto.getGender()
+//        , userDetailDto.getNickname(), userDetailDto.getDescription(), userDetailDto.getProfile_image());
+//
+//        return userDetailDto;
     }
 }

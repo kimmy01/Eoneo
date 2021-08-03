@@ -50,6 +50,7 @@ public class User {
     )
     private Set<Authority> authorities;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user_id")
     private List<PrefTopic> prefTopics_User = new ArrayList<>();
 
@@ -58,9 +59,11 @@ public class User {
         prefTopic.setUser_id(this);
     }
 
+//    @JsonIgnore
     @OneToOne(mappedBy = "user")
     private UserDetail userDetail;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "user")
     private UserLanguage userLanguage;
 }

@@ -1,5 +1,6 @@
 package com.kyp.eoneo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class UserDetail implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @JsonIgnore
     @MapsId
     @OneToOne
     @JoinColumn(name = "id", referencedColumnName = "id")

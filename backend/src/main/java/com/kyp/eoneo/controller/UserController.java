@@ -51,4 +51,9 @@ public class UserController {
     public ResponseEntity<UserDetailDto> createUserDetail(@RequestBody UserDetailDto userDetailDto){
         return ResponseEntity.ok(userDetailService.createUserDetail(userDetailDto));
     }
+
+    @PutMapping("/userdetail")
+    public ResponseEntity<UserDetailDto> updateUserDetail(@RequestBody UserDetailDto userDetailDto){
+        return ResponseEntity.ok(userDetailService.updateUserDetail(userDetailDto));
+    }
 }
