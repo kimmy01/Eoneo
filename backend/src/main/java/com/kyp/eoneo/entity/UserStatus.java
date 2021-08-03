@@ -2,6 +2,7 @@ package com.kyp.eoneo.entity;
 
 import lombok.*;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -12,12 +13,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class UserStatus {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @MapsId
     @OneToOne
-
+    @JoinColumn(name = "id")
     private User user;
-    private Boolean userStatus;
-    private Boolean deleteStatus;
+    @Column(nullable = false, columnDefinition = "TINYINT", length = 1)
+    private boolean userStatus;
+    @Column(nullable = false, columnDefinition = "TINYINT", length = 1)
+    private boolean deleteStatus;
 }

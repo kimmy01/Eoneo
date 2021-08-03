@@ -36,6 +36,7 @@ public class ChatRoomRepository {
     }
 
     public List<ChatRoomDto> findChatRoomList(Long userId) {
+        if(!isRightUser(userId)) return null;
         return em.createQuery("select new com.kyp.eoneo.dto.ChatRoomDto(cr.user1.id, cr.user2.id, cr.id) from ChatRoom  cr where cr.user1.id = :userId1 or cr.user2.id = :userId2", ChatRoomDto.class)
                 .setParameter("userId1", userId)
                 .setParameter("userId2", userId)
@@ -79,11 +80,25 @@ public class ChatRoomRepository {
     }
 
     public boolean isRightUser(User user1) {
-        List<User> user = em.createQuery("select  u from User u where u.id = :id", User.class)
+        User user = em.createQuery("select  u from User u where u.id = :id", User.class)
                 .setParameter("id", user1.getId())
-                .getResultList();
-        if(user.isEmpty()) return false;
+                .getSingleResult();
+        log.info("값 출력 " + user.toString());
+        if(user == null) return false;
 //        데이터는 있지만, 탈퇴한 유저일 경우
+        if(user.getUserStatus().isDeleteStatus()) return false;
+//        else(user.)
+        return true;
+    }
+
+    public boolean isRightUser(Long id) {
+        User user = em.createQuery("select  u from User u where u.id = :id", User.class)
+                .setParameter("id", id)
+                .getSingleResult();
+        log.info("값 출력 " + user.toString());
+        if(user == null) return false;
+//        데이터는 있지만, 탈퇴한 유저일 경우
+        if(user.getUserStatus().isDeleteStatus()) return false;
 //        else(user.)
         return true;
     }

@@ -1,5 +1,6 @@
 package com.kyp.eoneo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kyp.eoneo.dto.ChatRoomDto;
 import lombok.*;
 
@@ -18,6 +19,7 @@ import java.util.UUID;
 @Table(name = "CHATROOM")
 public class ChatRoom {
     @Id
+    @JsonIgnore
     private  String id;
 
     @ManyToOne

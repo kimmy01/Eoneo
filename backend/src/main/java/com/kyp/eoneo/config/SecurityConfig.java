@@ -54,12 +54,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 // token을 사용하는 방식이기 때문에 csrf를 disable합니다.
-                .csrf()
+                .csrf().disable()
 //                .ignoringAntMatchers("/chatEonoe-websocket/**")
 //                .and()
 //                .headers()
 
-                .and()
                 .cors().configurationSource(corsConfig.corsFilter()) //jwt 관련 적용해야할 부분
                 .and()
                 .exceptionHandling()
@@ -84,7 +83,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/signup").permitAll() //로그인, 회원가입 API 토큰 없는 상태에서 요청
                 .antMatchers("/chatEonoe-websocket/**").permitAll()
                 .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll()
-
                 .anyRequest().authenticated()
 
                 .and()

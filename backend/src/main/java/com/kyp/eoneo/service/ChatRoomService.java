@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.kyp.eoneo.config.advice.ErrorCode.DATA_NOT_FOUND;
 import static com.kyp.eoneo.config.advice.ErrorCode.MEMBER_NOT_FOUND;
 
 
@@ -24,9 +25,6 @@ public class ChatRoomService {
 
     @Autowired
     ChatRoomRepository chatRoomRepository;
-
-
-
 
     public ChatRoomDto createChatRoom(ChatRoomDto chatRoomDto) {
         User user1 = new User();
@@ -50,6 +48,7 @@ public class ChatRoomService {
 
     public ChatMessageDtoWrapper getChats(String roomId) {
         ChatRoom chatRoom = chatRoomRepository.getChatRoomInfo(roomId);
+        if(chatRoom == null) throw new CustomException(DATA_NOT_FOUND);
         List<ChatMessageDto> chats= chatRoomRepository.findChats(chatRoom.getId());
         return new ChatMessageDtoWrapper(chatRoom.getUser1().getId(), chatRoom.getUser2().getId(), roomId, (long) chats.size(), chats);
 
@@ -60,11 +59,15 @@ public class ChatRoomService {
 //        for(ChatRoom cr : lists){
 //            System.out.println(cr.getChatRoomId());
 //        }
-
+        //
+        if(lists == null) throw new CustomException(MEMBER_NOT_FOUND);
         return lists;
     }
 
     public int deleteUserChatRoom(String roomId, Long userId) {
-        return chatRoomRepository.deleteUserChatRoom(roomId, userId);
+        int num = chatRoomRepository.deleteUserChatRoom(roomId, userId);
+        //roomId가 없을 경우
+        if(num == 0) throw new CustomException(DATA_NOT_FOUND);
+        return num;
     }
 }
