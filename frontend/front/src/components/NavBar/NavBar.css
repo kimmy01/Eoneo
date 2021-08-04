@@ -15,6 +15,8 @@
 
 .mynavItem {
   width: 33%;
+  display: flex;
+  justify-content: flex-start;
 
 }
 

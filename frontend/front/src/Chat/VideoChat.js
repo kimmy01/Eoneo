@@ -81,7 +81,7 @@ class VideoChat extends Component {
                         <div id="join-dialog">
                             <h1> eoneo video </h1>
                             <form onSubmit={this.joinSession}>
-                                <p>
+                                {/* <p>
                                     <label>Participant: </label>
                                     <input
                                         type="text"
@@ -100,7 +100,7 @@ class VideoChat extends Component {
                                         onChange={this.handleChangeSessionId}
                                         required
                                     />
-                                </p>
+                                </p> */}
                                 <p>
                                     <input name="commit" type="submit" value="JOIN" />
                                 </p>

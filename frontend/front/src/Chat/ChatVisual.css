@@ -1,0 +1,38 @@
+.box{
+    /* background-color: blueviolet; */
+    height: 500px;
+    width: 500px;
+    max-width: 585px;
+
+}
+.box-sticky{
+    position: -webkit-sticky;
+    position: sticky;
+    /* background-color: skyblue; */
+    top: 20px;
+    height: 500px;
+    width: 500px;
+    padding-left: 0px;
+    
+    max-height: 650px;
+}
+
+.mainbox {
+    max-width: 1200px;
+    margin-right: 40px;
+    margin-left: 40px;
+    justify-content: center;
+    display: flex;
+
+}
+.updown {
+    border: 1px solid black;
+    width: 0.1px;
+    height: 1000px;
+    padding: 0px;
+    margin-left: 300px;
+}
+/* .dummy {
+    background-color: cornflowerblue;
+    height: 300px;
+} */

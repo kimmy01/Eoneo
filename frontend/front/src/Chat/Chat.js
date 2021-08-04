@@ -50,7 +50,7 @@ const Chat = () => {
   };
 
   const subscribe = () => {
-    client.current.subscribe(`/api/chatroom/room/${ROOM_SEQ}`, ({ body }) => {
+    client.current.subscribe(`/subscribe/${ROOM_SEQ}`, ({ body }) => {
       setChatMessages((chatMessages) => [...chatMessages, JSON.parse(body)]);
     });
   };
@@ -60,12 +60,16 @@ const Chat = () => {
       return;
     }
     let messagesdata = {
-        chatRoomId: '6caf6c54-1747-42aa-97d6-a287244cbacb',
-        sendUserId: '2', //
-        message: message,
-        messageType: '0',
+        // chatRoomId: '6caf6c54-1747-42aa-97d6-a287244cbacb',
+        // sendUserId: '2', //
+        // message: message,
+        // messageType: '0',
+        chatroom_id: '6caf6c54-1747-42aa-97d6-a287244cbacb',
+        message_sender: '2', //
+        message_content: message,
+        is_read: '0'
     };
-
+    
     client.current.publish({
       destination: "/publish/chat/message",
       body: JSON.stringify(messagesdata),
@@ -80,10 +84,6 @@ const Chat = () => {
 
   const viewMessage = (event) => {
     console.log(chatMessages)
-  }
-
-  const enrollMessage = (event) => {
-    setChatMessages({'message':'hi'})
   }
 
   return (
@@ -105,8 +105,7 @@ const Chat = () => {
         />
         <button onClick={() => publish(message)}>send</button>
       </div>
-      
-      <button onClick={enrollMessage}>enroll</button>
+
       <button onClick={viewMessage}>messages</button>
     </div>
   );

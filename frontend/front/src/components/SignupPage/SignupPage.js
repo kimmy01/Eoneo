@@ -41,7 +41,8 @@ function Signup (props) {
     }
     dispatch(registerUser(body))
     .then(response => {
-      if(response.payload.success) {
+      console.log(response)
+      if(response.payload) {
         props.history.push('/login') // 사인업하면 메인페이지로
       } else {
         alert('ERROR')
