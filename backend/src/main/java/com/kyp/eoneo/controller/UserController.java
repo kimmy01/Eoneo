@@ -2,6 +2,7 @@ package com.kyp.eoneo.controller;
 
 import com.kyp.eoneo.dto.UserDetailDto;
 import com.kyp.eoneo.dto.UserDto;
+import com.kyp.eoneo.entity.Topic;
 import com.kyp.eoneo.entity.User;
 import com.kyp.eoneo.entity.UserDetail;
 import com.kyp.eoneo.service.*;
@@ -10,6 +11,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
@@ -18,9 +21,12 @@ public class UserController {
 
     private final UserDetailService userDetailService;
 
-    public UserController(UserService userService, UserDetailService userDetailService) {
+    private final TopicService topicService;
+
+    public UserController(UserService userService, UserDetailService userDetailService, TopicService topicService) {
         this.userService = userService;
         this.userDetailService = userDetailService;
+        this.topicService = topicService;
     }
 
     @GetMapping("/hello") //Test
@@ -47,6 +53,12 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserWithAuthorities(username).get());
     } //UserService에서 만들었던 username 파라미터를 기준으로 유저 정보와 권한 정보를 리턴하는 api
 
+    @GetMapping("/user2/{id}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    public ResponseEntity<User> getUser(@PathVariable Long id){
+        return ResponseEntity.ok(userService.findUserById(id));
+    }
+
     @PostMapping("/userdetail")
     public ResponseEntity<UserDetailDto> createUserDetail(@RequestBody UserDetailDto userDetailDto){
         return ResponseEntity.ok(userDetailService.createUserDetail(userDetailDto));
@@ -55,6 +67,11 @@ public class UserController {
     @PutMapping("/userdetail")
     public ResponseEntity<UserDetailDto> updateUserDetail(@RequestBody UserDetailDto userDetailDto){
         return ResponseEntity.ok(userDetailService.updateUserDetail(userDetailDto));
+    }
+
+    @GetMapping("/topic")
+    public ResponseEntity<List<Topic>> getTopicList(){
+        return ResponseEntity.ok(topicService.getTopics());
     }
 
 }

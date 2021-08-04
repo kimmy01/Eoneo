@@ -84,6 +84,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/chatEonoe-websocket/**").permitAll()
                 .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll()
                 .antMatchers("/api/userdetail").permitAll()
+                .antMatchers("/user2/{id}").permitAll()
+                .antMatchers("/api/topic").permitAll()
 
                 .anyRequest().authenticated()
 

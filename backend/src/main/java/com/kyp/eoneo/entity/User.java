@@ -50,8 +50,8 @@ public class User {
     )
     private Set<Authority> authorities;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user_id")
+//    @JsonIgnore
+    @OneToMany(mappedBy = "user_id", fetch = FetchType.EAGER)
     private List<PrefTopic> prefTopics_User = new ArrayList<>();
 
     public void addPrefTopics(PrefTopic prefTopic){

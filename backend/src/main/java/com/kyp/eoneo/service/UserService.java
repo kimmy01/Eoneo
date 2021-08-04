@@ -53,4 +53,9 @@ public class UserService {
     public Optional<User> getMyUserWithAuthorities() {
         return SecurityUtil.getCurrentEmail().flatMap(userRepository::findOneWithAuthoritiesByEmail);
     } //현재 SecurityContext에 저장된 email의 정보만 받아오는 메소드
+
+    @Transactional(readOnly = true)
+    public User findUserById(Long id){
+        return userRepository.findUserById(id);
+    }
 }

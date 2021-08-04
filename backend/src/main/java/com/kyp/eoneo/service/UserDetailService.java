@@ -5,6 +5,7 @@ import com.kyp.eoneo.entity.*;
 import com.kyp.eoneo.repository.UserDetailRepository;
 import com.kyp.eoneo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -45,6 +46,14 @@ public class UserDetailService {
 
         UserLanguage userLanguage = UserLanguage.builder().user(user)
                         .fluentLanguage(fluentL).nativeLanguage(nativeL).wantLanguage(wantL).build();
+
+        for(long i=0; i<userDetailDto.getTopicList().size(); i++){
+            Topic topic = new Topic();
+            topic.setId(userDetailDto.getTopicList().get((int)i));
+            PrefTopic prefTopic = PrefTopic.builder().user_id(user).topic_id(topic).build();
+            this.userDetailRepository.createPrefTopic(prefTopic);
+            user.addPrefTopics(prefTopic);
+        }
 
         this.userDetailRepository.createUserDetail(userDetail);
         this.userDetailRepository.createUserLanguage(userLanguage);

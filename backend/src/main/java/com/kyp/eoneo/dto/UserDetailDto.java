@@ -4,6 +4,8 @@ import com.kyp.eoneo.entity.Country;
 import com.kyp.eoneo.entity.User;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,6 +22,8 @@ public class UserDetailDto {
     private String nativeLanguage;
     private String wantLanguage;
 
+    private List<Long> topicList;
+
     public static UserDetailDto create(@NonNull Long userid,
                                        @NonNull String nationality,
                                        @NonNull int gender,
@@ -28,7 +32,8 @@ public class UserDetailDto {
                                        @NonNull String profile_image,
                                        @NonNull String fluentLanguage,
                                        @NonNull String nativeLanguage,
-                                       @NonNull String wantLanguage){
+                                       @NonNull String wantLanguage,
+                                       @NonNull List<Long> topicList){
         UserDetailDto created = new UserDetailDto();
         created.userid = userid;
         created.nationality = nationality;
@@ -39,6 +44,7 @@ public class UserDetailDto {
         created.fluentLanguage = fluentLanguage;
         created.nativeLanguage = nativeLanguage;
         created.wantLanguage = wantLanguage;
+        created.topicList = topicList;
         return created;
     }
 }

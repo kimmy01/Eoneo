@@ -1,6 +1,5 @@
 package com.kyp.eoneo.repository;
 
-import com.kyp.eoneo.dto.UserDetailDto;
 import com.kyp.eoneo.entity.*;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
@@ -20,6 +19,10 @@ public class UserDetailRepository {
 
     public void createUserLanguage(UserLanguage userLanguage){
         em.persist(userLanguage);
+    }
+
+    public void createPrefTopic(PrefTopic prefTopic){
+        em.persist(prefTopic);
     }
 
 //    public UserDetailDto findUserDetail(User user){

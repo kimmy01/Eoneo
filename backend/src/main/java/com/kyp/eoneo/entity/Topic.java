@@ -1,5 +1,6 @@
 package com.kyp.eoneo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,11 +23,12 @@ public class Topic {
     @Column(name = "topic")
     private String topic;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "topic_id")
     private List<PrefTopic> prefTopics_Topic = new ArrayList<>();
 
-    public void addPrefTopics(PrefTopic prefTopic){
-        prefTopics_Topic.add(prefTopic);
-        prefTopic.setTopic_id(this);
-    }
+//    public void addPrefTopics(PrefTopic prefTopic){
+//        prefTopics_Topic.add(prefTopic);
+//        prefTopic.setTopic_id(this);
+//    }
 }
