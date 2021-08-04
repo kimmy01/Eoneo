@@ -24,11 +24,11 @@ public class Topic {
     private String topic;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "topic_id")
+    @OneToMany(mappedBy = "topic")
     private List<PrefTopic> prefTopics_Topic = new ArrayList<>();
 
-//    public void addPrefTopics(PrefTopic prefTopic){
-//        prefTopics_Topic.add(prefTopic);
-//        prefTopic.setTopic_id(this);
-//    }
+    public void addPrefTopics(PrefTopic prefTopic){
+        prefTopics_Topic.add(prefTopic);
+        prefTopic.setTopic(this);
+    }
 }

@@ -51,12 +51,12 @@ public class User {
     private Set<Authority> authorities;
 
 //    @JsonIgnore
-    @OneToMany(mappedBy = "user_id", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user")
     private List<PrefTopic> prefTopics_User = new ArrayList<>();
 
     public void addPrefTopics(PrefTopic prefTopic){
         prefTopics_User.add(prefTopic);
-        prefTopic.setUser_id(this);
+        prefTopic.setUser(this);
     }
 
 //    @JsonIgnore

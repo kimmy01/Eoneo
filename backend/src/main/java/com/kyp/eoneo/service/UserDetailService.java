@@ -9,6 +9,8 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -47,16 +49,21 @@ public class UserDetailService {
         UserLanguage userLanguage = UserLanguage.builder().user(user)
                         .fluentLanguage(fluentL).nativeLanguage(nativeL).wantLanguage(wantL).build();
 
+        List<PrefTopic> prefTopicList = new ArrayList<>();
+
         for(long i=0; i<userDetailDto.getTopicList().size(); i++){
             Topic topic = new Topic();
             topic.setId(userDetailDto.getTopicList().get((int)i));
-            PrefTopic prefTopic = PrefTopic.builder().user_id(user).topic_id(topic).build();
-            this.userDetailRepository.createPrefTopic(prefTopic);
+            PrefTopic prefTopic = PrefTopic.builder().user_id(user.getId()).topic_id(topic.getId()).build();
             user.addPrefTopics(prefTopic);
+            topic.addPrefTopics(prefTopic);
+            prefTopicList.add(prefTopic);
+            this.userDetailRepository.createPrefTopic(prefTopic);
         }
 
         this.userDetailRepository.createUserDetail(userDetail);
         this.userDetailRepository.createUserLanguage(userLanguage);
+        userDetailDto.setPrefTopicList(prefTopicList);
         return userDetailDto;
     }
 
@@ -86,8 +93,21 @@ public class UserDetailService {
         UserLanguage userLanguage = UserLanguage.builder().user(user)
                 .fluentLanguage(fluentL).nativeLanguage(nativeL).wantLanguage(wantL).build();
 
+        List<PrefTopic> prefTopicList = new ArrayList<>();
+
+        for(long i=0; i<userDetailDto.getTopicList().size(); i++){
+            Topic topic = userDetailRepository.getTopic(userDetailDto.getTopicList().get((int)i));
+//            topic.setId(userDetailDto.getTopicList().get((int)i));
+            PrefTopic prefTopic = PrefTopic.builder().user_id(user.getId()).topic_id(topic.getId()).build();
+            user.addPrefTopics(prefTopic);
+            topic.addPrefTopics(prefTopic);
+            prefTopicList.add(prefTopic);
+            this.userDetailRepository.createPrefTopic(prefTopic);
+        }
+
         this.userDetailRepository.updateUserDetail(userDetail);
         this.userDetailRepository.updateUserLanguage(userLanguage);
+        userDetailDto.setPrefTopicList(prefTopicList);
         return userDetailDto;
 
 //        this.userDetailRepository.updateUserDetail(userDetailDto.getUserid(), country, userDetailDto.getGender()

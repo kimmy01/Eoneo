@@ -1,6 +1,7 @@
 package com.kyp.eoneo.dto;
 
 import com.kyp.eoneo.entity.Country;
+import com.kyp.eoneo.entity.PrefTopic;
 import com.kyp.eoneo.entity.User;
 import lombok.*;
 
@@ -23,6 +24,8 @@ public class UserDetailDto {
     private String wantLanguage;
 
     private List<Long> topicList;
+
+    private List<PrefTopic> prefTopicList;
 
     public static UserDetailDto create(@NonNull Long userid,
                                        @NonNull String nationality,

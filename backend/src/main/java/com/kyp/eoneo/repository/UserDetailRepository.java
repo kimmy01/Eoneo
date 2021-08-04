@@ -76,4 +76,8 @@ public class UserDetailRepository {
                 .setParameter("user", user)
                 .executeUpdate();
     }
+
+    public Topic getTopic(Long topicId){
+        return em.find(Topic.class, topicId);
+    }
 }

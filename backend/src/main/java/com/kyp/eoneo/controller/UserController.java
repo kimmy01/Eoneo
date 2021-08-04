@@ -58,9 +58,8 @@ public class UserController {
     } //UserService에서 만들었던 username 파라미터를 기준으로 유저 정보와 권한 정보를 리턴하는 api
 
     @GetMapping("/user2/{id}")
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<User> getUser(@PathVariable Long id){
-        return ResponseEntity.ok(userService.findUserById(id));
+    public ResponseEntity<UserDto> getUser(@PathVariable Long id){
+        return ResponseEntity.ok(userService.getUserInfo(id));
     }
 
     @PostMapping("/userdetail")

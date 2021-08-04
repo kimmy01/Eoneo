@@ -1,5 +1,6 @@
 package com.kyp.eoneo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,21 +15,22 @@ import java.io.Serializable;
 public class PrefTopic implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne
-    @JoinColumn(name = "topic_id", referencedColumnName = "id")
-    private Topic topic_id;
+    @JoinColumn(name = "topic_id", insertable = false, updatable = false)
+    private Topic topic;
 
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user_id;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
 
-//    @Id
-//    @Column(name = "topic_id")
-//    private Long topic_id;
-//
-//    @Id
-//    @JoinColumn(name = "user_id")
-//    private Long user_id;
+    @Column(name = "topic_id")
+    private Long topic_id;
+
+    @JoinColumn(name = "user_id")
+    private Long user_id;
 
 }

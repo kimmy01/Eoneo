@@ -2,6 +2,7 @@ package com.kyp.eoneo.service;
 
 import com.kyp.eoneo.dto.UserDto;
 import com.kyp.eoneo.entity.Authority;
+import com.kyp.eoneo.entity.PrefTopic;
 import com.kyp.eoneo.entity.User;
 import com.kyp.eoneo.repository.UserRepository;
 import com.kyp.eoneo.util.SecurityUtil;
@@ -9,8 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -55,7 +55,33 @@ public class UserService {
     } //현재 SecurityContext에 저장된 email의 정보만 받아오는 메소드
 
     @Transactional(readOnly = true)
-    public User findUserById(Long id){
-        return userRepository.findUserById(id);
+    public UserDto getUserInfo(Long id){
+        User user = userRepository.findUserById(id);
+//        System.out.println(user.getAuthorities()); //테이블3개 user, user_authority, authority,
+//        Set<Authority> authorities = user.getAuthorities();
+        List<PrefTopic> prefTopicList = new ArrayList<>();
+
+        for(int i=0; i<user.getPrefTopics_User().size(); i++){
+            prefTopicList.add(user.getPrefTopics_User().get(i));
+        }
+        UserDto userDto = UserDto.builder().email(user.getEmail()).username(user.getUsername()).firstLogin(user.getFirstLogin())
+                        .joindate(user.getJoindate()).userDetail(user.getUserDetail()).userLanguage(user.getUserLanguage())
+                        .prefTopic_User(prefTopicList).build();
+
+        return userDto;
+    }
+
+    @Transactional(readOnly = true)
+    public int getLoginCount(String email){
+        User user = userRepository.findUserByEmail(email);
+        return user.getFirstLogin();
+    }
+
+    @Transactional
+    public void setLoginCount(String email){
+        User user = userRepository.findUserByEmail(email);
+        user.setFirstLogin(1);
+
+        userRepository.save(user);
     }
 }

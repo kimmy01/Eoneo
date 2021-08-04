@@ -2,6 +2,7 @@ package com.kyp.eoneo.controller;
 
 import com.kyp.eoneo.dto.login.LoginDto;
 import com.kyp.eoneo.dto.login.TokenDto;
+import com.kyp.eoneo.service.UserService;
 import com.kyp.eoneo.util.jwt.JwtFilter;
 import com.kyp.eoneo.util.jwt.TokenProvider;
 import org.springframework.http.HttpHeaders;
@@ -22,9 +23,12 @@ public class AuthController {
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
-    public AuthController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
+    private final UserService userService;
+
+    public AuthController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserService userService) {
         this.tokenProvider = tokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
+        this.userService = userService;
     } //TokenProvider, AuthenticationManagerBuilder 주입
 
     @PostMapping("/authenticate") //로그인 api 경로 : /api/authenticate 토큰 생성해서 보내주기
@@ -38,9 +42,14 @@ public class AuthController {
 
         String jwt = tokenProvider.createToken(authentication); //JWT토큰 생성
 
+        int returnCount = userService.getLoginCount(loginDto.getEmail());
+
+        if(returnCount == 0){
+            userService.setLoginCount(loginDto.getEmail());
+        }
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
-        return new ResponseEntity<>(new TokenDto(jwt), httpHeaders, HttpStatus.OK);
+        return new ResponseEntity<>(new TokenDto(jwt, returnCount), httpHeaders, HttpStatus.OK);
     }
 }
