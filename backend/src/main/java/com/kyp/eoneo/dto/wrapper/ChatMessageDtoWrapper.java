@@ -1,6 +1,6 @@
 package com.kyp.eoneo.dto.wrapper;
 
-import com.kyp.eoneo.dto.ChatMessageDto;
+import com.kyp.eoneo.dto.ChatRequestMessageDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,5 +15,5 @@ public class ChatMessageDtoWrapper {
     private Long user2;
     private String chatRoomId;
     private Long chatsSize;
-    private List<ChatMessageDto> chats;
+    private List<ChatRequestMessageDto> chats;
 }

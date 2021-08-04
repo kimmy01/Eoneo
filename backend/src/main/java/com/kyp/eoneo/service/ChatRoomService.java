@@ -1,10 +1,9 @@
 package com.kyp.eoneo.service;
 
 import com.kyp.eoneo.config.advice.exception.CustomException;
-import com.kyp.eoneo.dto.ChatMessageDto;
+import com.kyp.eoneo.dto.ChatRequestMessageDto;
 import com.kyp.eoneo.dto.ChatRoomDto;
 import com.kyp.eoneo.dto.wrapper.ChatMessageDtoWrapper;
-import com.kyp.eoneo.entity.ChatMessage;
 import com.kyp.eoneo.entity.ChatRoom;
 import com.kyp.eoneo.entity.User;
 import com.kyp.eoneo.repository.ChatRoomRepository;
@@ -47,9 +46,9 @@ public class ChatRoomService {
 
 
     public ChatMessageDtoWrapper getChats(String roomId) {
-        ChatRoom chatRoom = chatRoomRepository.getChatRoomInfo(roomId);
+        ChatRoom chatRoom = chatRoomRepository.getChatRoom(roomId);
         if(chatRoom == null) throw new CustomException(DATA_NOT_FOUND);
-        List<ChatMessageDto> chats= chatRoomRepository.findChats(chatRoom.getId());
+        List<ChatRequestMessageDto> chats= chatRoomRepository.findChats(roomId);
         return new ChatMessageDtoWrapper(chatRoom.getUser1().getId(), chatRoom.getUser2().getId(), roomId, (long) chats.size(), chats);
 
     }
