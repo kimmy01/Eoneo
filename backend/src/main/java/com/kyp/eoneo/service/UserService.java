@@ -3,8 +3,11 @@ package com.kyp.eoneo.service;
 import com.kyp.eoneo.dto.UserDto;
 import com.kyp.eoneo.entity.Authority;
 import com.kyp.eoneo.entity.User;
+import com.kyp.eoneo.entity.UserStatus;
 import com.kyp.eoneo.repository.UserRepository;
+import com.kyp.eoneo.repository.UserStatusRepository;
 import com.kyp.eoneo.util.SecurityUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +19,9 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserStatusRepository userStatusRepository;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -33,6 +39,8 @@ public class UserService {
                 .authorityName("ROLE_USER") //회원가입 통해서 생성되는 유저는 ROLE_USER 하나만 가짐
                 .build();
 
+
+
         User user = User.builder()
                 .email(userDto.getEmail())
                 .password(passwordEncoder.encode(userDto.getPassword()))
@@ -40,7 +48,12 @@ public class UserService {
                 .authorities(Collections.singleton(authority))
                 .build();
 
-        return userRepository.save(user); //DB에 존재하지 않는 유저라면 Authority와 User 정보를 생성해서 UserRepository의 save 메소드를 이용해서 DB에 정보 저장
+        User temp = userRepository.save(user);
+        UserStatus userStatus = new UserStatus();
+        userStatus.setUser(user);
+        userStatusRepository.save(userStatus);
+
+        return temp; //DB에 존재하지 않는 유저라면 Authority와 User 정보를 생성해서 UserRepository의 save 메소드를 이용해서 DB에 정보 저장
     }
 
     @Transactional(readOnly = true)

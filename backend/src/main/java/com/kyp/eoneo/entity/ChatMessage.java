@@ -22,6 +22,7 @@ public class ChatMessage {
     private Long messageSender;
     private String messageContent;
     private LocalDateTime messageSendtime;
+    @Column(nullable = false, columnDefinition = "TINYINT", length = 1)
     private boolean isRead;
 
     @PrePersist

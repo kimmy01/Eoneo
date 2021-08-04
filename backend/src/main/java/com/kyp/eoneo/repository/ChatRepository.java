@@ -17,8 +17,8 @@ public class ChatRepository {
         em.persist(chatMessage);
     }
 
-    public ChatRoom findChatRoomId(String chatRoomId){
-        return em.createQuery("select c from ChatRoom c where c.chatRoomId= :chatRoomId", ChatRoom.class)
-                .setParameter("chatRoomId", chatRoomId).getSingleResult();
-    }
+//    public ChatRoom findChatRoomId(String chatRoomId){
+//        return em.createQuery("select c from ChatRoom c where c.chatRoomId= :chatRoomId", ChatRoom.class)
+//                .setParameter("chatRoomId", chatRoomId).getSingleResult();
+//    }
 }

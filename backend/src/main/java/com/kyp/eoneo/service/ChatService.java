@@ -14,11 +14,11 @@ public class ChatService {
     @Autowired
     ChatRepository chatRepository;
 
-    public void save(ChatMessageDto chatMessagDto){
+    public void save(ChatMessageDto chatMessageDto){
         ChatMessage chatMessage = ChatMessage.builder()
-                .chatroomId(chatRepository.findChatRoomId(chatMessagDto.getChatRoomId()).getId())
-                .messageSender(chatMessagDto.getSendUserId())
-                .messageContent(chatMessagDto.getMessage())
+                .chatroomId(chatMessageDto.getChatRoomId())
+                .messageSender(chatMessageDto.getSendUserId())
+                .messageContent(chatMessageDto.getMessage())
                 .build();
 
         chatRepository.save(chatMessage);

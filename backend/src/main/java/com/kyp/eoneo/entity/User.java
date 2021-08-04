@@ -17,7 +17,7 @@ import java.util.*;
 @NoArgsConstructor
 public class User {
 
-    @JsonIgnore
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +35,11 @@ public class User {
 
     @Column(name = "joindate")
     private LocalDateTime joindate;
+
+    private int firstLogin = 0;
+
+    @OneToOne(mappedBy = "user")
+    private UserStatus userStatus;
 
     @PrePersist
     public void joinedAt(){

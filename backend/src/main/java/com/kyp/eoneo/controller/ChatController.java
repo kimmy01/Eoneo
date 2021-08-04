@@ -31,6 +31,7 @@ public class ChatController {
 //    /publish/chat/message
     public void message(@Payload ChatMessageDto chatMessage){
         log.info("메세지 내용 " + chatMessage);
+        log.info(chatMessage.getSessionId());
         chatService.save(chatMessage);
         template.convertAndSend("/subscribe/" + chatMessage.getChatRoomId(), chatMessage);
     }

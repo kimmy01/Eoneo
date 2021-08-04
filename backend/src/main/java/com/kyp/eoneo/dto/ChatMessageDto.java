@@ -13,6 +13,7 @@ public class ChatMessageDto {
     private String chatRoomId;
     private Long sendUserId;
     private String message;
+    private String sessionId;
 
     public ChatMessageDto(Long sendUserId, String message) {
 //        this.chatRoomId = -1;
