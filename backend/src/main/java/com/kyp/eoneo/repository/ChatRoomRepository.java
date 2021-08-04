@@ -36,8 +36,8 @@ public class ChatRoomRepository {
     }
 
     public List<ChatRoomDto> findChatRoomList(Long userId) {
-        if(!isRightUser(userId)) return null;
-        return em.createQuery("select new com.kyp.eoneo.dto.ChatRoomDto(cr.user1.id, cr.user2.id, cr.id) from ChatRoom  cr where cr.user1.id = :userId1 or cr.user2.id = :userId2", ChatRoomDto.class)
+        if (!isRightUser(userId)) return null;
+        return em.createQuery("select new com.kyp.eoneo.dto.ChatRoomDto(cr.user1.id, cr.user2.id, cr.id, cr.user1UId, cr.user2UId) from ChatRoom  cr where cr.user1.id = :userId1 or cr.user2.id = :userId2", ChatRoomDto.class)
                 .setParameter("userId1", userId)
                 .setParameter("userId2", userId)
                 .getResultList();
@@ -57,18 +57,18 @@ public class ChatRoomRepository {
                 .setParameter("userId", userId)
                 .executeUpdate();
 
-       int result2 =  em.createQuery("update ChatRoom cr set cr.user2 = null where cr.id = :chatRoomID and cr.user2.id = :userId")
+        int result2 = em.createQuery("update ChatRoom cr set cr.user2 = null where cr.id = :chatRoomID and cr.user2.id = :userId")
                 .setParameter("chatRoomID", roomId)
                 .setParameter("userId", userId)
                 .executeUpdate();
 
 
-       if(result1 <= 0 && result2 <= 0) {
-           returnValue = deleteChatRoom(roomId);
-           return returnValue;
-       }
+        if (result1 <= 0 && result2 <= 0) {
+            returnValue = deleteChatRoom(roomId);
+            return returnValue;
+        }
         returnValue = result1 > 0 ? result1 : result2;
-       return  returnValue;
+        return returnValue;
     }
 
 
@@ -84,9 +84,9 @@ public class ChatRoomRepository {
                 .setParameter("id", user1.getId())
                 .getSingleResult();
         log.info("값 출력 " + user.toString());
-        if(user == null) return false;
+        if (user == null) return false;
 //        데이터는 있지만, 탈퇴한 유저일 경우
-        if(user.getUserStatus().isDeleteStatus()) return false;
+        if (user.getUserStatus().isDeleteStatus()) return false;
 //        else(user.)
         return true;
     }
@@ -96,11 +96,22 @@ public class ChatRoomRepository {
                 .setParameter("id", id)
                 .getSingleResult();
         log.info("값 출력 " + user.toString());
-        if(user == null) return false;
+        if (user == null) return false;
 //        데이터는 있지만, 탈퇴한 유저일 경우
-        if(user.getUserStatus().isDeleteStatus()) return false;
+        if (user.getUserStatus().isDeleteStatus()) return false;
 //        else(user.)
         return true;
+    }
+
+    public int getUnReadMessage(String chatRoomId) {
+        return em.createQuery("select Count(cm) from ChatMessage cm where cm.chatroomId = :chatRoomId and cm.isRead = :value", Integer.class)
+                .setParameter("chatRoomId", chatRoomId)
+                .setParameter("value", 0)
+                .getSingleResult();
+    }
+
+    public User getUser(Long userId) {
+        return em.find(User.class, userId);
     }
 }
 

@@ -22,14 +22,21 @@ public class ChatRoom {
     @JsonIgnore
     private  String id;
 
+//    user1이 자기자신, 보내는 사람
     @ManyToOne
     @JoinColumn(name = "user1_id", referencedColumnName = "id")
     private User user1;
 
+//    user는 받는 사람
     @ManyToOne
     @JoinColumn(name = "user2_id", referencedColumnName = "id")
     private User user2;
 
+    @Column(name = "user1_chatroom_id")
+    private String user1UId;
+
+    @Column(name = "user2_chatroom_id")
+    private String user2UId;
 
     private LocalDateTime startedTime;
 

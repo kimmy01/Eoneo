@@ -19,6 +19,7 @@ public class ChatService {
                 .chatroomId(chatMessageDto.getChatRoomId())
                 .messageSender(chatMessageDto.getSendUserId())
                 .messageContent(chatMessageDto.getMessage())
+                .isRead(false)
                 .build();
 
         chatRepository.save(chatMessage);
