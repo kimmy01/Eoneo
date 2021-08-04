@@ -2,10 +2,7 @@ package com.kyp.eoneo.controller;
 
 import com.kyp.eoneo.dto.UserDetailDto;
 import com.kyp.eoneo.dto.UserDto;
-import com.kyp.eoneo.entity.Language;
-import com.kyp.eoneo.entity.Topic;
-import com.kyp.eoneo.entity.User;
-import com.kyp.eoneo.entity.UserDetail;
+import com.kyp.eoneo.entity.*;
 import com.kyp.eoneo.service.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,11 +23,14 @@ public class UserController {
 
     private final LanguageService languageService;
 
-    public UserController(UserService userService, UserDetailService userDetailService, TopicService topicService, LanguageService languageService) {
+    private final CountryService countryService;
+
+    public UserController(UserService userService, UserDetailService userDetailService, TopicService topicService, LanguageService languageService, CountryService countryService) {
         this.userService = userService;
         this.userDetailService = userDetailService;
         this.topicService = topicService;
         this.languageService = languageService;
+        this.countryService = countryService;
     }
 
     @GetMapping("/hello") //Test
@@ -81,6 +81,11 @@ public class UserController {
     @GetMapping("/language")
     public ResponseEntity<List<Language>> getLanguageList(){
         return ResponseEntity.ok(languageService.getLanguages());
+    }
+
+    @GetMapping("/country")
+    public ResponseEntity<List<Country>> getCountryList(){
+        return ResponseEntity.ok(countryService.getCountries());
     }
 
 }
