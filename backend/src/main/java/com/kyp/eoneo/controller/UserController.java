@@ -2,6 +2,7 @@ package com.kyp.eoneo.controller;
 
 import com.kyp.eoneo.dto.UserDetailDto;
 import com.kyp.eoneo.dto.UserDto;
+import com.kyp.eoneo.entity.Language;
 import com.kyp.eoneo.entity.Topic;
 import com.kyp.eoneo.entity.User;
 import com.kyp.eoneo.entity.UserDetail;
@@ -23,10 +24,13 @@ public class UserController {
 
     private final TopicService topicService;
 
-    public UserController(UserService userService, UserDetailService userDetailService, TopicService topicService) {
+    private final LanguageService languageService;
+
+    public UserController(UserService userService, UserDetailService userDetailService, TopicService topicService, LanguageService languageService) {
         this.userService = userService;
         this.userDetailService = userDetailService;
         this.topicService = topicService;
+        this.languageService = languageService;
     }
 
     @GetMapping("/hello") //Test
@@ -72,6 +76,11 @@ public class UserController {
     @GetMapping("/topic")
     public ResponseEntity<List<Topic>> getTopicList(){
         return ResponseEntity.ok(topicService.getTopics());
+    }
+
+    @GetMapping("/language")
+    public ResponseEntity<List<Language>> getLanguageList(){
+        return ResponseEntity.ok(languageService.getLanguages());
     }
 
 }
