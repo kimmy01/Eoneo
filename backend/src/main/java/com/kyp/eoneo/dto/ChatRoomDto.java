@@ -14,7 +14,7 @@ public class ChatRoomDto {
     private String user1UId;
     private String user2UId;
     private String chatRoomId;
-    private int unReadCount;
+    private Long unReadCount;
 
     public static ChatRoomDto create(@NonNull Long user1Id, @NonNull Long user2Id, @NonNull String user1UId, @NonNull String user2UId){
         ChatRoomDto created = new ChatRoomDto();

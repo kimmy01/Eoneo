@@ -60,7 +60,7 @@ public class ChatRoomService {
         if(lists == null) throw new CustomException(MEMBER_NOT_FOUND);
 
         for(int i=0; i< lists.size(); i++){
-            lists.get(i).setUnReadCount(chatRoomRepository.getUnReadMessage(lists.get(i).getChatRoomId()));
+            lists.get(i).setUnReadCount(chatRoomRepository.getUnReadMessage(lists.get(i).getChatRoomId(), userId));
         }
         return lists;
     }

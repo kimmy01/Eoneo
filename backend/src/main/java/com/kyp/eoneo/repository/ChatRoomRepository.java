@@ -37,7 +37,7 @@ public class ChatRoomRepository {
 
     public List<ChatRoomDto> findChatRoomList(Long userId) {
         if (!isRightUser(userId)) return null;
-        return em.createQuery("select new com.kyp.eoneo.dto.ChatRoomDto(cr.user1.id, cr.user2.id, cr.id, cr.user1UId, cr.user2UId) from ChatRoom  cr where cr.user1.id = :userId1 or cr.user2.id = :userId2", ChatRoomDto.class)
+        return em.createQuery("select new com.kyp.eoneo.dto.ChatRoomDto(cr.user1.id, cr.user2.id, cr.user1UId, cr.user2UId, cr.id) from ChatRoom  cr where cr.user1.id = :userId1 or cr.user2.id = :userId2", ChatRoomDto.class)
                 .setParameter("userId1", userId)
                 .setParameter("userId2", userId)
                 .getResultList();
@@ -103,11 +103,17 @@ public class ChatRoomRepository {
         return true;
     }
 
-    public int getUnReadMessage(String chatRoomId) {
-        return em.createQuery("select Count(cm) from ChatMessage cm where cm.chatroomId = :chatRoomId and cm.isRead = :value", Integer.class)
+//    다른 사용자가 보낸 안 읽은 메세지의 갯수 확인
+    public Long getUnReadMessage(String chatRoomId, Long currentId) {
+        System.out.println(chatRoomId + " " +  currentId);
+        Long cnt = (Long) em.createQuery("select count(cm.isRead) from ChatMessage cm where cm.chatroomId = :chatRoomId and cm.isRead = :value and cm.messageSender <> :currentID")
                 .setParameter("chatRoomId", chatRoomId)
-                .setParameter("value", 0)
+                .setParameter("value", false)
+                .setParameter("currentID", currentId)
                 .getSingleResult();
+
+        System.out.println(cnt);
+        return cnt;
     }
 
     public User getUser(Long userId) {
