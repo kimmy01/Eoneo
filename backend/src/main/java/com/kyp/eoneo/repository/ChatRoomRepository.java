@@ -105,14 +105,12 @@ public class ChatRoomRepository {
 
 //    다른 사용자가 보낸 안 읽은 메세지의 갯수 확인
     public Long getUnReadMessage(String chatRoomId, Long currentId) {
-        System.out.println(chatRoomId + " " +  currentId);
         Long cnt = (Long) em.createQuery("select count(cm.isRead) from ChatMessage cm where cm.chatroomId = :chatRoomId and cm.isRead = :value and cm.messageSender <> :currentID")
                 .setParameter("chatRoomId", chatRoomId)
                 .setParameter("value", false)
                 .setParameter("currentID", currentId)
                 .getSingleResult();
 
-        System.out.println(cnt);
         return cnt;
     }
 
