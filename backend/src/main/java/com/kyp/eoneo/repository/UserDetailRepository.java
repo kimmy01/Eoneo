@@ -80,4 +80,9 @@ public class UserDetailRepository {
     public Topic getTopic(Long topicId){
         return em.find(Topic.class, topicId);
     }
+
+    public void deleteUserPrefTopics(UserDetail userDetail){
+        User user = userDetail.getUser();
+        em.createQuery("delete from PrefTopic pt where pt.user = :user").setParameter("user", user).executeUpdate();
+    }
 }

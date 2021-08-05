@@ -1,10 +1,7 @@
 package com.kyp.eoneo.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kyp.eoneo.entity.Authority;
-import com.kyp.eoneo.entity.PrefTopic;
-import com.kyp.eoneo.entity.UserDetail;
-import com.kyp.eoneo.entity.UserLanguage;
+import com.kyp.eoneo.entity.*;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -33,7 +30,9 @@ public class UserDto {
 
 //    private Set<Authority> authoritySet;
 
-    private List<PrefTopic> prefTopic_User;
+//    private List<PrefTopic> prefTopic_User;
+
+    private List<Topic> topicList;
 
     private UserLanguage userLanguage;
 }

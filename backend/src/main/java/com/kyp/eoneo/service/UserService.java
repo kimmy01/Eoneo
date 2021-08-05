@@ -3,6 +3,7 @@ package com.kyp.eoneo.service;
 import com.kyp.eoneo.dto.UserDto;
 import com.kyp.eoneo.entity.Authority;
 import com.kyp.eoneo.entity.PrefTopic;
+import com.kyp.eoneo.entity.Topic;
 import com.kyp.eoneo.entity.User;
 import com.kyp.eoneo.repository.UserRepository;
 import com.kyp.eoneo.util.SecurityUtil;
@@ -57,16 +58,16 @@ public class UserService {
     @Transactional(readOnly = true)
     public UserDto getUserInfo(Long id){
         User user = userRepository.findUserById(id);
-//        System.out.println(user.getAuthorities()); //테이블3개 user, user_authority, authority,
+        System.out.println(user.getAuthorities()); //테이블3개 user, user_authority, authority,
 //        Set<Authority> authorities = user.getAuthorities();
-        List<PrefTopic> prefTopicList = new ArrayList<>();
+        List<Topic> topicList = new ArrayList<>();
 
         for(int i=0; i<user.getPrefTopics_User().size(); i++){
-            prefTopicList.add(user.getPrefTopics_User().get(i));
+            topicList.add(user.getPrefTopics_User().get(i).getTopic());
         }
         UserDto userDto = UserDto.builder().email(user.getEmail()).username(user.getUsername()).firstLogin(user.getFirstLogin())
                         .joindate(user.getJoindate()).userDetail(user.getUserDetail()).userLanguage(user.getUserLanguage())
-                        .prefTopic_User(prefTopicList).build();
+                        .topicList(topicList).build();
 
         return userDto;
     }
@@ -83,5 +84,17 @@ public class UserService {
         user.setFirstLogin(1);
 
         userRepository.save(user);
+    }
+
+    @Transactional
+    public Long getUserId(String email){
+        User user = userRepository.findUserByEmail(email);
+        return user.getId();
+    }
+
+    @Transactional
+    public String getUsername(String email){
+        User user = userRepository.findUserByEmail(email);
+        return user.getUsername();
     }
 }

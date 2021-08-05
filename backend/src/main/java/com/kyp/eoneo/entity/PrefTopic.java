@@ -22,7 +22,6 @@ public class PrefTopic implements Serializable {
     @JoinColumn(name = "topic_id", insertable = false, updatable = false)
     private Topic topic;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;

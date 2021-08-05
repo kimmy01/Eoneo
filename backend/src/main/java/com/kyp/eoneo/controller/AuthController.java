@@ -42,14 +42,20 @@ public class AuthController {
 
         String jwt = tokenProvider.createToken(authentication); //JWT토큰 생성
 
+        //로그인 횟수부분
         int returnCount = userService.getLoginCount(loginDto.getEmail());
 
         if(returnCount == 0){
             userService.setLoginCount(loginDto.getEmail());
         }
+
+        //유저 정보 부분
+        String username = userService.getUsername(loginDto.getEmail());
+        Long userid = userService.getUserId(loginDto.getEmail());
+
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
-        return new ResponseEntity<>(new TokenDto(jwt, returnCount), httpHeaders, HttpStatus.OK);
+        return new ResponseEntity<>(new TokenDto(jwt, returnCount, username, userid), httpHeaders, HttpStatus.OK);
     }
 }

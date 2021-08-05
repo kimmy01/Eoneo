@@ -1,6 +1,8 @@
 package com.kyp.eoneo.service;
 
+import com.kyp.eoneo.dto.TopicDto;
 import com.kyp.eoneo.dto.UserDetailDto;
+import com.kyp.eoneo.dto.UserDto;
 import com.kyp.eoneo.entity.*;
 import com.kyp.eoneo.repository.UserDetailRepository;
 import com.kyp.eoneo.repository.UserRepository;
@@ -25,6 +27,8 @@ public class UserDetailService {
     public UserDetailDto createUserDetail(UserDetailDto userDetailDto){
 
         User user = userRepository.findUserById(userDetailDto.getUserid());
+
+        System.out.println(user.getAuthorities());
 
         Country country = new Country();
         country.setCode(userDetailDto.getNationality());
@@ -52,7 +56,7 @@ public class UserDetailService {
         List<PrefTopic> prefTopicList = new ArrayList<>();
 
         for(long i=0; i<userDetailDto.getTopicList().size(); i++){
-            Topic topic = new Topic();
+            Topic topic = userDetailRepository.getTopic(userDetailDto.getTopicList().get((int)i));
             topic.setId(userDetailDto.getTopicList().get((int)i));
             PrefTopic prefTopic = PrefTopic.builder().user_id(user.getId()).topic_id(topic.getId()).build();
             user.addPrefTopics(prefTopic);
@@ -70,6 +74,8 @@ public class UserDetailService {
     public UserDetailDto updateUserDetail(UserDetailDto userDetailDto){
 
         User user = userRepository.findUserById(userDetailDto.getUserid());
+
+        System.out.println(user.getAuthorities());
 
         Country country = new Country();
         country.setCode(userDetailDto.getNationality());
@@ -93,11 +99,12 @@ public class UserDetailService {
         UserLanguage userLanguage = UserLanguage.builder().user(user)
                 .fluentLanguage(fluentL).nativeLanguage(nativeL).wantLanguage(wantL).build();
 
+        this.userDetailRepository.deleteUserPrefTopics(userDetail); //회원정보 수정 시, 기존 선호 주제 모두 삭제
+
         List<PrefTopic> prefTopicList = new ArrayList<>();
 
         for(long i=0; i<userDetailDto.getTopicList().size(); i++){
             Topic topic = userDetailRepository.getTopic(userDetailDto.getTopicList().get((int)i));
-//            topic.setId(userDetailDto.getTopicList().get((int)i));
             PrefTopic prefTopic = PrefTopic.builder().user_id(user.getId()).topic_id(topic.getId()).build();
             user.addPrefTopics(prefTopic);
             topic.addPrefTopics(prefTopic);
@@ -109,10 +116,30 @@ public class UserDetailService {
         this.userDetailRepository.updateUserLanguage(userLanguage);
         userDetailDto.setPrefTopicList(prefTopicList);
         return userDetailDto;
-
-//        this.userDetailRepository.updateUserDetail(userDetailDto.getUserid(), country, userDetailDto.getGender()
-//        , userDetailDto.getNickname(), userDetailDto.getDescription(), userDetailDto.getProfile_image());
-//
-//        return userDetailDto;
     }
+
+    public List<UserDto> getTopicUsers(Long id){
+        List<PrefTopic> list = userDetailRepository.getTopic(id).getPrefTopics_Topic();
+        List<UserDto> userList = new ArrayList<>();
+
+        for(int i=0; i<list.size(); i++){
+            User user = list.get(i).getUser();
+
+            List<Topic> topicList = new ArrayList<>();
+
+            for(int j=0; j<user.getPrefTopics_User().size(); j++){
+                System.out.println(user.getPrefTopics_User().get(j).getUser().getAuthorities());
+                topicList.add(user.getPrefTopics_User().get(j).getTopic());
+            }
+
+            UserDto userDto = UserDto.builder().email(user.getEmail())
+                    .username(user.getUsername()).userLanguage(user.getUserLanguage()).joindate(user.getJoindate())
+                    .userDetail(user.getUserDetail()).topicList(topicList).build();
+
+            userList.add(userDto);
+        }
+
+        return userList;
+    }
+
 }

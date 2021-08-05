@@ -87,4 +87,8 @@ public class UserController {
         return ResponseEntity.ok(countryService.getCountries());
     }
 
+    @GetMapping("/topicusers/{id}")
+    public ResponseEntity<List<UserDto>> getTopicUserList(@PathVariable Long id){
+        return ResponseEntity.ok(userDetailService.getTopicUsers(id));
+    }
 }

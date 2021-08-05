@@ -50,7 +50,7 @@ public class User {
     )
     private Set<Authority> authorities;
 
-//    @JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<PrefTopic> prefTopics_User = new ArrayList<>();
 
@@ -60,7 +60,7 @@ public class User {
     }
 
 //    @JsonIgnore
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private UserDetail userDetail;
 
 //    @JsonIgnore
