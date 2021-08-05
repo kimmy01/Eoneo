@@ -8,6 +8,7 @@ import com.kyp.eoneo.dto.wrapper.ChatRoomDtoWrapper;
 import com.kyp.eoneo.service.ChatRoomService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,15 @@ public class ChatRoomController {
     @ApiOperation(value = "채팅방생성", notes = "각 사용자의 pk를 통해 새로운 방 생성")
     @PostMapping("/create")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<CommonResponse> createChatRoom(@RequestBody ChatRoomDto chatRoomDto){
+    public ResponseEntity<CommonResponse> createChatRoom(
+            @ApiParam(
+                    name =  "채팅방 생성할 때 넣어야하는 값",
+                    example = "  \"user1Id\": 51,\n" +
+                            "  \"user1UId\": \"5151\",\n" +
+                            "  \"user2Id\": 16,\n" +
+                            "  \"user2UId\": \"1616\"",
+                    required = true)
+            @RequestBody ChatRoomDto chatRoomDto){
         //예외처리
         //다른 사용자가 탈퇴했거나 존재하지 않을 때
         ChatRoomDto chatRoom = ChatRoomDto.create(chatRoomDto.getUser1Id(), chatRoomDto.getUser2Id(), chatRoomDto.getUser1UId(), chatRoomDto.getUser2UId());
@@ -38,7 +47,8 @@ public class ChatRoomController {
     @ApiOperation(value = "채팅방 리스트", notes = "특정 사용자의 모든 채팅 리스트와 각 채팅방에서 안읽은 메시지의 갯수를 리턴")
     @GetMapping("/rooms/{userId}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<CommonResponse> getChatRoomWithUser(@PathVariable Long userId){
+    public ResponseEntity<CommonResponse> getChatRoomWithUser(
+            @PathVariable Long userId){
         //예외처리
         //특정 사용자가 탈퇴했거나 존재하지 않을 때
         //채팅 방이 없을 경우
