@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Api(value = "Login", tags = {"Login"})
+@Api(value = "Login", tags = {"User"})
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
