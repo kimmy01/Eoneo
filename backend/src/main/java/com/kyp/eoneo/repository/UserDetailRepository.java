@@ -25,6 +25,7 @@ public class UserDetailRepository {
         em.persist(prefTopic);
     }
 
+
 //    public UserDetailDto findUserDetail(User user){
 //        UserDetailDto userDetailDto = em.createQuery("select new com.kyp.eoneo.dto.UserDetailDto(ud.user, ud.nationality, ud.gender, ud.nickname, ud.description, ud.profile_image) from UserDetail ud where ud.user = :user", UserDetailDto.class)
 //                .setParameter("user", user.getId()).getSingleResult();
@@ -74,6 +75,16 @@ public class UserDetailRepository {
                 .setParameter("nativeLanguage", nativeLanguage)
                 .setParameter("wantLanguage", wantLanguage)
                 .setParameter("user", user)
+                .executeUpdate();
+    }
+
+    @Modifying
+    public void uploadUserImage(Long id, String profileImageUrl){
+        User user = em.find(User.class, id);
+
+        em.createQuery("update UserDetail ud set ud.profile_image = :profileImageUrl where ud.user = :user")
+                .setParameter("user", user)
+                .setParameter("profileImageUrl", profileImageUrl)
                 .executeUpdate();
     }
 

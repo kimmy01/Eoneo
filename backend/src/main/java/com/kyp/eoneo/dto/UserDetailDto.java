@@ -4,7 +4,9 @@ import com.kyp.eoneo.entity.Country;
 import com.kyp.eoneo.entity.PrefTopic;
 import com.kyp.eoneo.entity.User;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 @Getter
@@ -17,7 +19,8 @@ public class UserDetailDto {
     private int gender;
     private String nickname;
     private String description;
-    private String profile_image;
+
+    private String profile_image_url;
 
     private String fluentLanguage;
     private String nativeLanguage;
@@ -32,7 +35,6 @@ public class UserDetailDto {
                                        @NonNull int gender,
                                        @NonNull String nickname,
                                        @NonNull String description,
-                                       @NonNull String profile_image,
                                        @NonNull String fluentLanguage,
                                        @NonNull String nativeLanguage,
                                        @NonNull String wantLanguage,
@@ -43,7 +45,6 @@ public class UserDetailDto {
         created.gender = gender;
         created.nickname = nickname;
         created.description = description;
-        created.profile_image = profile_image;
         created.fluentLanguage = fluentLanguage;
         created.nativeLanguage = nativeLanguage;
         created.wantLanguage = wantLanguage;

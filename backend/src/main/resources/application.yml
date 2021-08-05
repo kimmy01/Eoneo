@@ -13,6 +13,11 @@ spring:
       format_sql: true
       ddl-auto: none #데이터베이스 초기화 전략 설정(아무것도 실행x)
 
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+
 logging:
   level:
     org:
