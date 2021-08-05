@@ -3,14 +3,10 @@ package com.kyp.eoneo.service;
 import com.kyp.eoneo.config.advice.exception.CustomException;
 import com.kyp.eoneo.dto.UserDto;
 import com.kyp.eoneo.entity.Authority;
-import com.kyp.eoneo.entity.PrefTopic;
 import com.kyp.eoneo.entity.Topic;
 import com.kyp.eoneo.entity.User;
-import com.kyp.eoneo.entity.UserStatus;
 import com.kyp.eoneo.repository.UserRepository;
-import com.kyp.eoneo.repository.UserStatusRepository;
 import com.kyp.eoneo.util.SecurityUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,8 +20,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private UserStatusRepository userStatusRepository;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -54,9 +48,6 @@ public class UserService {
                 .build();
 
         User temp = userRepository.save(user);
-        UserStatus userStatus = new UserStatus();
-        userStatus.setUser(user);
-        userStatusRepository.save(userStatus);
 
         return temp; //DB에 존재하지 않는 유저라면 Authority와 User 정보를 생성해서 UserRepository의 save 메소드를 이용해서 DB에 정보 저장
     }

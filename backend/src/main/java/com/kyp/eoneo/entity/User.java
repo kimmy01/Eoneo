@@ -37,9 +37,6 @@ public class User {
 
     private int firstLogin = 0;
 
-    @OneToOne(mappedBy = "user")
-    private UserStatus userStatus;
-
     @PrePersist
     public void joinedAt(){
         this.joindate = LocalDateTime.now();

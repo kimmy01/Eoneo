@@ -81,17 +81,6 @@ public class ChatRoomRepository {
         return returnValue;
     }
 
-    public boolean isRightUser(User user1) {
-        User user = em.createQuery("select  u from User u where u.id = :id", User.class)
-                .setParameter("id", user1.getId())
-                .getSingleResult();
-        log.info("값 출력 " + user.toString());
-        if (user == null) return false;
-//        데이터는 있지만, 탈퇴한 유저일 경우
-        if (user.getUserStatus().isDeleteStatus()) return false;
-//        else(user.)
-        return true;
-    }
 
     public boolean isRightUser(Long id) {
         try {
@@ -99,9 +88,6 @@ public class ChatRoomRepository {
                     .setParameter("id", id)
                     .getSingleResult();
 
-            System.out.println(user);
-            System.out.println(user.getUserStatus());
-            if (user.getUserStatus().isDeleteStatus()) return false;
         } catch (NoResultException nre) {
             return false;
         }
