@@ -2,6 +2,8 @@ package com.kyp.eoneo.service;
 
 import com.kyp.eoneo.dto.UserDto;
 import com.kyp.eoneo.entity.Authority;
+import com.kyp.eoneo.entity.PrefTopic;
+import com.kyp.eoneo.entity.Topic;
 import com.kyp.eoneo.entity.User;
 import com.kyp.eoneo.entity.UserStatus;
 import com.kyp.eoneo.repository.UserRepository;
@@ -12,8 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -46,6 +47,7 @@ public class UserService {
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .username(userDto.getUsername())
                 .authorities(Collections.singleton(authority))
+                .firstLogin(userDto.getFirstLogin())
                 .build();
 
         User temp = userRepository.save(user);
@@ -65,4 +67,47 @@ public class UserService {
     public Optional<User> getMyUserWithAuthorities() {
         return SecurityUtil.getCurrentEmail().flatMap(userRepository::findOneWithAuthoritiesByEmail);
     } //현재 SecurityContext에 저장된 email의 정보만 받아오는 메소드
+
+    @Transactional(readOnly = true)
+    public UserDto getUserInfo(Long id){
+        User user = userRepository.findUserById(id);
+        System.out.println(user.getAuthorities()); //테이블3개 user, user_authority, authority,
+//        Set<Authority> authorities = user.getAuthorities();
+        List<Topic> topicList = new ArrayList<>();
+
+        for(int i=0; i<user.getPrefTopics_User().size(); i++){
+            topicList.add(user.getPrefTopics_User().get(i).getTopic());
+        }
+        UserDto userDto = UserDto.builder().email(user.getEmail()).username(user.getUsername()).firstLogin(user.getFirstLogin())
+                        .joindate(user.getJoindate()).userDetail(user.getUserDetail()).userLanguage(user.getUserLanguage())
+                        .topicList(topicList).build();
+
+        return userDto;
+    }
+
+    @Transactional(readOnly = true)
+    public int getLoginCount(String email){
+        User user = userRepository.findUserByEmail(email);
+        return user.getFirstLogin();
+    }
+
+    @Transactional
+    public void setLoginCount(String email){
+        User user = userRepository.findUserByEmail(email);
+        user.setFirstLogin(1);
+
+        userRepository.save(user);
+    }
+
+    @Transactional
+    public Long getUserId(String email){
+        User user = userRepository.findUserByEmail(email);
+        return user.getId();
+    }
+
+    @Transactional
+    public String getUsername(String email){
+        User user = userRepository.findUserByEmail(email);
+        return user.getUsername();
+    }
 }

@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -53,4 +52,21 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")}
     )
     private Set<Authority> authorities;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<PrefTopic> prefTopics_User = new ArrayList<>();
+
+    public void addPrefTopics(PrefTopic prefTopic){
+        prefTopics_User.add(prefTopic);
+        prefTopic.setUser(this);
+    }
+
+//    @JsonIgnore
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private UserDetail userDetail;
+
+//    @JsonIgnore
+    @OneToOne(mappedBy = "user")
+    private UserLanguage userLanguage;
 }
