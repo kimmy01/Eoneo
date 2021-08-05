@@ -78,9 +78,9 @@ public class UserController {
 
     //6. 특정 토픽 관심 추가한 사용자 가져오기
     @ApiOperation(value = "특정 토픽 관심 추가한 사용자 가져오기", notes = "특정 토픽을 관심사로 등록한 사용자의 정보 가져오기")
-    @GetMapping("/topicusers/{id}")
-    public ResponseEntity<List<UserDto>> getTopicUserList(@PathVariable Long id){
-        return ResponseEntity.ok(userDetailService.getTopicUsers(id));
+    @GetMapping("/topicusers")
+    public ResponseEntity<List<UserDto>> getTopicUserList(@RequestParam Long topicid, Long userid){
+        return ResponseEntity.ok(userDetailService.getTopicUsers(topicid, userid));
     }
 
     //7. 프로필 이미지 업로드

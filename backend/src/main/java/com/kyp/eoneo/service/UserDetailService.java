@@ -162,25 +162,51 @@ public class UserDetailService {
     }
 
     //특정 토픽을 관심사로 등록한 사용자 정보 가져오기
-    public List<UserDto> getTopicUsers(Long id){
+    public List<UserDto> getTopicUsers(Long id, Long userid){
+        User my = userRepository.findUserById(userid);
         List<PrefTopic> list = userDetailRepository.getTopic(id).getPrefTopics_Topic();
         List<UserDto> userList = new ArrayList<>();
+
+        String myWantLanguage = my.getUserLanguage().getWantLanguage().getCode();
 
         for(int i=0; i<list.size(); i++){
             User user = list.get(i).getUser();
 
-            List<Topic> topicList = new ArrayList<>();
+            if(user.getUserLanguage().getNativeLanguage().getCode().equals(myWantLanguage) && user.getId() != userid){
+                List<Topic> topicList = new ArrayList<>();
 
-            for(int j=0; j<user.getPrefTopics_User().size(); j++){
-                System.out.println(user.getPrefTopics_User().get(j).getUser().getAuthorities());
-                topicList.add(user.getPrefTopics_User().get(j).getTopic());
+                for(int j=0; j<user.getPrefTopics_User().size(); j++){
+                    System.out.println(user.getPrefTopics_User().get(j).getUser().getAuthorities());
+                    topicList.add(user.getPrefTopics_User().get(j).getTopic());
+                }
+
+                UserDto userDto = UserDto.builder().email(user.getEmail()).id(user.getId())
+                        .username(user.getUsername()).userLanguage(user.getUserLanguage()).joindate(user.getJoindate())
+                        .userDetail(user.getUserDetail()).topicList(topicList).build();
+
+                userList.add(userDto);
             }
+        }
 
-            UserDto userDto = UserDto.builder().email(user.getEmail()).id(user.getId())
-                    .username(user.getUsername()).userLanguage(user.getUserLanguage()).joindate(user.getJoindate())
-                    .userDetail(user.getUserDetail()).topicList(topicList).build();
+        for(int i=0; i<list.size(); i++){
+            User user = list.get(i).getUser();
 
-            userList.add(userDto);
+            if(user.getUserLanguage().getFluentLanguage().getCode().equals(myWantLanguage) && user.getId() != userid){
+                List<Topic> topicList = new ArrayList<>();
+
+                for(int j=0; j<user.getPrefTopics_User().size(); j++){
+                    System.out.println(user.getPrefTopics_User().get(j).getUser().getAuthorities());
+                    topicList.add(user.getPrefTopics_User().get(j).getTopic());
+                }
+
+                UserDto userDto = UserDto.builder().email(user.getEmail()).id(user.getId())
+                        .username(user.getUsername()).userLanguage(user.getUserLanguage()).joindate(user.getJoindate())
+                        .userDetail(user.getUserDetail()).topicList(topicList).build();
+
+                if(!userList.contains(userDto)){
+                    userList.add(userDto);
+                }
+            }
         }
 
         return userList;
