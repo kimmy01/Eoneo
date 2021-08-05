@@ -132,7 +132,7 @@ public class UserDetailService {
                 topicList.add(user.getPrefTopics_User().get(j).getTopic());
             }
 
-            UserDto userDto = UserDto.builder().email(user.getEmail())
+            UserDto userDto = UserDto.builder().email(user.getEmail()).id(user.getId())
                     .username(user.getUsername()).userLanguage(user.getUserLanguage()).joindate(user.getJoindate())
                     .userDetail(user.getUserDetail()).topicList(topicList).build();
 

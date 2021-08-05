@@ -15,6 +15,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class UserDto {
 
+    private Long id;
+
     private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

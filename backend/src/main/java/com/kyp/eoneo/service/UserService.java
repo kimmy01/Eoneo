@@ -78,7 +78,7 @@ public class UserService {
         for(int i=0; i<user.getPrefTopics_User().size(); i++){
             topicList.add(user.getPrefTopics_User().get(i).getTopic());
         }
-        UserDto userDto = UserDto.builder().email(user.getEmail()).username(user.getUsername()).firstLogin(user.getFirstLogin())
+        UserDto userDto = UserDto.builder().id(user.getId()).email(user.getEmail()).username(user.getUsername()).firstLogin(user.getFirstLogin())
                         .joindate(user.getJoindate()).userDetail(user.getUserDetail()).userLanguage(user.getUserLanguage())
                         .topicList(topicList).build();
 
