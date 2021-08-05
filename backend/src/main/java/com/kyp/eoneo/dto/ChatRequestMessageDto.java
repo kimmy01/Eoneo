@@ -1,5 +1,6 @@
 package com.kyp.eoneo.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,16 +10,12 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class ChatMessageDto {
+public class ChatRequestMessageDto {
     private String chatRoomId;
     private Long sendUserId;
     private String message;
-    private String sessionId;
+    private String sendUserUId;
+    private String receiveUserUId;
 
-    public ChatMessageDto(Long sendUserId, String message) {
-//        this.chatRoomId = -1;
-        this.sendUserId = sendUserId;
-        this.message = message;
 
-    }
 }

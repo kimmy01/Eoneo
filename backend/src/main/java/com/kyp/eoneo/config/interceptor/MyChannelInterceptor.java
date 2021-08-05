@@ -1,5 +1,6 @@
 package com.kyp.eoneo.config.interceptor;
 
+import com.kyp.eoneo.config.advice.exception.CustomException;
 import com.kyp.eoneo.util.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,8 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+
+import static com.kyp.eoneo.config.advice.ErrorCode.INVALID_AUTH_TOKEN;
 
 @Slf4j
 @Component
@@ -26,8 +29,6 @@ public class MyChannelInterceptor implements ChannelInterceptor {
         StompCommand command = accessor.getCommand();
         if(command.compareTo(StompCommand.SUBSCRIBE) == 0){
             String destination = accessor.getDestination();
-            log.info("구독 주소" + destination);
-            log.info("interceptor mesage : " + message);
         }else if (command.compareTo(StompCommand.CONNECT) == 0){
             log.info(accessor.getFirstNativeHeader("Authorization"));
             String jwt =  accessor.getFirstNativeHeader("Authorization");
@@ -41,6 +42,7 @@ public class MyChannelInterceptor implements ChannelInterceptor {
                 System.out.println("사용자 연결");
             }else{
                 log.info("not valid token");
+                throw new CustomException(INVALID_AUTH_TOKEN);
             }
             System.out.println("사용자 연결");
         }else if(command.compareTo(StompCommand.DISCONNECT) == 0){

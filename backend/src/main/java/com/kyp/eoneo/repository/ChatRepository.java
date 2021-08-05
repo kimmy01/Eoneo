@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class ChatRepository {
@@ -15,6 +16,23 @@ public class ChatRepository {
 
     public void save(ChatMessage chatMessage){
         em.persist(chatMessage);
+    }
+
+    public void putUnreadMessage(List<Long> messageIds, String roomId) {
+        for(Long id : messageIds) {
+            em.createQuery("update ChatMessage cm set cm.isRead = true where cm.id = :id and cm.chatroomId = :chatroomId")
+                    .setParameter("id", id)
+                    .setParameter("chatroomId", roomId)
+                    .executeUpdate();
+        }
+
+    }
+
+    public void putAllUnreadMessage(Long userId, String roomId) {
+        em.createQuery("update ChatMessage cm set cm.isRead = true where cm.chatroomId = :roomId and cm.messageSender <> :userId")
+                .setParameter("roomId", roomId)
+                .setParameter("userId", userId)
+                .executeUpdate();
     }
 
 //    public ChatRoom findChatRoomId(String chatRoomId){

@@ -1,10 +1,10 @@
 package com.kyp.eoneo.service;
 
 import com.kyp.eoneo.config.advice.exception.CustomException;
-import com.kyp.eoneo.dto.ChatMessageDto;
+import com.kyp.eoneo.dto.ChatRequestMessageDto;
+import com.kyp.eoneo.dto.ChatResponseMessageDto;
 import com.kyp.eoneo.dto.ChatRoomDto;
 import com.kyp.eoneo.dto.wrapper.ChatMessageDtoWrapper;
-import com.kyp.eoneo.entity.ChatMessage;
 import com.kyp.eoneo.entity.ChatRoom;
 import com.kyp.eoneo.entity.User;
 import com.kyp.eoneo.repository.ChatRoomRepository;
@@ -27,19 +27,19 @@ public class ChatRoomService {
     ChatRoomRepository chatRoomRepository;
 
     public ChatRoomDto createChatRoom(ChatRoomDto chatRoomDto) {
-        User user1 = new User();
-        user1.setId(chatRoomDto.getUser1Id());
-        User user2 = new User();
-        user2.setId(chatRoomDto.getUser2Id());
+        User user1 = chatRoomRepository.getUser(chatRoomDto.getUser1Id());
+        User user2 = chatRoomRepository.getUser(chatRoomDto.getUser2Id());
 
-        boolean flag = chatRoomRepository.isRightUser(user1);
-        if(!flag) throw new CustomException(MEMBER_NOT_FOUND);
-        flag = chatRoomRepository.isRightUser(user2);
-        if(!flag) throw new CustomException(MEMBER_NOT_FOUND);
+//        boolean flag = chatRoomRepository.isRightUser(user1);
+        if(user1 == null) throw new CustomException(MEMBER_NOT_FOUND);
+//        flag = chatRoomRepository.isRightUser(user2);
+        if(user2 == null) throw new CustomException(MEMBER_NOT_FOUND);
 
         ChatRoom chatRoom = ChatRoom.builder().id(chatRoomDto.getChatRoomId())
-                 .user1(user1).user2(user2).startedTime(LocalDateTime.now())
+                 .user1(user1).user2(user2).startedTime(LocalDateTime.now()).user1UId(chatRoomDto.getUser1UId())
+                .user2UId(chatRoomDto.getUser2UId())
                 .build();
+
         chatRoomRepository.createChatRoom(chatRoom);
        return chatRoomDto;
     }
@@ -47,20 +47,21 @@ public class ChatRoomService {
 
 
     public ChatMessageDtoWrapper getChats(String roomId) {
-        ChatRoom chatRoom = chatRoomRepository.getChatRoomInfo(roomId);
+        ChatRoom chatRoom = chatRoomRepository.getChatRoom(roomId);
         if(chatRoom == null) throw new CustomException(DATA_NOT_FOUND);
-        List<ChatMessageDto> chats= chatRoomRepository.findChats(chatRoom.getId());
+        List<ChatResponseMessageDto> chats= chatRoomRepository.findChats(roomId);
         return new ChatMessageDtoWrapper(chatRoom.getUser1().getId(), chatRoom.getUser2().getId(), roomId, (long) chats.size(), chats);
 
     }
 
+//    chatRoomList
     public List<ChatRoomDto> getChatRoomList(Long userId) {
         List<ChatRoomDto> lists = chatRoomRepository.findChatRoomList(userId);
-//        for(ChatRoom cr : lists){
-//            System.out.println(cr.getChatRoomId());
-//        }
-        //
         if(lists == null) throw new CustomException(MEMBER_NOT_FOUND);
+
+        for(int i=0; i< lists.size(); i++){
+            lists.get(i).setUnReadCount(chatRoomRepository.getUnReadMessage(lists.get(i).getChatRoomId(), userId));
+        }
         return lists;
     }
 
