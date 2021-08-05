@@ -1,5 +1,6 @@
 package com.kyp.eoneo.service;
 
+import com.kyp.eoneo.config.advice.exception.CustomException;
 import com.kyp.eoneo.dto.UserDto;
 import com.kyp.eoneo.entity.Authority;
 import com.kyp.eoneo.entity.PrefTopic;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+
+import static com.kyp.eoneo.config.advice.ErrorCode.ALREADY_HAS_USER;
 
 @Service
 public class UserService {
@@ -32,7 +35,7 @@ public class UserService {
     @Transactional
     public User signup(UserDto userDto) { //회원가입 로직 수행 메소드
         if (userRepository.findOneWithAuthoritiesByEmail(userDto.getEmail()).orElse(null) != null) {
-            throw new RuntimeException("이미 가입되어 있는 유저입니다.");
+            throw new CustomException(ALREADY_HAS_USER);
         } //이미 가입된 유저인지 찾아봄
 
         //빌더 패턴의 장점

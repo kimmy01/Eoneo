@@ -37,7 +37,7 @@ public class ChatRoomRepository {
     //채팅방 리스트
     public List<ChatRoomDto> findChatRoomList(Long userId) {
         if (!isRightUser(userId)) return null;
-        return em.createQuery("select new com.kyp.eoneo.dto.ChatRoomDto(cr.user1.id, cr.user2.id, cr.user1UId, cr.user2UId, cr.id) from ChatRoom  cr where cr.user1.id = :userId1 or cr.user2.id = :userId2", ChatRoomDto.class)
+        return em.createQuery("select new com.kyp.eoneo.dto.ChatRoomDto(cr.user1.id, cr.user2.id, cr.user1.username, cr.user2.username, cr.user1UId, cr.user2UId, cr.id) from ChatRoom  cr where cr.user1.id = :userId1 or cr.user2.id = :userId2", ChatRoomDto.class)
                 .setParameter("userId1", userId)
                 .setParameter("userId2", userId)
                 .getResultList();
@@ -137,6 +137,34 @@ public class ChatRoomRepository {
             return true;
         } catch (NoResultException nre) {
             return false;
+        }
+    }
+
+    public String getImagePath(Long userId) {
+        try {
+            String url = (String) em.createQuery("select ud.profile_image from  UserDetail ud where ud.id = :userId")
+                    .setParameter("userId", userId)
+                    .getSingleResult();
+
+            log.info("url " + url);
+            return url;
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
+
+    public boolean isAlreadyHasaRoom(Long id1, Long id2) {
+        try {
+            em.createQuery("select cr from ChatRoom cr where cr.user1.id = :id1 and cr.user2.id = :id2 or cr.user1.id = :id2 and cr.user2.id = :id1", ChatRoom.class)
+                    .setParameter("id1", id1)
+                    .setParameter("id2", id2)
+                    .setParameter("id1", id2)
+                    .setParameter("id2", id1)
+                    .getSingleResult();
+
+            return false;
+        }catch (NoResultException nre){
+            return true;
         }
     }
 }
