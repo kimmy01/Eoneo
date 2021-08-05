@@ -1,5 +1,6 @@
 package com.kyp.eoneo.service;
 
+import com.kyp.eoneo.dto.PhotoDto;
 import com.kyp.eoneo.dto.TopicDto;
 import com.kyp.eoneo.dto.UserDetailDto;
 import com.kyp.eoneo.dto.UserDto;
@@ -9,9 +10,15 @@ import com.kyp.eoneo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.transaction.Transactional;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,7 +31,8 @@ public class UserDetailService {
     @Autowired
     UserRepository userRepository;
 
-    public UserDetailDto createUserDetail(UserDetailDto userDetailDto){
+    //사용자 정보 등록
+    public UserDetailDto createUserDetail(UserDetailDto userDetailDto) throws Exception {
 
         User user = userRepository.findUserById(userDetailDto.getUserid());
 
@@ -33,11 +41,30 @@ public class UserDetailService {
         Country country = new Country();
         country.setCode(userDetailDto.getNationality());
 
+//        //이미지 이름 변경, 저장
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+//        String currentDate = simpleDateFormat.format(new Date());
+//
+//        MultipartFile originFile = userDetailDto.getProfile_image();
+//
+//        String absolutePath = new File("").getAbsolutePath()+"\\";
+//        String path = "profileimages/" + currentDate + userDetailDto.getUserid();
+//        File profileImage = new File(path + currentDate);
+//
+//        profileImage.getParentFile().mkdirs();
+//
+//        userDetailDto.setProfile_image_url(profileImage.getAbsolutePath()+".png");
+//
+//        profileImage.setReadable(true);
+//        profileImage.setWritable(true);
+//
+//        originFile.transferTo(profileImage);
+
         UserDetail userDetail = UserDetail.builder().user(user)
                         .nationality(country).gender(userDetailDto.getGender())
                         .nickname(userDetailDto.getNickname())
                         .description(userDetailDto.getDescription())
-                        .profile_image(userDetailDto.getProfile_image())
+                        .profile_image(userDetailDto.getProfile_image_url())
                         .build();
 
         Language fluentL = new Language();
@@ -71,6 +98,7 @@ public class UserDetailService {
         return userDetailDto;
     }
 
+    //사용자 정보 업데이트
     public UserDetailDto updateUserDetail(UserDetailDto userDetailDto){
 
         User user = userRepository.findUserById(userDetailDto.getUserid());
@@ -80,11 +108,26 @@ public class UserDetailService {
         Country country = new Country();
         country.setCode(userDetailDto.getNationality());
 
+//        //이미지 이름 변경, 저장
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+//        String currentDate = simpleDateFormat.format(new Date());
+//
+//        String absolutePath = new File("").getAbsolutePath()+"\\";
+//        String path = absolutePath + "profileimages/" + currentDate + userDetailDto.getUserid();
+//        File profileImage = new File(path + currentDate);
+//
+//        profileImage.getParentFile().mkdirs();
+//
+//        userDetailDto.setProfile_image_url(profileImage.getAbsolutePath()+".png");
+//
+//        profileImage.setReadable(true);
+//        profileImage.setWritable(true);
+
         UserDetail userDetail = UserDetail.builder().user(user)
                 .nationality(country).gender(userDetailDto.getGender())
                 .nickname(userDetailDto.getNickname())
                 .description(userDetailDto.getDescription())
-                .profile_image(userDetailDto.getProfile_image())
+                .profile_image(userDetailDto.getProfile_image_url())
                 .build();
 
         Language fluentL = new Language();
@@ -118,6 +161,7 @@ public class UserDetailService {
         return userDetailDto;
     }
 
+    //특정 토픽을 관심사로 등록한 사용자 정보 가져오기
     public List<UserDto> getTopicUsers(Long id){
         List<PrefTopic> list = userDetailRepository.getTopic(id).getPrefTopics_Topic();
         List<UserDto> userList = new ArrayList<>();
@@ -142,4 +186,37 @@ public class UserDetailService {
         return userList;
     }
 
+    public String uploadProfileImage(Long id, MultipartFile multipartFile) throws IOException {
+        User user = userRepository.findUserById(id);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        String currentDate = simpleDateFormat.format(new Date());
+
+        String absolutePath = new File("").getAbsolutePath()+"\\"; //ubuntu에서는 "/"
+        String path = "profileImages/";
+        File file = new File(absolutePath + path + id);
+
+        if(!file.exists()){
+            file.mkdirs();
+        }
+
+        String contentType = multipartFile.getContentType();
+        String originFileExtension = "";
+
+        if(contentType.contains("image/jpeg")){
+            originFileExtension = ".jpg";
+        }else if(contentType.contains("image/png")){
+            originFileExtension = ".png";
+        }else if(contentType.contains("image/gif")){
+            originFileExtension = ".gif";
+        }
+
+        String newFileName = Long.toString(System.nanoTime()) + originFileExtension;
+
+        file = new File(absolutePath + path + id + "/" + newFileName);
+        multipartFile.transferTo(file);
+        this.userDetailRepository.uploadUserImage(id, file.getAbsolutePath());
+
+        return "업로드 완!";
+    }
 }
