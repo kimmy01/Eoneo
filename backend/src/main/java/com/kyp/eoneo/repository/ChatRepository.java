@@ -18,10 +18,11 @@ public class ChatRepository {
         em.persist(chatMessage);
     }
 
-    public void putUnreadMessage(List<Long> messageIds) {
+    public void putUnreadMessage(List<Long> messageIds, String roomId) {
         for(Long id : messageIds) {
-            em.createQuery("update ChatMessage cm set cm.isRead = true where cm.id = :id")
+            em.createQuery("update ChatMessage cm set cm.isRead = true where cm.id = :id and cm.chatroomId = :chatroomId")
                     .setParameter("id", id)
+                    .setParameter("chatroomId", roomId)
                     .executeUpdate();
         }
 

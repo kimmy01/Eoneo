@@ -2,6 +2,7 @@ package com.kyp.eoneo.service;
 
 import com.kyp.eoneo.config.advice.exception.CustomException;
 import com.kyp.eoneo.dto.ChatRequestMessageDto;
+import com.kyp.eoneo.dto.ChatResponseMessageDto;
 import com.kyp.eoneo.dto.ChatRoomDto;
 import com.kyp.eoneo.dto.wrapper.ChatMessageDtoWrapper;
 import com.kyp.eoneo.entity.ChatRoom;
@@ -48,7 +49,7 @@ public class ChatRoomService {
     public ChatMessageDtoWrapper getChats(String roomId) {
         ChatRoom chatRoom = chatRoomRepository.getChatRoom(roomId);
         if(chatRoom == null) throw new CustomException(DATA_NOT_FOUND);
-        List<ChatRequestMessageDto> chats= chatRoomRepository.findChats(roomId);
+        List<ChatResponseMessageDto> chats= chatRoomRepository.findChats(roomId);
         return new ChatMessageDtoWrapper(chatRoom.getUser1().getId(), chatRoom.getUser2().getId(), roomId, (long) chats.size(), chats);
 
     }

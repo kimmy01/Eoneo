@@ -38,14 +38,8 @@ public class ChatService {
         chatRepository.save(chatMessage);
     }
 
-    public void putUnreadMessage(Map<String, Long> messages) {
-        List<Long> messageIds = new ArrayList<>();
-        for(int i=0; i<messages.size(); i++){
-            Long id = messages.get("id");
-            System.out.println(id);
-            messageIds.add(id);
-        }
-        chatRepository.putUnreadMessage(messageIds);
+    public void putUnreadMessage(List<Long> messages, String roomId) {
+        chatRepository.putUnreadMessage(messages, roomId);
     }
 
     public void putAllUnreadMessage(Long userId, String roomId) {

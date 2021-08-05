@@ -15,6 +15,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Api(value = "ChatMessage", tags = {"ChatMessage"})
@@ -38,19 +39,16 @@ public class ChatController {
         template.convertAndSendToUser(chatMessage.getReceiveUserUId(), "/queue/message", chatMessage);
     }
 
-    @PatchMapping("/api/ReadMessage")
-    @ApiOperation(value = "채팅메시지", notes = "특정 채팅방의 특정 채팅메세지를 읽음 처리한다")
-    public ResponseEntity<CommonResult> updateunReadMessage(@RequestBody Map<String, Long> messages){
-        System.out.println("test");
-        System.out.println(messages.get("id"));
-
-        chatService.putUnreadMessage(messages);
+    @PostMapping("/api/readmessage/{roomId}")
+    @ApiOperation(value = "채팅메시지", notes = "특정 채팅방의 특정 채팅메세지를 읽음 처리한다, 메시지를 보낼 때 'messages' : [messageId, messageId2] 형식으로 보내주세요")
+    public ResponseEntity<CommonResult> updateUnreadMessage(@RequestBody Map<String, List<Long>> messages, @PathVariable String roomId){
+        chatService.putUnreadMessage(messages.get("messages"), roomId);
         return ResponseEntity.status(200).body(CommonResult.of(true, "읽은 메세지 처리 성공", 201));
     }
 
-    @GetMapping("/api/ReadMessage/{userId}/{roomId}")
-    @ApiOperation(value = "채팅메시지", notes = "특정 채팅방의 특정 채팅메세지를 읽음 처리한다")
-    public ResponseEntity<CommonResult> updateunReadAllMessage(@PathVariable Long userId, @PathVariable String roomId){
+    @GetMapping("/api/readmessage/{userId}/{roomId}")
+    @ApiOperation(value = "채팅메시지", notes = "특정 채팅방의 특정 채팅메세지를 읽음 처리한다, 자기자신의 userId를 넣어야, 다른 사용자가 보낸 메시지를 읽음 처리할 수 있음")
+    public ResponseEntity<CommonResult> updateUnreadAllMessage(@PathVariable Long userId, @PathVariable String roomId){
 
         chatService.putAllUnreadMessage(userId, roomId);
         return ResponseEntity.status(200).body(CommonResult.of(true, "모든 메세지 읽음 처리 성공", 201));

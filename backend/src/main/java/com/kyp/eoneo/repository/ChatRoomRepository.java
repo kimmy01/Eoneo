@@ -1,6 +1,7 @@
 package com.kyp.eoneo.repository;
 
 import com.kyp.eoneo.dto.ChatRequestMessageDto;
+import com.kyp.eoneo.dto.ChatResponseMessageDto;
 import com.kyp.eoneo.dto.ChatRoomDto;
 import com.kyp.eoneo.entity.ChatRoom;
 //import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -26,8 +27,8 @@ public class ChatRoomRepository {
     }
 
     //    특정 채팅방에 채팅 다 가져오기
-    public List<ChatRequestMessageDto> findChats(String id) {
-        List<ChatRequestMessageDto> chatRoomDtos = em.createQuery("select new com.kyp.eoneo.dto.ChatResponseMessageDto(cm.id, cm.messageSender, cm.messageContent) from ChatMessage cm where cm.chatroomId = :id order by cm.messageSendtime", ChatRequestMessageDto.class)
+    public List<ChatResponseMessageDto> findChats(String id) {
+        List<ChatResponseMessageDto> chatRoomDtos = em.createQuery("select new com.kyp.eoneo.dto.ChatResponseMessageDto(cm.id, cm.messageSender, cm.messageContent) from ChatMessage cm where cm.chatroomId = :id order by cm.messageSendtime", ChatResponseMessageDto.class)
                 .setParameter("id", id)
                 .getResultList();
         return chatRoomDtos;
@@ -98,6 +99,8 @@ public class ChatRoomRepository {
                     .setParameter("id", id)
                     .getSingleResult();
 
+            System.out.println(user);
+            System.out.println(user.getUserStatus());
             if (user.getUserStatus().isDeleteStatus()) return false;
         } catch (NoResultException nre) {
             return false;
