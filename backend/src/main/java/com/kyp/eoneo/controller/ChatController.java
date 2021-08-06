@@ -37,6 +37,7 @@ public class ChatController {
     public void message(@Payload ChatRequestMessageDto chatMessage){
         chatService.save(chatMessage);
         template.convertAndSendToUser(chatMessage.getReceiveUserUId(), "/queue/message", chatMessage);
+        template.convertAndSendToUser(chatMessage.getSendUserUId(), "/queue/message", chatMessage);
     }
 
     @PostMapping("/api/readmessage/{roomId}")
