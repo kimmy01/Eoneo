@@ -1,25 +1,20 @@
 import React from 'react'
 import './CategoryPage.css'
-import {Row, Col, Card, Image} from 'react-bootstrap'
-import MainImage from '../assets/main/sports.png'
+import Category from './Category' 
+
+// import MainImage from '../assets/main/sports.png'
+{/* <Image src={MainImage}  alt="mainimage"/> */}
 
 function CategoryPage () {
   return (
     <div>
       <div className="mainbox">
           <div className="box-sticky">
-            <Row xs={1} md={3} className="g-4">
-              {Array.from({ length: 9 }).map((_, idx) => (
-                <Col>
-                  <Card>
-                    <Image src={MainImage}  alt="mainimage"/>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
+            <Category/>
           </div>
           
           <div className="box">
+            
           </div>
         </div>
 

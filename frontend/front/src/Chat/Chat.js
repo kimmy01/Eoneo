@@ -1,27 +1,31 @@
+//vPrl
 // messageTye = 0이면, 문자 1이면 이미지 2이면 음성
 import React, { useEffect, useRef, useState } from "react";
 import * as StompJs from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
+import axios from 'axios'
+import VideoChat from "./VideoChat"
 
-const ROOM_SEQ = "6caf6c54-1747-42aa-97d6-a287244cbacb";
+const ROOM_SEQ = "24ad750d-fea7-4f61-8cbd-b01891002141";
 
 const Chat = () => {
   const client = useRef({});
+  const chattoken = 'Bearer '+localStorage.getItem('token')
   const [chatMessages, setChatMessages] = useState([]);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
     connect();
-
+    getDBdate()
     return () => disconnect();
   }, []);
 
   const connect = () => {
     client.current = new StompJs.Client({
-      // brokerURL: "ws:http://localhost:8080/chatEonoe-websocket", // 웹소켓 서버로 직접 접속
       webSocketFactory: () => new SockJS("http://localhost:8080/chatEonoe-websocket"), // proxy를 통한 접속 //internet explore
       connectHeaders: {
-        "auth-token": "spring-chat-auth-token",
+        "Authorization": chattoken,
+        "userId":'18'
       },
       debug: function (str) {
         console.log(str);
@@ -29,11 +33,6 @@ const Chat = () => {
       reconnectDelay: 5000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
-      
-
-      // db랑 연결하는 코드를 따로 만들어야함!!!!
-      // api : /api/chatroom/room/{roomId}
-
       onConnect: () => {
         subscribe();
       },
@@ -41,13 +40,20 @@ const Chat = () => {
         console.error(frame);
       },
     });
-
     client.current.activate();
   };
-
+  
   const disconnect = () => {
     client.current.deactivate();
   };
+
+  // db랑 연결하는 코드를 따로 만들어야함!!!!
+  // api : `/api/chatroom/room/${ROOM_SEQ}`
+  const getDBdate = () => {
+    const request = axios.get(`/api/chatroom/room/18/`)
+      .then(response => console.log(response.data))
+      .catch((Err) => console.error(Err));
+  }
 
   const subscribe = () => {
     client.current.subscribe(`/subscribe/${ROOM_SEQ}`, ({ body }) => {
@@ -60,31 +66,17 @@ const Chat = () => {
       return;
     }
     let messagesdata = {
-        // chatRoomId: '6caf6c54-1747-42aa-97d6-a287244cbacb',
-        // sendUserId: '2', //
-        // message: message,
-        // messageType: '0',
-        chatroom_id: '6caf6c54-1747-42aa-97d6-a287244cbacb',
-        message_sender: '2', //
-        message_content: message,
-        is_read: '0'
+        chatRoomId: '24ad750d-fea7-4f61-8cbd-b01891002141',
+        sendUserId: '2', //
+        message: message,
+        messageType: '0',
     };
     
     client.current.publish({
       destination: "/publish/chat/message",
       body: JSON.stringify(messagesdata),
     });
-   
-
-    setMessage("");
-    console.log("messagedata:")
-    console.log(messagesdata)
-    
   };
-
-  const viewMessage = (event) => {
-    console.log(chatMessages)
-  }
 
   return (
     <div>
@@ -104,9 +96,8 @@ const Chat = () => {
           onKeyPress={(e) => e.which === 13 && publish(message)}
         />
         <button onClick={() => publish(message)}>send</button>
+        <VideoChat/>
       </div>
-
-      <button onClick={viewMessage}>messages</button>
     </div>
   );
 };

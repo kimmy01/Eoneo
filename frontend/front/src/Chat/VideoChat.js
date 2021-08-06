@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import './VideoChat.css';
 import axios from 'axios';
 import OpenViduSession from 'openvidu-react';
+import VideoCallIcon from '@material-ui/icons/VideoCall';
 
 class VideoChat extends Component {
     constructor(props) {
         super(props);
         // this.OPENVIDU_SERVER_URL = 'https://' + window.location.hostname + ':4443';
         // this.OPENVIDU_SERVER_SECRET = 'MY_SECRET';
-        this.OPENVIDU_SERVER_URL = 'https://' + 'i5a102.p.ssafy.io' ;
+        this.OPENVIDU_SERVER_URL = 'https://i5a102.p.ssafy.io' ;
         this.OPENVIDU_SERVER_SECRET = 'MY_SECRET';
         this.state = {
             mySessionId: 'SessionA',
@@ -79,7 +80,6 @@ class VideoChat extends Component {
                 ? (
                     <div id="join">
                         <div id="join-dialog">
-                            <h1> eoneo video </h1>
                             <form onSubmit={this.joinSession}>
                                 {/* <p>
                                     <label>Participant: </label>
@@ -101,9 +101,23 @@ class VideoChat extends Component {
                                         required
                                     />
                                 </p> */}
-                                <p>
-                                    <input name="commit" type="submit" value="JOIN" />
-                                </p>
+         
+                                    <button style={{
+                                          float: "right",
+                                          border: "none",
+                                          width: "25px",
+                                          padding: "12px 0px",
+                                          cursor: "pointer",
+                                          background: "#32465a",
+                                          color: "#f5f5f5",
+                                          height: "48px",
+                                          zIndex:"500"
+                                    }} 
+                                    name="commit" 
+                                    type="submit">
+                                 <VideoCallIcon/>
+                                    </button>
+                          
                             </form>
                         </div>
                     </div>

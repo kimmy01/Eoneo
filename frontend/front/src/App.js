@@ -13,6 +13,7 @@ import CategoryPage from './Home/CategoryPage';
 import Chat from '../src/Chat/Chat'
 import VideoChat from '../src/Chat/VideoChat'
 import ChatVisual from './Chat/ChatVisual';
+import ChatTest from './Chat/ChatTest';
 
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
           <Route exact path="/chat1" component={Chat} />
           <Route exact path="/videochat" component={VideoChat} />
           <Route exact path="/chat" component={ChatVisual} />
+          <Route exact path="/chatTest" component={ChatTest} />
+          
 
         </Switch>
     </Router>

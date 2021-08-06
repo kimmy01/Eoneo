@@ -1,16 +1,20 @@
 
 #join{
     text-align: center;
-}
-
-#join, #session {
+    display: inline-block;
     position: absolute;
-    margin: auto;
-    top: 100px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 70%;
-    width: 70%;
 }
 
+#join{
+    position: relative;
+}
+#session {
+    position: absolute;
+    /* margin: auto; */
+    /* top: 100px; */
+    bottom: 640px;
+    /* left: 1500px; */
+    right: 1000px;
+    height: 100%;
+    width: 100%;
+}

@@ -1,49 +1,51 @@
 import React, {useEffect,useState} from 'react'
 import { Container, Navbar, Nav } from 'react-bootstrap'
 import './NavBar.css'
+import {withRouter } from 'react-router-dom'
 
 function NavBar() {
   const [isLogin, setisLogin] = useState(false)
 
   useEffect(() => {
-      
     if (localStorage.getItem('token')) {
-      // console.log(localStorage.getItem('token'))
       setisLogin(true)
-      console.log(isLogin)
     }
   });
+
+  const handlelogout = (props) => {
+    localStorage.removeItem('token')
+    window.location.replace('/')
+  }
+
+
 
   return (
     <div>
       { isLogin === true 
-      ? (
+      ? ( //로그인 된 상태라면,
         <Navbar bg="light" variant="light" >
-        <Container>
-          <div className="mynav">
-            <div  className="mynavItem">
-              <Nav.Link href="/login">chat</Nav.Link>
-              <Nav.Link href="/signup">Search Friends</Nav.Link>
-              <Nav.Link href="/signup">Video Chat(단축키)</Nav.Link>
-              <p>수정완료전임 조심할것</p>
+          <Container>
+            <div className="mynav">
+              <div  className="mynavItem">
+                <Nav.Link href="/chat">chat</Nav.Link>
+                <Nav.Link href="/main">Search Friends</Nav.Link>
+                <Nav.Link href="/videochat">Video 단축키</Nav.Link>
+              </div>
+              <div  className="mynavItem item2">
+                <Nav.Link className="logo" href="/">EONEO</Nav.Link>
+              </div>
+              <div className="mynavItem item3">
+                <p onClick={handlelogout}>logout</p>
+              </div>
             </div>
-            <div  className="mynavItem item2">
-              <Nav.Link className="logo" href="/">EONEO</Nav.Link>
-            </div>
-            <div className="mynavItem item3">
-              <Nav.Link href="/login">Logout</Nav.Link>
-            </div>
-          </div>
-</Container>
-</Navbar>
-  
+          </Container>
+        </Navbar>
           )
-      :(
+      :( //로그인 안된 상태라면,
                 <Navbar bg="light" variant="light" >
                           <Container>
                             <div className="mynav">
                               <div  className="mynavItem">
-                                {/* <span>영역</span> */}
                               </div>
                               <div  className="mynavItem item2">
                                 <Nav.Link className="logo" href="/">EONEO</Nav.Link>
@@ -56,11 +58,10 @@ function NavBar() {
                   </Container>
                 </Navbar>
         )
-      
       }
       </div>
       
   )
 }
 
-export default NavBar
+export default withRouter(NavBar)
