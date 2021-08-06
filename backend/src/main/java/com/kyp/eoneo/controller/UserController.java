@@ -7,8 +7,8 @@ import com.kyp.eoneo.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -65,7 +65,7 @@ public class UserController {
     //4. 사용자 세부 정보 등록하기
     @ApiOperation(value = "사용자 세부 정보 등록하기", notes = "최초 로그인 후 사용자 세부 정보 등록하기")
     @PostMapping("/userdetail")
-    public ResponseEntity<UserDetailDto> createUserDetail(@RequestBody UserDetailDto userDetailDto){
+    public ResponseEntity<UserDetailDto> createUserDetail(@RequestBody UserDetailDto userDetailDto) throws Exception {
         return ResponseEntity.ok(userDetailService.createUserDetail(userDetailDto));
     }
 
@@ -78,8 +78,18 @@ public class UserController {
 
     //6. 특정 토픽 관심 추가한 사용자 가져오기
     @ApiOperation(value = "특정 토픽 관심 추가한 사용자 가져오기", notes = "특정 토픽을 관심사로 등록한 사용자의 정보 가져오기")
-    @GetMapping("/topicusers/{id}")
-    public ResponseEntity<List<UserDto>> getTopicUserList(@PathVariable Long id){
-        return ResponseEntity.ok(userDetailService.getTopicUsers(id));
+    @GetMapping("/topicusers")
+    public ResponseEntity<List<UserDto>> getTopicUserList(@RequestParam Long topicid, Long userid){
+        return ResponseEntity.ok(userDetailService.getTopicUsers(topicid, userid));
+    }
+
+    //7. 프로필 이미지 업로드
+    @ApiOperation(value = "프로필 이미지 업로드", notes = "프로필 이미지 업로드하기 (png, jpg, gif만 가능)")
+    @PostMapping("/profileimage")
+    public ResponseEntity<String> uploadProfileImage(
+            @Valid @RequestParam("id") Long id,
+            MultipartFile multipartFile
+    ) throws Exception {
+        return ResponseEntity.ok(userDetailService.uploadProfileImage(id, multipartFile));
     }
 }
