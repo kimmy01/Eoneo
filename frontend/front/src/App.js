@@ -1,20 +1,24 @@
 import './App.css';
-import Home from './Home/Home.js'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   // Link
 } from "react-router-dom";
-import NavBar from './components/NavBar/NavBar'
-import LoginPage from './components/LoginPage/LoginPage'
-import SignupPage from './components/SignupPage/SignupPage'
-import CategoryPage from './Home/CategoryPage';
+
+// main
+import Home from './Home/Home.js'
+import SearchFriends from './SearchFriends/SearchFriends';
+
 import Chat from '../src/Chat/Chat'
-import VideoChat from '../src/Chat/VideoChat'
+import ChatVideo from './Chat/ChatVideo'
 import ChatVisual from './Chat/ChatVisual';
 import ChatTest from './Chat/ChatTest';
 
+// component
+import NavBar from './components/NavBar/NavBar'
+import LoginPage from './components/LoginPage/LoginPage'
+import SignupPage from './components/SignupPage/SignupPage'
 
 function App() {
   return (
@@ -23,14 +27,19 @@ function App() {
       <div className="App">
       </div>
       <Switch>
+          {/* main */}
           <Route exact path="/" component={Home} />
-          <Route exact path="/main" component={CategoryPage} />
-          <Route exact path="/login" component={ LoginPage } />        
-          <Route exact path="/signup" component={ SignupPage } />       
+          <Route exact path="/searchFriends" component={SearchFriends} />
+
+          {/* chat */}
           <Route exact path="/chat1" component={Chat} />
-          <Route exact path="/videochat" component={VideoChat} />
           <Route exact path="/chat" component={ChatVisual} />
           <Route exact path="/chatTest" component={ChatTest} />
+          <Route exact path="/chatvideo" component={ChatVideo} />
+
+          {/* component */}
+          <Route exact path="/login" component={ LoginPage } />        
+          <Route exact path="/signup" component={ SignupPage } />    
           
 
         </Switch>

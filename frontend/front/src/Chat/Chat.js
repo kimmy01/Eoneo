@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import * as StompJs from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
 import axios from 'axios'
-import VideoChat from "./VideoChat"
 
 const ROOM_SEQ = "24ad750d-fea7-4f61-8cbd-b01891002141";
 
@@ -96,7 +95,6 @@ const Chat = () => {
           onKeyPress={(e) => e.which === 13 && publish(message)}
         />
         <button onClick={() => publish(message)}>send</button>
-        <VideoChat/>
       </div>
     </div>
   );

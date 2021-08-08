@@ -14,7 +14,7 @@ function NavBar() {
 
   const handlelogout = (props) => {
     localStorage.removeItem('token')
-    window.location.replace('/')
+    // window.location.replace('/')
   }
 
 
@@ -28,14 +28,14 @@ function NavBar() {
             <div className="mynav">
               <div  className="mynavItem">
                 <Nav.Link href="/chat">chat</Nav.Link>
-                <Nav.Link href="/main">Search Friends</Nav.Link>
-                <Nav.Link href="/videochat">Video 단축키</Nav.Link>
+                <Nav.Link href="/searchFriends">Search Friends</Nav.Link>
+                <Nav.Link href="/chatvideo">Video 단축키</Nav.Link>
               </div>
               <div  className="mynavItem item2">
                 <Nav.Link className="logo" href="/">EONEO</Nav.Link>
               </div>
               <div className="mynavItem item3">
-                <p onClick={handlelogout}>logout</p>
+                <Nav.Link onClick={handlelogout} href="/">logout</Nav.Link>
               </div>
             </div>
           </Container>

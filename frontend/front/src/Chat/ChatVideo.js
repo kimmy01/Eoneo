@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './VideoChat.css';
+import './ChatVideo.css';
 import axios from 'axios';
 import OpenViduSession from 'openvidu-react';
 import VideoCallIcon from '@material-ui/icons/VideoCall';
 
-class VideoChat extends Component {
+class ChatVideo extends Component {
     constructor(props) {
         super(props);
         // this.OPENVIDU_SERVER_URL = 'https://' + window.location.hostname + ':4443';
@@ -216,4 +216,4 @@ class VideoChat extends Component {
     }
 }
 
-export default VideoChat;
+export default ChatVideo;

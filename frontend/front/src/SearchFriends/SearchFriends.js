@@ -1,11 +1,11 @@
 import React from 'react'
-import './CategoryPage.css'
+import './SearchFriends.css'
 import Category from './Category' 
 
 // import MainImage from '../assets/main/sports.png'
 {/* <Image src={MainImage}  alt="mainimage"/> */}
 
-function CategoryPage () {
+function SearchFriends () {
   return (
     <div>
       <div className="mainbox">
@@ -24,4 +24,4 @@ function CategoryPage () {
   )
 }
 
-export default CategoryPage
+export default SearchFriends
