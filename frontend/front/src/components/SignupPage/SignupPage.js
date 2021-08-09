@@ -1,5 +1,5 @@
 import React, {useState } from 'react'
-import { Form, Button, Col, Row, InputGroup, FormControl } from 'react-bootstrap'
+import { Form, Button} from 'react-bootstrap'
 import "./SignupPage.css"
 import { useDispatch } from 'react-redux'
 import {registerUser} from '../../../src/_actions/user_actions'
@@ -41,7 +41,8 @@ function Signup (props) {
     }
     dispatch(registerUser(body))
     .then(response => {
-      if(response.payload.success) {
+      console.log(response)
+      if(response.payload) {
         props.history.push('/login') // 사인업하면 메인페이지로
       } else {
         alert('ERROR')

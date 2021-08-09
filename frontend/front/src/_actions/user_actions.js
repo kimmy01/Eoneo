@@ -13,7 +13,7 @@ export function loginUser(dataToSubmit) {
 
 export function registerUser(dataToSubmit) {
   const request = axios.post('http://localhost:8080/api/signup', dataToSubmit)
-      .then(response => {console.log(response.data)})
+      .then(response => response.data)
 
   return {
     type: REGISTER_USER,

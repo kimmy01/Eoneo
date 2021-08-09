@@ -29,13 +29,14 @@ function LoginPage(props) {
     }
     dispatch(loginUser(body))
       .then(response => {
-        // if(response.payload.loginSuccess) {
-        //   props.history.push('/') // 로그인하면 메인페이지로
-        // } else {
-        //   alert('ERROR')
-        // }
-        console.log(response)
-        props.history.push('/')
+        if(response.payload.token) {
+          console.log(response)
+          localStorage.setItem("token",response.payload.token)
+          localStorage.setItem("user_id",response.payload.id)
+          props.history.push('/') // 로그인하면 메인페이지로
+        } else {
+          alert('ERROR')
+        }
       })
    
   }
