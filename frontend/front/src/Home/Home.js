@@ -19,8 +19,8 @@ function Home () {
 
   return (
     <div>
-      <a href="/chatTest">
-        ChatTest
+      <a href="/chatvisual">
+        Chatvisual
       </a>
 
       

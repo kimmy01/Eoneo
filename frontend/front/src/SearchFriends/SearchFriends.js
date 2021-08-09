@@ -1,9 +1,10 @@
 import React from 'react'
 import './SearchFriends.css'
-import Category from './Category' 
+import Category from './Category'
+import TopicList from './TopicList'
 
 // import MainImage from '../assets/main/sports.png'
-{/* <Image src={MainImage}  alt="mainimage"/> */}
+//  <Image src={MainImage}  alt="mainimage"/> 
 
 function SearchFriends () {
   return (
@@ -14,7 +15,7 @@ function SearchFriends () {
           </div>
           
           <div className="box">
-            
+            <TopicList/>
           </div>
         </div>
 

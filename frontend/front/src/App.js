@@ -10,10 +10,9 @@ import {
 import Home from './Home/Home.js'
 import SearchFriends from './SearchFriends/SearchFriends';
 
+// chat
 import Chat from '../src/Chat/Chat'
 import ChatVideo from './Chat/ChatVideo'
-import ChatVisual from './Chat/ChatVisual';
-import ChatTest from './Chat/ChatTest';
 
 // component
 import NavBar from './components/NavBar/NavBar'
@@ -32,9 +31,7 @@ function App() {
           <Route exact path="/searchFriends" component={SearchFriends} />
 
           {/* chat */}
-          <Route exact path="/chat1" component={Chat} />
-          <Route exact path="/chat" component={ChatVisual} />
-          <Route exact path="/chatTest" component={ChatTest} />
+          <Route exact path="/chat" component={Chat} />
           <Route exact path="/chatvideo" component={ChatVideo} />
 
           {/* component */}
