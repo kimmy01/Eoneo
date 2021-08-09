@@ -5,14 +5,14 @@ import './ProfileCards.css'
 function ProfileCards () {
   return (
     
-    <div class="container" style={{ marginTop:'40px'}}>
+    <div className="container" style={{ marginTop:'40px', marginBottom:"40px"}}>
       
 
       <Row xs={1} md={2} lg={4} className="g-4">
-        {Array.from({ length: 12 }).map((_, idx) => (
+        {Array.from({ length: 8 }).map((_, idx) => (
           <Col>
             <div className="cardbox">
-              <div className="content">
+              <div className="content" >
                 <div className="front">
                   <Card.Img style={{ borderRadius: 150, height: 250, width: 250 }} variant="top" src={Test} />
                 </div>
