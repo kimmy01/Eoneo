@@ -1,0 +1,36 @@
+.userlistDiv{
+    margin-left: 50px;
+}
+
+.card{
+    border: whitesmoke;
+    border-width: 1px;
+    border-style: solid;
+
+    box-shadow: 2px 2px 2px 1px whitesmoke;
+
+    width: 70%;
+    margin: 5px;
+}
+
+p{
+    font-family: sans-serif;
+    margin: 5px;
+    font-size: smaller;
+}
+
+.profileImage{
+    width: 80px;
+    margin: 5px;
+    border-radius: 50px;
+}
+
+.contentText{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#username{
+    font-weight: bold;
+}

@@ -1,0 +1,10 @@
+.categoryOut{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.categoryIn{
+    margin:auto;
+}

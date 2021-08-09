@@ -5,10 +5,12 @@ import {
   Route,
   // Link
 } from "react-router-dom";
+import React, {Suspense} from 'react';
+import {RecoilRoot} from 'recoil';
 
 // main
 import Home from './Home/Home.js'
-import SearchFriends from './SearchFriends/SearchFriends';
+import SearchFriends from './SearchFriends/SearchFriendsNY';
 
 // chat
 import Chat from '../src/Chat/Chat'
@@ -28,7 +30,11 @@ function App() {
       <Switch>
           {/* main */}
           <Route exact path="/" component={Home} />
-          <Route exact path="/searchFriends" component={SearchFriends} />
+          <RecoilRoot>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Route exact path="/searchFriends" component={SearchFriends} />
+          </Suspense>
+          </RecoilRoot>
 
           {/* chat */}
           <Route exact path="/chat" component={Chat} />
