@@ -14,4 +14,5 @@ public class TopicDto {
     private Long id;
     private String topic;
     private User user;
+    private String image;
 }

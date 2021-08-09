@@ -31,4 +31,7 @@ public class Topic {
         prefTopics_Topic.add(prefTopic);
         prefTopic.setTopic(this);
     }
+
+    @Column(name = "image")
+    private String image;
 }
