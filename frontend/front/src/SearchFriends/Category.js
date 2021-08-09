@@ -7,7 +7,6 @@ import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -19,8 +18,6 @@ const useStyles = makeStyles((theme) => ({
   imageList: {
     width: 1000,
     height: 1000,
-    // Promote the list into its own layer in Chrome. This cost memory, but helps keep FPS high.
-    // transform: 'translateZ(0)',
   },
   titleBar: {
     background:
@@ -32,24 +29,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const itemData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *     featured: true,
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
 export default function Category() {
     const itemData = [
            {
@@ -89,7 +68,7 @@ export default function Category() {
     <div className={classes.root}>
       <ImageList className={classes.imageList}> 
         {itemData.map((item) => (
-          <ImageListItem key={item.img} style={{height:300}} cols="1" rows="4">
+          <ImageListItem key={item.img} style={{height:300}} >
             <img src={item.img} alt={item.title} />
             <ImageListItemBar
               title={item.title}

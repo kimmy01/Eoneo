@@ -14,6 +14,7 @@ function NavBar() {
 
   const handlelogout = (props) => {
     localStorage.removeItem('token')
+    localStorage.removeItem("user_id")
     // window.location.replace('/')
   }
 

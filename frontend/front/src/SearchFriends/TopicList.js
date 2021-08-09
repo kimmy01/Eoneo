@@ -1,4 +1,7 @@
-import React, {useEffect} from 'react';
+// react_program
+import React, {useEffect, useState} from 'react';
+import axios from 'axios'
+// css
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -6,8 +9,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
-import axios from 'axios'
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,90 +24,76 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
 export default function TopicList() {
+    const [userList, setUserList] = useState([]);
 
     useEffect(() => {
        getUserData()
     }, [])
 
+// 스타일,토큰, id
+//# 현재 토큰과 id 모두 세션에서 가져옴
+  const classes = useStyles();  
+  const jwttoken = 'Bearer '+localStorage.getItem('token')
+  const my_id = localStorage.getItem('user_id')
 
-  const classes = useStyles();
-
-  const userdata = [
-    {id : "1", name:"sara", lang: "ko",profileImage:""},
-    {id : "2", name:"lala", lang: "ko",profileImage:""},
-    {id : "3", name:"kaka", lang: "ko",profileImage:""},
-    {id : "4", name:"kaka", lang: "ko",profileImage:""},
-    {id : "5", name:"kaka", lang: "ko",profileImage:""},
-    {id : "6", name:"kaka", lang: "ko",profileImage:""},
-    {id : "7", name:"kaka", lang: "ko",profileImage:""},
-    {id : "8", name:"kaka", lang: "ko",profileImage:""},
-    {id : "9", name:"kaka", lang: "ko",profileImage:""},
-    {id : "10", name:"kaka", lang: "ko",profileImage:""},
-    {id : "11", name:"kaka", lang: "ko",profileImage:""},
-    {id : "12", name:"kaka", lang: "ko",profileImage:""},
-    {id : "13", name:"kaka", lang: "ko",profileImage:""},
-    {id : "14", name:"kaka", lang: "ko",profileImage:""},
-]
-    const jwttoken = 'Bearer '+localStorage.getItem('token')
-
-    const config = {
-        headers: { "Authorization": jwttoken },
-        "topicid": 2,
-        "userid": 2,
+// 해당토픽과 나의 관심사를 일치하는 유저들 가져오기
+//# 현재 topic은 4로 고정(수정해야함)
+const getUserData = () => {
+    axios.get(`http://localhost:8080/api/topicusers`,{
+            params: {
+                topicid: 4,
+                userid: my_id, 
+            },
+            headers: { "Authorization": jwttoken },
+})
+        .then(response =>
+            {response.data.map((userdata) =>
+                setUserList((userList) => [...userList,userdata]))
+                console.log(response.data)
+            })
+        .catch((Err) => console.error(Err));
     }
 
-    // const Data =    {
-    //     "topicid": 2,
-    //     "userid": 2,
-     
-    //   }
 
-//     ?userid=2&roomId=asdfa
-// 김나영[서울_1반_A102]팀원 님이 모두에게:    오전 9:52
-// axios.get('/user', {
-//     params: {
-//       ID: 12345
-//     }
-//   })
+// 채팅방생성: 해당 채팅방을 생성하는 함수
+    // 채팅방 인증 헤더
+    const config = {
+        headers: { "Authorization": jwttoken },
+    }
 
+    // 방생성 함수
+    const createChatroom = (opponent_id,e) => {
+        // UniqueID 생성함수 
+        const randomValue1 = Math.random().toString(36).substr(2,11);
+        const randomValue2 = Math.random().toString(36).substr(2,11);
 
-    const getUserData = () => {
-        const request = axios.get(`http://localhost:8080/api/topicusers`,{
-                params: {
-                    topicid: 4,
-                    userid: 47, 
-                },
-                headers: { "Authorization": jwttoken },
-    })
-            .then(response => console.log(response))
-            .catch((Err) => console.error(Err));
+        // 채팅방 데이터
+        const roomData =    {
+            "user1Id": my_id,
+            "user1UId": my_id+ randomValue1,
+            "user2Id": opponent_id,
+            "user2UId": opponent_id + randomValue2
         }
         
-        // .then(response => 
-        //         {response.data.data.chats.map((chat,chatMessageId) =>
-        //             setChatMessages((chatMessages) => [...chatMessages,chat]))
-        //         })
-    // const getUserData = () => {
-    //     const request = axios.get(`http://localhost:8080/api/topicusers/`,config)
-    //     // .then(response => 
-    //     //         {response.data.data.chats.map((chat,chatMessageId) =>
-    //     //             setChatMessages((chatMessages) => [...chatMessages,chat]))
-    //     //         })
-    //     .then(response => console.log(response))
-    //     .catch((Err) => console.error(Err));
-    // }
+        // 방생성 후 알림
+        axios.post(`http://localhost:8080/api/chatroom/create`,roomData, config)
+        .then(response => window.location.replace('/chat') )
+        .catch((Err) => alert("방 생성의 실패하였습니다"));
+    }
+
 
   return (
     <List className={classes.root}>
-    {userdata.map((user,id) =>(
-      <ListItem style={{border:"1px solid", width: "150%", margin:"10px"}} alignItems="flex-start">
+
+    {userList.map((user) =>(
+      <ListItem key={user.id} style={{border:"1px solid", width: "150%", margin:"10px"}} alignItems="flex-start">
             <ListItemAvatar>
-                <Avatar alt={user.name} src={user.profileImage} />
+                <Avatar alt={user.username} src="1" /> 
+                {/* {user.userDetail.profile_image} */}
             </ListItemAvatar>
             <ListItemText
-            primary={user.name}
+            primary={user.username}
             secondary={
                 <React.Fragment>
                 <Typography
@@ -113,16 +102,18 @@ export default function TopicList() {
                     className={classes.inline}
                     color="textPrimary"
                 >
-                    new message is here
                 </Typography>
+                   
+                    native: {user.userLanguage.nativeLanguage.language} <br/>
+                    want: {user.userLanguage.wantLanguage.language} <br/>
+                    topic:  
                 </React.Fragment>
             }
             />
             <div style={{position:'relative',top:"15px"}}>
-                <NoMeetingRoomIcon />
+                <MeetingRoomIcon onClick={(e)=>{createChatroom(user.id, e)}} />
             </div>
         </ListItem>
-        // <Divider variant="inset" component="li" />
           ))}
     </List>
   );

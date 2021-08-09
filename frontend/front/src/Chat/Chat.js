@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button, message } from "antd";
+// import { Button, message } from "antd";
 import ScrollToBottom from "react-scroll-to-bottom";
 import "./Chat.css";
 import * as StompJs from "@stomp/stompjs";
@@ -7,8 +7,6 @@ import * as SockJS from "sockjs-client";
 import SendIcon from '@material-ui/icons/Send';
 import axios from 'axios'
 import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
-// import VideoChat from "./VideoChat";
-// import VideoCallIcon from '@material-ui/icons/VideoCall';
 
 
 // 실제 응답표
@@ -48,7 +46,6 @@ const Chat = () => {
     useEffect(() => {
         connect();
         getDBdata()
-        makeUid()
         getChatroomList()
         return () => disconnect();
     }, []);
@@ -117,25 +114,9 @@ const Chat = () => {
         headers: { "Authorization": chattoken },
       }
 
-    // UniqueID 생성함수 
-    const makeUid = () => {
-        if (!mydata[0].Uid) {
-            const randomValue1 = Math.random().toString(36).substr(2,11);
-            const myUid = mydata[0].id+ROOM_SEQ+randomValue1;
-            mydata[0]['Uid'] = myUid
-            console.log(mydata)
-        }
-
-        if (!opponentdata[0].Uid) {
-            const randomValue2 = Math.random().toString(36).substr(2,11);
-            const opponentUid = opponentdata[0].id+ROOM_SEQ+randomValue2
-            opponentdata[0]['Uid'] = opponentUid
-        }
-    }
-
     // 채팅메시지: 해당채팅방 메시지정보 불러오는 함수
     const getDBdata = () => {
-        const request = axios.get(`http://localhost:8080/api/chatroom/room/${ROOM_SEQ}/`,config)
+        axios.get(`http://localhost:8080/api/chatroom/room/${ROOM_SEQ}/`,config)
         .then(response => 
                 {response.data.data.chats.map((chat,chatMessageId) =>
                     setChatMessages((chatMessages) => [...chatMessages,chat]))
@@ -145,7 +126,7 @@ const Chat = () => {
     
     // 채팅방리스트: 현재 유저의 채팅방 리스트 불러오는 함수
     const getChatroomList = () => {
-        const request = axios.get(`http://localhost:8080/api/chatroom/rooms/${mydata[0].id}/`,config)
+        axios.get(`http://localhost:8080/api/chatroom/rooms/${mydata[0].id}/`,config)
         .then(response => 
             {response.data.data.chatRoomList.map((room,chatRoomId) =>
                 setChatrooms((chatrooms) => [...chatrooms,room]))
@@ -158,7 +139,7 @@ const Chat = () => {
     const deleteChatroom = (chatRoomId,e) => {
         console.log(chatRoomId)
         console.log(e)
-        const request = axios.patch(`http://localhost:8080/api/chatroom/room/${mydata[0].id}/${chatRoomId}`,{
+        axios.patch(`http://localhost:8080/api/chatroom/room/${mydata[0].id}/${chatRoomId}`,{
             headers: { "Authorization": chattoken }
         })
         .then(response => console.log(response))
@@ -166,21 +147,7 @@ const Chat = () => {
     }
 
 
-    // 채팅방생성: 해당 채팅방을 생성하는 함수
-    const roomData =    {
-            "user1Id": 2,
-            "user1UId": '2fafklasdfjjfla122',
-            "user2Id": 19,
-            "user2UId": '18laklfjaifjsdiovji11219'
-          }
-
-
-    const createChatroom = () => {
-        console.log(roomData)
-        const request = axios.post(`http://localhost:8080/api/chatroom/create`,roomData, config)
-        .then(response => console.log(response))
-        .catch((Err) => console.error(Err));
-    }
+    
 
 
     // DEBUG 함수
@@ -339,13 +306,6 @@ const Chat = () => {
                 </div>
             </div>
         </div>
-        {/* <div style={{ width :"80%", height:"80%", position:"absolute",top:"761px",left:"1219px",zIndex:"101"}}>
-            <VideoChat />
-        </div>
-
-        <button style={{ position:"absolute", top:"761px", left:"1219px", zIndex:"100", float: "right", border: "none", width: "25px", padding: "12px 0px", cursor: "pointer", background: "#32465a", color: "#f5f5f5", height: "48px",}}> <VideoCallIcon/> </button> */}
-        {/* <button onClick={confirmMessage}>ss</button> */}
-        {/* <button onClick={createChatroom}>chatroom확인</button> */}
     </div>
     )
 }
