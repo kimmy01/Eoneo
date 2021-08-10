@@ -8,6 +8,14 @@ import SendIcon from '@material-ui/icons/Send';
 import axios from 'axios'
 import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
 
+import {useRecoilState} from 'recoil';
+import {user2IdState} from '../SearchFriends/state.js';
+
+function Chat() {
+
+const [user2Id] = useRecoilState(user2IdState);
+
+console.log(user2Id);
 
 // 실제 응답표
 
@@ -36,7 +44,7 @@ const opponentdata = [
 /////////////////////////////////////////
 
 const ROOM_SEQ = "24ad750d-fea7-4f61-8cbd-b01891002141";
-const Chat = () => {
+// const Chat = () => {
     const client = useRef({});
     const chattoken = 'Bearer '+localStorage.getItem('token')
     const [chatMessages, setChatMessages] = useState([]);
@@ -158,6 +166,7 @@ const Chat = () => {
    
     return (
         <div>
+            <div>{user2Id}</div>
             <div id="frame">
                 {/* 사이드바 */}
             <div id="sidepanel">

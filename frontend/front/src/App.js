@@ -10,7 +10,7 @@ import {RecoilRoot} from 'recoil';
 
 // main
 import Home from './Home/Home.js'
-import SearchFriends from './SearchFriends/SearchFriendsNY';
+import SearchFriends from './SearchFriends/SearchFriends';
 
 // chat
 import Chat from '../src/Chat/Chat'
@@ -33,12 +33,13 @@ function App() {
           <RecoilRoot>
           <Suspense fallback={<div>Loading...</div>}>
             <Route exact path="/searchFriends" component={SearchFriends} />
-          </Suspense>
-          </RecoilRoot>
+          
 
           {/* chat */}
           <Route exact path="/chat" component={Chat} />
           <Route exact path="/chatvideo" component={ChatVideo} />
+          </Suspense>
+          </RecoilRoot>
 
           {/* component */}
           <Route exact path="/login" component={ LoginPage } />        

@@ -2,6 +2,7 @@
     margin: auto;
     justify-content: center;
     display: flex;
+    margin-top: 20px;
 }
 
 .category{
@@ -9,9 +10,9 @@
     position: -webkit-sticky;
     position: sticky;
     margin-right: 50px;
-    width: 50%;
+    width: 60%;
 }
 
 .userlist{
-    width: 50%
+    width: 40%
 }
