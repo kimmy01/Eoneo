@@ -17,7 +17,7 @@ import java.util.List;
 @Api(value = "Data", tags = {"Data"})
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/data")
+@RequestMapping("/api/data")
 public class DataController {
     private final DataService dataService;
 
