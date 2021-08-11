@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useRecoilValue, useRecoilState } from "recoil";
+import {useRecoilState } from "recoil";
 import ScrollToBottom from "react-scroll-to-bottom";
 import * as StompJs from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
@@ -58,13 +58,12 @@ import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
     // user2UId: "47l6q9o6i4c3k"
 
 /////////////////////////////////////////
-const my_id = localStorage.getItem('user_id')
 
 const Chat = () => {
-
     // localstorage
     const client = useRef({});
     const jwttoken = 'Bearer '+localStorage.getItem('token')
+    const my_id = localStorage.getItem('user_id')
 
     // usestate
     const [chatMessages, setChatMessages] = useState([]);
@@ -77,8 +76,6 @@ const Chat = () => {
     const [RoomSeq,setRoomSeq] = useRecoilState(roomSeqState) 
     const [myUid,setMyUid] =  useRecoilState( myUidState)
     const [opponentUid,setOpponentUid] = useRecoilState(opponentUidState)
-    
-    // const [unreadMessage, setUnreadMessage] =useState([])
 
     useEffect(() => {
         connect()
@@ -93,10 +90,6 @@ const Chat = () => {
             getDBdata()
             // readMessage()
     }, [RoomSeq])
-
-    // useEffect(() => {
-    //         getChatroomList()
-    // }, [unreadMessage])
 
     // websocket 연결
     const connect = () => {
@@ -155,7 +148,6 @@ const Chat = () => {
         ;
     };
 
-
     //공통 인증 헤더
     const config = {
         headers: { "Authorization": jwttoken },
@@ -193,14 +185,14 @@ const Chat = () => {
     const getChatroomList = () => {
         // event.preventdefault()
         axios.get(`http://localhost:8080/api/chatroom/rooms/${mydata.id}/`,config)
-        .then(response => console.log(response))
-        // .then(setChatrooms([]))
-        // .then(response => 
-        //     {response.data.data.chatRoomList.map((room) =>
-        //         setChatrooms((chatrooms) => [...chatrooms,room]))
-        //     })
+        // .then(response => console.log(response))
+        .then(setChatrooms([]))
+        .then(response => 
+            {response.data.data.chatRoomList.map((room) =>
+                setChatrooms((chatrooms) => [...chatrooms,room]))
+            })
         
-        // .catch((Err) => console.error(Err));
+        .catch((Err) => console.error(Err));
     }
 
     // 채팅방삭제: 해당 채팅방을 제거하는 함수
@@ -230,25 +222,6 @@ const Chat = () => {
         }
     }
 
-    //////////////////////////
-    // const getUnreadMessage = () => {
-    //     // event.preventdefault()
-    //     axios.get(`http://localhost:8080/api/chatroom/rooms/53/`,config)
-    //     // .then(setUnreadMessage([]))
-    //     .then(response => 
-    //         {response.data.data.chatRoomList.map((rom) =>
-    //             setUnreadMessage((unreadMessage) => [...unreadMessage,rom]))
-    //         })
-    //     .catch((Err) => console.error(Err));
-    // }
-
-    // const readMessage = () => {
-    //     axios.get(`http://localhost:8080/api/readmessage/${my_id}/${RoomSeq}`,config)
-    //     .then(response => console.log(response))
-    //     .catch((Err) => console.error(Err));
-    // }
-
-    
     // // DEBUG 함수
     // const confirm = () => {
     //     console.log(count)
@@ -257,8 +230,6 @@ const Chat = () => {
    
     return (
         <div>
-
-
             <div id="frame">
                 {/* 사이드바 */}
             <div id="sidepanel">
@@ -302,35 +273,13 @@ const Chat = () => {
                                 ?  <p class="name">{chatroom.user2Name}</p>
                                 :  <p class="name">{chatroom.user1Name}</p>
                                 }
-                                {/* {
-                                // chatroom.newMessages !== undefined &&
-                                // chatroom.unReadCount > 0 && (
-                                //     <p class="preview">
-                                //         {chatroom.unReadCount} 
-                                //         new messages
-                                //     </p>
-                                )} */}
-                            
                                 <NoMeetingRoomIcon onClick={(e)=>{deleteChatroom(chatroom.chatRoomId, e)}}/>
-                      
                             </div>
                         </div>
                     </li>
                     ))}
                 </ul>
                 </div>
-
-                {/* 3. 왼쪽 하단 프로필, 세팅 버튼 설정 */}
-                {/* <div id="bottom-bar">
-                <button id="addcontact">
-                    <i class="fa fa-user fa-fw" aria-hidden="true"></i>{" "}
-                    <span>Profile</span>
-                </button>
-                <button id="settings">
-                    <i class="fa fa-cog fa-fw" aria-hidden="true"></i>{" "}
-                    <span>Settings</span>
-                </button>
-                </div> */}
 
             </div>
 
