@@ -390,6 +390,11 @@
     overflow-y: auto;
     overflow-x: hidden;
   }
+
+  #frame #sidepanel #contacts #list-style {
+    list-style:none;
+  }
+
   @media screen and (max-width: 735px) {
     #frame #sidepanel #contacts {
       height: calc(100% - 149px);

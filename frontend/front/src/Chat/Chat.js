@@ -57,35 +57,32 @@ import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
     // user2Name: "ssafy25"
     // user2UId: "47l6q9o6i4c3k"
 
-
-
-// 필요한 예상 DB 53번 기준
-
 /////////////////////////////////////////
 const my_id = localStorage.getItem('user_id')
 
 const Chat = () => {
 
+    // localstorage
     const client = useRef({});
     const jwttoken = 'Bearer '+localStorage.getItem('token')
+
+    // usestate
     const [chatMessages, setChatMessages] = useState([]);
     const [message, setMessage] = useState("");
-
     const [mydata,setMydata] = useState({})
-    const [chatrooms, setChatrooms] =useRecoilState(chatroomsState)
-    
-    const [unreadMessage, setUnreadMessage] =useState([])
 
+    //recoildata
+    const [chatrooms, setChatrooms] =useRecoilState(chatroomsState)
     const [opponentdata,setOpponentdata] = useRecoilState(opponentdataState)
     const [RoomSeq,setRoomSeq] = useRecoilState(roomSeqState) 
     const [myUid,setMyUid] =  useRecoilState( myUidState)
     const [opponentUid,setOpponentUid] = useRecoilState(opponentUidState)
     
+    // const [unreadMessage, setUnreadMessage] =useState([])
 
     useEffect(() => {
         connect()
         getMyData()
-    
     }, []);
 
     useEffect(() => {
@@ -94,15 +91,12 @@ const Chat = () => {
 
     useEffect(() => {
             getDBdata()
-            readMessage()
+            // readMessage()
     }, [RoomSeq])
 
-    useEffect(() => {
-            getChatroomList()
-    }, [unreadMessage])
-
-
-
+    // useEffect(() => {
+    //         getChatroomList()
+    // }, [unreadMessage])
 
     // websocket 연결
     const connect = () => {
@@ -161,14 +155,13 @@ const Chat = () => {
         ;
     };
 
-    
-    // 개인적으로 만든 함수
-    //공통 헤더
+
+    //공통 인증 헤더
     const config = {
         headers: { "Authorization": jwttoken },
       }
     
-    // 내정보받기
+    // 내 정보 받기
     const getMyData = () => {
     axios.get(`http://localhost:8080/api/userinfo/${my_id}`,config)
     .then(response => 
@@ -200,28 +193,16 @@ const Chat = () => {
     const getChatroomList = () => {
         // event.preventdefault()
         axios.get(`http://localhost:8080/api/chatroom/rooms/${mydata.id}/`,config)
-        // .then(response => console.log(response))
-        .then(setChatrooms([]))
-        .then(response => 
-            {response.data.data.chatRoomList.map((room) =>
-                setChatrooms((chatrooms) => [...chatrooms,room]))
-            })
+        .then(response => console.log(response))
+        // .then(setChatrooms([]))
+        // .then(response => 
+        //     {response.data.data.chatRoomList.map((room) =>
+        //         setChatrooms((chatrooms) => [...chatrooms,room]))
+        //     })
         
-        .catch((Err) => console.error(Err));
+        // .catch((Err) => console.error(Err));
     }
 
-    const getUnreadMessage = () => {
-        // event.preventdefault()
-        axios.get(`http://localhost:8080/api/chatroom/rooms/53/`,config)
-        // .then(setUnreadMessage([]))
-        .then(response => 
-            {response.data.data.chatRoomList.map((rom) =>
-                setUnreadMessage((unreadMessage) => [...unreadMessage,rom]))
-            })
-        .catch((Err) => console.error(Err));
-    }
-
-   
     // 채팅방삭제: 해당 채팅방을 제거하는 함수
     ///////////// 실행안됌: 401에러 ///////////////////////
     const deleteChatroom = (chatRoomId,e) => {
@@ -249,11 +230,23 @@ const Chat = () => {
         }
     }
 
-    const readMessage = () => {
-        axios.get(`http://localhost:8080/api/readmessage/${my_id}/${RoomSeq}`,config)
-        .then(response => console.log(response))
-        .catch((Err) => console.error(Err));
-    }
+    //////////////////////////
+    // const getUnreadMessage = () => {
+    //     // event.preventdefault()
+    //     axios.get(`http://localhost:8080/api/chatroom/rooms/53/`,config)
+    //     // .then(setUnreadMessage([]))
+    //     .then(response => 
+    //         {response.data.data.chatRoomList.map((rom) =>
+    //             setUnreadMessage((unreadMessage) => [...unreadMessage,rom]))
+    //         })
+    //     .catch((Err) => console.error(Err));
+    // }
+
+    // const readMessage = () => {
+    //     axios.get(`http://localhost:8080/api/readmessage/${my_id}/${RoomSeq}`,config)
+    //     .then(response => console.log(response))
+    //     .catch((Err) => console.error(Err));
+    // }
 
     
     // // DEBUG 함수
@@ -274,27 +267,12 @@ const Chat = () => {
                     <div class="wrap">
                         <img
                         id="profile-img"
-                        // src={mydata.userDetail.profile_image}
+                        src={mydata.userDetail?.profile_image}
                         class="online"
                         alt=""
                         />
                         {mydata.username}
-                        <div id="status-options">
-                        <ul>
-                            <li id="status-online" class="active">
-                            <span class="status-circle"></span> <p>Online</p>
-                            </li>
-                            <li id="status-away">
-                            <span class="status-circle"></span> <p>Away</p>
-                            </li>
-                            <li id="status-busy">
-                            <span class="status-circle"></span> <p>Busy</p>
-                            </li>
-                            <li id="status-offline">
-                            <span class="status-circle"></span> <p>Offline</p>
-                            </li>
-                        </ul>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -304,7 +282,7 @@ const Chat = () => {
                 <ul>
                     {/* 2-1. 클릭시 활성화(박스 하얀색) */}
                     {chatrooms.map((chatroom,idx) => (
-                    <li key={idx}
+                    <li key={idx} id="list-style"
                         onClick={(e)=>{selectChatroom(chatroom.chatRoomId,chatroom.user1Id,chatroom.user1UId,chatroom.user2Id,chatroom.user2UId)}}
                         // class={
                         //     "contact"
@@ -316,21 +294,22 @@ const Chat = () => {
 
                         {/* 2-2. 안 읽은 메시지 표시하기 */}
                         <div class="wrap">
-                            <span class="contact-status online"></span>
+                            <span class="contact-status"></span>
+                            {/* image가 업로드 기준이라 확인이 힘듬  */}
                             <img id={chatroom.chatRoomId} src={chatroom.imagePath} alt="" />
                             <div class="meta">
                                 {mydata.username === chatroom.user1Name 
                                 ?  <p class="name">{chatroom.user2Name}</p>
                                 :  <p class="name">{chatroom.user1Name}</p>
                                 }
-                                {
+                                {/* {
                                 // chatroom.newMessages !== undefined &&
-                                chatroom.unReadCount > 0 && (
-                                    <p class="preview">
-                                        {chatroom.unReadCount} 
-                                        new messages
-                                    </p>
-                                )}
+                                // chatroom.unReadCount > 0 && (
+                                //     <p class="preview">
+                                //         {chatroom.unReadCount} 
+                                //         new messages
+                                //     </p>
+                                )} */}
                             
                                 <NoMeetingRoomIcon onClick={(e)=>{deleteChatroom(chatroom.chatRoomId, e)}}/>
                       
@@ -342,7 +321,7 @@ const Chat = () => {
                 </div>
 
                 {/* 3. 왼쪽 하단 프로필, 세팅 버튼 설정 */}
-                <div id="bottom-bar">
+                {/* <div id="bottom-bar">
                 <button id="addcontact">
                     <i class="fa fa-user fa-fw" aria-hidden="true"></i>{" "}
                     <span>Profile</span>
@@ -351,7 +330,7 @@ const Chat = () => {
                     <i class="fa fa-cog fa-fw" aria-hidden="true"></i>{" "}
                     <span>Settings</span>
                 </button>
-                </div>
+                </div> */}
 
             </div>
 
@@ -360,7 +339,7 @@ const Chat = () => {
             {/* 1. 중앙 왼쪽 상단에 나의 사진과 이름 표기 */}
             <div class="content">
                 <div class="contact-profile">
-                    {/* <img src={opponentdata[0].profileImage} alt="" /> */}
+                    <img src={opponentdata?.profileImage} alt="" />
                     <p>{opponentdata.username}</p>
                 </div>
 
@@ -372,14 +351,14 @@ const Chat = () => {
                 <ul>
                     {chatMessages.map((msg) => (
                     <li class={msg.sendUserId === mydata.id ? "sent" : "replies"}>
-                        {/* {msg.sendUserId !== mydata.id
+                        {msg.sendUserId !== mydata.id
                         ?(
-                            <img src={opponentdata[0].profileImage} alt="" />
+                            <img src={opponentdata?.profileImage} alt="" />
                         )
                         :(
-                            <img src={mydata[0].profileImage} alt="" />
+                            <img src={mydata.userDetail?.profile_image} alt="" />
                         )
-                        } */}
+                        }
                         <p>{msg.message}</p>
                     </li>
                     ))}
