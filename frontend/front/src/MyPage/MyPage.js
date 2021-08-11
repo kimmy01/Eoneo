@@ -4,8 +4,9 @@ import UserOverview from './components/UserOverview';
 import UserDetail from './components/UserDetail';
 import { userDetailState } from '../state/myPageState';
 import { useRecoilValue, useRecoilState, useRecoilValueLoadable } from 'recoil';
+import { Redirect } from 'react-router-dom';
 
-const MyPage = ({}) => {
+const MyPage = ({ }) => {
 	// const [userId, setUserId] = useState('');
 	const [userOverview, setUserOverview] = useState({
 		profile_image: '',
@@ -36,21 +37,27 @@ const MyPage = ({}) => {
 				})
 				.then((res) => {
 					const data = res.data;
-					setUserAllDetail(data);
-					setUserOverview({
-						profile_image: data.userDetail.profile_image,
-						description: data.userDetail.description,
-						gender: data.userDetail.gender,
-						nationality: data.userDetail.nationality,
-						nickname: data.userDetail.nickname,
-						username: data.username,
-					});
-					setUserDeatil({
-						topicList: data.topicList,
-						userLanguage: data.userLanguage,
-						email: data.email,
-						joindate: data.joindate,
-					});
+					console.log(data);
+					//이번에 새롭게 데이터를 입력하는 사람
+					if (data.userDetail == null) {
+						window.location.href = '/update/user_detail'
+					} else {
+						setUserAllDetail(data);
+						setUserOverview({
+							profile_image: data.userDetail.profile_image,
+							description: data.userDetail.description,
+							gender: data.userDetail.gender,
+							nationality: data.userDetail.nationality,
+							nickname: data.userDetail.nickname,
+							username: data.username,
+						});
+						setUserDeatil({
+							topicList: data.topicList,
+							userLanguage: data.userLanguage,
+							email: data.email,
+							joindate: data.joindate,
+						});
+					}
 				});
 		};
 		getUserData();

@@ -5,9 +5,17 @@ const UserDetail = ({ detail }) => {
 	const data = detail;
 	const topicList = data.topicList;
 	const userLanguage = data.userLanguage;
-	const fluent = userLanguage.fluentLanguage?.language;
-	const native = userLanguage.nativeLanguage?.language;
-	const want = userLanguage.wantLanguage?.language;
+
+
+	let fluent;
+	let native;
+	let want;
+
+	if (userLanguage != null) {
+		fluent = userLanguage.fluentLanguage?.language;
+		native = userLanguage.nativeLanguage?.language;
+		want = userLanguage.wantLanguage?.language;
+	}
 	const joindate = data.joindate.split('T')[0];
 
 	return (

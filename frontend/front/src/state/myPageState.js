@@ -2,7 +2,7 @@ import { atom, selector } from 'recoil';
 import axios from 'axios';
 
 // const userId = localStorage.getItem('user_id');
-const userId = localStorage.getItem('user_id');
+
 const token = 'Bearer ' + localStorage.getItem('token');
 const data = 'http://localhost:8080/data/';
 
@@ -33,8 +33,8 @@ const getTopicState = selector({
 			headers: {
 				Authorization: token,
 			},
+
 		});
-		console.log(res.data);
 		return res.data;
 	},
 	set: ({ set }, data) => {
