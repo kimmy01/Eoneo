@@ -8,6 +8,7 @@ import {
 
 // main
 import Home from './Home/Home.js';
+import Main from './Home/Main.js';
 import SearchFriends from './SearchFriends/SearchFriends';
 
 // chat
@@ -41,7 +42,7 @@ function App() {
 						{
 							localStorage.getItem('user_id') === null ?
 								<div>
-									<Route exact path="/" component={Home} />
+									<Route exact path="/" component={Main} />
 									<Route exact path="/signup" component={SignupPage} />
 								</div>
 								:
