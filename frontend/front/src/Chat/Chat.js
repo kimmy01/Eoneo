@@ -171,7 +171,7 @@ const Chat = () => {
     // 채팅메시지: 해당채팅방 메시지정보 불러오는 함수
     const getDBdata = () => {
         axios.get(`http://localhost:8080/api/chatroom/room/${RoomSeq}/`,config)
-        // .then(setChatMessages([]))
+        .then(setChatMessages([]))
         .then(response => 
                 {response.data.data.chats.map((chat,chatMessageId) =>
                     setChatMessages((chatMessages) => [...chatMessages,chat]))
@@ -235,15 +235,14 @@ const Chat = () => {
             <div id="sidepanel">
                 {/* 1. 왼쪽 상단, 나의 프로필상태 */}
                 <div id="profile">
-                    <div class="wrap">
+                    <div className="wrap">
                         <img
                         id="profile-img"
                         src={mydata.userDetail?.profile_image}
-                        class="online"
+                        className="online"
                         alt=""
                         />
                         {mydata.username}
-                        
                     </div>
                 </div>
 
@@ -255,7 +254,7 @@ const Chat = () => {
                     {chatrooms.map((chatroom,idx) => (
                     <li key={idx} id="list-style"
                         onClick={(e)=>{selectChatroom(chatroom.chatRoomId,chatroom.user1Id,chatroom.user1UId,chatroom.user2Id,chatroom.user2UId)}}
-                        // class={
+                        // className={
                         //     "contact"
                         // // activechatroom.id && chatroom.id === activechatroom.id
                         // //     ? "contact active"
@@ -264,16 +263,18 @@ const Chat = () => {
                     >
 
                         {/* 2-2. 안 읽은 메시지 표시하기 */}
-                        <div class="wrap">
-                            <span class="contact-status"></span>
+                        <div className="wrap">
+                            <span className="contact-status"></span>
                             {/* image가 업로드 기준이라 확인이 힘듬  */}
                             <img id={chatroom.chatRoomId} src={chatroom.imagePath} alt="" />
-                            <div class="meta">
+                            <div className="meta">
                                 {mydata.username === chatroom.user1Name 
-                                ?  <p class="name">{chatroom.user2Name}</p>
-                                :  <p class="name">{chatroom.user1Name}</p>
+                                ?  <p className="name">{chatroom.user2Name}</p>
+                                :  <p className="name">{chatroom.user1Name}</p>
                                 }
+                            <div>
                                 <NoMeetingRoomIcon onClick={(e)=>{deleteChatroom(chatroom.chatRoomId, e)}}/>
+                            </div>
                             </div>
                         </div>
                     </li>
@@ -286,8 +287,8 @@ const Chat = () => {
             {/* 중앙메시지 창 */}
 
             {/* 1. 중앙 왼쪽 상단에 나의 사진과 이름 표기 */}
-            <div class="content">
-                <div class="contact-profile">
+            <div className="content">
+                <div className="contact-profile">
                     <img src={opponentdata?.profileImage} alt="" />
                     <p>{opponentdata.username}</p>
                 </div>
@@ -299,7 +300,7 @@ const Chat = () => {
                 <ScrollToBottom className="messages">
                 <ul>
                     {chatMessages.map((msg) => (
-                    <li class={msg.sendUserId === mydata.id ? "sent" : "replies"}>
+                    <li className={msg.sendUserId === mydata.id ? "sent" : "replies"}>
                         {msg.sendUserId !== mydata.id
                         ?(
                             <img src={opponentdata?.profileImage} alt="" />
@@ -316,8 +317,8 @@ const Chat = () => {
                 </ScrollToBottom>
 
                 {/* 3. 메시지 전송창 */}
-                <div class="message-input">
-                <div class="wrap">
+                <div className="message-input">
+                <div className="wrap">
                     <input
                         name="user_input"
                         size="large"

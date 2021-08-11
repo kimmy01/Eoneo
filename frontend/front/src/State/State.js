@@ -1,14 +1,8 @@
-import { atom, selector } from "recoil";
-import axios from "axios"
+import { atom} from "recoil";
 
 import { recoilPersist } from 'recoil-persist'
 
 const { persistAtom } = recoilPersist()
-
-// export const jwttoken = atom({
-//     key: "jwt",
-//     default: "",
-//   });
 
 export const myUidState = atom({
     key: "myUidState",
@@ -20,7 +14,6 @@ export const opponentUidState = atom({
     key: "opp_uid",
     default: "47l6q9o6i4c3k",
 });
-
 
 export const roomSeqState = atom({
     key: "room_seq",
@@ -41,23 +34,3 @@ export const myIdState = atom({
     key: "my_id",
     default: 0,
 });
-
-
-// export const myDataState = selector({
-//     key: "my_data",
- 
-//     get: async() => {
-//         try{
-//             const response = await axios.get('http://localhost:8080/api/data/topic',{
-//             headers:{ 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzc2FmeTM0QHNzYWZ5LmNvbSIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2Mjg2NTgyMDF9.P03QrLzWmX-NLh9bSzBS0xDPeZH3Zstsmz3rOW9pue_SdbAIYeVi8z9n9M2PmHYEkQW0bf5-NTbbRC4yzsYGKg' },
-//         });
-//         return response.data;
-//         }catch(err){
-//             throw err;
-//         }
-//     },
-//     set: ({set}, newValue) => {
-//         set(categoryState, newValue)
-//     }
-// })
-  
