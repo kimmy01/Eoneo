@@ -27,29 +27,43 @@ import FormMyPage from './MyPage/FormMyPage';
 
 function App() {
 	return (
-		<RecoilRoot>
-			<Suspense fallback={<div>Loading...</div>}>
-				<Router>
-					<NavBar />
-					<div className='App'></div>
-					<Switch>
-						{/* main */}
-						<Route exact path='/' component={Home} />
-						<Route exact path='/searchFriends' component={SearchFriends} />
+		<Router>
 
-						{/* chat */}
-						<Route exact path='/chat' component={Chat} />
-						<Route exact path='/chatvideo' component={ChatVideo} />
+			<div className="App">
+			</div>
+			<Switch>
+				{/* main */}
 
+				<RecoilRoot>
+					<Suspense fallback={<div>Loading...</div>}>
+						{/* <Route exact path="/" component={Home} /> */}
+
+						{
+							localStorage.getItem('user_id') === null ?
+								<div>
+									<Route exact path="/" component={Home} />
+									<Route exact path="/signup" component={SignupPage} />
+								</div>
+								:
+								<div>
+									<NavBar />
+									<Route exact path="/searchFriends" component={SearchFriends} />
+									{/* chat */}
+									<Route exact path="/chat" component={Chat} />
+									<Route exact path="/chatvideo" component={ChatVideo} />
+									<Route exact path='/mypage' component={MyPage} />
+									<Route exact path='/update/user_detail' component={FormMyPage} />
+								</div>
+						}
 						{/* component */}
-						<Route exact path='/mypage' component={MyPage} />
-						<Route exact path='/update/user_detail' component={FormMyPage} />
-						<Route exact path='/login' component={LoginPage} />
-						<Route exact path='/signup' component={SignupPage} />
-					</Switch>
-				</Router>
-			</Suspense>
-		</RecoilRoot>
+						{/* <Route exact path="/login" component={ LoginPage } />        
+	      <Route exact path="/signup" component={ SignupPage } />     */}
+
+					</Suspense>
+				</RecoilRoot>
+
+			</Switch>
+		</Router>
 	);
 }
 

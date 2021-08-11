@@ -17,7 +17,7 @@ import java.util.List;
 @Api(value = "Data", tags = {"Data"})
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/data")
+@RequestMapping("/api/data")
 public class DataController {
     private final DataService dataService;
 
@@ -29,6 +29,7 @@ public class DataController {
     @ApiOperation(value = "토픽 리스트", notes = "토픽 리스트 가져오기")
     @GetMapping("/topic")
     public ResponseEntity<List<Topic>> getTopicList(){
+        System.out.println("토픽");
         return ResponseEntity.ok(dataService.getTopics());
     }
 

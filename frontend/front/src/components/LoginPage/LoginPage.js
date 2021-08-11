@@ -19,6 +19,10 @@ function LoginPage(props) {
   const onPasswordHandler = (event) => {
     setPassword(event.currentTarget.value)
   }
+
+  function onSignUpHandler(e) {
+    window.location.href = '/signup';
+  }
    
   const onSubmitHandler = (event) => {
     event.preventDefault()
@@ -33,7 +37,8 @@ function LoginPage(props) {
           console.log(response)
           localStorage.setItem("token",response.payload.token)
           localStorage.setItem("user_id",response.payload.id)
-          props.history.push('/') // 로그인하면 메인페이지로
+          window.location.href = '/searchFriends'
+          // props.history.push('/searchFriends') // 로그인하면 메인페이지로
         } else {
           alert('ERROR')
         }
@@ -77,24 +82,30 @@ function LoginPage(props) {
 
       <div>
         <Button className="button" variant="flat" type="submit">
-          Login
+          SignIn
         </Button>
       </div>
 
       <hr/>
 
       <div>
+        <Button onClick={onSignUpHandler} className="button" variant="flat" type="button">
+          SignUp
+        </Button>
+      </div>
+
+      {/* <div>
         <Button className="button" variant="social" type="submit">
           Social Login
-        {/* <div>
+        <div>
             <GoogleLogin
                 clientId={clientId}
                 responseType={"id_token"}
                 onSuccess={onSuccess}
                 onFailure={onFailure}/>
-        </div> */}
+        </div>
         </Button>
-      </div>
+      </div> */}
 
      </Form>
      

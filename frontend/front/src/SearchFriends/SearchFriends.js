@@ -1,21 +1,19 @@
-import React from 'react'
-import './SearchFriends.css'
-import Category from './Category'
-import TopicList from './TopicList'
+import React from 'react';
+import Category from './Category';
+import UserList from './UserList';
+import './searchuser.css';
 
-function SearchFriends () {
-  return (
-    <div>
-      <div className="mainbox">
-          <div className="box-sticky">
-            <Category/>
-          </div>
-          <div className="box">
-            <TopicList/>
-          </div>
+function SearchFriends(){
+    return(
+        <div class="main">
+            <div class="category">
+                <Category/>
+            </div>
+            <div class="userlist">
+                <UserList/>
+            </div>
         </div>
-    </div>
-  )
+    );
 }
 
-export default SearchFriends
+export default SearchFriends;

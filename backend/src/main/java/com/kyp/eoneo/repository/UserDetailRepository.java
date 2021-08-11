@@ -51,15 +51,13 @@ public class UserDetailRepository {
         int gender = userDetail.getGender();
         String nickname = userDetail.getNickname();
         String description = userDetail.getDescription();
-        String profile_image = userDetail.getProfile_image();
 
-        em.createQuery("update UserDetail ud set ud.nationality = :country, ud.gender = :gender, ud.nickname = :nickname, ud.description = :description, ud.profile_image = :profile_image where ud.user = :user")
+        em.createQuery("update UserDetail ud set ud.nationality = :country, ud.gender = :gender, ud.nickname = :nickname, ud.description = :description where ud.user = :user")
                 .setParameter("user", user)
                 .setParameter("country", country)
                 .setParameter("gender", gender)
                 .setParameter("nickname", nickname)
                 .setParameter("description", description)
-                .setParameter("profile_image", profile_image)
                 .executeUpdate();
     }
 
