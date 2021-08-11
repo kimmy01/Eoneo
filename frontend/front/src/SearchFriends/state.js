@@ -7,6 +7,9 @@ import {recoilPersist} from 'recoil-persist';
 
 const {persistAtom} = recoilPersist();
 
+const token = 'Bearer ' + localStorage.getItem('token');
+const userid = localStorage.getItem('user_id'); 
+
     export const categoryState = atom({
       key: 'categoryState',
       default: []
@@ -16,8 +19,8 @@ const {persistAtom} = recoilPersist();
       key: "category/get",
       get: async() => {
           try{
-              const response = await axios.get('http://localhost:8080/api/data/topic',{
-                headers:{ 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzc2FmeTM0QHNzYWZ5LmNvbSIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2Mjg2NTgyMDF9.P03QrLzWmX-NLh9bSzBS0xDPeZH3Zstsmz3rOW9pue_SdbAIYeVi8z9n9M2PmHYEkQW0bf5-NTbbRC4yzsYGKg' },
+              const response = await axios.get('http://localhost:8080/data/topic',{
+                headers:{ 'Authorization': token },
             });
             return response.data;
           }catch(err){
@@ -39,7 +42,7 @@ const {persistAtom} = recoilPersist();
       get: async({get}) => {
           try{
             const response = await axios.get('http://localhost:8080/api/topicusers', {
-                headers:{ 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzc2FmeTM0QHNzYWZ5LmNvbSIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2Mjg2NTgyMDF9.P03QrLzWmX-NLh9bSzBS0xDPeZH3Zstsmz3rOW9pue_SdbAIYeVi8z9n9M2PmHYEkQW0bf5-NTbbRC4yzsYGKg' },
+                headers:{ 'Authorization': token },
                 params:{
                     topicid: get(tempIdState),
                     userid: get(userIdState)

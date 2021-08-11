@@ -29,22 +29,26 @@ function App() {
       </div>
       <Switch>
           {/* main */}
-          <Route exact path="/" component={Home} />
+
           <RecoilRoot>
           <Suspense fallback={<div>Loading...</div>}>
+          <Route exact path="/" component={Home} />
+          
+          
             <Route exact path="/searchFriends" component={SearchFriends} />
           
 
           {/* chat */}
           <Route exact path="/chat" component={Chat} />
           <Route exact path="/chatvideo" component={ChatVideo} />
-          </Suspense>
-          </RecoilRoot>
+          
 
           {/* component */}
           <Route exact path="/login" component={ LoginPage } />        
           <Route exact path="/signup" component={ SignupPage } />    
           
+          </Suspense>
+          </RecoilRoot>
 
         </Switch>
     </Router>

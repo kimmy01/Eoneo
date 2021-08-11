@@ -9,13 +9,13 @@ import axios from 'axios'
 import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
 
 import {useRecoilState} from 'recoil';
-import {user2IdState} from '../SearchFriends/state.js';
+import {user2UIdState} from '../SearchFriends/state.js';
 
 function Chat() {
 
-const [user2Id] = useRecoilState(user2IdState);
+const [user2UId] = useRecoilState(user2UIdState);
 
-console.log(user2Id);
+console.log(user2UId);
 
 // 실제 응답표
 
@@ -166,7 +166,7 @@ const ROOM_SEQ = "24ad750d-fea7-4f61-8cbd-b01891002141";
    
     return (
         <div>
-            <div>{user2Id}</div>
+            <div>{user2UId}</div>
             <div id="frame">
                 {/* 사이드바 */}
             <div id="sidepanel">

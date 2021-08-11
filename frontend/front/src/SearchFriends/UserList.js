@@ -29,15 +29,15 @@ function UserList(){
 
         axios.post('http://localhost:8080/api/chatroom/create',
         roomData, 
-            {headers:{ 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzc2FmeTM0QHNzYWZ5LmNvbSIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE2Mjg2NTgyMDF9.P03QrLzWmX-NLh9bSzBS0xDPeZH3Zstsmz3rOW9pue_SdbAIYeVi8z9n9M2PmHYEkQW0bf5-NTbbRC4yzsYGKg' }},
-            ).then(response =>  console.log(roomData))
-            .catch((Error) =>  console.log(roomData));
+            {headers:{ 'Authorization': 'Bearer ' + localStorage.getItem('token') }},
+            ).then(response =>  window.location.replace('/chat'), console.log(roomData))
+            .catch((Error) =>  window.location.replace('/chat'), console.log(roomData));
             // window.location.replace('/chat'), 
     }
 
     return(
         <div class="userlistDiv">
-            <h2>{user1UId}</h2>
+            <h2>{user2UId}</h2>
             {userList.map((user, id) => (
                 <div class="profilebox" onClick={(e) => {clickHandler(user.id)}}>
                     <div class="image">
