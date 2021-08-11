@@ -53,7 +53,8 @@ function Signup(props) {
   }
 
   return (
-    <div class="container">
+    <div class="container" fluid>
+      <div className="mt-4"></div>
       <h1 className="main-title">Sign up</h1>
       <Form className="mt-4" onSubmit={onSubmitHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">

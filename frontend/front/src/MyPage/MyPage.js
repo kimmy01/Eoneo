@@ -46,9 +46,9 @@ const MyPage = ({ }) => {
 					setUserOverview({
 						profile_image: data.userDetail.profile_image == null ? "" : data.userDetail.profile_image,
 						description: data.userDetail.description == null ? "" : data.userDetail.description,
-						gender: data.userDetail.gender == null ? "" : data.userDetail.description,
-						nationality: data.userDetail.nationality == null ? {} : data.userDetail.description,
-						nickname: data.userDetail.nickname == null ? "" : data.userDetail.description,
+						gender: data.userDetail.gender == null ? "" : data.userDetail.gender,
+						nationality: data.userDetail.nationality == null ? {} : data.userDetail.nationality,
+						nickname: data.userDetail.nickname == null ? "" : data.userDetail.nickname,
 						username: data.username,
 					});
 					setUserDeatil({

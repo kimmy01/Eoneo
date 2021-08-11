@@ -106,7 +106,7 @@ const FormMyPage = () => {
 
 
     const handlePutSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         userDetail.topicList = Array.from(selectTopic);
         let data = userDetail;
         // data.userid = userId;
@@ -148,7 +148,7 @@ const FormMyPage = () => {
             })
 
         }
-
+        // window.location.href = "/mypage"
 
     }
 

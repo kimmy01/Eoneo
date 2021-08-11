@@ -69,50 +69,44 @@ function LoginPage(props) {
   // }
 
   return (
-    <Container>
-      <h1 className="main-title">Login</h1>
-      <Form className="mt-4" onSubmit={onSubmitHandler}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email </Form.Label>
-          <Form.Control type="email" placeholder="Enter email" value={Email} onChange={onEmailHandler} />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
+    <Container fluid className="row">
+      <div className="col-4"></div>
+      <div className="col-4">
+        <h1 className="main-title">Login</h1>
+        <Form className="mt-4 " onSubmit={onSubmitHandler}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email </Form.Label>
+            <Form.Control type="email" placeholder="Enter email" value={Email} onChange={onEmailHandler} />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
         </Form.Text>
-        </Form.Group>
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" value={Password} onChange={onPasswordHandler} />
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" value={Password} onChange={onPasswordHandler} />
+          </Form.Group>
 
-        <div>
-          <Button className="button" variant="flat" type="submit">
-            SignIn
+
+          <div>
+            <Button className="button" variant="flat" type="submit">
+              SignIn
         </Button>
-        </div>
+          </div>
 
-        <hr />
+          <hr />
 
-        <div>
-          <Button onClick={onSignUpHandler} className="button" variant="flat" type="button">
-            SignUp
+          <div>
+            <p></p>
+            <Button onClick={onSignUpHandler} className="button" variant="flat" type="button">
+              SignUp
         </Button>
-        </div>
+          </div>
 
-        {/* <div>
-        <Button className="button" variant="social" type="submit">
-          Social Login
-        <div>
-            <GoogleLogin
-                clientId={clientId}
-                responseType={"id_token"}
-                onSuccess={onSuccess}
-                onFailure={onFailure}/>
-        </div>
-        </Button>
-      </div> */}
+        </Form>
+      </div>
+      <div className="col-4"></div>
 
-      </Form>
 
       <style type="text/css">
         {`
@@ -122,7 +116,7 @@ function LoginPage(props) {
           }
 
           .btn-social {
-            background-color: #463cbd;
+            border-color: #463cbd;
             color: white;
           }
         `}

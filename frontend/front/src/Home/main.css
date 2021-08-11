@@ -1,6 +1,9 @@
-.mainpage{
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.mainpage {
+	margin-top: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.mainlogo {
+	text-align: center;
 }
