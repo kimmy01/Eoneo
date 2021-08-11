@@ -8,10 +8,16 @@ import {withRouter } from 'react-router-dom'
 
 // const clientId = "OAuth Web Client ID"
 
+import { useRecoilValue, useRecoilState } from "recoil";
+import {
+  myIdState
+} from "../../State/State";
+
 function LoginPage(props) {
   const dispatch = useDispatch()
   const [Email, setEmail] = useState("")
   const [Password, setPassword] = useState("")
+  const [myId,setMyID] = useRecoilState(myIdState)
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value)
   }
@@ -32,6 +38,7 @@ function LoginPage(props) {
         if(response.payload.token) {
           console.log(response)
           localStorage.setItem("token",response.payload.token)
+          setMyID(response.payload.id)
           localStorage.setItem("user_id",response.payload.id)
           props.history.push('/') // 로그인하면 메인페이지로
         } else {

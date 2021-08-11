@@ -8,6 +8,13 @@ import Reducer from './_reducers/index'
 import ReduxThunk from 'redux-thunk'
 import promiseMiddleware from 'redux-promise'
 import { applyMiddleware, createStore } from 'redux';
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
 
 
 const createStoreMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore)
@@ -19,8 +26,10 @@ ReactDOM.render(
   )}>
   {/* <React.StrictMode> */}
 
+    <RecoilRoot>
     <App />
   {/* </React.StrictMode>, */}
+  </RecoilRoot>
 </Provider>,
   document.getElementById('root')
 );
