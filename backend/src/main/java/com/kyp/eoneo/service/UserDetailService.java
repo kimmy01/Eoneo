@@ -64,7 +64,7 @@ public class UserDetailService {
                         .nationality(country).gender(userDetailDto.getGender())
                         .nickname(userDetailDto.getNickname())
                         .description(userDetailDto.getDescription())
-                        .profile_image(userDetailDto.getProfile_image_url())
+//                        .profile_image(userDetailDto.getProfile_image_url())
                         .build();
 
         Language fluentL = new Language();
@@ -127,7 +127,7 @@ public class UserDetailService {
                 .nationality(country).gender(userDetailDto.getGender())
                 .nickname(userDetailDto.getNickname())
                 .description(userDetailDto.getDescription())
-                .profile_image(userDetailDto.getProfile_image_url())
+//                .profile_image(userDetailDto.getProfile_image_url())
                 .build();
 
         Language fluentL = new Language();
