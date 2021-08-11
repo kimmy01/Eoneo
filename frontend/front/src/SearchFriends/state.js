@@ -19,7 +19,7 @@ const userid = localStorage.getItem('user_id');
       key: "category/get",
       get: async() => {
           try{
-              const response = await axios.get('http://localhost:8080/data/topic',{
+              const response = await axios.get('http://localhost:8080/api/data/topic',{
                 headers:{ 'Authorization': token},
             });
             return response.data;
