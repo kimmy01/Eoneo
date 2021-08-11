@@ -6,6 +6,7 @@ import axios from 'axios';
 const token = 'Bearer ' + localStorage.getItem('token');
 const data = 'http://localhost:8080/api/data/';
 
+
 const topicState = atom({
 	key: 'topic',
 	default: [],
