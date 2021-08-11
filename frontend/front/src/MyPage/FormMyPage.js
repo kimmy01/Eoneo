@@ -13,8 +13,7 @@ import {
     useRecoilValueLoadable,
     useRecoilStateLoadable,
 } from 'recoil';
-import UserDetail from './components/UserDetail';
-import { Row } from 'react-bootstrap';
+
 import axios from 'axios';
 
 
@@ -60,6 +59,7 @@ const FormMyPage = () => {
             })
         }
         // console.log(checkedTopic)
+        console.log(user)
         console.log(userDetail)
     }, [])
 

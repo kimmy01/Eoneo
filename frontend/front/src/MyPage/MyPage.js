@@ -38,26 +38,26 @@ const MyPage = ({ }) => {
 				.then((res) => {
 					const data = res.data;
 					console.log(data);
-					//이번에 새롭게 데이터를 입력하는 사람
+					setUserAllDetail(data);
 					if (data.userDetail == null) {
+						alert("please insert your data first.")
 						window.location.href = '/update/user_detail'
-					} else {
-						setUserAllDetail(data);
-						setUserOverview({
-							profile_image: data.userDetail.profile_image,
-							description: data.userDetail.description,
-							gender: data.userDetail.gender,
-							nationality: data.userDetail.nationality,
-							nickname: data.userDetail.nickname,
-							username: data.username,
-						});
-						setUserDeatil({
-							topicList: data.topicList,
-							userLanguage: data.userLanguage,
-							email: data.email,
-							joindate: data.joindate,
-						});
 					}
+					setUserOverview({
+						profile_image: data.userDetail.profile_image == null ? "" : data.userDetail.profile_image,
+						description: data.userDetail.description == null ? "" : data.userDetail.description,
+						gender: data.userDetail.gender == null ? "" : data.userDetail.description,
+						nationality: data.userDetail.nationality == null ? {} : data.userDetail.description,
+						nickname: data.userDetail.nickname == null ? "" : data.userDetail.description,
+						username: data.username,
+					});
+					setUserDeatil({
+						topicList: data.topicList == null ? "" : data.topicList,
+						userLanguage: data.userLanguage == null ? "" : data.topicList,
+						email: data.email,
+						joindate: data.joindate,
+					});
+
 				});
 		};
 		getUserData();

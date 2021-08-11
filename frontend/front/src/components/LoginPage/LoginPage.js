@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
-import { Form, Button, Container} from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Form, Button, Container } from 'react-bootstrap'
 import './LoginPage.css'
-import {useDispatch} from 'react-redux'
-import {loginUser} from '../../../src/_actions/user_actions'
-import {withRouter } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../../../src/_actions/user_actions'
+import { withRouter } from 'react-router-dom'
 // import GoogleLogin from 'react-google-login'
 
 // const clientId = "OAuth Web Client ID"
@@ -23,7 +23,7 @@ function LoginPage(props) {
   function onSignUpHandler(e) {
     window.location.href = '/signup';
   }
-   
+
   const onSubmitHandler = (event) => {
     event.preventDefault()
 
@@ -33,68 +33,73 @@ function LoginPage(props) {
     }
     dispatch(loginUser(body))
       .then(response => {
-        if(response.payload.token) {
-          console.log(response)
-          localStorage.setItem("token",response.payload.token)
-          localStorage.setItem("user_id",response.payload.id)
-          window.location.href = '/searchFriends'
+        if (response.payload.token) {
+          console.log(response.payload)
+          localStorage.setItem("token", response.payload.token)
+          localStorage.setItem("user_id", response.payload.id)
+          if (response.payload.loginCount === 0) {
+            alert("please insert your detail infomation");
+            window.location.href = '/update/user_detail'
+          } else {
+            window.location.href = '/searchFriends'
+          }
           // props.history.push('/searchFriends') // 로그인하면 메인페이지로
         } else {
           alert('ERROR')
         }
       })
-   
+
   }
 
   // const onSuccess = async(response) => {
   //   console.log(response);
-    
-        // const { googleId, profileObj : { email, name } } = response;
-        
-        // await onSocial({
-        //     socialId : googleId,
-        //     socialType : 'google',
-        //     email,
-        //     nickname : name
-        // });
+
+  // const { googleId, profileObj : { email, name } } = response;
+
+  // await onSocial({
+  //     socialId : googleId,
+  //     socialType : 'google',
+  //     email,
+  //     nickname : name
+  // });
   // }
 
-//   const onFailure = (error) => {
-//     console.log(error);
-// }
+  //   const onFailure = (error) => {
+  //     console.log(error);
+  // }
 
   return (
     <Container>
-    <h1 className="main-title">Login</h1>
-    <Form className="mt-4" onSubmit={onSubmitHandler}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email </Form.Label>
-        <Form.Control type="email" placeholder="Enter email" value={Email} onChange={onEmailHandler}/>
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
+      <h1 className="main-title">Login</h1>
+      <Form className="mt-4" onSubmit={onSubmitHandler}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email </Form.Label>
+          <Form.Control type="email" placeholder="Enter email" value={Email} onChange={onEmailHandler} />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
         </Form.Text>
-      </Form.Group>
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" value={Password} onChange={onPasswordHandler}/>
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" value={Password} onChange={onPasswordHandler} />
+        </Form.Group>
 
-      <div>
-        <Button className="button" variant="flat" type="submit">
-          SignIn
+        <div>
+          <Button className="button" variant="flat" type="submit">
+            SignIn
         </Button>
-      </div>
+        </div>
 
-      <hr/>
+        <hr />
 
-      <div>
-        <Button onClick={onSignUpHandler} className="button" variant="flat" type="button">
-          SignUp
+        <div>
+          <Button onClick={onSignUpHandler} className="button" variant="flat" type="button">
+            SignUp
         </Button>
-      </div>
+        </div>
 
-      {/* <div>
+        {/* <div>
         <Button className="button" variant="social" type="submit">
           Social Login
         <div>
@@ -107,9 +112,9 @@ function LoginPage(props) {
         </Button>
       </div> */}
 
-     </Form>
-     
-     <style type="text/css">
+      </Form>
+
+      <style type="text/css">
         {`
           .btn-flat {
             background-color: #685de2;
@@ -128,7 +133,7 @@ function LoginPage(props) {
     </Container>
   )
 
-  
+
 }
 
 export default withRouter(LoginPage)
