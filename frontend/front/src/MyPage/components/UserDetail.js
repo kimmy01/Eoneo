@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import editbtn from "../../assets/mypage/edit.png";
+import './userdetail.css';
 
 const UserDetail = ({ detail }) => {
 	const data = detail;
@@ -10,17 +12,44 @@ const UserDetail = ({ detail }) => {
 	const want = userLanguage.wantLanguage?.language;
 	const joindate = data.joindate.split('T')[0];
 
+	//날짜 계산 시작
+	const joinYear = joindate.split('-')[0];
+	const joinMonth = joindate.split('-')[1]-1;
+	const joinDate = joindate.split('-')[2]
+
+	const startDate = new Date(joinYear, joinMonth, joinDate);
+	const today = new Date();
+	console.log(today);
+	console.log(startDate);
+
+	const gap = Math.ceil((today.getTime() - startDate.getTime())/(1000*60*60*24));
+	//날짜 계산 완료
+
+	function clicked(e) {
+		window.location.href = '/update/user_detail'
+	}
+
 	return (
-		<div>
-			<Link to='/update/user_detail'>수정</Link>
-			<p>{data.email}</p>
-			<p>{joindate}</p>
-			{topicList.map((data) => (
-				<p key={data.id}>{data.topic}</p>
-			))}
-			<p>fluent : {fluent}</p>
-			<p>want : {want}</p>
-			<p>native : {native}</p>
+		<div class="detailrootbox">
+			<div class="detailtextbox">
+				{/* <p>{data.email}</p> */}
+				{/* <p>{gap}</p> */}
+				<p>It's been {gap} days since You've been with EONEO.</p>
+				<div class="topicbox">
+					{topicList.map((data) => (
+						<p id="topictext" key={data.id}>{data.topic}</p>
+					))}
+				</div>
+				<div class="languagebox">
+					<p id="wantlanguage">want : {want}</p>
+					<p id="fluentlanguage">fluent : {fluent}</p>
+					<p id="nativelanguage">native : {native}</p>
+				</div>
+			</div>
+			<div class="editbtn">
+			<input type="image" onClick = {clicked} src={editbtn} alt="edit" width="30px" class="editbtn"></input>
+			{/* <Link to='/update/user_detail'>수정</Link> */}
+			</div>
 		</div>
 	);
 };
