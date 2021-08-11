@@ -80,7 +80,7 @@ function Signup (props) {
           <Form.Control type="password" placeholder="ConfirmPassword" value={ConfirmPassword} onChange={onConfirmPasswordHandler}/>
         </Form.Group>
     
-      <div className="form-center">
+      {/* <div className="form-center">
         <div style={{height:24}}>
           <Form.Check style={{display:'inline-block'}} type="checkbox"  label="이용약관 " />
           <p style={{display:'inline-block'}}> &nbsp;  보기</p>
@@ -92,7 +92,7 @@ function Signup (props) {
         </div>
         <Form.Check type="checkbox"  label="만 14세 이상입니다" />
         
-      </div>
+      </div> */}
   
       <style type="text/css">
         {`
@@ -113,13 +113,13 @@ function Signup (props) {
           Signup
         </Button>
       </div>
-        <hr/>
+        {/* <hr/>
 
       <div>
         <Button className="button" variant="social" type="submit">
           Social Signup
         </Button>
-      </div>
+      </div> */}
     </Form>
     </div>
   )
