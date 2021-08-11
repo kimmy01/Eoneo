@@ -52,8 +52,8 @@ const MyPage = ({ }) => {
 						username: data.username,
 					});
 					setUserDeatil({
-						topicList: data.topicList == null ? "" : data.topicList,
-						userLanguage: data.userLanguage == null ? "" : data.topicList,
+						topicList: data.topicList,
+						userLanguage: data.userLanguage,
 						email: data.email,
 						joindate: data.joindate,
 					});

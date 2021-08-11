@@ -15,6 +15,7 @@ function NavBar() {
 	const handlelogout = (props) => {
 		localStorage.removeItem('token');
 		localStorage.removeItem('user_id');
+		localStorage.removeItem('recoil-persist');
 		// window.location.replace('/')
 	};
 
@@ -45,24 +46,24 @@ function NavBar() {
 					</Container>
 				</Navbar>
 			) : (
-				//로그인 안된 상태라면,
-				<Navbar bg='light' variant='light'>
-					<Container>
-						<div className='mynav'>
-							<div className='mynavItem'></div>
-							<div className='mynavItem item2'>
-								<Nav.Link className='logo' href='/'>
-									EONEO
+					//로그인 안된 상태라면,
+					<Navbar bg='light' variant='light'>
+						<Container>
+							<div className='mynav'>
+								<div className='mynavItem'></div>
+								<div className='mynavItem item2'>
+									<Nav.Link className='logo' href='/'>
+										EONEO
 								</Nav.Link>
+								</div>
+								<div className='mynavItem item3'>
+									<Nav.Link href='/login'>Login</Nav.Link>
+									<Nav.Link href='/signup'>Signup</Nav.Link>
+								</div>
 							</div>
-							<div className='mynavItem item3'>
-								<Nav.Link href='/login'>Login</Nav.Link>
-								<Nav.Link href='/signup'>Signup</Nav.Link>
-							</div>
-						</div>
-					</Container>
-				</Navbar>
-			)}
+						</Container>
+					</Navbar>
+				)}
 		</div>
 	);
 }

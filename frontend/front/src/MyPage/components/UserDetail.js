@@ -13,6 +13,7 @@ const UserDetail = ({ detail }) => {
 	let native;
 	let want;
 
+	console.log(userLanguage)
 	if (userLanguage != null) {
 		fluent = userLanguage.fluentLanguage?.language;
 		native = userLanguage.nativeLanguage?.language;
@@ -22,15 +23,13 @@ const UserDetail = ({ detail }) => {
 
 	//날짜 계산 시작
 	const joinYear = joindate.split('-')[0];
-	const joinMonth = joindate.split('-')[1]-1;
+	const joinMonth = joindate.split('-')[1] - 1;
 	const joinDate = joindate.split('-')[2]
 
 	const startDate = new Date(joinYear, joinMonth, joinDate);
 	const today = new Date();
-	console.log(today);
-	console.log(startDate);
 
-	const gap = Math.ceil((today.getTime() - startDate.getTime())/(1000*60*60*24));
+	const gap = Math.ceil((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
 	//날짜 계산 완료
 
 	function clicked(e) {
@@ -55,8 +54,8 @@ const UserDetail = ({ detail }) => {
 				</div>
 			</div>
 			<div class="editbtn">
-			<input type="image" onClick = {clicked} src={editbtn} alt="edit" width="30px" class="editbtn"></input>
-			{/* <Link to='/update/user_detail'>수정</Link> */}
+				<input type="image" onClick={clicked} src={editbtn} alt="edit" width="30px" class="editbtn"></input>
+				{/* <Link to='/update/user_detail'>수정</Link> */}
 			</div>
 		</div>
 	);

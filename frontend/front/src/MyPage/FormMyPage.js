@@ -83,6 +83,7 @@ const FormMyPage = () => {
     //nationality, gender, nickname, profile_image
     const handleChange = (e) => {
         const { name, value } = e.target;
+        console.log(name + ' ' + value)
         setUserDetail({
             ...userDetail,
             [name]: value
@@ -105,7 +106,7 @@ const FormMyPage = () => {
 
 
     const handlePutSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         userDetail.topicList = Array.from(selectTopic);
         let data = userDetail;
         // data.userid = userId;

@@ -1,6 +1,7 @@
 import { atom, selector } from 'recoil';
 import axios from 'axios';
-
+import { recoilPersist } from 'recoil-persist';
+const { persistAtom } = recoilPersist();
 // const userId = localStorage.getItem('user_id');
 
 const token = 'Bearer ' + localStorage.getItem('token');
@@ -15,6 +16,7 @@ const topicState = atom({
 const userDetailState = atom({
 	key: 'userDetail',
 	default: {},
+	effects_UNSTABLE: [persistAtom]
 });
 
 const languageState = atom({
