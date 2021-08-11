@@ -3,6 +3,9 @@ import {
     atom,
     selector
   } from 'recoil';
+import {recoilPersist} from 'recoil-persist';
+
+const {persistAtom} = recoilPersist();
 
     export const categoryState = atom({
       key: 'categoryState',
@@ -55,11 +58,13 @@ import {
   export const tempIdState = atom({
       key: "id",
       default: 4,
+      effects_UNSTABLE: [persistAtom]
   })
 
   export const userIdState = atom({
       key: "userid",
-      default: 47
+      default: 47,
+      effects_UNSTABLE: [persistAtom]
   })
 
 //   export const roomDataState = atom({
@@ -74,15 +79,18 @@ import {
 
   export const user1UIdState = atom({
       key: "user1UId",
-      default: ""
+      default: "",
+      effects_UNSTABLE: [persistAtom]
   })
 
   export const user2IdState = atom({
       key: "user2Id",
-      default: 0
+      default: 0,
+      effects_UNSTABLE: [persistAtom]
   })
 
   export const user2UIdState = atom({
       key: "user2UId",
-      default: ""
+      default: "",
+      effects_UNSTABLE: [persistAtom]
   })
