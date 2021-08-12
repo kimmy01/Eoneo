@@ -1,18 +1,23 @@
 package com.kyp.eoneo.service;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.kyp.eoneo.config.advice.exception.CustomException;
 import com.kyp.eoneo.dto.ChatRequestMessageDto;
 import com.kyp.eoneo.dto.ChatResponseMessageDto;
 import com.kyp.eoneo.dto.ChatRoomDto;
 import com.kyp.eoneo.dto.wrapper.ChatMessageDtoWrapper;
 import com.kyp.eoneo.entity.ChatRoom;
+import com.kyp.eoneo.entity.PrefTopic;
+import com.kyp.eoneo.entity.Topic;
 import com.kyp.eoneo.entity.User;
 import com.kyp.eoneo.repository.ChatRoomRepository;
+import com.kyp.eoneo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.kyp.eoneo.config.advice.ErrorCode.*;
@@ -24,6 +29,9 @@ public class ChatRoomService {
 
     @Autowired
     ChatRoomRepository chatRoomRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
 //    방생성
     public ChatRoomDto createChatRoom(ChatRoomDto chatRoomDto) {
@@ -70,8 +78,17 @@ public class ChatRoomService {
         if(lists == null) throw new CustomException(MEMBER_NOT_FOUND);
 
         for(int i=0; i< lists.size(); i++){
+            Long opponentId = lists.get(i).getUser1Id() == userId? lists.get(i).getUser2Id() : lists.get(i).getUser1Id();
             lists.get(i).setUnReadCount(chatRoomRepository.getUnReadMessage(lists.get(i).getChatRoomId(), userId));
-            lists.get(i).setImagePath(chatRoomRepository.getImagePath(userId));
+            User user = userRepository.findUserById(opponentId);
+            lists.get(i).setUserDetail(user.getUserDetail());
+            List<Topic> topic = new ArrayList<>();
+            for(PrefTopic preftopic : user.getPrefTopics_User()){
+                topic.add(preftopic.getTopic());
+            }
+            lists.get(i).setTopicList(topic);
+            lists.get(i).setUserLanguage(user.getUserLanguage());
+
         }
         return lists;
     }

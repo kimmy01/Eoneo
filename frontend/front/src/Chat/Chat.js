@@ -49,10 +49,6 @@ function Chat() {
         getChatroomList()
     }, []);
 
-    // useEffect(() => {
-    //     getChatroomList()
-    // }, [mydata])
-
     useEffect(() => {
         getDBdata()
     }, [RoomSeq])
@@ -125,8 +121,10 @@ function Chat() {
 
     const getUserData = (userId) => {
         axios.get(`http://localhost:8080/api/userinfo/${userId}`, config)
-            .then(response =>
-                setOpponentdata(response.data))
+            .then(response =>{
+                console.log(response.data);
+                setOpponentdata(response.data)}
+                )
             .catch((Err) => console.error(Err));
     }
 
@@ -170,9 +168,10 @@ function Chat() {
     }
 
     // 채팅방 선택: 채팅방을 선택하는 함수
-    const selectChatroom = (chatRoomId, user1Id, user1UId, user2Id, user2UId) => {
+    const selectChatroom = async (chatRoomId, user1Id, user1UId, user2Id, user2UId) => {
         setRoomSeq(chatRoomId)
         if (user1Id === mydata.id) {
+            //다른 사용자의 정보 받아오기?
             getUserData(user2Id)
             setMyUid(user1UId)
             setOpponentUid(user2UId)

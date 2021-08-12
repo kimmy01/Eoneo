@@ -1,7 +1,12 @@
 package com.kyp.eoneo.dto;
 
+import com.kyp.eoneo.entity.Topic;
+import com.kyp.eoneo.entity.UserDetail;
+import com.kyp.eoneo.entity.UserLanguage;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -17,7 +22,9 @@ public class ChatRoomDto {
     private String user2UId;
     private String chatRoomId;
     private Long unReadCount;
-    private String imagePath;
+    private UserDetail userDetail;
+    private List<Topic> topicList;
+    private UserLanguage userLanguage;
 
     public static ChatRoomDto create(@NonNull Long user1Id, @NonNull Long user2Id,  @NonNull String user1UId, @NonNull String user2UId){
         ChatRoomDto created = new ChatRoomDto();
