@@ -1,6 +1,7 @@
 package com.kyp.eoneo.config;
 
 
+import com.google.common.collect.ImmutableList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -19,11 +20,12 @@ public class CorsConfig {
     public CorsConfigurationSource corsFilter(){
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        log.info("come?");
+//        log.info("come?");
         config.setAllowCredentials(true);
         config.addAllowedOrigin("http://localhost:3000");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
+//        config.addAllowedMethod("PATCH");
 
         source.registerCorsConfiguration("/**", config); //여기도
         return source;

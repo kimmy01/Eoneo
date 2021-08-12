@@ -16,6 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Api(value = "채팅방 생성 관련 API", tags = {"ChatRoom."})
 @Slf4j
@@ -70,12 +71,16 @@ public class ChatRoomController {
         return ResponseEntity.status(200).body(CommonResponse.of(chatMessageDtoWrapper, true, "채팅방 리스트 가져오기 성공", 200));
     }
 
-    @PatchMapping("/room/{userId}/{roomId}")
+    @PutMapping({"/room"})
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @ApiOperation(value = "채팅방 삭제", notes = "특정 사용자의 채팅방을 삭제한다")
-    public ResponseEntity<CommonResult> deleteChatRoom(@PathVariable Long userId, @PathVariable String roomId){
+    public ResponseEntity<CommonResult> deleteChatRoom(@RequestBody Map<String, String> info){
         //예외처리
         //해당 채팅방 id가 없을 경우
         //해당 user가 없을 경우
+        System.out.println(info.get("roomId"));
+        String roomId = info.get("roomId");
+        Long userId = Long.parseLong(info.get("userId"));
         if(chatRoomService.deleteUserChatRoom(roomId, userId) > 0){
             return ResponseEntity.status(200).body(CommonResult.of(true, "방 삭제 성공", 201));
         }

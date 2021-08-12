@@ -76,6 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/hello").permitAll()
+//                .antMatchers("/api/chatroom/chat/**").permitAll()
                 .antMatchers("/api/authenticate").permitAll()
                 .antMatchers("/api/signup").permitAll() //로그인, 회원가입 API 토큰 없는 상태에서 요청
                 .antMatchers("/chatEonoe-websocket/**").permitAll()
