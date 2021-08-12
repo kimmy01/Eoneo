@@ -38,10 +38,10 @@ function Chat() {
     const [chatrooms, setChatrooms] = useState([]);
 
     //recoildata
-    const [opponentdata, setOpponentdata] = useRecoilState(opponentdataState)
-    const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState)
     const [myUid, setMyUid] = useRecoilState(myUidState)
+    const [opponentdata, setOpponentdata] = useRecoilState(opponentdataState)
     const [opponentUid, setOpponentUid] = useRecoilState(opponentUidState)
+    const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState)
 
     useEffect(() => {
         connect()
