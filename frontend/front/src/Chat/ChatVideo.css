@@ -10,11 +10,8 @@
 }
 #session {
     position: absolute;
-    /* margin: auto; */
-    /* top: 100px; */
-    bottom: 640px;
-    /* left: 1500px; */
-    right: 1000px;
+    margin: auto;
+    z-index: 9999;
     height: 100%;
     width: 100%;
 }
