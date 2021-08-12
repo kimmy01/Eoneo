@@ -1,10 +1,43 @@
-.button {
+.signinbutton {
   display: block;
   justify-content: center;
   margin: auto;
+  background-color: #463cbd;
+  color: white;
+}
+
+.signinbutton:hover{
+  background-color: white;
+  color: #463cbd;
+  border: 1px solid #463cbd;
+}
+
+.signupbutton {
+  display: block;
+  justify-content: center;
+  margin: auto;
+  background-color: white;
+  color: #463cbd;
+  border: 1px solid #463cbd;
+  margin-bottom: 40px;
+}
+
+.signupbutton:hover{
+  background-color: #463cbd;
+  color: white;
+}
+
+hr{
+  color:#463cbd;
+}
+
+.signinlabel{
+  font-weight: bold;
 }
 
 .main-title{
   color:#463cbd;
   text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: bold;
 }

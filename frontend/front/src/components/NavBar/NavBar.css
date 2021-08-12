@@ -1,31 +1,33 @@
 .logo {
-
   font-weight: bold;
   font-size: large;
   color: #685de2 !important;
-
 }
 
 .mynav {
   width: 100%;
   display: flex;
-  justify-content: center;
-
+  /* justify-content: center; */
+  align-items: center;
 }
 
 .mynavItem {
   width: 33%;
   display: flex;
   justify-content: flex-start;
-
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: bold;
+  color: #463cbd;
 }
 
 .item2 {
   display: flex;
   justify-content: center;
+  color: #463cbd;
 }
 
 .item3 {
   display: flex;
   justify-content: flex-end;
+  color: #463cbd;
 }

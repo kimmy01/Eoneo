@@ -29,6 +29,8 @@ import SignupPage from './components/SignupPage/SignupPage';
 import React, { Suspense } from 'react';
 import FormMyPage from './MyPage/FormMyPage';
 
+import Loader from './Loader';
+
 
 // chat
 function App() {
@@ -39,7 +41,7 @@ function App() {
       <Switch>
 
           <RecoilRoot>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader type="spin" color="#685de2" message={'Please Wait a Second!'}/>}>
           {/* <Route exact path="/" component={Home} /> */}
 
           {
@@ -55,8 +57,8 @@ function App() {
               {/* chat */}
               <Route exact path="/chat" component={Chat} />
               <Route exact path="/chatvideo" component={ChatVideo} />
-			  <Route exact path="/update/user_detail" component={FormMyPage} />
-			  <Route exact path="/mypage" component={MyPage} />
+			        <Route exact path="/update/user_detail" component={FormMyPage} />
+			        <Route exact path="/mypage" component={MyPage} />
 			  
             </div>
           }

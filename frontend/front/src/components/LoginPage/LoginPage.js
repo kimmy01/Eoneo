@@ -56,22 +56,6 @@ function LoginPage(props) {
 
   }
 
-  // const onSuccess = async(response) => {
-  //   console.log(response);
-
-  // const { googleId, profileObj : { email, name } } = response;
-
-  // await onSocial({
-  //     socialId : googleId,
-  //     socialType : 'google',
-  //     email,
-  //     nickname : name
-  // });
-  // }
-
-  //   const onFailure = (error) => {
-  //     console.log(error);
-  // }
 
   return (
     <Container fluid className="row">
@@ -80,55 +64,34 @@ function LoginPage(props) {
         <h1 className="main-title">Login</h1>
         <Form className="mt-4 " onSubmit={onSubmitHandler}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email </Form.Label>
+            <Form.Label className="signinlabel">Email </Form.Label>
             <Form.Control type="email" placeholder="Enter email" value={Email} onChange={onEmailHandler} />
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
-        </Form.Text>
+            </Form.Text>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label className="signinlabel">Password</Form.Label>
             <Form.Control type="password" placeholder="Password" value={Password} onChange={onPasswordHandler} />
           </Form.Group>
 
-
           <div>
-            <Button className="button" variant="flat" type="submit">
+            <Button className="signinbutton" variant="flat" type="submit">
               SignIn
-        </Button>
+            </Button>
           </div>
 
           <hr />
 
           <div>
-            <p></p>
-            <Button onClick={onSignUpHandler} className="button" variant="flat" type="button">
+            <Button onClick={onSignUpHandler} className="signupbutton" variant="flat" type="button">
               SignUp
-        </Button>
+            </Button>
           </div>
-
         </Form>
       </div>
       <div className="col-4"></div>
-
-
-      <style type="text/css">
-        {`
-          .btn-flat {
-            background-color: #685de2;
-            color: white;
-          }
-
-          .btn-social {
-            border-color: #463cbd;
-            color: white;
-          }
-        `}
-      </style>
-
-
-
     </Container>
   )
 
