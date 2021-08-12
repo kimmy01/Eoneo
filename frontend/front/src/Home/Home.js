@@ -6,6 +6,7 @@ import './Home.css'
 import Footer from '../components/Footer/Footer'
 
 
+
 function Home () {
   const [isLogin, setisLogin] = useState(false)
 
@@ -13,10 +14,11 @@ function Home () {
     if (localStorage.getItem('token')) {
       setisLogin(true)
       console.log(isLogin)
-  }
+    }
   });
 
-
+  
+  
   return (
     <div>
       <a href="/chatvisual">

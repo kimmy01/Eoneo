@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './ChatVideo.css';
 import axios from 'axios';
 import OpenViduSession from 'openvidu-react';
+
 import VideoCallIcon from '@material-ui/icons/VideoCall';
 
 class ChatVideo extends Component {
@@ -76,10 +77,10 @@ class ChatVideo extends Component {
         const token = this.state.token;
         return (
             <div>
+                
                 {this.state.session === undefined 
-                ? (
-                    <div id="join">
-                        <div id="join-dialog">
+                ? (             
+                    <div>
                             <form onSubmit={this.joinSession}>
                                 {/* <p>
                                     <label>Participant: </label>
@@ -110,16 +111,16 @@ class ChatVideo extends Component {
                                           cursor: "pointer",
                                           background: "#32465a",
                                           color: "#f5f5f5",
-                                          height: "48px",
+                                          height: "60px",
                                           zIndex:"500"
                                     }} 
                                     name="commit" 
                                     type="submit">
-                                 <VideoCallIcon/>
+                                 <VideoCallIcon style={{marginBottom:20}}/>
                                     </button>
+
                           
                             </form>
-                        </div>
                     </div>
                 ) 
                 : (

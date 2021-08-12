@@ -5,6 +5,10 @@ import {
   Route,
   // Link
 } from "react-router-dom";
+import {
+  RecoilRoot,
+} from 'recoil';
+
 
 // main
 import Home from './Home/Home.js'
@@ -19,28 +23,31 @@ import NavBar from './components/NavBar/NavBar'
 import LoginPage from './components/LoginPage/LoginPage'
 import SignupPage from './components/SignupPage/SignupPage'
 
+
 function App() {
   return (
-    <Router>
-      <NavBar />
-      <div className="App">
-      </div>
-      <Switch>
-          {/* main */}
-          <Route exact path="/" component={Home} />
-          <Route exact path="/searchFriends" component={SearchFriends} />
+    <RecoilRoot>
+      <Router>
+        <NavBar />
+        <div className="App">
+        </div>
+        <Switch>
+            {/* main */}
+            <Route exact path="/" component={Home} />
+            <Route exact path="/searchFriends" component={SearchFriends} />
 
-          {/* chat */}
-          <Route exact path="/chat" component={Chat} />
-          <Route exact path="/chatvideo" component={ChatVideo} />
+            {/* chat */}
+            <Route exact path="/chat" component={Chat} />
+            <Route exact path="/chatvideo" component={ChatVideo} />
 
-          {/* component */}
-          <Route exact path="/login" component={ LoginPage } />        
-          <Route exact path="/signup" component={ SignupPage } />    
-          
+            {/* component */}
+            <Route exact path="/login" component={ LoginPage } />        
+            <Route exact path="/signup" component={ SignupPage } />    
+            
 
-        </Switch>
-    </Router>
+          </Switch>
+      </Router>
+    </RecoilRoot>
   );
 }
 
