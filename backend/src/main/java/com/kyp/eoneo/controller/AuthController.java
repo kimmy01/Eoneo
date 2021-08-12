@@ -61,6 +61,8 @@ public class AuthController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
+        System.out.println("새 토큰 발급" + jwt);
+
         return new ResponseEntity<>(new TokenDto(jwt, returnCount, username, userid), httpHeaders, HttpStatus.OK);
     }
 }

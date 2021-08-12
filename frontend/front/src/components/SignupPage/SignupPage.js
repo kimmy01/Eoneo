@@ -1,11 +1,11 @@
-import React, {useState } from 'react'
-import { Form, Button} from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Form, Button } from 'react-bootstrap'
 import "./SignupPage.css"
 import { useDispatch } from 'react-redux'
-import {registerUser} from '../../../src/_actions/user_actions'
+import { registerUser } from '../../../src/_actions/user_actions'
 import { withRouter } from 'react-router-dom'
 
-function Signup (props) {
+function Signup(props) {
   const dispatch = useDispatch()
   const [Email, setEmail] = useState("")
   const [Password, setPassword] = useState("")
@@ -30,9 +30,9 @@ function Signup (props) {
 
   const onSubmitHandler = (event) => {
     event.preventDefault()
-    
-    if(Password !== ConfirmPassword) {
-      return alert("비밀번호와 비밀번호확인은 같아야합니다.")
+
+    if (Password !== ConfirmPassword) {
+      return alert("비밀번호와 비밀번호 확인은 같아야합니다.")
     }
     let body = {
       email: Email,
@@ -40,24 +40,26 @@ function Signup (props) {
       username: Name,
     }
     dispatch(registerUser(body))
-    .then(response => {
-      console.log(response)
-      if(response.payload) {
-        props.history.push('/login') // 사인업하면 메인페이지로
-      } else {
-        alert('ERROR')
-      }
-      
-    })
+      .then(response => {
+        console.log(response)
+        if (response.payload) {
+          window.location.href = '/'
+          // props.history.push('/login') // 사인업하면 메인페이지로
+        } else {
+          alert('ERROR')
+        }
+
+      })
   }
 
   return (
-    <div class="container">
+    <div class="container" fluid>
+      <div className="mt-4"></div>
       <h1 className="main-title">Sign up</h1>
       <Form className="mt-4" onSubmit={onSubmitHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email: </Form.Label>
-          <Form.Control type="email" placeholder="Enter email" value={Email} onChange={onEmailHandler}/>
+          <Form.Control type="email" placeholder="Enter email" value={Email} onChange={onEmailHandler} />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
@@ -65,7 +67,7 @@ function Signup (props) {
 
         <Form.Group className="mb-3" >
           <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="FirstName LastName" value={Name} onChange={onNameHandler}/>
+          <Form.Control type="text" placeholder="FirstName LastName" value={Name} onChange={onNameHandler} />
         </Form.Group>
         <Form.Group className="mb-3" >
           <Form.Label>Nickname</Form.Label>
@@ -73,14 +75,14 @@ function Signup (props) {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" value={Password} onChange={onPasswordHandler}/>
+          <Form.Control type="password" placeholder="Password" value={Password} onChange={onPasswordHandler} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Confirm Password</Form.Label>
-          <Form.Control type="password" placeholder="ConfirmPassword" value={ConfirmPassword} onChange={onConfirmPasswordHandler}/>
+          <Form.Control type="password" placeholder="ConfirmPassword" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
         </Form.Group>
-    
-      <div className="form-center">
+
+        {/* <div className="form-center">
         <div style={{height:24}}>
           <Form.Check style={{display:'inline-block'}} type="checkbox"  label="이용약관 " />
           <p style={{display:'inline-block'}}> &nbsp;  보기</p>
@@ -92,10 +94,10 @@ function Signup (props) {
         </div>
         <Form.Check type="checkbox"  label="만 14세 이상입니다" />
         
-      </div>
-  
-      <style type="text/css">
-        {`
+      </div> */}
+
+        <style type="text/css">
+          {`
           .btn-flat {
             background-color: #685de2;
             color: white;
@@ -106,21 +108,21 @@ function Signup (props) {
             color: white;
           }
         `}
-      </style>
-      
-      <div>  
-        <Button className="button" variant="flat" type="submit">
-          Signup
+        </style>
+
+        <div>
+          <Button className="button" variant="flat" type="submit">
+            Signup
         </Button>
-      </div>
-        <hr/>
+        </div>
+        {/* <hr/>
 
       <div>
         <Button className="button" variant="social" type="submit">
           Social Signup
         </Button>
-      </div>
-    </Form>
+      </div> */}
+      </Form>
     </div>
   )
 }
