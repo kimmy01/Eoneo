@@ -27,7 +27,6 @@ import LoginPage from './components/LoginPage/LoginPage';
 import SignupPage from './components/SignupPage/SignupPage';
 
 import React, { Suspense } from 'react';
-import { RecoilRoot } from 'recoil';
 import FormMyPage from './MyPage/FormMyPage';
 
 

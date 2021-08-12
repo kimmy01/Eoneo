@@ -18,7 +18,6 @@ import SendIcon from '@material-ui/icons/Send';
 import axios from 'axios'
 import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
 
-import {useRecoilState} from 'recoil';
 import {user2UIdState} from '../SearchFriends/state.js';
 
 function Chat() {
@@ -27,47 +26,7 @@ const [user2UId] = useRecoilState(user2UIdState);
 
 console.log(user2UId);
 
-// 실제 응답표
-
-// subscribe.response
-    // chatRoomId: "24ad750d-fea7-4f61-8cbd-b01891002141"
-    // message: "i send"
-    // receiveUserUId: "1824ad750d-fea7-4f61-8cbd-b018910021413075kz60mfg"
-    // sendUserId: 2
-    // sendUserUId: "224ad750d-fea7-4f61-8cbd-b01891002141u9s2v14rq0k"
-
-// DBdata: response.data.data.chats[0]
-    // 0: {chatMessageId: 7, sendUserId: 16, message: "test"}
-
-// mydata :
-    // {id: 53, email: "ssafy29@ssafy.com", username: "ssafy29", firstLogin: 1, userDetail: {…}, …}
-    // email: "ssafy29@ssafy.com"
-    // firstLogin: 1
-    // id: 53
-    // joindate: "2021-08-05T14:23:10"
-    // topicList: (3) [{…}, {…}, {…}]
-    // userDetail: {id: 53, nationality: {…}, gender: 1, nickname: "닉네임", description: "설명", …}
-    // userLanguage: {fluentLanguage: {…}, nativeLanguage: {…}, wantLanguage: {…}}
-    // username: "ssafy29"
-
-//chatroom data
-    // data:
-    // chatRoomList: Array(2)
-    // 0:
-    // chatRoomId: "0d1422a6-83cb-49fe-be9b-0edca23039a3"
-    // imagePath: "C:\\Users\\multicampus\\KimNayeong\\SubPJT3-EONEO\\backend\\profileimages\\202108055320210805.png"
-    // unReadCount: 0
-    // user1Id: 53
-    // user1Name: "ssafy29"
-    // user1UId: "53lofuvhz5aho"
-    // user2Id: 47
-    // user2Name: "ssafy25"
-    // user2UId: "47l6q9o6i4c3k"
-
-
-/////////////////////////////////////////
-
-const Chat = () => {
+// const Chat = () => {
     // localstorage
     const client = useRef({});
     const jwttoken = 'Bearer '+localStorage.getItem('token')
@@ -377,5 +336,46 @@ const Chat = () => {
     </div>
     )
 }
+// }
 
 export default Chat;
+
+// 실제 응답표
+
+// subscribe.response
+    // chatRoomId: "24ad750d-fea7-4f61-8cbd-b01891002141"
+    // message: "i send"
+    // receiveUserUId: "1824ad750d-fea7-4f61-8cbd-b018910021413075kz60mfg"
+    // sendUserId: 2
+    // sendUserUId: "224ad750d-fea7-4f61-8cbd-b01891002141u9s2v14rq0k"
+
+// DBdata: response.data.data.chats[0]
+    // 0: {chatMessageId: 7, sendUserId: 16, message: "test"}
+
+// mydata :
+    // {id: 53, email: "ssafy29@ssafy.com", username: "ssafy29", firstLogin: 1, userDetail: {…}, …}
+    // email: "ssafy29@ssafy.com"
+    // firstLogin: 1
+    // id: 53
+    // joindate: "2021-08-05T14:23:10"
+    // topicList: (3) [{…}, {…}, {…}]
+    // userDetail: {id: 53, nationality: {…}, gender: 1, nickname: "닉네임", description: "설명", …}
+    // userLanguage: {fluentLanguage: {…}, nativeLanguage: {…}, wantLanguage: {…}}
+    // username: "ssafy29"
+
+//chatroom data
+    // data:
+    // chatRoomList: Array(2)
+    // 0:
+    // chatRoomId: "0d1422a6-83cb-49fe-be9b-0edca23039a3"
+    // imagePath: "C:\\Users\\multicampus\\KimNayeong\\SubPJT3-EONEO\\backend\\profileimages\\202108055320210805.png"
+    // unReadCount: 0
+    // user1Id: 53
+    // user1Name: "ssafy29"
+    // user1UId: "53lofuvhz5aho"
+    // user2Id: 47
+    // user2Name: "ssafy25"
+    // user2UId: "47l6q9o6i4c3k"
+
+
+/////////////////////////////////////////
