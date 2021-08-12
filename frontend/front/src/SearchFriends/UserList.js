@@ -1,7 +1,7 @@
 import React from 'react';
 import './userlist.css';
 import {useRecoilState} from 'recoil';
-import {getUserListState, userIdState, user1UIdState, user2IdState, user2UIdState} from './state.js';
+import {getUserListState, userIdState, user1UIdState, user2IdState, user2UIdState, roomSeqState} from '../state/state.js';
 import { Badge } from '@material-ui/core';
 import axios from 'axios';
 
@@ -13,6 +13,7 @@ function UserList(){
     const [user1UId, setUser1UId] = useRecoilState(user1UIdState);
     const [user2Id, setUser2Id] = useRecoilState(user2IdState);
     const [user2UId, setUser2UId] = useRecoilState(user2UIdState);
+    const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState)
 
 
     const clickHandler = async (params, e) => {
@@ -30,7 +31,7 @@ function UserList(){
        await  axios.post('http://localhost:8080/api/chatroom/create',
         roomData, 
             {headers:{ 'Authorization': 'Bearer ' + localStorage.getItem('token') }},
-            ).then(response =>   console.log(response))
+            ).then(response =>   setRoomSeq(response.data.data.chatRoomId))
             .catch((Error) =>  window.location.replace('/chat'), console.log(roomData));
             // window.location.replace('/chat'), 
 
@@ -39,6 +40,7 @@ function UserList(){
 
     return(
         <div class="userlistDiv">
+            <h1>{RoomSeq}</h1>
             {userList.map((user, id) => (
                 <div class="profilebox" onClick={(e) => {clickHandler(user.id)}}>
                     <div class="image">

@@ -8,7 +8,11 @@ import {
     opponentUidState,
     roomSeqState,
     opponentdataState,
-    chatroomsState,
+    user1IdState,
+    user2IdState,
+    user1UIdState,
+    user2UIdState
+  
 } from "../state/state";
 import ChatVideo from "./ChatVideo"
 
@@ -18,11 +22,8 @@ import SendIcon from '@material-ui/icons/Send';
 import axios from 'axios'
 import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
 
-import { user2UIdState } from '../SearchFriends/state.js';
 
 function Chat() {
-
-    const [user2UId] = useRecoilState(user2UIdState);
 
     // const Chat = () => {
     // localstorage
@@ -38,14 +39,23 @@ function Chat() {
     const [chatrooms, setChatrooms] = useState([]);
 
     //recoildata
-    const [myUid, setMyUid] = useRecoilState(myUidState)
-    const [opponentdata, setOpponentdata] = useRecoilState(opponentdataState)
-    const [opponentUid, setOpponentUid] = useRecoilState(opponentUidState)
     const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState)
+    const [opponentdata, setOpponentdata] = useRecoilState(opponentdataState)
+    const [myUid, setMyUid] = useRecoilState(myUidState)
+    const [opponentUid, setOpponentUid] = useRecoilState(opponentUidState)
+
+    // recoil only get
+    const [user1Id,setUser1Id] = useRecoilState(user1IdState)
+    const [user2Id,setUser2Id] = useRecoilState(user2IdState)
+    const [user1UId,setUser1UId] = useRecoilState(user1UIdState)
+    const [user2UId,setUser2UId] = useRecoilState(user2UIdState)
 
     useEffect(() => {
         connect()
         getMyData()
+        console.log(RoomSeq, user1Id, user1UId, user2Id, user2UId)
+        selectChatroom(RoomSeq, user1Id, user1UId, user2Id, user2UId)
+        setRoomSeq(RoomSeq)
         getChatroomList()
     }, []);
 
@@ -184,6 +194,7 @@ function Chat() {
         setSelectChatroomId(chatRoomId)
     }
 
+    
     // // DEBUG 함수
     // const confirm = () => {
     //     console.log(count)
@@ -192,7 +203,7 @@ function Chat() {
 
     return (
         <div>
-            <div>{user2UId}</div>
+            <h1>{RoomSeq}</h1>
             <div id="frame">
 
                 {/* 사이드바 */}

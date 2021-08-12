@@ -109,6 +109,7 @@ export const opponentdataState = atom({
 export const roomSeqState = atom({
     key: "room_seq",
     default: "0d1422a6-83cb-49fe-be9b-0edca23039a3",
+    effects_UNSTABLE: [persistAtom]
 });
 
 
@@ -171,7 +172,7 @@ const userid = localStorage.getItem('user_id');
 
   export const userIdState = atom({
       key: "userid",
-      default: 47,
+      default: userid,
       effects_UNSTABLE: [persistAtom]
   })
 

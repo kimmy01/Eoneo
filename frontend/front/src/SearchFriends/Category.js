@@ -1,7 +1,7 @@
 import React from 'react';
 import './category.css';
 import {useRecoilState} from 'recoil';
-import {getCategorySelector, tempIdState} from './state.js';
+import {getCategorySelector, tempIdState} from '../state/state.js';
 
 function Category(){
     
