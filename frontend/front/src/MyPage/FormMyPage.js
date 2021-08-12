@@ -6,7 +6,7 @@ import {
     getCountryState,
     userDetailState,
     topicState,
-} from '../state/myPageState';
+} from '../state/state';
 import {
     useRecoilValue,
     useRecoilState,

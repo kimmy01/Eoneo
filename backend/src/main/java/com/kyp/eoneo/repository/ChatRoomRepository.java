@@ -130,18 +130,18 @@ public class ChatRoomRepository {
         }
     }
 
-    public String getImagePath(Long userId) {
-        try {
-            String url = (String) em.createQuery("select ud.profile_image from  UserDetail ud where ud.id = :userId")
-                    .setParameter("userId", userId)
-                    .getSingleResult();
-
-            log.info("url " + url);
-            return url;
-        } catch (NoResultException nre) {
-            return null;
-        }
-    }
+//    public String getImagePath(Long userId) {
+//        try {
+//            String url = (String) em.createQuery("select ud.profile_image from  UserDetail ud where ud.id = :userId")
+//                    .setParameter("userId", userId)
+//                    .getSingleResult();
+//
+//            log.info("url " + url);
+//            return url;
+//        } catch (NoResultException nre) {
+//            return null;
+//        }
+//    }
 
     public ChatRoomDto isAlreadyHasaRoom(Long id1, Long id2) {
         try {

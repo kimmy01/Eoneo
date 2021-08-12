@@ -65,7 +65,7 @@ const userid = localStorage.getItem('user_id');
 
   export const userIdState = atom({
       key: "userid",
-      default: 47,
+      default: userid,
       effects_UNSTABLE: [persistAtom]
   })
 
