@@ -173,6 +173,7 @@ public class UserDetailService {
             User user = list.get(i).getUser();
 
             if(user.getUserLanguage().getNativeLanguage().getCode().equals(myWantLanguage) && user.getId() != userid){
+
                 List<Topic> topicList = new ArrayList<>();
 
                 for(int j=0; j<user.getPrefTopics_User().size(); j++){
@@ -241,7 +242,7 @@ public class UserDetailService {
 
         file = new File(absolutePath + path + id + "/" + newFileName);
         multipartFile.transferTo(file);
-        this.userDetailRepository.uploadUserImage(id, file.getAbsolutePath());
+        this.userDetailRepository.uploadUserImage(id, file.getCanonicalPath());
 
         return "업로드 완!";
     }
