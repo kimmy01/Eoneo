@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserOverview from './components/UserOverview';
 import UserDetail from './components/UserDetail';
-import { userDetailState } from '../state/myPageState';
+import { userDetailState } from '../state/state';
 import { useRecoilValue, useRecoilState, useRecoilValueLoadable } from 'recoil';
 import { Redirect } from 'react-router-dom';
 

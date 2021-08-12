@@ -17,7 +17,7 @@ function LoginPage(props) {
   const dispatch = useDispatch()
   const [Email, setEmail] = useState("")
   const [Password, setPassword] = useState("")
-  const [myId,setMyID] = useRecoilState(myIdState)
+
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value)
   }
