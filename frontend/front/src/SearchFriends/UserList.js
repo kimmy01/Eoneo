@@ -15,7 +15,7 @@ function UserList(){
     const [user2UId, setUser2UId] = useRecoilState(user2UIdState);
 
 
-    const clickHandler = (params, e) => {
+    const clickHandler = async (params, e) => {
         setUser1UId(Math.random().toString(36).substr(2,11));
         setUser2UId(Math.random().toString(36).substr(2,11));
         setUser2Id(params);
@@ -27,12 +27,14 @@ function UserList(){
             "user2UId": user2UId
         }
 
-        axios.post('http://localhost:8080/api/chatroom/create',
+       await  axios.post('http://localhost:8080/api/chatroom/create',
         roomData, 
             {headers:{ 'Authorization': 'Bearer ' + localStorage.getItem('token') }},
-            ).then(response =>  window.location.replace('/chat'), console.log(roomData))
+            ).then(response =>   console.log(response))
             .catch((Error) =>  window.location.replace('/chat'), console.log(roomData));
             // window.location.replace('/chat'), 
+
+            window.location.replace('/chat');
     }
 
     return(

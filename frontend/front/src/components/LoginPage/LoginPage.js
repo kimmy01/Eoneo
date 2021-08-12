@@ -11,7 +11,7 @@ import { withRouter } from 'react-router-dom'
 import { useRecoilValue, useRecoilState } from "recoil";
 import {
   myIdState
-} from "../../state/State";
+} from "../../state/state";
 
 function LoginPage(props) {
   const dispatch = useDispatch()
