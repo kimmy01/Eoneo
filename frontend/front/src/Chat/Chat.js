@@ -56,6 +56,7 @@ import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
     // user2Name: "ssafy25"
     // user2UId: "47l6q9o6i4c3k"
 
+
 /////////////////////////////////////////
 
 const Chat = () => {
@@ -230,7 +231,7 @@ const Chat = () => {
             <div id="frame">
          
                 {/* 사이드바 */}
-            <div id="sidepanel">
+            <div id="sidepanel" >
                 {/* 1. 왼쪽 상단, 나의 프로필상태 */}
                 <div id="profile">
                     <div className="wrap">
