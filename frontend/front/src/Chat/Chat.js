@@ -210,7 +210,7 @@ console.log(user2UId);
 
                         alt=""
                         />
-                        {mydata.username}
+                        <p style={{marginLeft:10}}>{mydata.username}</p>
                     </div>
                 </div>
 
@@ -240,6 +240,7 @@ console.log(user2UId);
                                 borderRadius: 50,
                                 float: "left",
                                 marginRight: 10,
+                                marginLeft: 10,
                             }}
                              src=
                             //  {chatroom.imagePath} alt="" />
@@ -282,9 +283,9 @@ console.log(user2UId);
                     메시지전송유저 != 나: class:replies(왼쪽배치)
                 */}
                 <ScrollToBottom className="messages">
-                <ul>
+                <ul style={{paddingLeft:0}}>
                     {chatMessages.map((msg) => (
-                    <li className={msg.sendUserId === mydata.id ? "sent" : "replies"}>
+                    <li style={{paddingRight: 10}} className={msg.sendUserId === mydata.id ? "sent" : "replies"}>
                         {msg.sendUserId !== mydata.id
                         ?(
                             <img src=

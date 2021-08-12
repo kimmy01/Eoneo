@@ -1,7 +1,7 @@
 #frame {
     width: 100%;
     min-width: 360px;
-    max-width: 1000px;
+    max-width: 1100px;
     height: 92vh;
     min-height: 300px;
     max-height: 720px;
@@ -26,8 +26,8 @@
     color: gray;
     overflow: hidden;
     position: relative;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    /* border-top-left-radius: 10px; */
+    /* border-bottom-left-radius: 10px; */
   }
   @media screen and (max-width: 735px) {
     #frame #sidepanel {
@@ -83,6 +83,7 @@
     width: 50px;
     border-radius: 50%;
     padding: 3px;
+    margin-left: 10px;
 
     height: auto;
     float: left;
@@ -98,7 +99,7 @@
       margin-left: 4px;
     }
   }
-  #frame #sidepanel #profile .wrap img.online {
+  /* #frame #sidepanel #profile .wrap img.online {
     border: 2px solid #2ecc71;
   }
   #frame #sidepanel #profile .wrap img.away {
@@ -109,13 +110,14 @@
   }
   #frame #sidepanel #profile .wrap img.offline {
     border: 2px solid #95a5a6;
-  }
+  } */
   #frame #sidepanel #profile .wrap p {
     float: left;
     margin-left: 15px;
   }
   @media screen and (max-width: 735px) {
     #frame #sidepanel #profile .wrap p {
+      
       display: none;
     }
   }
@@ -429,11 +431,11 @@
     }
   }
   #frame #sidepanel #contacts ul li.contact:hover {
-    background: #a59dff;
+    background: rgb(50, 70, 90);
   }
   #frame #sidepanel #contacts ul li.contact.active {
     background: #a59dff;
-    border-right: 5px solid #a65dff;
+    border-right: 5px solid #a59dff;
   }
   #frame #sidepanel #contacts ul li.contact.active span.contact-status {
     border: 2px solid #a59dff !important;
@@ -568,13 +570,16 @@
     }
   }
   #frame .content {
+    background-color: #ffffff;
+    box-shadow: none;
+    padding:0 0 0 50px;
     float: right;
     width: 60%;
     height: 100%;
     overflow: hidden;
     position: relative;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    /* border-top-right-radius: 10px; */
+    /* border-bottom-right-radius: 10px; */
   }
   @media screen and (max-width: 735px) {
     #frame .content {
@@ -623,6 +628,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
     width: 100%;
+    background-color: #f5f5f5;
   }
   @media screen and (max-width: 735px) {
     #frame .content .messages {
@@ -648,23 +654,28 @@
     margin-bottom: 20px;
   }
   #frame .content .messages ul li.replies img {
-    margin: 6px 8px 0 0;
+  
+    margin: 6px 8px 0px 0px;
   }
   #frame .content .messages ul li.replies p {
     background: #a59dff;
     color: #f5f5f5;
   }
   #frame .content .messages ul li.sent img {
+
     float: right;
     margin: 6px 0 0 8px;
   }
   #frame .content .messages ul li.sent p {
-    background: #fffff3;
-    color: gray;
+    
+    background: rgb(50, 70, 90);
+    color:white;
+  
     float: right;
   }
   #frame .content .messages ul li img {
     width: 22px;
+    height: 22px;
     border-radius: 50%;
     float: left;
   }
