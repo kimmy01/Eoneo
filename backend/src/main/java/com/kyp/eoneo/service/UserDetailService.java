@@ -242,7 +242,7 @@ public class UserDetailService {
 
         file = new File(absolutePath + path + id + "/" + newFileName);
         multipartFile.transferTo(file);
-        this.userDetailRepository.uploadUserImage(id, file.getAbsolutePath());
+        this.userDetailRepository.uploadUserImage(id, file.getCanonicalPath());
 
         return "업로드 완!";
     }

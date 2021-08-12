@@ -22,7 +22,7 @@ const UserOverview = ({ overview }) => {
 				<Badge
 					overlap="circle" anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 					badgeContent={<img src={data.nationality?.flag} width="60px" alt="flag" />}>
-					<img class="profileimage" src="https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F9931CB4B5D904D76076758" alt="profile" />
+					<img class="profileimage" src={data.profile_image} alt="profile" />
 				</Badge>
 			</div>
 			<div class="textbox">
