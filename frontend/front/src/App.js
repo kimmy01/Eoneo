@@ -60,7 +60,7 @@ function App() {
 			  
             </div>
           }
-          {/* component */}
+          {/* component1 */}
           {/* <Route exact path="/login" component={ LoginPage } />        
           <Route exact path="/signup" component={ SignupPage } />     */}
           
