@@ -9,7 +9,7 @@ import {
     roomSeqState,
     opponentdataState,
     chatroomsState,
-  } from "../State/State";
+  } from "../state/state";
 import ChatVideo from "./ChatVideo"
 
 //css

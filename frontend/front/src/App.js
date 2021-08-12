@@ -30,31 +30,44 @@ import React, { Suspense } from 'react';
 import FormMyPage from './MyPage/FormMyPage';
 
 
+// chat
 function App() {
   return (
-    <RecoilRoot>
-      <Router>
-        <NavBar />
-        <div className="App">
-        </div>
-        <Switch>
-            {/* main */}
-            <Route exact path="/" component={Home} />
-            <Route exact path="/searchFriends" component={SearchFriends} />
+    <Router>
+      <div className="App">
+      </div>
+      <Switch>
 
-            {/* chat */}
-            <Route exact path="/chat" component={Chat} />
-            <Route exact path="/chatvideo" component={ChatVideo} />
+          <RecoilRoot>
+          <Suspense fallback={<div>Loading...</div>}>
+          {/* <Route exact path="/" component={Home} /> */}
 
-            {/* component */}
-            <Route exact path="/login" component={ LoginPage } />        
-            <Route exact path="/signup" component={ SignupPage } />    
-            
+          {
+            localStorage.getItem('user_id') === null ?
+              <div>
+                <Route exact path="/" component={Main} /> 
+                <Route exact path="/signup" component={SignupPage}/>
+              </div>
+              :
+            <div>
+              <NavBar />
+              <Route exact path="/searchFriends" component={SearchFriends} />
+              {/* chat */}
+              <Route exact path="/chat" component={Chat} />
+              <Route exact path="/chatvideo" component={ChatVideo} />
+            </div>
+          }
+          {/* component */}
+          {/* <Route exact path="/login" component={ LoginPage } />        
+          <Route exact path="/signup" component={ SignupPage } />     */}
+          
+          </Suspense>
+          </RecoilRoot>
 
-          </Switch>
-      </Router>
-    </RecoilRoot>
+	      </Switch>
+    </Router>
   );
 }
+
 
 export default App;
