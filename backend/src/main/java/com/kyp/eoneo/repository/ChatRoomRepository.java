@@ -7,6 +7,7 @@ import com.kyp.eoneo.entity.ChatRoom;
 //import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.kyp.eoneo.entity.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +21,9 @@ import java.util.List;
 public class ChatRoomRepository {
     @PersistenceContext
     private EntityManager em;
+
+//    @Autowired
+//    ChatRepository chatRepository;
 
     //ChatRoom 생성
     public void createChatRoom(ChatRoom chatRoom) {
@@ -139,18 +143,21 @@ public class ChatRoomRepository {
         }
     }
 
-    public boolean isAlreadyHasaRoom(Long id1, Long id2) {
+    public ChatRoomDto isAlreadyHasaRoom(Long id1, Long id2) {
         try {
-            em.createQuery("select cr from ChatRoom cr where cr.user1.id = :id1 and cr.user2.id = :id2 or cr.user1.id = :id2 and cr.user2.id = :id1", ChatRoom.class)
+            ChatRoomDto chatRoom = em.createQuery("select new com.kyp.eoneo.dto.ChatRoomDto(cr.user1.id, cr.user2.id, cr.user1.username, cr.user2.username, cr.user1UId, cr.user2UId, cr.id)  from ChatRoom cr where cr.user1.id = :id1 and cr.user2.id = :id2 or cr.user1.id = :id2 and cr.user2.id = :id1", ChatRoomDto.class)
                     .setParameter("id1", id1)
                     .setParameter("id2", id2)
                     .setParameter("id1", id2)
                     .setParameter("id2", id1)
                     .getSingleResult();
 
-            return false;
+            //여기서 해당 사용자가 메시지를 다 읽게끔 할지 결정 need
+//           find
+//            chatRepository.putAllUnreadMessage(id1, chatRoom.getChatRoomId());
+            return chatRoom;
         }catch (NoResultException nre){
-            return true;
+            return null;
         }
     }
 }

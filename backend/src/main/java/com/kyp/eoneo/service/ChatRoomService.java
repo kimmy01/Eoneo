@@ -40,16 +40,20 @@ public class ChatRoomService {
                 .user2UId(chatRoomDto.getUser2UId())
                 .build();
 
-//이미 방이 존재하는지 체크하기
-        boolean flag = chatRoomRepository.isAlreadyHasaRoom(user1.getId(), user2.getId());
-        if(!flag) throw new CustomException(ALREADY_HAS_DATA);
+
+        ChatRoomDto chatroom = chatRoomRepository.isAlreadyHasaRoom(user1.getId(), user2.getId());
+        if(chatroom != null)  return chatroom;
 
         chatRoomRepository.createChatRoom(chatRoom);
         chatRoomDto.setUser1Name(user1.getUsername());
         chatRoomDto.setUser2Name(user2.getUsername());
        return chatRoomDto;
     }
-
+//이미 방이 존재하는지 체크하기
+    public ChatRoomDto isAlreadyChatRoom(Long id1, Long id2){
+        ChatRoomDto chatroom = chatRoomRepository.isAlreadyHasaRoom(id1, id2);
+        return chatroom;
+    }
 
 //채팅메세지
     public ChatMessageDtoWrapper getChats(String roomId) {
