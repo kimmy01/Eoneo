@@ -55,6 +55,9 @@ function App() {
               {/* chat */}
               <Route exact path="/chat" component={Chat} />
               <Route exact path="/chatvideo" component={ChatVideo} />
+			  <Route exact path="/update/user_detail" component={FormMyPage} />
+			  <Route exact path="/mypage" component={MyPage} />
+			  
             </div>
           }
           {/* component */}
