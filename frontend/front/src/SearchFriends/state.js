@@ -80,6 +80,12 @@ const userid = localStorage.getItem('user_id');
 //       }
 //   })
 
+  export const user1IdState = atom({
+      key: "user1Id",
+      default: 0,
+      effects_UNSTABLE: [persistAtom]
+  })
+
   export const user1UIdState = atom({
       key: "user1UId",
       default: "",
