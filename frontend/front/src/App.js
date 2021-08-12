@@ -1,10 +1,14 @@
 import './App.css';
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	// Link
-} from 'react-router-dom';
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  // Link
+} from "react-router-dom";
+import {
+  RecoilRoot,
+} from 'recoil';
+
 
 // main
 import Home from './Home/Home.js';
@@ -23,49 +27,47 @@ import LoginPage from './components/LoginPage/LoginPage';
 import SignupPage from './components/SignupPage/SignupPage';
 
 import React, { Suspense } from 'react';
-import { RecoilRoot } from 'recoil';
 import FormMyPage from './MyPage/FormMyPage';
 
+
+// chat
 function App() {
-	return (
-		<Router>
+  return (
+    <Router>
+      <div className="App">
+      </div>
+      <Switch>
 
-			<div className="App">
-			</div>
-			<Switch>
-				{/* main */}
+          <RecoilRoot>
+          <Suspense fallback={<div>Loading...</div>}>
+          {/* <Route exact path="/" component={Home} /> */}
 
-				<RecoilRoot>
-					<Suspense fallback={<div>Loading...</div>}>
-						{/* <Route exact path="/" component={Home} /> */}
+          {
+            localStorage.getItem('user_id') === null ?
+              <div>
+                <Route exact path="/" component={Main} /> 
+                <Route exact path="/signup" component={SignupPage}/>
+              </div>
+              :
+            <div>
+              <NavBar />
+              <Route exact path="/searchFriends" component={SearchFriends} />
+              {/* chat */}
+              <Route exact path="/chat" component={Chat} />
+              <Route exact path="/chatvideo" component={ChatVideo} />
+            </div>
+          }
+          {/* component */}
+          {/* <Route exact path="/login" component={ LoginPage } />        
+          <Route exact path="/signup" component={ SignupPage } />     */}
+          
+          </Suspense>
+          </RecoilRoot>
 
-						{
-							localStorage.getItem('user_id') === null ?
-								<div>
-									<Route exact path="/" component={Main} />
-									<Route exact path="/signup" component={SignupPage} />
-								</div>
-								:
-								<div>
-									<NavBar />
-									<Route exact path="/searchFriends" component={SearchFriends} />
-									{/* chat */}
-									<Route exact path="/chat" component={Chat} />
-									<Route exact path="/chatvideo" component={ChatVideo} />
-									<Route exact path='/mypage' component={MyPage} />
-									<Route exact path='/update/user_detail' component={FormMyPage} />
-								</div>
-						}
-						{/* component */}
-						{/* <Route exact path="/login" component={ LoginPage } />        
-	      <Route exact path="/signup" component={ SignupPage } />     */}
-
-					</Suspense>
-				</RecoilRoot>
-
-			</Switch>
-		</Router>
-	);
+	      </Switch>
+    </Router>
+  );
 }
+
 
 export default App;

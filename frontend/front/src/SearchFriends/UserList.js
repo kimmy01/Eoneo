@@ -37,7 +37,6 @@ function UserList(){
 
     return(
         <div class="userlistDiv">
-            <h2>{user2UId}</h2>
             {userList.map((user, id) => (
                 <div class="profilebox" onClick={(e) => {clickHandler(user.id)}}>
                     <div class="image">

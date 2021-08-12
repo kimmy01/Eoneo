@@ -16,7 +16,6 @@ function Category(){
 
     return(
         <div>
-            <h1>{tempId}</h1>
             <div class="categoryOut">
             {topicList.map((topic, id) => (
                 <div onClick={(e) => {clickHandler(topic.id, e)}} class="categoryIn">
