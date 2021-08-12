@@ -11,13 +11,13 @@ import { withRouter } from 'react-router-dom'
 import { useRecoilValue, useRecoilState } from "recoil";
 import {
   myIdState
-} from "../../state/state";
+} from "../../state/State";
 
 function LoginPage(props) {
   const dispatch = useDispatch()
   const [Email, setEmail] = useState("")
   const [Password, setPassword] = useState("")
-  const [myId,setMyID] = useRecoilState(myIdState)
+  const [myId, setMyID] = useRecoilState(myIdState)
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value)
   }
