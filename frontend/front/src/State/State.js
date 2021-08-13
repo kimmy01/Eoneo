@@ -108,7 +108,7 @@ export const opponentdataState = atom({
 
 export const roomSeqState = atom({
     key: "room_seq",
-    default: "0d1422a6-83cb-49fe-be9b-0edca23039a3",
+    default: "",
     effects_UNSTABLE: [persistAtom]
 });
 
