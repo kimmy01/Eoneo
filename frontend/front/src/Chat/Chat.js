@@ -56,7 +56,7 @@ function Chat() {
     // websocket 연결
     const connect = () => {
         client.current = new StompJs.Client({
-            webSocketFactory: () => new SockJS("http://localhost:8080/chatEonoe-websocket"), // proxy를 통한 접속 //internet explore
+            webSocketFactory: () => new SockJS("/chatEonoe-websocket"), // proxy를 통한 접속 //internet explore
             connectHeaders: {
                 "Authorization": jwttoken,
             },
@@ -113,14 +113,14 @@ function Chat() {
 
     // 내 정보 받기
     const getMyData = async () => {
-        await axios.get(`http://localhost:8080/api/userinfo/${my_id}`, config)
+        await axios.get(`/api/userinfo/${my_id}`, config)
             .then(response =>
                 setMydata(response.data))
             .catch((Err) => console.error(Err));
     }
 
     const getUserData = (userId) => {
-        axios.get(`http://localhost:8080/api/userinfo/${userId}`, config)
+        axios.get(`/api/userinfo/${userId}`, config)
             .then(response =>{
                 console.log(response.data);
                 setOpponentdata(response.data)}
@@ -130,7 +130,7 @@ function Chat() {
 
     // 채팅메시지: 해당채팅방 메시지정보 불러오는 함수
     const getDBdata = () => {
-        axios.get(`http://localhost:8080/api/chatroom/room/${RoomSeq}/`, config)
+        axios.get(`/api/chatroom/room/${RoomSeq}/`, config)
             .then(setChatMessages([]))
             .then(response => {
                 response.data.data.chats.map((chat, chatMessageId) =>
@@ -144,7 +144,7 @@ function Chat() {
     // 채팅방리스트: 현재 유저의 채팅방 리스트 불러오는 함수
     const getChatroomList = async () => {
         // event.preventdefault()
-        await axios.get(`http://localhost:8080/api/chatroom/rooms/` + my_id, config)
+        await axios.get(`/api/chatroom/rooms/` + my_id, config)
             .then(setChatrooms([]))
             .then(response => {
                 setChatrooms(response.data.data.chatRoomList)
@@ -162,7 +162,7 @@ function Chat() {
         }
         // data = JSON.stringify(data);
         console.log(data);
-        axios.put('http://localhost:8080/api/chatroom/room', data, config)
+        axios.put('/api/chatroom/room', data, config)
             .then(() => getChatroomList())
             .catch((Err) => console.error(Err));
     }

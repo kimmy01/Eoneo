@@ -27,7 +27,7 @@ function UserList(){
             "user2UId": user2UId
         }
 
-       await  axios.post('http://localhost:8080/api/chatroom/create',
+       await  axios.post('/api/chatroom/create',
         roomData, 
             {headers:{ 'Authorization': 'Bearer ' + localStorage.getItem('token') }},
             ).then(response =>   console.log(response))

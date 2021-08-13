@@ -25,7 +25,7 @@ const MyPage = ({ }) => {
 
 	const userId = localStorage.getItem('user_id');
 	const token = 'Bearer ' + localStorage.getItem('token');
-	const url = 'http://localhost:8080/api/userinfo/' + userId;
+	const url = '/api/userinfo/' + userId;
 	const [userAllDetail, setUserAllDetail] = useRecoilState(userDetailState);
 	useEffect(() => {
 		const getUserData = async () => {

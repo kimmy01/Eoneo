@@ -10,7 +10,7 @@ class ChatVideo extends Component {
         super(props);
         // this.OPENVIDU_SERVER_URL = 'https://' + window.location.hostname + ':4443';
         // this.OPENVIDU_SERVER_SECRET = 'MY_SECRET';
-        this.OPENVIDU_SERVER_URL = 'https://i5a102.p.ssafy.io' ;
+        this.OPENVIDU_SERVER_URL = 'https://i5a102.p.ssafy.io:442';
         this.OPENVIDU_SERVER_SECRET = 'MY_SECRET';
         this.state = {
             mySessionId: 'SessionA',
