@@ -1,0 +1,8 @@
+.mainpage {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.mainlogo {
+	text-align: center;
+}

@@ -19,6 +19,7 @@ ReactDOM.render(
   )}>
   {/* <React.StrictMode> */}
 
+  
     <App />
   {/* </React.StrictMode>, */}
 </Provider>,

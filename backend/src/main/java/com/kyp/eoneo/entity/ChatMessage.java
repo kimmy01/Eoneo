@@ -18,16 +18,16 @@ public class ChatMessage {
     private Long id;
 //    @ManyToOne
 //    @JoinColumn(name = "chatroom_id", referencedColumnName = "id")
-    private Long chatroomId;
+    private String chatroomId;
     private Long messageSender;
     private String messageContent;
-    @CreatedDate
     private LocalDateTime messageSendtime;
+    @Column(nullable = false, columnDefinition = "TINYINT", length = 1)
+    private boolean isRead;
 
     @PrePersist
     public void joinedAt(){
         this.messageSendtime = LocalDateTime.now();
     }
 
-    private int attachment;
 }

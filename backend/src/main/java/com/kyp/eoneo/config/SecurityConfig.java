@@ -1,9 +1,6 @@
 package com.kyp.eoneo.config;
 
-import com.kyp.eoneo.util.jwt.JwtAccessDeniedHandler;
-import com.kyp.eoneo.util.jwt.JwtAuthenticationEntryPoint;
-import com.kyp.eoneo.util.jwt.JwtSecurityConfig;
-import com.kyp.eoneo.util.jwt.TokenProvider;
+import com.kyp.eoneo.util.jwt.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -79,9 +76,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/hello").permitAll()
+                .antMatchers("/static/**").permitAll()
                 .antMatchers("/api/authenticate").permitAll()
-                .antMatchers("/chatEonoe-websocket/**").permitAll()
                 .antMatchers("/api/signup").permitAll() //로그인, 회원가입 API 토큰 없는 상태에서 요청
+                .antMatchers("/chatEonoe-websocket/**").permitAll()
+                .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll()
 
                 .anyRequest().authenticated()
 

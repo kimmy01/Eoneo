@@ -1,0 +1,117 @@
+
+.detailrootbox{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.detailtextbox{
+    margin-top: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align: center;
+}
+
+.editbtn{
+    margin-left: 30px;
+}
+
+.languagebox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.topicbox{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#topictext{
+    border: #A59DFF;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 20px;
+    background-color: transparent;
+    color: #463CBD;
+
+    box-shadow: 0.5px 0.5px 0.5px 0.2px darkgray;
+
+    margin-right: 5px;
+    margin-left: 5px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+#wantlanguage{
+        border: #A59DFF;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 20px;
+        background-color: #A59DFF;
+        color: white;
+    
+        box-shadow: 1px 1px 1px 0.5px darkgray;
+    
+        /* font-size: 12px; */
+        font-weight: bold;
+        text-align: center;
+    
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    
+        margin-right:5px;
+}
+
+#fluentlanguage{
+    border: #685DE2;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 20px;
+    background-color: #685DE2;
+    color: white;
+
+    box-shadow: 1px 1px 1px 0.5px darkgray;
+
+    /* font-size: 12px; */
+        font-weight: bold;
+        text-align: center;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+
+    margin-left:5px;
+    margin-right:5px;
+}
+
+#nativelanguage{
+    border: #463CBD;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 20px;
+    background-color: #463CBD;
+    color: white;
+
+    box-shadow: 1px 1px 1px 0.5px darkgray;
+
+    /* font-size: 12px; */
+    font-weight: bold;
+    text-align: center;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+
+    margin-left:5px;
+    margin-right:5px;
+}

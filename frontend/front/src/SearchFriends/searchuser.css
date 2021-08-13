@@ -1,0 +1,19 @@
+.main{
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.category{
+    display: flex;
+    /* position: -webkit-sticky;
+    position: sticky; */
+    /* margin-right: 50px; */
+    width: 55%;
+}
+
+.userlist{
+    width: 40%;
+}

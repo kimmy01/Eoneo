@@ -1,0 +1,38 @@
+.categoryOut{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.categoryIn{
+    margin:auto;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.text{
+    position: absolute;
+    visibility: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.topic{
+    font-size: 45px;
+    margin:auto;
+    color:white;
+    font-weight: bold;
+}
+
+.categoryIn:hover{
+    opacity: 0.7;
+}
+
+.categoryIn:hover .text{
+    visibility: visible;
+}
+
+.categoryImg{
+    width: 400px;
+}

@@ -13,6 +13,11 @@ spring:
       format_sql: true
       ddl-auto: none #데이터베이스 초기화 전략 설정(아무것도 실행x)
 
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+
 logging:
   level:
     org:
@@ -28,3 +33,11 @@ jwt:
   # kyp-project-eoneo-kyp-project-eoneo-kyp-project-eoneo-kyp-project-eoneo-kyp-project-eoneo
   secret: a3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8=
   token-validity-in-seconds: 86400
+
+  custom:
+    path:
+      upload-images: '/home/eoneo/image'
+
+#custom:
+#  path:
+#    upload-images: 'C:\SSAFY\EONEO-Final\S05P13A102\frontend\front\public\upload'

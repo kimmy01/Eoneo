@@ -1,0 +1,17 @@
+
+#join{
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+}
+
+#join{
+    position: relative;
+}
+#session {
+    position: absolute;
+    margin: auto;
+    z-index: 9999;
+    height: 100%;
+    width: 100%;
+}
