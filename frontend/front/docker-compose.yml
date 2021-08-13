@@ -1,0 +1,12 @@
+version: "3.4"
+services:
+  react:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    port:
+      - "80"
+    volumes:
+      - /usr/src/app/node_modules
+      - ./:/usr/src/app
+    stdin_open: true
