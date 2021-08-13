@@ -135,7 +135,7 @@ const FormMyPage = () => {
         console.log("Json" + data);
         //text 파일
         if (user.userDetail?.id) {
-            await axios.put("http://localhost:8080/api/userdetail", data, {
+            await axios.put("/api/userdetail", data, {
                 headers: {
                     Authorization: token,
                     "Content-Type": "application/json"
@@ -144,7 +144,7 @@ const FormMyPage = () => {
                 console.log(res);
             })
         } else {
-            await axios.post("http://localhost:8080/api/userdetail", data, {
+            await axios.post("/api/userdetail", data, {
                 headers: {
                     Authorization: token,
                     "Content-Type": "application/json"
@@ -159,7 +159,7 @@ const FormMyPage = () => {
             formData.append('id', userId);
             formData.append('multipartFile', profileImage);
 
-            await axios.post("http://localhost:8080/api/profileimage", formData, {
+            await axios.post("/api/profileimage", formData, {
                 headers: {
                     Authorization: token
                 }
