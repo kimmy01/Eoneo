@@ -33,6 +33,9 @@ public class UserDetailService {
     @Autowired
     UserRepository userRepository;
 
+//    @Value("${custom.path.upload-images}")
+//    String rootPath;
+
     //사용자 정보 등록
     public UserDetailDto createUserDetail(UserDetailDto userDetailDto) throws Exception {
 
@@ -215,23 +218,26 @@ public class UserDetailService {
         return userList;
     }
 
-    @Value("${custom.path.upload-images}")
-    String rootPath;
+
+
+
     public String uploadProfileImage(Long id, MultipartFile multipartFile) throws IOException {
         User user = userRepository.findUserById(id);
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         String currentDate = simpleDateFormat.format(new Date());
 
+
 //        String absolutePath = new File("").getAbsolutePath()+"\\"; //ubuntu에서는 "/"
 //        String rootPath = "C:\\SSAFY\\mydir\\image";
 //        System.out.println(rootPath);
 //        String path = "profileImages/";
-        File file = new File(rootPath);
 
-        if(!file.exists()){
-            file.mkdirs();
-        }
+//        File file = new File(rootPath);
+
+//        if(!file.exists()){
+//            file.mkdirs();
+//        }
 
         String contentType = multipartFile.getContentType();
         String originFileExtension = "";
@@ -246,7 +252,7 @@ public class UserDetailService {
 
         String newFileName = Long.toString(System.nanoTime()) + originFileExtension;
 
-        file = new File(rootPath + "/" + newFileName);
+        File file = new File(newFileName);
 
         multipartFile.transferTo(file);
         this.userDetailRepository.uploadUserImage(id, newFileName);
