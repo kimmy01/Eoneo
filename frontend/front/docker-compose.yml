@@ -4,7 +4,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.dev
-    port:
+    ports:
       - "80"
     volumes:
       - /usr/src/app/node_modules
