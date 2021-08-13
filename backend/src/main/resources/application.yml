@@ -33,3 +33,11 @@ jwt:
   # kyp-project-eoneo-kyp-project-eoneo-kyp-project-eoneo-kyp-project-eoneo-kyp-project-eoneo
   secret: a3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8=
   token-validity-in-seconds: 86400
+
+  custom:
+    path:
+      upload-images: '/home/eoneo/image'
+
+#custom:
+#  path:
+#    upload-images: 'C:\SSAFY\EONEO-Final\S05P13A102\frontend\front\public\upload'
