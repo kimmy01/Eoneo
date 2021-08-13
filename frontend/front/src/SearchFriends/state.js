@@ -19,7 +19,7 @@ const userid = localStorage.getItem('user_id');
       key: "category/get",
       get: async() => {
           try{
-              const response = await axios.get('http://localhost:8080/api/data/topic',{
+              const response = await axios.get('/api/data/topic',{
                 headers:{ 'Authorization': token},
             });
             return response.data;
@@ -41,7 +41,7 @@ const userid = localStorage.getItem('user_id');
       key: "userlist/get",
       get: async({get}) => {
           try{
-            const response = await axios.get('http://localhost:8080/api/topicusers', {
+            const response = await axios.get('/api/topicusers', {
                 headers:{ 'Authorization': token },
                 params:{
                     topicid: get(tempIdState),
