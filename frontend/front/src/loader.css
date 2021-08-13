@@ -1,0 +1,9 @@
+.loadingmessage{  
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+}
+
+.contentWrap{
+    display: flex;
+    justify-content: center;
+}
