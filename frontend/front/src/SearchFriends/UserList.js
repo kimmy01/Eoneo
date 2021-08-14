@@ -4,9 +4,10 @@ import {useRecoilState} from 'recoil';
 import {getUserListState, userIdState,user1IdState, user1UIdState, user2IdState, user2UIdState, roomSeqState} from '../state/state.js';
 import { Badge } from '@material-ui/core';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 function UserList(){
-
+    let history = useHistory();
     const [userList] = useRecoilState(getUserListState);
     const [myId] = useRecoilState(userIdState);
     // const [roomData , setRoomData] = useRecoilState(roomDataState);
@@ -56,7 +57,7 @@ function UserList(){
                 setUser2Id(response.data.data.user2Id)
                 setUser1UId(response.data.data.user1UId)
                 setUser2UId(response.data.data.user2UId)
-                setRoomSeq(response.data.data.chatRoomId, window.location.replace('/chat'));
+                setRoomSeq(response.data.data.chatRoomId, history.push('/chat'));
                 
                 console.log(response)
         })
