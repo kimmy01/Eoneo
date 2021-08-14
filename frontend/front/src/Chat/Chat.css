@@ -29,7 +29,7 @@
     padding-right: 3px;
 
     
-    color: gray;
+    color: black;
     overflow: hidden;
     position: relative;
     /* border-top-left-radius: 10px; */
@@ -447,6 +447,7 @@
     background: rgb(50, 70, 90);
   }
   #frame #sidepanel #contacts ul li.contact.active {
+    color: white;
     background: #ffffff;
     background-color: #a59dff;
     /* border: 5px solid #a59dff; */
