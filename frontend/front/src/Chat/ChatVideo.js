@@ -109,14 +109,14 @@ class ChatVideo extends Component {
                                           width: "25px",
                                           padding: "12px 0px",
                                           cursor: "pointer",
-                                          background: "#32465a",
+                                          background: "#ffffff",
                                           color: "#f5f5f5",
                                           height: "60px",
                                           zIndex:"500"
                                     }} 
                                     name="commit" 
                                     type="submit">
-                                 <VideoCallIcon style={{marginBottom:20}}/>
+                                 <VideoCallIcon style={{backgroundColor:"#a59dff", marginBottom:30}}/>
                                     </button>
 
                           

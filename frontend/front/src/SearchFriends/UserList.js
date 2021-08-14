@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './userlist.css';
 import {useRecoilState} from 'recoil';
-import {getUserListState, userIdState, user1UIdState, user2IdState, user2UIdState, roomSeqState} from '../state/state.js';
+import {getUserListState, userIdState,user1IdState, user1UIdState, user2IdState, user2UIdState, roomSeqState} from '../state/state.js';
 import { Badge } from '@material-ui/core';
 import axios from 'axios';
 
@@ -10,6 +10,7 @@ function UserList(){
     const [userList] = useRecoilState(getUserListState);
     const [myId] = useRecoilState(userIdState);
     // const [roomData , setRoomData] = useRecoilState(roomDataState);
+    const [user1Id, setUser1Id] = useRecoilState(user1IdState);
     const [user1UId, setUser1UId] = useRecoilState(user1UIdState);
     const [user2Id, setUser2Id] = useRecoilState(user2IdState);
     const [user2UId, setUser2UId] = useRecoilState(user2UIdState);
@@ -37,7 +38,7 @@ function UserList(){
     const clickHandler= (params, e) => {
         setUser1UId(Math.random().toString(36).substr(2,11));
         setUser2UId(Math.random().toString(36).substr(2,11));
-        setUser2Id(params);
+        // setUser2Id(params);
 
         const roomData =    {
             "user1Id": myId,
@@ -51,7 +52,12 @@ function UserList(){
             {headers:{ 'Authorization': jwttoken }},
             )
             .then(response =>  {
+                setUser1Id(response.data.data.user1Id)
+                setUser2Id(response.data.data.user2Id)
+                setUser1UId(response.data.data.user1UId)
+                setUser2UId(response.data.data.user2UId)
                 setRoomSeq(response.data.data.chatRoomId, window.location.replace('/chat'));
+                
                 console.log(response)
         })
         // .then(window.location.replace('/chat'))
