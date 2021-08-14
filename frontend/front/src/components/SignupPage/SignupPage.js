@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Container } from 'react-bootstrap'
 import "./SignupPage.css"
 import { useDispatch } from 'react-redux'
 import { registerUser } from '../../../src/_actions/user_actions'
@@ -53,12 +53,13 @@ function Signup(props) {
   }
 
   return (
-    <div class="container" fluid>
-      <div className="mt-4"></div>
+    <Container fluid className="row">
+      <div className="col-4"></div>
+      <div className="col-4">
       <h1 className="main-title">Sign up</h1>
       <Form className="mt-4" onSubmit={onSubmitHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email: </Form.Label>
+          <Form.Label className="signuplabel">Email: </Form.Label>
           <Form.Control type="email" placeholder="Enter email" value={Email} onChange={onEmailHandler} />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
@@ -66,64 +67,31 @@ function Signup(props) {
         </Form.Group>
 
         <Form.Group className="mb-3" >
-          <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="FirstName LastName" value={Name} onChange={onNameHandler} />
+          <Form.Label className="signuplabel">Name</Form.Label>
+          <Form.Control type="text" placeholder="Name" value={Name} onChange={onNameHandler} />
         </Form.Group>
         <Form.Group className="mb-3" >
-          <Form.Label>Nickname</Form.Label>
+          <Form.Label className="signuplabel">Nickname</Form.Label>
           <Form.Control type="text" placeholder="Nickname" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label className="signuplabel">Password</Form.Label>
           <Form.Control type="password" placeholder="Password" value={Password} onChange={onPasswordHandler} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Confirm Password</Form.Label>
+          <Form.Label className="signuplabel">Confirm Password</Form.Label>
           <Form.Control type="password" placeholder="ConfirmPassword" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
         </Form.Group>
 
-        {/* <div className="form-center">
-        <div style={{height:24}}>
-          <Form.Check style={{display:'inline-block'}} type="checkbox"  label="이용약관 " />
-          <p style={{display:'inline-block'}}> &nbsp;  보기</p>
-        </div>
-
-        <div style={{height:24}}>
-          <Form.Check style={{display:'inline-block'}} type="checkbox"  label="개인정보 수집 이용 동의" />
-          <p style={{display:'inline-block'}}> &nbsp;  보기</p>
-        </div>
-        <Form.Check type="checkbox"  label="만 14세 이상입니다" />
-        
-      </div> */}
-
-        <style type="text/css">
-          {`
-          .btn-flat {
-            background-color: #685de2;
-            color: white;
-          }
-
-          .btn-social {
-            background-color: #463cbd;
-            color: white;
-          }
-        `}
-        </style>
-
         <div>
-          <Button className="button" variant="flat" type="submit">
+          <Button className="signupbtn" variant="flat" type="submit">
             Signup
         </Button>
         </div>
-        {/* <hr/>
-
-      <div>
-        <Button className="button" variant="social" type="submit">
-          Social Signup
-        </Button>
-      </div> */}
-      </Form>
-    </div>
+        </Form>
+        </div>
+        <div className="col-4"></div>
+    </Container>
   )
 }
 

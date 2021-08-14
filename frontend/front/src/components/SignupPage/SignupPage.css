@@ -7,10 +7,26 @@
 .main-title{
   color:#463cbd;
   text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.signuplabel{
+  font-weight: bold;
 }
 
 .form-center {
   display: block;
   justify-content: center;
   margin: auto;
+}
+
+.signupbtn {
+  display: block;
+  justify-content: center;
+  margin: auto;
+  background-color: #463cbd;
+  color: white;
+  /* border: 1px solid #463cbd; */
 }

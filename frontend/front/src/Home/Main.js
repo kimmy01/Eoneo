@@ -8,7 +8,7 @@ function Main() {
     return (
         <div class="mainpage">
             <div class="mainlogo">
-                <img src={mainlogo} alt="logo" width="300px" />
+                <img src={mainlogo} alt="logo" width="250px" />
             </div>
             <div>
                 <LoginPage />
