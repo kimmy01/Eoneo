@@ -107,7 +107,7 @@ class ChatVideo extends Component {
                                           float: "right",
                                           border: "none",
                                           width: "25px",
-                                          padding: "12px 0px",
+                                          padding: "25px 0px",
                                           cursor: "pointer",
                                           background: "#ffffff",
                                           color: "#f5f5f5",

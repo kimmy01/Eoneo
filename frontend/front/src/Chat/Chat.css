@@ -72,7 +72,7 @@
     -ms-filter: "FlipH";
   }
   #frame #sidepanel #profile .wrap {
-    height: 57px;
+    height: 87px;
     line-height: 60px;
     overflow: hidden;
     -moz-transition: 0.3s height ease;
@@ -100,6 +100,8 @@
     -webkit-transition: 0.3s border ease;
     transition: 0.3s border ease;
   }
+  
+
   @media screen and (max-width: 735px) {
     #frame #sidepanel #profile .wrap img {
       width: 40px;
@@ -482,7 +484,13 @@
   #frame #sidepanel #contacts ul li.contact .wrap span.busy {
     background: #e74c3c;
   } */
-  #frame #sidepanel #contacts ul li.contact .wrap img {
+  #frame #sidepanel #contacts ul li.contact .wrap #profileflag {
+    width: 25px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 10px;
+  }
+  #frame #sidepanel #contacts ul li.contact .wrap #profileimg {
     width: 40px;
     border-radius: 50%;
     float: left;
@@ -612,22 +620,27 @@
   }
   #frame .content .contact-profile {
     width: 100%;
-    height: 60px;
+    height: 90px;
     line-height: 60px;
     background: #ffffff;
+    display: flex; 
+    flex-direction: column;
     border-bottom: 3px solid #a59dff;
     color:#261f74;
   }
+
   #frame .content .contact-profile img {
     width: 40px;
     border-radius: 50%;
-    float: left;
-    margin: 9px 12px 0 9px;
+    display: inline-block;
+    /* float: left; */
+    margin: 0px 12px 0 9px;
   }
   #frame .content .contact-profile p {
-    float: left;
+    display: inline-block;
+    /* float: left; */
   }
-  #frame .content .contact-profile .social-media {
+  /* #frame .content .contact-profile .social-media {
     float: right;
   }
   #frame .content .contact-profile .social-media i {
@@ -639,7 +652,7 @@
   }
   #frame .content .contact-profile .social-media i:hover {
     color: #435f7a;
-  }
+  } */
   #frame .content .messages {
     height: 600px;
     min-height: calc(100% - 93px);
@@ -787,7 +800,9 @@
     justify-content: start;
     display: inline-block;
     margin-left:10px;
-    margin-top:10px
+    margin-top:10px;
+    float: none;
+
 }
 
 #chatwantlanguage{
@@ -800,7 +815,6 @@
   
   box-shadow: 1px 1px 1px 0.5px darkgray;
 
-  height: 20px;
   line-height: 20px;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -841,10 +855,10 @@ padding-bottom: 2px;
 margin-right:5px;
 font-size: 14px;
 
-height: 20px;
-  line-height: 20px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+
+line-height: 20px;
+margin-bottom: 10px;
+margin-top: 10px;
 }
 
 #chatnativelanguage{
@@ -868,10 +882,10 @@ padding-bottom: 2px;
 
 margin-left:5px;
 margin-right:5px;
-height: 20px;
-  line-height: 20px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+
+line-height: 20px;
+margin-bottom: 10px;
+margin-top: 10px;
 }
 
 .contact-profilename {
