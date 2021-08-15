@@ -33,6 +33,7 @@ class Openvidu extends Component {
 
     componentDidMount() {
         window.addEventListener('beforeunload', this.onbeforeunload);
+        this.joinSession()
     }
 
     componentWillUnmount() {
@@ -192,9 +193,10 @@ class Openvidu extends Component {
 
         return (
             <div className="container">
+              
                 {/* <h1>{this.state.mySessionId}</h1> */}
                 {this.state.session === undefined ? (
-                    <div id="join">
+                    <div id="join" style={{float: 'right'}}>
                         {/* <div id="img-div">
                             <img src="resources/images/openvidu_grey_bg_transp_cropped.png" alt="OpenVidu logo" />
                         </div> */}
@@ -224,7 +226,7 @@ class Openvidu extends Component {
                                     />
                                 </p> */}
                                 <button style={{
-                                          float: "right",
+                                        //   float: "right",
                                           border: "none",
                                           width: "25px",
                                           padding: "25px 0px",
@@ -236,8 +238,9 @@ class Openvidu extends Component {
                                     }} 
                                     name="commit" 
                                     type="submit">
-                                 <VideoCallIcon style={{backgroundColor:"#a59dff", marginBottom:30}}/>
+                                 <VideoCallIcon style={{backgroundColor:"#a59dff", marginBottom:30}}/> 
                                     </button>
+                    
                                 
                             </form>
                         </div>
