@@ -228,8 +228,9 @@ public class UserDetailService {
         String currentDate = simpleDateFormat.format(new Date());
 
 
-//        String absolutePath = new File("").getAbsolutePath()+"\\"; //ubuntu에서는 "/"
-//        String rootPath = "C:\\SSAFY\\mydir\\image";
+        String absolutePath = new File("").getAbsolutePath()+"/"; //ubuntu에서는 "/"
+        System.out.println("absolute Path : " + absolutePath);
+        String rootPath = "/home/ubuntu/images/";
 //        System.out.println(rootPath);
 //        String path = "profileImages/";
 
@@ -252,7 +253,7 @@ public class UserDetailService {
 
         String newFileName = Long.toString(System.nanoTime()) + originFileExtension;
 
-        File file = new File(newFileName);
+        File file = new File(rootPath + newFileName);
 
         multipartFile.transferTo(file);
         this.userDetailRepository.uploadUserImage(id, newFileName);
