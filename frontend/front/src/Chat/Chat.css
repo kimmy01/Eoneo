@@ -6,8 +6,9 @@
     min-height: 300px;
     max-height: 720px;
     background: #ffffff;
-    margin-left: 270px;
+    margin-left: 450px;
     margin-top: 30px;
+    box-shadow: 3px 3px 3px 3px whitesmoke;
   }
   @media screen and (max-width: 360px) {
     #frame {
@@ -68,7 +69,7 @@
     -o-transform: scaleY(-1);
     -webkit-transform: scaleY(-1);
     transform: scaleY(-1);
-    filter: FlipH;
+    /*filter: FlipH;*/
     -ms-filter: "FlipH";
   }
   #frame #sidepanel #profile .wrap {
@@ -444,7 +445,7 @@
     }
   }
   #frame #sidepanel #contacts ul li.contact:hover {
-    background: rgb(50, 70, 90);
+    background: whitesmoke;
   }
   #frame #sidepanel #contacts ul li.contact.active {
     color: white;
@@ -595,7 +596,7 @@
     background-color: #ffffff;
     box-shadow: none;
     padding:0 0 0 0;
-    padding-left: 5px;
+    padding-left: 3px;
     float: right;
     width: 60%;
     height: 100%;
@@ -655,7 +656,7 @@
     color: #435f7a;
   } */
   #frame .content .messages {
-    height: 600px;
+    height:560px;
     min-height: calc(100% - 93px);
     max-height: calc(100% - 93px);
     overflow-y: scroll;
@@ -674,6 +675,8 @@
   }
   #frame .content .messages::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.3);
+
+
   }
   #frame .content .messages ul li {
     display: inline-block;
@@ -701,7 +704,7 @@
   }
   #frame .content .messages ul li.sent p {
     
-    background: rgb(50, 70, 90);
+    background: #463cbd;
     color:white;
   
     float: right;
@@ -730,17 +733,19 @@
     bottom: 0 !important;
     width: 100%;
     z-index: 99;
+    
   }
   #frame .content .message-input .wrap {
     position: relative;
   }
   #frame .content .message-input .wrap input {
+    width: 688px;
     font-family: "proxima-nova", "Source Sans Pro", sans-serif;
     float: left;
     border: #a59dff 2px solid;
     width: calc(100% - 51px);
-    padding: 12px 32px 8px 8px;
-    margin-bottom: 8px;
+    padding: 12px 0px 8px 8px;
+    /* margin-bottom: 8px; */
     margin-right: 1px;
     font-size: 0.8em;
     color: #32465a;
@@ -748,7 +753,7 @@
   }
   @media screen and (max-width: 735px) {
     #frame .content .message-input .wrap input {
-      padding: 15px 32px 16px 8px;
+      padding: 15px 0px 16px 8px;
     }
   }
   #frame .content .message-input .wrap input:focus {
@@ -774,6 +779,16 @@
     opacity: 1;
   }
   #frame .content .message-input .wrap button {
+    float: right;
+    border: none;
+    width: 50px;
+    padding: 12px 0;
+    cursor: pointer;
+    background: #a59dff;
+    color: #f5f5f5;
+    height: 48px;
+  }
+  #chat-message-button {
     float: right;
     border: none;
     width: 50px;
