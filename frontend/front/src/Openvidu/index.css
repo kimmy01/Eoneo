@@ -165,7 +165,9 @@ a:hover .demo-logo {
 }
 
 #video-container video {
-	position: relative;
+	width: 1000px;
+	position: absolute;
+	display: inline-block;
 	/* float: left; */
 	cursor: pointer;
 }

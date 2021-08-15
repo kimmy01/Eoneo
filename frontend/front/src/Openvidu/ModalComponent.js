@@ -25,7 +25,7 @@ export default function ModalCompontet() {
             {typeof true === 'string' && `below ${true.split('-')[0]}`}
           </Button>
   
-        <Modal style={{marginTop:10, marginBottom:100, height:"90%"}} show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
+        <Modal style={{marginLeft:10, marginRight:10, height:"90%"}} show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
           <Modal.Header closeButton>
             <Modal.Title>Modal</Modal.Title>
           </Modal.Header>

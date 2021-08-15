@@ -225,7 +225,7 @@ class Openvidu extends Component {
                                         required
                                     />
                                 </p> */}
-                                <button style={{
+                                {/* <button style={{
                                         //   float: "right",
                                           border: "none",
                                           width: "25px",
@@ -240,7 +240,7 @@ class Openvidu extends Component {
                                     type="submit">
                                  <VideoCallIcon style={{backgroundColor:"#a59dff", marginBottom:30}}/> 
                                     </button>
-                    
+                     */}
                                 
                             </form>
                         </div>
@@ -261,20 +261,20 @@ class Openvidu extends Component {
                         </div>
 
                         {this.state.mainStreamManager !== undefined ? (
-                            <div id="main-video" className="col-md-6">
+                            <div id="main-video" style={{display:'inline-block'}} >
                                 <UserVideoComponent streamManager={this.state.mainStreamManager} />
                             </div>
                         ) : null}
-                        <div id="video-container" className="col-md-6">
-                            {this.state.publisher !== undefined ? (
+                        <div id="video-container" style={{marginLeft: 10, display:'inline-block'}}>
+                            {/* {this.state.publisher !== undefined ? (
                                 <div className="stream-container col-md-6 col-xs-6" onClick={() => this.handleMainVideoStream(this.state.publisher)}>
                                     <UserVideoComponent
                                         streamManager={this.state.publisher} />
                                 </div>
-                            ) : null}
+                            ) : null} */}
                             {this.state.subscribers.map((sub, i) => (
-                                <div key={i} className="stream-container col-md-6 col-xs-6" onClick={() => this.handleMainVideoStream(sub)}>
-                                    <UserVideoComponent streamManager={sub} />
+                                <div key={i} className="stream-container" onClick={() => this.handleMainVideoStream(sub)}>
+                                    <UserVideoComponent style={{width:100}} streamManager={sub} />
                                 </div>
                             ))}
                         </div>
