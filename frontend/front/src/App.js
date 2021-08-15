@@ -30,6 +30,7 @@ import React, { Suspense } from 'react';
 import FormMyPage from './MyPage/FormMyPage';
 
 import Loader from './Loader';
+import Openvidu from './Openvidu/Openvidu';
 
 
 // chat
@@ -59,6 +60,8 @@ function App() {
               <Route exact path="/chatvideo" component={ChatVideo} />
 			        <Route exact path="/update/user_detail" component={FormMyPage} />
 			        <Route exact path="/mypage" component={MyPage} />
+
+              <Route exact path="/test" component={Openvidu} />
 			  
             </div>
           }
