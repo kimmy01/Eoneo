@@ -8,9 +8,6 @@
 
 .category{
     display: flex;
-    /* position: -webkit-sticky;
-    position: sticky; */
-    /* margin-right: 50px; */
     width: 55%;
 }
 

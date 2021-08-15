@@ -1,0 +1,11 @@
+#modal-button {
+    background-color: #a59dff;
+    border: none
+}
+
+#openvidu-modal{
+    width: 1500px;
+    height: 90%;
+    margin: auto;
+    
+}

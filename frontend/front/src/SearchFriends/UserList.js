@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './userlist.css';
 import {useRecoilState} from 'recoil';
 import {getUserListState, userIdState,user1IdState, user1UIdState, user2IdState, user2UIdState, roomSeqState} from '../state/state.js';
@@ -18,23 +18,6 @@ function UserList(){
     const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState)
     // const [RoomSeq2, setRoomSeq2] = useState("test");
     const jwttoken = 'Bearer ' + localStorage.getItem('token')
-
-    // const test =  function (params,e) {
-    //     clickHandler(params,e)
-    //         .then(res => {
-    //             setRoomSeq(res.data.data.chatRoomId)
-    //         })
-    //         .catch(err => console.log(err))
-        // console.log(temp2)
-        // setRoomSeq(temp2)
-        // window.location.href = '/chat'
-
-        //1. router 사용할 것 : js코드여서 react와 lifecycle이 다름
-        //2. 주소, 인자로 넘긴다. -> chatroomid는 주소로부터 가져온다 -> 렌더, 스테이트 반영 시작 
-        //3. 콜백의 전제조건: 프로미스객체를 리턴해야만 사용가능
-        //4. 콜백??????? : .then(callback)
-
-    
 
     const clickHandler= (params, e) => {
         setUser1UId(Math.random().toString(36).substr(2,11));
@@ -61,11 +44,6 @@ function UserList(){
                 
                 console.log(response)
         })
-        // .then(window.location.replace('/chat'))
-            // window.location.href = '/chat'
-            
-            // .then(window.location.replace('/chat'))
-            // .then(response =>   setRoomSeq(response.data.data.chatRoomId))
             .catch((err) => console.log(err));
             
     }
@@ -92,8 +70,6 @@ function UserList(){
                         <div>
                             <p id="nickname">{user.userDetail?.nickname}</p>
                             <p id="username">{user.username}</p>
-                        {/* </div>
-                        <div class="detail"> */}
                             <p id="desc">{user.userDetail?.description}</p>
                         </div>
                         <div class="language">

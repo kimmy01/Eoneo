@@ -46,7 +46,7 @@
     box-shadow: 1px 1px 1px 0.5px darkgray;
 
     font-size: 10px;
-    font-family: sans-serif;
+    font-family: 'Noto Sans KR';
     font-weight: border;
     text-align: center;
 
@@ -69,7 +69,7 @@
     box-shadow: 1px 1px 1px 0.5px darkgray;
 
     font-size: 10px;
-    font-family: sans-serif;
+    font-family: 'Noto Sans KR';;
     font-weight: border;
     text-align: center;
 
@@ -93,7 +93,7 @@
     box-shadow: 1px 1px 1px 0.5px darkgray;
 
     font-size: 10px;
-    font-family: sans-serif;
+    font-family: 'Noto Sans KR';;
     font-weight: border;
     text-align: center;
 
@@ -114,13 +114,13 @@
 
 #desc{
     font-weight: smaller;
-    font-family: sans-serif;
+    font-family: 'Noto Sans KR';;
     font-size: 13px;
     height: 10px;
 }
 
 #username{
-    font-family: sans-serif;
+    font-family: 'Noto Sans KR';;
     font-size: 13px;
     height: 10px;
 }
