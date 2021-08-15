@@ -8,11 +8,13 @@ import com.kyp.eoneo.entity.*;
 import com.kyp.eoneo.repository.UserDetailRepository;
 import com.kyp.eoneo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.swing.filechooser.FileSystemView;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
@@ -213,15 +215,19 @@ public class UserDetailService {
         return userList;
     }
 
+//    @Value("${custom.path.upload-images}")
+    String rootPath;
     public String uploadProfileImage(Long id, MultipartFile multipartFile) throws IOException {
         User user = userRepository.findUserById(id);
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         String currentDate = simpleDateFormat.format(new Date());
 
-        String absolutePath = new File("").getAbsolutePath()+"\\"; //ubuntu에서는 "/"
-        String path = "profileImages/";
-        File file = new File(absolutePath + path + id);
+//        String absolutePath = new File("").getAbsolutePath()+"\\"; //ubuntu에서는 "/"
+//        String rootPath = "C:\\SSAFY\\mydir\\image";
+//        System.out.println(rootPath);
+//        String path = "profileImages/";
+        File file = new File(rootPath);
 
         if(!file.exists()){
             file.mkdirs();
@@ -240,9 +246,10 @@ public class UserDetailService {
 
         String newFileName = Long.toString(System.nanoTime()) + originFileExtension;
 
-        file = new File(absolutePath + path + id + "/" + newFileName);
+        file = new File(rootPath + "/" + newFileName);
+
         multipartFile.transferTo(file);
-        this.userDetailRepository.uploadUserImage(id, file.getCanonicalPath());
+        this.userDetailRepository.uploadUserImage(id, newFileName);
 
         return "업로드 완!";
     }

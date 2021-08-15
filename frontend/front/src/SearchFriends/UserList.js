@@ -1,44 +1,84 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './userlist.css';
 import {useRecoilState} from 'recoil';
-import {getUserListState, userIdState, user1UIdState, user2IdState, user2UIdState} from './state.js';
+import {getUserListState, userIdState,user1IdState, user1UIdState, user2IdState, user2UIdState, roomSeqState} from '../state/state.js';
 import { Badge } from '@material-ui/core';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 function UserList(){
-
+    let history = useHistory();
     const [userList] = useRecoilState(getUserListState);
     const [myId] = useRecoilState(userIdState);
     // const [roomData , setRoomData] = useRecoilState(roomDataState);
+    const [user1Id, setUser1Id] = useRecoilState(user1IdState);
     const [user1UId, setUser1UId] = useRecoilState(user1UIdState);
     const [user2Id, setUser2Id] = useRecoilState(user2IdState);
     const [user2UId, setUser2UId] = useRecoilState(user2UIdState);
+    const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState)
+    // const [RoomSeq2, setRoomSeq2] = useState("test");
+    const jwttoken = 'Bearer ' + localStorage.getItem('token')
 
+    // const test =  function (params,e) {
+    //     clickHandler(params,e)
+    //         .then(res => {
+    //             setRoomSeq(res.data.data.chatRoomId)
+    //         })
+    //         .catch(err => console.log(err))
+        // console.log(temp2)
+        // setRoomSeq(temp2)
+        // window.location.href = '/chat'
 
-    const clickHandler = async (params, e) => {
+        //1. router 사용할 것 : js코드여서 react와 lifecycle이 다름
+        //2. 주소, 인자로 넘긴다. -> chatroomid는 주소로부터 가져온다 -> 렌더, 스테이트 반영 시작 
+        //3. 콜백의 전제조건: 프로미스객체를 리턴해야만 사용가능
+        //4. 콜백??????? : .then(callback)
+
+    
+
+    const clickHandler= (params, e) => {
         setUser1UId(Math.random().toString(36).substr(2,11));
         setUser2UId(Math.random().toString(36).substr(2,11));
-        setUser2Id(params);
+        // setUser2Id(params);
 
         const roomData =    {
             "user1Id": myId,
             "user1UId": user1UId,
-            "user2Id": user2Id,
+            "user2Id": params,
             "user2UId": user2UId
         }
 
-       await  axios.post('http://localhost:8080/api/chatroom/create',
+        axios.post('http://localhost:8080/api/chatroom/create', 
         roomData, 
-            {headers:{ 'Authorization': 'Bearer ' + localStorage.getItem('token') }},
-            ).then(response =>   console.log(response))
-            .catch((Error) =>  window.location.replace('/chat'), console.log(roomData));
-            // window.location.replace('/chat'), 
-
-            window.location.replace('/chat');
+            {headers:{ 'Authorization': jwttoken }},
+            )
+            .then(response =>  {
+                setUser1Id(response.data.data.user1Id)
+                setUser2Id(response.data.data.user2Id)
+                setUser1UId(response.data.data.user1UId)
+                setUser2UId(response.data.data.user2UId)
+                setRoomSeq(response.data.data.chatRoomId, history.push('/chat'));
+                
+                console.log(response)
+        })
+        // .then(window.location.replace('/chat'))
+            // window.location.href = '/chat'
+            
+            // .then(window.location.replace('/chat'))
+            // .then(response =>   setRoomSeq(response.data.data.chatRoomId))
+            .catch((err) => console.log(err));
+            
     }
+
+    
 
     return(
         <div class="userlistDiv">
+            <h1>{RoomSeq}</h1>
+            <p>uid1: {user1UId}</p>
+            <p>uid2: {user2UId}</p>
+            <p>myid: {myId}</p>
+            <p>id2: {user2Id}</p>
             {userList.map((user, id) => (
                 <div class="profilebox" onClick={(e) => {clickHandler(user.id)}}>
                     <div class="image">
