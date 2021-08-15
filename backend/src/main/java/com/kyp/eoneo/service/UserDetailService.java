@@ -215,7 +215,7 @@ public class UserDetailService {
         return userList;
     }
 
-    @Value("${custom.path.upload-images}")
+//    @Value("${custom.path.upload-images}")
     String rootPath;
     public String uploadProfileImage(Long id, MultipartFile multipartFile) throws IOException {
         User user = userRepository.findUserById(id);
