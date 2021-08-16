@@ -41,8 +41,8 @@ const FormMyPage = () => {
 		wantLanguage:
 			user.userLanguage == null ? '' : user.userLanguage?.wantLanguage.code,
 		topicList: user.topicList == [] ? [] : user.topicList,
-		profile_image: user.userDetail.profile_image
-			? user.userDetail.profile_image
+		profile_image: user.userDetail?.profile_image
+			? user.userDetail?.profile_image
 			: '',
 	});
 	const [selectTopic, setSelectTopic] = useState(new Set());
