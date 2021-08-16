@@ -19,7 +19,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/img/**")
-                .addResourceLocations("file:///" + uploadImagesPath + "/")
+                .addResourceLocations("file://" + uploadImagesPath + "/")
                 .setCachePeriod(3600)
                 .resourceChain(true)
                 .addResolver(new PathResourceResolver());
