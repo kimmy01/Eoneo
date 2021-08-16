@@ -34,7 +34,7 @@ jwt:
   secret: a3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8=
   token-validity-in-seconds: 86400
 
-  custom:
+custom:
     path:
       upload-images: '/home/ubuntu/images'
 
