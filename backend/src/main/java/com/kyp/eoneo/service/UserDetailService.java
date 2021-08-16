@@ -230,7 +230,7 @@ public class UserDetailService {
 
         String absolutePath = new File("").getAbsolutePath()+"/"; //ubuntu에서는 "/"
         System.out.println("absolute Path : " + absolutePath);
-        String path = "/home/ubuntu/images";
+        String path = "/var/eoneo/images";
 //        System.out.println(rootPath);
 //        String path = "/profileImages/";
 
@@ -238,6 +238,10 @@ public class UserDetailService {
 
         if(!file.exists()){
             file.mkdirs();
+            file.setReadable(true);
+            file.setWritable(true);
+            file.setExecutable(true);
+            System.out.println("come?");
         }
 
         String contentType = multipartFile.getContentType();
@@ -254,7 +258,7 @@ public class UserDetailService {
         String newFileName = Long.toString(System.nanoTime()) + originFileExtension;
 
         file = new File(path, newFileName);
-
+        System.out.println("file " +  file );
         multipartFile.transferTo(file);
         this.userDetailRepository.uploadUserImage(id, newFileName);
 
