@@ -196,7 +196,9 @@ const FormMyPage = () => {
 					onSubmit={handlePutSubmit}
 					encType='multipart/form-data'
 					action='/mypage'>
-					<img src={'/static/img/' + user.userDetail?.profile_image}></img>
+					<img
+						id='preview'
+						src={'/static/img/' + user.userDetail?.profile_image}></img>
 
 					<br />
 					<br />
