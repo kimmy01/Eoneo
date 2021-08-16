@@ -1,38 +1,35 @@
 import { atom, selector } from 'recoil';
-import axios from 'axios';
-
 import { recoilPersist } from 'recoil-persist'
-
+import axios from 'axios';
 const { persistAtom } = recoilPersist()
 
-///////////////////////////선아님 mypage
+// mypage
 
 const token = 'Bearer ' + localStorage.getItem('token');
 const data = 'http://localhost:8080/api/data/';
 
-
-const topicState = atom({
+export const topicState = atom({
 	key: 'topic',
 	default: [],
 });
 
-const userDetailState = atom({
+export const userDetailState = atom({
 	key: 'userDetail',
 	default: {},
 	effects_UNSTABLE: [persistAtom]
 });
 
-const languageState = atom({
+export const languageState = atom({
 	key: 'language',
 	default: [],
 });
 
-const countryState = atom({
+export const countryState = atom({
 	key: 'country',
 	default: [],
 });
 
-const getTopicState = selector({
+export const getTopicState = selector({
 	key: 'topic/get',
 	get: async () => {
 		const res = await axios.get(data + 'topic', {
@@ -48,7 +45,7 @@ const getTopicState = selector({
 	},
 });
 
-const getLanguageState = selector({
+export const getLanguageState = selector({
 	key: 'language/get',
 	get: async () => {
 		const res = await axios.get(data + 'language', {
@@ -64,7 +61,7 @@ const getLanguageState = selector({
 	},
 });
 
-const getCountryState = selector({
+export const getCountryState = selector({
 	key: 'country/get',
 	get: async () => {
 		const res = await axios.get(data + 'country', {
@@ -79,17 +76,7 @@ const getCountryState = selector({
 	},
 });
 
-export {
-	topicState,
-	languageState,
-	countryState,
-	getTopicState,
-	getLanguageState,
-	getCountryState,
-	userDetailState,
-};
-
-//// 세일 chat
+// chat
 export const myUidState = atom({
     key: "myUidState",
     default: "",
@@ -113,7 +100,7 @@ export const roomSeqState = atom({
 });
 
 
-/////////////////////////////////////////// 나영님꺼
+// searchfriends
 const userid = localStorage.getItem('user_id'); 
 
     export const categoryState = atom({
@@ -175,16 +162,6 @@ const userid = localStorage.getItem('user_id');
       default: userid,
       effects_UNSTABLE: [persistAtom]
   })
-
-//   export const roomDataState = atom({
-//       key: "roomData",
-//       default: {
-//         'user1Id':'',
-//         'user1UId': '',
-//         'user2Id': '',
-//         'user2UId': ''
-//       }
-//   })
 
   export const user1IdState = atom({
       key: "user1Id",

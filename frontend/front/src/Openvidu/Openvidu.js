@@ -1,9 +1,12 @@
-import axios from 'axios';
-import { OpenVidu } from 'openvidu-browser';
+// react
 import React, { Component} from 'react';
-import './Openvidu.css';
+import axios from 'axios';
+// openvidu
+import { OpenVidu } from 'openvidu-browser';
 import UserVideoComponent from './UserVideoComponent';
-import VideoCallIcon from '@material-ui/icons/VideoCall';
+// css
+import './Openvidu.css';
+
 
 const OPENVIDU_SERVER_URL = 'https://i5a102.p.ssafy.io:8443';
 const OPENVIDU_SERVER_SECRET = 'MY_SECRET';
@@ -16,7 +19,7 @@ class Openvidu extends Component {
 
         this.state = {
             mySessionId: JSON.parse(localStorage.getItem("recoil-persist")).room_seq,
-            myUserName: 'Participant' + Math.floor(Math.random() * 100),
+            myUserName: '',
             session: undefined,
             mainStreamManager: undefined,
             publisher: undefined,
@@ -179,99 +182,42 @@ class Openvidu extends Component {
         this.setState({
             session: undefined,
             subscribers: [],
-            mySessionId: 'SessionA',
-            myUserName: 'Participant' + Math.floor(Math.random() * 100),
+            // mySessionId: 'SessionA',
+            // myUserName: 'Participant' + Math.floor(Math.random() * 100),
             mainStreamManager: undefined,
             publisher: undefined
-        });
+        })
     }
 
-    render() {
-        // JSON.parse(localStorage.getItem("names"))
-        const mySessionId =  this.state.mySessionId
-        const myUserName = this.state.myUserName;
+    //child to parent and leaveSession
+    closeSubmit = (e) => {
+        e.preventdefault()
+        this.leaveSession()
+        this.props.onClose();
+    }
 
+
+    render() {
+        
         return (
             <div className="container">
-              
-                {/* <h1>{this.state.mySessionId}</h1> */}
-                {this.state.session === undefined ? (
-                    <div id="join" style={{float: 'right'}}>
-                        {/* <div id="img-div">
-                            <img src="resources/images/openvidu_grey_bg_transp_cropped.png" alt="OpenVidu logo" />
-                        </div> */}
-                        <div id="join-dialog" className="jumbotron vertical-center">
-                            {/* <h1> Join a video session </h1> */}
-                            <form className="form-group" onSubmit={this.joinSession}>
-                                {/* <p>
-                                    <label>Participant: </label>
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        id="userName"
-                                        value={myUserName}
-                                        onChange={this.handleChangeUserName}
-                                        required
-                                    />
-                                </p>
-                                <p>
-                                    <label> Session: </label>
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        id="sessionId"
-                                        value={mySessionId}
-                                        onChange={this.handleChangeSessionId}
-                                        required
-                                    />
-                                </p> */}
-                                {/* <button style={{
-                                        //   float: "right",
-                                          border: "none",
-                                          width: "25px",
-                                          padding: "25px 0px",
-                                          cursor: "pointer",
-                                          background: "#ffffff",
-                                          color: "#f5f5f5",
-                                          height: "60px",
-                                          zIndex:"500"
-                                    }} 
-                                    name="commit" 
-                                    type="submit">
-                                 <VideoCallIcon style={{backgroundColor:"#a59dff", marginBottom:30}}/> 
-                                    </button>
-                     */}
-                                
-                            </form>
-                        </div>
-                    </div>
-                ) : null}
 
                 {this.state.session !== undefined ? (
                     <div id="session">
+                        {/* close 버튼 */}
                         <div id="session-header">
-                            <h1 id="session-title">{mySessionId}</h1>
-                            <input
-                                className="btn btn-large btn-danger"
-                                type="button"
-                                id="buttonLeaveSession"
-                                onClick={this.leaveSession}
-                                value="Leave session"
-                            />
+                            <form onSubmit={this.closeSubmit}>
+                                <button>close</button>
+                             </form>
                         </div>
-
+                        {/* my video */}
                         {this.state.mainStreamManager !== undefined ? (
                             <div id="main-video" style={{display:'inline-block'}} >
                                 <UserVideoComponent streamManager={this.state.mainStreamManager} />
                             </div>
                         ) : null}
+                        {/* friends video */}
                         <div id="video-container" style={{marginLeft: 10, display:'inline-block'}}>
-                            {/* {this.state.publisher !== undefined ? (
-                                <div className="stream-container col-md-6 col-xs-6" onClick={() => this.handleMainVideoStream(this.state.publisher)}>
-                                    <UserVideoComponent
-                                        streamManager={this.state.publisher} />
-                                </div>
-                            ) : null} */}
                             {this.state.subscribers.map((sub, i) => (
                                 <div key={i} className="stream-container" onClick={() => this.handleMainVideoStream(sub)}>
                                     <UserVideoComponent style={{width:100}} streamManager={sub} />

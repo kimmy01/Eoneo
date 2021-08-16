@@ -1,38 +1,47 @@
-import React, {useEffect, useState} from 'react';
-import {Button,Modal} from "react-bootstrap"
+//react
+import React, {useState} from 'react';
 import Openvidu from './Openvidu';
+// css
+import {Button,Modal} from "react-bootstrap"
+import './ModalComponent.css'
 
-export default function ModalCompontet() {
-    // const values = [true, 'sm-down', 'md-down', 'lg-down', 'xl-down', 'xxl-down'];
+ function ModalCompontet() {
+
+    // state
     const [fullscreen, setFullscreen] = useState(true);
     const [show, setShow] = useState(false);
-  
+
+    //modal on function
     function handleShow(breakpoint) {
       setFullscreen(breakpoint);
       setShow(true);
     }
+
+    // props modal close function
+    const closeModal = () => {
+      setShow(false)
+    }
   
     return (
       <>
-       
-          {/* <Button  className="me-2" onClick={() => handleShow(true)}>
-            Full screen
-            {typeof true === 'string' && `below ${true.split('-')[0]}`}
-          </Button>  */}
-          
-          <Button  className="me-2" onClick={() => handleShow(true)}>
-            Full screen
-            {typeof true === 'string' && `below ${true.split('-')[0]}`}
-          </Button>
-  
-        <Modal style={{marginLeft:10, marginRight:10, height:"90%"}} show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal</Modal.Title>
+       {/* modal button */}
+        <Button id="modal-button" onClick={() => handleShow(true)}>
+          Video call
+          {typeof true === 'string' && `below ${true.split('-')[0]}`}
+        </Button>
+
+        {/* modal */}
+        <Modal id="openvidu-modal" show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
+          {/* close button header */}
+          <Modal.Header>
+            <Modal.Title>Video Chat</Modal.Title>
           </Modal.Header>
           <Modal.Body  >
-            <Openvidu/>
+            <Openvidu onClose={closeModal}/>
           </Modal.Body>
         </Modal>
       </>
     );
   }
+
+export default ModalCompontet
