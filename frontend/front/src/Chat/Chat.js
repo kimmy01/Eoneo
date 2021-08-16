@@ -70,11 +70,9 @@ function Chat() {
     // websocket 연결
     const connect = () => {
         client.current = new StompJs.Client({
-            // brokerURL: "ws://localhost:8080/api/chatEonoe-websocket",
-            webSocketFactory: () => new SockJS("http://localhost:8080/chatEonoe-websocket"),
-            connectHeaders: {
-                "Authorization": jwttoken,
-            },
+            brokerURL: "ws://localhost:8080/api/chatEonoe-websocket",
+            webSocketFactory: () => new SockJS(`http://${jwttoken}@localhost:8080/chatEonoe-websocket`),
+            
             debug: function (str) {
                 console.log(str);
             },
@@ -82,7 +80,6 @@ function Chat() {
             heartbeatIncoming: 4000,
             heartbeatOutgoing: 4000,
             onConnect: () => {
-             
                 subscribe();
             },
             onStompError: (frame) => {
