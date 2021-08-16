@@ -157,7 +157,7 @@ function Chat() {
 	// 채팅방리스트: 현재 유저의 채팅방 리스트 불러오는 함수
 	const getChatroomList = async () => {
 		await axios
-			.get(`http://localhost:8080/api/chatroom/rooms/` + my_id, config)
+			.get(`/api/chatroom/rooms/` + my_id, config)
 
 			.then(setChatrooms([]))
 			.then((response) => {
