@@ -4,6 +4,8 @@ import Openvidu from './Openvidu';
 // css
 import {Button,Modal} from "react-bootstrap"
 import './ModalComponent.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faVideo } from "@fortawesome/free-solid-svg-icons";
 
  function ModalCompontet() {
 
@@ -25,8 +27,9 @@ import './ModalComponent.css'
     return (
       <>
        {/* modal button */}
-        <Button id="modal-button" onClick={() => handleShow(true)}>
-          Video call
+        <Button className="video-button" onClick={() => handleShow(true)}>
+          <FontAwesomeIcon icon={faVideo} />
+          &nbsp; video call
           {typeof true === 'string' && `below ${true.split('-')[0]}`}
         </Button>
 
