@@ -40,6 +40,7 @@ function UserList(){
                 setUser2Id(response.data.data.user2Id)
                 setUser1UId(response.data.data.user1UId)
                 setUser2UId(response.data.data.user2UId)
+                setRoomSeq(response.data.data.chatRoomId)
                 setRoomSeq(response.data.data.chatRoomId, history.push('/chat'));
                 
                 console.log(response)
