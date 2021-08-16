@@ -53,11 +53,6 @@ function UserList(){
 
     return(
         <div class="userlistDiv">
-            <h1>{RoomSeq}</h1>
-            <p>uid1: {user1UId}</p>
-            <p>uid2: {user2UId}</p>
-            <p>myid: {myId}</p>
-            <p>id2: {user2Id}</p>
             {userList.map((user, id) => (
                 <div class="profilebox" onClick={(e) => {clickHandler(user.id)}}>
                     <div class="image">
