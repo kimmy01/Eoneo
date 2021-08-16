@@ -1,0 +1,48 @@
+/* #modal-button {
+    background-color: #a59dff;
+    border: none
+} */
+
+#openvidu-modal{
+    width: 1500px;
+    height: 90%;
+    margin: auto;
+    
+}
+
+.video-button {
+
+    background-color: #a59dff;
+    padding: 4px 10px 5px 0;
+    font-size: 16px;
+    color: white;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+  }
+  
+  .video-button:hover {
+      background-color: #261F74;
+      color: #fff;
+      text-decoration: none;
+      transition: none
+    }
+  
+  /* .video-button:before {
+      font-size: 11px;
+      color: #fff;
+      padding: 6px;
+      margin-right: 5px;
+      background-color: #999;
+      border-radius: 14px;
+    }
+  
+  .video-button:hover:before {
+      background-color: #41b4bb
+  } */
+  
+  .video-button:focus {
+    transform: scale(1.5);
+    transition: 300ms transform cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  

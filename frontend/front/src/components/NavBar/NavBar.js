@@ -17,7 +17,6 @@ function NavBar() {
 		localStorage.removeItem('token');
 		localStorage.removeItem('user_id');
 		localStorage.removeItem('recoil-persist');
-		// window.location.replace('/')
 	};
 
 	return (
@@ -29,8 +28,6 @@ function NavBar() {
 						<div className='mynav'>
 							<div className='mynavItem'>
 								<Nav.Link href='/chat'>CHAT</Nav.Link>
-								{/* <Nav.Link href='/searchFriends'>Search Friends</Nav.Link>
-								<Nav.Link href='/chatvideo'>Video 단축키</Nav.Link> */}
 							</div>
 							<div className='mynavItem item2'>
 								<Nav.Link className='logo' href='/searchFriends'>

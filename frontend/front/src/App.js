@@ -17,7 +17,7 @@ import SearchFriends from './SearchFriends/SearchFriends';
 
 // chat
 import Chat from '../src/Chat/Chat';
-import ChatVideo from './Chat/ChatVideo';
+// import ChatVideo from './Chat/ChatVideo';
 
 //MyPage
 import MyPage from '../src/MyPage/MyPage';
@@ -33,7 +33,7 @@ import Loader from './Loader';
 
 
 // chat
-function App() {
+export default function App() {
   return (
     <Router>
       <div className="App">
@@ -56,7 +56,7 @@ function App() {
               <Route exact path="/searchFriends" component={SearchFriends} />
               {/* chat */}
               <Route exact path="/chat" component={Chat} />
-              <Route exact path="/chatvideo" component={ChatVideo} />
+              {/* <Route exact path="/chatvideo" component={ChatVideo} /> */}
 			        <Route exact path="/update/user_detail" component={FormMyPage} />
 			        <Route exact path="/mypage" component={MyPage} />
 			  
@@ -74,5 +74,3 @@ function App() {
   );
 }
 
-
-export default App;

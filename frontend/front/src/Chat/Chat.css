@@ -5,9 +5,10 @@
     height: 92vh;
     min-height: 300px;
     max-height: 720px;
-    background: #f5f5f5;
-    margin-left: 270px;
+    background: #ffffff;
+    margin: auto;
     margin-top: 30px;
+    box-shadow: 3px 3px 3px 3px whitesmoke;
   }
   @media screen and (max-width: 360px) {
     #frame {
@@ -22,12 +23,15 @@
     max-width: 340px;
     width: 40%;
     height: 100%;
-    background: #f5f5f5;
-    color: gray;
+    background: #ffffff;
+    border-top: 3px solid #a59dff;
+    border-bottom: 3px solid #a59dff;
+    border-left: 3px solid #a59dff;
+    padding-right: 3px;
+    color: black;
     overflow: hidden;
     position: relative;
-    /* border-top-left-radius: 10px; */
-    /* border-bottom-left-radius: 10px; */
+
   }
   @media screen and (max-width: 735px) {
     #frame #sidepanel {
@@ -37,16 +41,15 @@
   }
   #frame #sidepanel #profile {
     width: 100%;
-    /* margin: 25px auto; */
-    background-color: #a59dff;
-    color: #f5f5f5
+    background-color: #ffffff;
+    border-bottom: 3px solid #a59dff;
+    color: #261f74
   }
   @media screen and (max-width: 735px) {
     #frame #sidepanel #profile {
       width: 100%;
       margin: 0;
       padding: 5px 0 0 0;
-      /* background: red; */
     }
   }
   #frame #sidepanel #profile.expanded .wrap {
@@ -61,11 +64,11 @@
     -o-transform: scaleY(-1);
     -webkit-transform: scaleY(-1);
     transform: scaleY(-1);
-    filter: FlipH;
+    /*filter: FlipH;*/
     -ms-filter: "FlipH";
   }
   #frame #sidepanel #profile .wrap {
-    height: 60px;
+    height: 87px;
     line-height: 60px;
     overflow: hidden;
     -moz-transition: 0.3s height ease;
@@ -82,7 +85,7 @@
   #frame #sidepanel #profile .wrap img {
     width: 50px;
     border-radius: 50%;
-    padding: 3px;
+    padding-right: 0px;
     margin-left: 10px;
 
     height: auto;
@@ -93,27 +96,22 @@
     -webkit-transition: 0.3s border ease;
     transition: 0.3s border ease;
   }
+  
+
   @media screen and (max-width: 735px) {
     #frame #sidepanel #profile .wrap img {
       width: 40px;
       margin-left: 4px;
     }
   }
-  /* #frame #sidepanel #profile .wrap img.online {
-    border: 2px solid #2ecc71;
-  }
-  #frame #sidepanel #profile .wrap img.away {
-    border: 2px solid #f1c40f;
-  }
-  #frame #sidepanel #profile .wrap img.busy {
-    border: 2px solid #e74c3c;
-  }
-  #frame #sidepanel #profile .wrap img.offline {
-    border: 2px solid #95a5a6;
-  } */
+ 
   #frame #sidepanel #profile .wrap p {
     float: left;
-    margin-left: 15px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 30px;
+    font-weight: bolder;
+    font-family: 'Noto Sans KR';
   }
   @media screen and (max-width: 735px) {
     #frame #sidepanel #profile .wrap p {
@@ -133,200 +131,7 @@
       display: none;
     }
   }
-  #frame #sidepanel #profile .wrap #status-options {
-    position: absolute;
-    opacity: 0;
-    visibility: hidden;
-    width: 150px;
-    margin: 70px 0 0 0;
-    border-radius: 6px;
-    z-index: 99;
-    line-height: initial;
-    background: #435f7a;
-    -moz-transition: 0.3s all ease;
-    -o-transition: 0.3s all ease;
-    -webkit-transition: 0.3s all ease;
-    transition: 0.3s all ease;
-  }
-  @media screen and (max-width: 735px) {
-    #frame #sidepanel #profile .wrap #status-options {
-      width: 58px;
-      margin-top: 57px;
-    }
-  }
-  #frame #sidepanel #profile .wrap #status-options.active {
-    opacity: 1;
-    visibility: visible;
-    margin: 75px 0 0 0;
-  }
-  @media screen and (max-width: 735px) {
-    #frame #sidepanel #profile .wrap #status-options.active {
-      margin-top: 62px;
-    }
-  }
-  #frame #sidepanel #profile .wrap #status-options:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-bottom: 8px solid #435f7a;
-    margin: -8px 0 0 24px;
-  }
-  @media screen and (max-width: 735px) {
-    #frame #sidepanel #profile .wrap #status-options:before {
-      margin-left: 23px;
-    }
-  }
-  #frame #sidepanel #profile .wrap #status-options ul {
-    overflow: hidden;
-    border-radius: 6px;
-  }
-  #frame #sidepanel #profile .wrap #status-options ul li {
-    padding: 15px 0 30px 18px;
-    display: block;
-    cursor: pointer;
-  }
-  @media screen and (max-width: 735px) {
-    #frame #sidepanel #profile .wrap #status-options ul li {
-      padding: 15px 0 35px 22px;
-    }
-  }
-  #frame #sidepanel #profile .wrap #status-options ul li:hover {
-    background: #496886;
-  }
-  #frame #sidepanel #profile .wrap #status-options ul li span.status-circle {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin: 5px 0 0 0;
-  }
-  @media screen and (max-width: 735px) {
-    #frame #sidepanel #profile .wrap #status-options ul li span.status-circle {
-      width: 14px;
-      height: 14px;
-    }
-  }
-  #frame
-    #sidepanel
-    #profile
-    .wrap
-    #status-options
-    ul
-    li
-    span.status-circle:before {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    margin: -3px 0 0 -3px;
-    background: transparent;
-    border-radius: 50%;
-    z-index: 0;
-  }
-  @media screen and (max-width: 735px) {
-    #frame
-      #sidepanel
-      #profile
-      .wrap
-      #status-options
-      ul
-      li
-      span.status-circle:before {
-      height: 18px;
-      width: 18px;
-    }
-  }
-  #frame #sidepanel #profile .wrap #status-options ul li p {
-    padding-left: 12px;
-  }
-  @media screen and (max-width: 735px) {
-    #frame #sidepanel #profile .wrap #status-options ul li p {
-      display: none;
-    }
-  }
-  #frame
-    #sidepanel
-    #profile
-    .wrap
-    #status-options
-    ul
-    li#status-online
-    span.status-circle {
-    background: #2ecc71;
-  }
-  #frame
-    #sidepanel
-    #profile
-    .wrap
-    #status-options
-    ul
-    li#status-online.active
-    span.status-circle:before {
-    border: 1px solid #2ecc71;
-  }
-  #frame
-    #sidepanel
-    #profile
-    .wrap
-    #status-options
-    ul
-    li#status-away
-    span.status-circle {
-    background: #f1c40f;
-  }
-  #frame
-    #sidepanel
-    #profile
-    .wrap
-    #status-options
-    ul
-    li#status-away.active
-    span.status-circle:before {
-    border: 1px solid #f1c40f;
-  }
-  #frame
-    #sidepanel
-    #profile
-    .wrap
-    #status-options
-    ul
-    li#status-busy
-    span.status-circle {
-    background: #e74c3c;
-  }
-  #frame
-    #sidepanel
-    #profile
-    .wrap
-    #status-options
-    ul
-    li#status-busy.active
-    span.status-circle:before {
-    border: 1px solid #e74c3c;
-  }
-  #frame
-    #sidepanel
-    #profile
-    .wrap
-    #status-options
-    ul
-    li#status-offline
-    span.status-circle {
-    background: #95a5a6;
-  }
-  #frame
-    #sidepanel
-    #profile
-    .wrap
-    #status-options
-    ul
-    li#status-offline.active
-    span.status-circle:before {
-    border: 1px solid #95a5a6;
-  }
+  
   #frame #sidepanel #profile .wrap #expanded {
     padding: 100px 0 0 0;
     display: block;
@@ -351,44 +156,7 @@
     outline: none;
     background: #435f7a;
   }
-  #frame #sidepanel #search {
-    border-top: 1px solid #32465a;
-    border-bottom: 1px solid #32465a;
-    font-weight: 300;
-  }
-  @media screen and (max-width: 735px) {
-    #frame #sidepanel #search {
-      display: none;
-    }
-  }
-  #frame #sidepanel #search label {
-    position: absolute;
-    margin: 10px 0 0 20px;
-  }
-  #frame #sidepanel #search input {
-    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
-    padding: 10px 0 10px 46px;
-    width: calc(100% - 25px);
-    border: none;
-    background: #32465a;
-    color: #f5f5f5;
-  }
-  #frame #sidepanel #search input:focus {
-    outline: none;
-    background: #435f7a;
-  }
-  #frame #sidepanel #search input::-webkit-input-placeholder {
-    color: #f5f5f5;
-  }
-  #frame #sidepanel #search input::-moz-placeholder {
-    color: #f5f5f5;
-  }
-  #frame #sidepanel #search input:-ms-input-placeholder {
-    color: #f5f5f5;
-  }
-  #frame #sidepanel #search input:-moz-placeholder {
-    color: #f5f5f5;
-  }
+  
   #frame #sidepanel #contacts {
     height: calc(100% - 177px);
     overflow-y: auto;
@@ -413,11 +181,15 @@
     height: calc(100% - 334px);
   }
   #frame #sidepanel #contacts::-webkit-scrollbar {
-    width: 8px;
-    background: #2c3e50;
+    width:1px;
+    background: red
   }
   #frame #sidepanel #contacts::-webkit-scrollbar-thumb {
-    background-color: #243140;
+    width:1px;
+    background-color: blue
+  }
+  #frame #sidepanel #contacts::-webkit-scrollbar-track {
+    background-color: green
   }
   #frame #sidepanel #contacts ul li.contact {
     position: relative;
@@ -431,18 +203,21 @@
     }
   }
   #frame #sidepanel #contacts ul li.contact:hover {
-    background: rgb(50, 70, 90);
+    background: whitesmoke;
   }
   #frame #sidepanel #contacts ul li.contact.active {
-    background: #a59dff;
-    border-right: 5px solid #a59dff;
+    color: white;
+    background: #ffffff;
+    background-color: #a59dff;
+    /* border: 5px solid #a59dff; */
   }
   #frame #sidepanel #contacts ul li.contact.active span.contact-status {
     border: 2px solid #a59dff !important;
+
   }
   #frame #sidepanel #contacts ul li.contact .wrap {
     width: 88%;
-    margin: 0 auto;
+    margin: 0px 0px 0px 10px;
     position: relative;
   }
   @media screen and (max-width: 735px) {
@@ -450,26 +225,14 @@
       width: 100%;
     }
   }
-  #frame #sidepanel #contacts ul li.contact .wrap span {
-    position: absolute;
-    left: 0;
-    margin: -2px 0 0 -2px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 2px solid #2c3e50;
-    background: #95a5a6;
+ 
+  #frame #sidepanel #contacts ul li.contact .wrap #profileflag {
+    width: 25px;
+    border-radius: 10%;
+    float: left;
+    margin-right: 10px;
   }
-  #frame #sidepanel #contacts ul li.contact .wrap span.online {
-    background: #2ecc71;
-  }
-  #frame #sidepanel #contacts ul li.contact .wrap span.away {
-    background: #f1c40f;
-  }
-  #frame #sidepanel #contacts ul li.contact .wrap span.busy {
-    background: #e74c3c;
-  }
-  #frame #sidepanel #contacts ul li.contact .wrap img {
+  #frame #sidepanel #contacts ul li.contact .wrap #profileimg {
     width: 40px;
     border-radius: 50%;
     float: left;
@@ -528,10 +291,10 @@
     width: 50%;
     padding: 10px 0;
     background: #32465a;
-    color: #f5f5f5;
+    color: #ffffff;
     cursor: pointer;
     font-size: 0.85em;
-    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+    font-family: 'Noto Sans KR';
   }
   @media screen and (max-width: 735px) {
     #frame #sidepanel #bottom-bar button {
@@ -553,7 +316,7 @@
     }
   }
   #frame #sidepanel #bottom-bar button:hover {
-    background: #435f7a;
+    background: #261f74;
   }
   #frame #sidepanel #bottom-bar button i {
     margin-right: 3px;
@@ -572,14 +335,14 @@
   #frame .content {
     background-color: #ffffff;
     box-shadow: none;
-    padding:0 0 0 50px;
+    padding:0 0 0 0;
+    padding-left: 3px;
     float: right;
     width: 60%;
     height: 100%;
     overflow: hidden;
     position: relative;
-    /* border-top-right-radius: 10px; */
-    /* border-bottom-right-radius: 10px; */
+    border: #a59dff 3px solid;
   }
   @media screen and (max-width: 735px) {
     #frame .content {
@@ -594,41 +357,34 @@
   }
   #frame .content .contact-profile {
     width: 100%;
-    height: 60px;
+    height: 90px;
     line-height: 60px;
-    background: #a59dff;
-    color:white
+    background: #ffffff;
+    display: flex; 
+    flex-direction: column;
+    border-bottom: 3px solid #a59dff;
+    color:#261f74;
   }
+
   #frame .content .contact-profile img {
     width: 40px;
     border-radius: 50%;
-    float: left;
-    margin: 9px 12px 0 9px;
+    display: inline-block;
+    margin: 0px 12px 0 9px;
   }
   #frame .content .contact-profile p {
-    float: left;
+    display: inline-block;
   }
-  #frame .content .contact-profile .social-media {
-    float: right;
-  }
-  #frame .content .contact-profile .social-media i {
-    margin-left: 14px;
-    cursor: pointer;
-  }
-  #frame .content .contact-profile .social-media i:nth-last-child(1) {
-    margin-right: 20px;
-  }
-  #frame .content .contact-profile .social-media i:hover {
-    color: #435f7a;
-  }
+ 
+ 
   #frame .content .messages {
-    height: 600px;
-    min-height: calc(100% - 93px);
-    max-height: calc(100% - 93px);
+    height:560px;
+    min-height: calc(100% - 150px);
+    max-height: calc(100% - 200px); 
     overflow-y: scroll;
     overflow-x: hidden;
     width: 100%;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
   }
   @media screen and (max-width: 735px) {
     #frame .content .messages {
@@ -636,11 +392,13 @@
     }
   }
   #frame .content .messages::-webkit-scrollbar {
-    width: 8px;
+    width: 0px;
     background: transparent;
   }
   #frame .content .messages::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.3);
+
+
   }
   #frame .content .messages ul li {
     display: inline-block;
@@ -668,7 +426,7 @@
   }
   #frame .content .messages ul li.sent p {
     
-    background: rgb(50, 70, 90);
+    background: #463cbd;
     color:white;
   
     float: right;
@@ -697,48 +455,34 @@
     bottom: 0 !important;
     width: 100%;
     z-index: 99;
+    
   }
   #frame .content .message-input .wrap {
     position: relative;
   }
   #frame .content .message-input .wrap input {
-    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+    width: 688px;
+    font-family: 'Noto Sans KR';
     float: left;
-    border: none;
+    border: #a59dff 2px solid;
     width: calc(100% - 51px);
-    padding: 14px 32px 8px 8px;
+    padding: 12px 0px 8px 8px;
+    margin-right: 1px;
     font-size: 0.8em;
     color: #32465a;
     font-size: 16px;
   }
   @media screen and (max-width: 735px) {
     #frame .content .message-input .wrap input {
-      padding: 15px 32px 16px 8px;
+      padding: 15px 0px 16px 8px;
     }
   }
   #frame .content .message-input .wrap input:focus {
     outline: none;
   }
-  #frame .content .message-input .wrap .attachment {
-    position: absolute;
-    right: 60px;
-    z-index: 4;
-    margin-top: 10px;
-    font-size: 1.1em;
-    color: #435f7a;
-    opacity: 0.5;
-    cursor: pointer;
-  }
-  @media screen and (max-width: 735px) {
-    #frame .content .message-input .wrap .attachment {
-      margin-top: 17px;
-      right: 65px;
-    }
-  }
-  #frame .content .message-input .wrap .attachment:hover {
-    opacity: 1;
-  }
-  #frame .content .message-input .wrap button {
+
+  #chat-message-button {
+    margin-bottom: 4px;
     float: right;
     border: none;
     width: 50px;
@@ -754,11 +498,89 @@
     }
   }
   #frame .content .message-input .wrap button:hover {
-    background: #435f7a;
+    background: #261f74;
   }
   #frame .content .message-input .wrap button:focus {
     outline: none;
   }
 
-  
-  
+  .chatlanguagebox{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    display: inline-block;
+    margin-left:10px;
+    margin-top:10px;
+    float: none;
+
+}
+
+#chatwantlanguage{
+  border: #A59DFF;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 20px;
+  background-color: #A59DFF;
+  color: white;
+  box-shadow: 1px 1px 1px 0.5px darkgray;
+  line-height: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-right:5px;
+}
+
+#chatfluentlanguage{
+  border: #685DE2;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 20px;
+  background-color: #685DE2;
+  color: white;
+  box-shadow: 1px 1px 1px 0.5px darkgray;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-right:5px;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#chatnativelanguage{
+  border: #463CBD;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 20px;
+  background-color: #463CBD;
+  color: white;
+  box-shadow: 1px 1px 1px 0.5px darkgray;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-left:5px;
+  margin-right:5px;
+  line-height: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.contact-profilename {
+  font-size: 20px;
+  font-weight: bold;
+}
+
