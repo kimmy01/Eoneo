@@ -72,7 +72,7 @@ function Chat() {
         client.current = new StompJs.Client({
             // brokerURL: "ws://localhost:8080/api/chatEonoe-websocket",
             webSocketFactory: () => new SockJS("http://localhost:8080/chatEonoe-websocket"),
-            
+            connectHeaders: { "Authorization": jwttoken },
             debug: function (str) {
                 console.log(str);
             },

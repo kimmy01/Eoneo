@@ -30,7 +30,7 @@ function NavBar() {
 								<Nav.Link href='/chat'>CHAT</Nav.Link>
 							</div>
 							<div className='mynavItem item2'>
-								<Nav.Link className='logo' href='/main'>
+								<Nav.Link className='logo' href='/searchFriends'>
 									<img src={mainlogo} alt="mainlogo" width="100px"/>
 								</Nav.Link>
 							</div>
