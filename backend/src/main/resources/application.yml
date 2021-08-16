@@ -36,7 +36,7 @@ jwt:
 
   custom:
     path:
-      upload-images: '/var/lib/docker/volumes/images'
+      upload-images: '/images'
 
 #custom:
 #  path:
