@@ -3,7 +3,7 @@ import {  Image } from 'react-bootstrap'
 import MainImage from '../assets/Home/main.jpg' 
 import ProfileCards from './ProfileCards'
 import './Home.css'
-import Footer from '../components/Footer/Footer'
+// import Footer from '../components/Footer/Footer'
 
 
 
@@ -33,7 +33,7 @@ function Home () {
        <ProfileCards />
       </div>
       <div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   )
