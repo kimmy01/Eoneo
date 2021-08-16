@@ -68,10 +68,10 @@ function Chat() {
     // websocket 연결
     const connect = () => {
         client.current = new StompJs.Client({
-            webSocketFactory: () => new SockJS("http://localhost:8080/chatEonoe-websocket"),
-            connectHeaders: {
-                "Authorization": jwttoken,
-            },
+            webSocketFactory: () => new SockJS("http://localhost:8080/api/chatEonoe-websocket"),
+            // connectHeaders: {
+            //     "Authorization": jwttoken,
+            // },
             debug: function (str) {
                 console.log(str);
             },
