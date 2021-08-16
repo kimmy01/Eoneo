@@ -68,7 +68,7 @@ function Chat() {
     // websocket 연결
     const connect = () => {
         client.current = new StompJs.Client({
-            webSocketFactory: () => new SockJS("http://localhost:8080/api/chatEonoe-websocket"),
+            webSocketFactory: () => new SockJS("http://localhost:8080/chatEonoe-websocket"),
             connectHeaders: {
                 "Authorization": jwttoken,
             },
@@ -79,7 +79,7 @@ function Chat() {
             heartbeatIncoming: 4000,
             heartbeatOutgoing: 4000,
             onConnect: () => {
-                // console.log('subscribe:/subscribe/' + myUid + '/queue/message')
+                console.log('subscribe:/subscribe/' + myUid + '/queue/message')
                 subscribe();
             },
             onStompError: (frame) => {
