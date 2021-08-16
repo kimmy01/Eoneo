@@ -13,7 +13,7 @@ const UserOverview = ({ overview }) => {
 	}
 	console.log(data);
 	// const nationality = data.nationality;
-	let location = 'http://172.22.0.3:8080/static/img/' + data.profile_image;
+	let location = 'http://13.124.171.154:8080/static/img/' + data.profile_image;
 	// let location = '/upload/' + data.profile_image;
 
 	return (
