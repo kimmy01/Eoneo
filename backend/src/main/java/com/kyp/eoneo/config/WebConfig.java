@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     private final String uploadImagesPath;
 
-    public WebConfig(@Value("${custom.path.upload-images") String uploadImagesPath) {
+    public WebConfig(@Value("${custom.path.upload-images}") String uploadImagesPath) {
         this.uploadImagesPath = uploadImagesPath;
     }
 
