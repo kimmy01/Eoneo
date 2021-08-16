@@ -13,6 +13,7 @@ import './App.css';
 
 // main
 import SearchFriends from './SearchFriends/SearchFriends';
+import Main from './Home/Main.js';
 
 // chat
 import Chat from '../src/Chat/Chat';
@@ -36,12 +37,13 @@ function App() {
             <Suspense fallback={<Loader type="spin" color="#685de2" message={'Please Wait a Second!'}/>}>
             {localStorage.getItem('user_id') === null ?
                 <div>
+                  <Route exact path="/" component={Main}/>
                   <Route exact path="/signup" component={SignupPage}/>
                 </div>
                 :
               <div>
                 <NavBar />
-                <Route exact path="/" component={SearchFriends} />
+                <Route exact path="/searchFriends" component={SearchFriends} />
                 {/* chat */}
                 <Route exact path="/chat" component={Chat} />
                 <Route exact path="/update/user_detail" component={FormMyPage} />
