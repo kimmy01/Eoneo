@@ -241,7 +241,7 @@ function Chat() {
 											chatroom.user2UId,
 											chatroom.user1Name,
 											chatroom.user2Name,
-											chatroom.userDetail
+											chatroom?.userDetail
 										);
 									}}
 									className={
@@ -357,7 +357,7 @@ function Chat() {
 										/>
 									) : (
 										<img
-											src={'/static/img/' + mydata.userDetail?.profile_image}
+											src={'/static/img/' + mydata?.userDetail?.profile_image}
 											alt=''
 										/>
 									)}

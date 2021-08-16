@@ -184,22 +184,20 @@ const FormMyPage = () => {
 	return (
 		<div id='userdetailrootbox'>
 			<div id='innerrootbox'>
-				<h2 id='editprofile'>Edit Profile</h2>
-				<img
-					id='preview'
-					src={
-						profileimagepreview ? profileimagepreview : userDetail.profile_image
-					}
-					alt='profileimage'
-				/>
 				<form
 					onSubmit={handlePutSubmit}
 					encType='multipart/form-data'
 					action='/mypage'>
+					<h2 id='editprofile'>Edit Profile</h2>
 					<img
 						id='preview'
-						src={'/static/img/' + user.userDetail?.profile_image}></img>
-
+						src={
+							profileimagepreview
+								? profileimagepreview
+								: '/static/img/' + user.userDetail?.profile_image
+						}
+						alt='profileimage'
+					/>
 					<br />
 					<br />
 					<h5>Profile Image</h5>
