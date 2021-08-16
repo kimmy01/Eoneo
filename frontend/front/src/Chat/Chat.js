@@ -193,7 +193,7 @@ function Chat() {
 		// opponentUserData
 	) => {
 		setRoomSeq(chatRoomId);
-		setOpponentData(opponentUserData);
+		// setOpponentData(opponentUserData);
 		if (user1Id === parseInt(my_id)) {
 			console.log(mydata.id);
 			console.log('2', user2Id);
