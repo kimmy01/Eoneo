@@ -129,8 +129,8 @@ function Chat() {
 			.catch((Err) => console.error(Err));
 	};
 
-	const getUserData = (userId) => {
-		axios
+	const getUserData = async (userId) => {
+		await axios
 			.get(`/api/userinfo/${userId}`, config)
 			.then((response) => {
 				console.log(response.data);
@@ -140,8 +140,8 @@ function Chat() {
 	};
 
 	// 채팅메시지: 해당채팅방 메시지정보 불러오는 함수
-	const getDBdata = () => {
-		axios
+	const getDBdata = async () => {
+		await axios
 			.get(`/api/chatroom/room/${RoomSeq}/`, config)
 			.then(setChatMessages([]))
 			.then((response) => {
@@ -168,13 +168,13 @@ function Chat() {
 	};
 
 	// 채팅방삭제: 해당 채팅방을 제거하는 함수
-	const deleteChatroom = (chatRoomId, e) => {
+	const deleteChatroom = async (chatRoomId, e) => {
 		let data = {
 			roomId: chatRoomId,
 			userId: my_id,
 		};
 		console.log(data);
-		axios
+		await axios
 			.put('/api/chatroom/room', data, config)
 			.then(() => getChatroomList())
 			.catch((Err) => console.error(Err));
@@ -253,7 +253,9 @@ function Chat() {
 											}>
 											<img
 												id='profileimg'
-												src={'/static/img/' + chatroom?.imagePath}
+												src={
+													'/static/img/' + chatroom.userDetail?.profile_image
+												}
 												alt=''
 											/>
 											{/* #123
