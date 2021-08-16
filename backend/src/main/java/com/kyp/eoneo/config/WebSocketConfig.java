@@ -20,7 +20,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/api/chatEonoe-websocket").setAllowedOrigins("http://localhost:80").withSockJS();
+        registry.addEndpoint("/chatEonoe-websocket").setAllowedOrigins("http://localhost:80").withSockJS();
     }
 
     @Override
