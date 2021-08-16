@@ -36,7 +36,7 @@ jwt:
 
   custom:
     path:
-      upload-images: '/var/eoneo/images'
+      upload-images: '/tmp/eoneo/images'
 
 #custom:
 #  path:

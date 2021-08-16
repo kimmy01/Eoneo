@@ -230,7 +230,7 @@ public class UserDetailService {
 
         String absolutePath = new File("").getAbsolutePath()+"/"; //ubuntu에서는 "/"
         System.out.println("absolute Path : " + absolutePath);
-        String path = "/var/eoneo/images";
+        String path = "/tmp/eoneo/images";
 //        System.out.println(rootPath);
 //        String path = "/profileImages/";
 
