@@ -20,9 +20,10 @@ import * as SockJS from "sockjs-client";
 import "./Chat.css";
 import SendIcon from '@material-ui/icons/Send';
 import axios from 'axios'
-import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
 import { Badge } from '@material-ui/core';
 import ModalComponent from "../Openvidu/ModalComponent";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { fasignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 
 function Chat() {
@@ -278,9 +279,10 @@ function Chat() {
                                             :  <p className="name" style={{display: "inline-block"}}>{chatroom.user1Name}</p>
                                         }
                                 
-                                        <div style={{display: "inline-block",float: "right", marginRight:20}}>
+                                        <div style={{display: "inline-block",float: "right", marginRight:40}}>
                                             {chatroom.chatRoomId && chatroom.chatRoomId === selectChatroomId 
-                                                ? <NoMeetingRoomIcon onClick={(e)=>{deleteChatroom(chatroom.chatRoomId, e)}}/>
+                                         
+                                                ? <FontAwesomeIcon icon={fasignOutAlt} onClick={(e)=>{deleteChatroom(chatroom.chatRoomId, e)}} />
                                                 : <p></p>
                                             }
                                         </div>
