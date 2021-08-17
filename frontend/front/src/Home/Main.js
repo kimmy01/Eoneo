@@ -8,8 +8,9 @@ import './main.css';
 function Main() {
     return (
         <div class="mainpage">
-            <div>
-                <img src ={enoeo_intro}/>
+
+            <div class="mainImg">
+                <img src ={enoeo_intro} alt="intro_img"/>
             </div>
 
             <div class="mainlogin">
@@ -20,6 +21,7 @@ function Main() {
                     <LoginPage />
                 </div>
             </div>
+
         </div>
     );
 }
