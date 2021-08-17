@@ -78,7 +78,7 @@ function LoginPage(props) {
 
           <div>
             <Button style={{width:"100%", marginTop:25}} className="signinbutton" variant="flat" type="submit">
-              SignIn
+              Login
             </Button>
           </div>
 
