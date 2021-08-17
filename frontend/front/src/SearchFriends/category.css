@@ -27,6 +27,7 @@
 
 .categoryIn:hover{
     opacity: 0.7;
+    cursor: pointer;
 }
 
 .categoryIn:hover .text{
@@ -34,5 +35,6 @@
 }
 
 .categoryImg{
+    height: 270px;
     width: 400px;
 }

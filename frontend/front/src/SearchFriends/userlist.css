@@ -6,13 +6,16 @@
     border: whitesmoke;
     border-width: 1px;
     border-style: solid;
-
     box-shadow: 2px 2px 2px 1px whitesmoke;
 
     width: 500px;
     margin: 10px;
 
     display: flex;
+}
+
+.profilebox:hover{
+    cursor: pointer;
 }
 
 .profileImage{
