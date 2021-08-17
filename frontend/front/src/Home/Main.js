@@ -10,7 +10,7 @@ function Main() {
         <div class="mainpage">
 
             <div class="mainImg">
-                <img style={{width:1000}} src ={enoeo_intro} alt="intro_img"/>
+                <img style={{width:'100%'}} src ={enoeo_intro} alt="intro_img"/>
             </div>
 
             <div class="mainlogin">

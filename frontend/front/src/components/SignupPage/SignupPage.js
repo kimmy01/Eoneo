@@ -53,7 +53,7 @@ function Signup(props) {
   }
 
   return (
-    <Container fluid className="row">
+    <Container fluid className="row" style={{marginTop:75}}>
       <div className="col-4"></div>
       <div className="col-4">
       <h1 className="main-title">Sign up</h1>

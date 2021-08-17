@@ -59,8 +59,8 @@ function LoginPage(props) {
 
   return (
     <Container fluid className="row">
-      <div className="col-4"></div>
-      <div className="col-4">
+      <div className="col-1"></div>
+      <div className="col-10">
         <h1 className="main-title">Login</h1>
         <Form className="mt-4 " onSubmit={onSubmitHandler}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -91,7 +91,7 @@ function LoginPage(props) {
           </div>
         </Form>
       </div>
-      <div className="col-4"></div>
+      <div className="col-1"></div>
     </Container>
   )
 
