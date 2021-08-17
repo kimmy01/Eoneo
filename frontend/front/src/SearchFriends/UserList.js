@@ -24,19 +24,22 @@ function UserList() {
 	const [user2Id, setUser2Id] = useRecoilState(user2IdState);
 	const [user2UId, setUser2UId] = useRecoilState(user2UIdState);
 	const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState);
+
 	// const [RoomSeq2, setRoomSeq2] = useState("test");
 	const jwttoken = 'Bearer ' + localStorage.getItem('token');
 
 	const clickHandler = (params, e) => {
-		setUser1UId(Math.random().toString(36).substr(2, 11));
-		setUser2UId(Math.random().toString(36).substr(2, 11));
+		const Uid1 = (Math.random().toString(36).substr(2, 11))
+		const Uid2 = (Math.random().toString(36).substr(2, 11))
+		setUser1UId(Uid1);
+		setUser2UId(Uid2);
 		// setUser2Id(params);
 
 		const roomData = {
 			user1Id: myId,
-			user1UId: user1UId,
+			user1UId: Uid1,
 			user2Id: params,
-			user2UId: user2UId,
+			user2UId: Uid2,
 		};
 
 		axios
@@ -44,6 +47,7 @@ function UserList() {
 				headers: { Authorization: jwttoken },
 			})
 			.then((response) => {
+				console.log(response)
 				setUser1Id(response.data.data.user1Id);
 				setUser2Id(response.data.data.user2Id);
 				setUser1UId(response.data.data.user1UId);
