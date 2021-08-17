@@ -97,7 +97,7 @@ function UserList() {
 						</div>
 					</div>
 					
-					<p id="explain">설명메시지</p>
+					<p id="explain">let's chat!</p>
 					
 				</div>
 			))}
