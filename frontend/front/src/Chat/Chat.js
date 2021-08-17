@@ -270,7 +270,7 @@ function Chat() {
                             <img src={opponentdata?.profileImage} /> 
                             <p className="contact-profilename">{opponentdata.username}</p>
                             <div style={{float:"right", marginTop:10}} >
-                                <ModalCompontet onClick={publish("videocall start")}/>
+                                <ModalCompontet onClick={publish("videocall start!!")}/>
                             </div>
                         </div>
 
