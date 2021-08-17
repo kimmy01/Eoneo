@@ -11,10 +11,10 @@
 }
 
 .video-button {
-
-    background-color: #a59dff;
+    color:#a59dff;
+    background-color: white;
     padding: 4px 0px 5px 0;
-    font-size: 40px;
+    font-size: 25px;
     color: white;
     border-radius: 10px;
     border: 0;
