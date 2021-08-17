@@ -573,3 +573,34 @@
 	font-size: 20px;
 	font-weight: bold;
 }
+
+/* openvidu */
+
+#openvidu-modal{
+    width: 1300px;
+    height: 90%;
+    margin: 20px 100px 30px 90px;
+    
+}
+
+.video-button {
+    color:#a59dff;
+    background-color: white;
+    padding: 4px 0px 5px 0;
+    margin-right: 15px;
+    color: white;
+    border: 0;
+    cursor: pointer;
+  }
+
+  #videoicon {
+    font-size: 25px;
+    color: #a59dff
+  }
+  
+  #videoicon:hover {
+      color: #261F74;
+      text-decoration: none;
+      transition: none
+    }
+  

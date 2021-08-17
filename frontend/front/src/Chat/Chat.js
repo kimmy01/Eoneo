@@ -15,15 +15,21 @@ import {
 import * as StompJs from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
 
-
 //css
 import "./Chat.css";
 import SendIcon from '@material-ui/icons/Send';
 import axios from 'axios'
 import { Badge } from '@material-ui/core';
-import ModalComponent from "../Openvidu/ModalComponent";
+// import ModalComponent from "../Openvidu/ModalComponent";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+
+//openvidu
+import Openvidu from '../Openvidu/Openvidu';
+// openvidu css
+import {Button,Modal} from "react-bootstrap"
+import { faVideo } from "@fortawesome/free-solid-svg-icons";
+
 
 
 function Chat() {
@@ -50,9 +56,11 @@ function Chat() {
 	const [mydata, setMydata] = useState({});
 	const [selectChatroomId, setSelectChatroomId] = useState('');
 	const [chatrooms, setChatrooms] = useState([]);
-    const [UidState, setUidState] = useState('')
-	// const [opponentData, setOpponentData] = useState({});
-	// const [opponentName, setOpponentName] = useState({});
+
+	//openvidu state
+	const [fullscreen, setFullscreen] = useState(true);
+    const [show, setShow] = useState(false);
+    
 
 	//recoildata
 	const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState);
@@ -137,6 +145,17 @@ function Chat() {
 			body: JSON.stringify(messagesdata),
 		});
 	};
+
+	//modal on function
+	  function handleShow(breakpoint) {
+		setFullscreen(breakpoint);
+		setShow(true);
+	  }
+
+	// props modal close function
+    const closeModal = () => {
+		setShow(false)
+	  }
 
 	// 내 정보 받기
 	const getMyData = async () => {
@@ -326,8 +345,13 @@ function Chat() {
 							/>
 							<p className='contact-profilename'>{opponentdata.username}</p>
 							<div style={{ float: 'right', marginTop: 10 }}>
-								<button onClick={(e) => videoMessage(e)}> kkkkkkk</button>
-								<ModalComponent />
+								{/* <button onClick={(e) => videoMessage(e)}> kkkkkkk</button> */}
+								 {/* modal button */}
+								 {/* <ModalComponent/> */}
+								 <Button className="video-button" onClick={() => handleShow(true)}>
+									<FontAwesomeIcon id="videoicon"  icon={faVideo} />
+									{typeof true === 'string' && `below ${true.split('-')[0]}`}
+								</Button>
 							</div>
 						</div>
 
@@ -399,6 +423,18 @@ function Chat() {
             </div>
         </div>
     </div>
+
+        {/* modal */}
+        <Modal id="openvidu-modal" show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
+          {/* close button header */}
+          <Modal.Header>
+            <Modal.Title style={{textAlign:'center'}}>Video Chat</Modal.Title>
+          </Modal.Header>
+          <Modal.Body  >
+            <Openvidu onClose={closeModal}/>
+          </Modal.Body>
+        </Modal>
+
 </div>
     )
 }
