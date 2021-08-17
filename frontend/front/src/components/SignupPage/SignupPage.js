@@ -83,7 +83,7 @@ function Signup(props) {
           <Form.Control type="password" placeholder="ConfirmPassword" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
         </Form.Group>
 
-        <div>
+        <div style={{marginTop:10}}>
           <Button className="signupbtn" variant="flat" type="submit">
             Signup
         </Button>

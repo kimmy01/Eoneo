@@ -77,17 +77,13 @@ function LoginPage(props) {
           </Form.Group>
 
           <div>
-            <Button className="signinbutton" variant="flat" type="submit">
+            <Button style={{width:"100%"}} className="signinbutton" variant="flat" type="submit">
               SignIn
             </Button>
           </div>
-
           <hr />
-
           <div>
-            <Button onClick={onSignUpHandler} className="signupbutton" variant="flat" type="button">
-              SignUp
-            </Button>
+             <p>SignUp</p> 
           </div>
         </Form>
       </div>
