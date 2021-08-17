@@ -11,7 +11,6 @@ import {
 
 
 // main
-import Home from './Home/Home.js';
 import Main from './Home/Main.js';
 import SearchFriends from './SearchFriends/SearchFriends';
 
