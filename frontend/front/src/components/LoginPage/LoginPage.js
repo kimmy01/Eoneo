@@ -81,9 +81,13 @@ function LoginPage(props) {
               SignIn
             </Button>
           </div>
+
           <hr />
+
           <div>
-             <p>SignUp</p> 
+            <Button style={{border:'none', backgroundColor:'white'}} onClick={onSignUpHandler} className="signupbutton" variant="flat" type="button">
+              SignUp
+            </Button>
           </div>
         </Form>
       </div>
