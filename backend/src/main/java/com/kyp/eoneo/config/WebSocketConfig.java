@@ -20,7 +20,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/api/chatEonoe-websocket").setAllowedOrigins("*").withSockJS();
+        registry.addEndpoint("/api/chatEonoe-websocket").setAllowedOrigins("https://i5a102.p.ssafy.io").withSockJS();
     }
 
     @Override
