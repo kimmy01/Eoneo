@@ -23,7 +23,7 @@ import axios from 'axios'
 import { Badge } from '@material-ui/core';
 import ModalComponent from "../Openvidu/ModalComponent";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { fasignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 
 function Chat() {
@@ -282,7 +282,7 @@ function Chat() {
                                         <div style={{display: "inline-block",float: "right", marginRight:40}}>
                                             {chatroom.chatRoomId && chatroom.chatRoomId === selectChatroomId 
                                          
-                                                ? <FontAwesomeIcon icon={fasignOutAlt} onClick={(e)=>{deleteChatroom(chatroom.chatRoomId, e)}} />
+                                                ? <FontAwesomeIcon icon={faSignOutAlt} onClick={(e)=>{deleteChatroom(chatroom.chatRoomId, e)}} />
                                                 : <p></p>
                                             }
                                         </div>
