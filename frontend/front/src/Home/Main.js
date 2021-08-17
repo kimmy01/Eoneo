@@ -1,17 +1,24 @@
 import React from 'react';
 import LoginPage from '../components/LoginPage/LoginPage'
 import mainlogo from "../assets/main/mainlogo.png";
+import enoeo_intro from '../../../src/assets/main/enoeo_intro.png';
 import './main.css';
-import { Container, Navbar, Nav } from 'react-bootstrap';
+
 
 function Main() {
     return (
         <div class="mainpage">
-            <div class="mainlogo">
-                <img src={mainlogo} alt="logo" width="250px" />
-            </div>
             <div>
-                <LoginPage />
+                <img src ={enoeo_intro}/>
+            </div>
+
+            <div class="mainlogin">
+                <div class="mainlogo">
+                    <img src={mainlogo} alt="logo" width="250px" />
+                </div>
+                <div>
+                    <LoginPage />
+                </div>
             </div>
         </div>
     );

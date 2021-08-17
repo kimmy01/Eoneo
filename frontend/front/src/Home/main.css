@@ -1,8 +1,13 @@
-.mainpage {
+.mainlogin {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
 .mainlogo {
 	text-align: center;
+}
+.mainpage {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
