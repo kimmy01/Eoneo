@@ -77,7 +77,7 @@ function LoginPage(props) {
           </Form.Group>
 
           <div>
-            <Button style={{width:"100%"}} className="signinbutton" variant="flat" type="submit">
+            <Button style={{width:"100%", marginTop:25}} className="signinbutton" variant="flat" type="submit">
               SignIn
             </Button>
           </div>

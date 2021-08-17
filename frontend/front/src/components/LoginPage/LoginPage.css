@@ -1,5 +1,4 @@
 .signinbutton {
-  margin-top: 25px;
   display: block;
   justify-content: center;
   margin: auto;
@@ -23,10 +22,10 @@
   margin-bottom: 40px;
 }
 
-.signupbutton:hover{
+/* .signupbutton:hover{
   background-color: #463cbd;
   color: white;
-}
+} */
 
 hr{
   color:#463cbd;
