@@ -73,7 +73,7 @@ function Chat() {
         client.current = new StompJs.Client({
             // brokerURL: "ws://localhost:8080/api/chatEonoe-websocket",
             // webSocketFactory: () => new SockJS("/chatEonoe-websocket"), // proxy를 통한 접속 //internet explore
-            webSocketFactory: () => new SockJS("http://localhost:8080/chatEonoe-websocket"),
+            webSocketFactory: () => new SockJS("api/chatEonoe-websocket"),
             connectHeaders: { "Authorization": jwttoken },
             debug: function (str) {
                 console.log(str);
@@ -127,7 +127,6 @@ function Chat() {
         await axios.get(`/api/userinfo/${my_id}`, config)
             .then(response =>
                 setMydata(response.data))
-                // console.log(1,response))
             .catch((Err) => console.error(Err));
     }
 
