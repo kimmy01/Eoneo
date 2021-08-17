@@ -304,7 +304,7 @@ function Chat() {
 							/>
 							<p className='contact-profilename'>{opponentdata.username}</p>
 							<div style={{ float: 'right', marginTop: 10 }}>
-								<ModalComponent onClick={publish("message")}/>
+								<ModalComponent/>
 							</div>
 						</div>
 
