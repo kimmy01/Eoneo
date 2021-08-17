@@ -96,6 +96,9 @@ function UserList() {
 							<p id='native'>{user.userLanguage.nativeLanguage.language}</p>
 						</div>
 					</div>
+					<div className='help-tip'>
+							<p>설명메시지</p>
+					</div>
 				</div>
 			))}
 		</div>
