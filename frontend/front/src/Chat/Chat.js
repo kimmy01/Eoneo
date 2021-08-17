@@ -223,8 +223,8 @@ function Chat() {
         // connect()
 	};
 
-	const videoMessage = (e) => {
-		e.stopPropagation();
+	const videoMessage = (event) => {
+		event.stopPropagation();
 		alert("video start!!")
 		// publish("start chat")
 	}
