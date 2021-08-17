@@ -38,6 +38,7 @@ function Chat() {
     const [mydata, setMydata] = useState({});
     const [selectChatroomId, setSelectChatroomId] = useState("");
     const [chatrooms, setChatrooms] = useState([]);
+    
 
     //recoildata
     const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState)
@@ -269,7 +270,7 @@ function Chat() {
                             <img src={opponentdata?.profileImage} /> 
                             <p className="contact-profilename">{opponentdata.username}</p>
                             <div style={{float:"right", marginTop:10}} >
-                                <ModalCompontet/>
+                                <ModalCompontet onClick={publish("videocall start")}/>
                             </div>
                         </div>
 
