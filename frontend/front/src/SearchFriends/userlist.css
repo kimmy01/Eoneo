@@ -25,10 +25,10 @@
 .profilebox #explain{
 	display: none;
 	text-align: left;
-	background-color: #A59DFF;
-    margin-top: 50px;
-	margin-right: 100px;
-	width: 100px;
+	background-color: darkgray;
+    margin-top: 20px;
+	margin-right: 70px;
+	width: 70px;
 	position: absolute;
 	border-radius: 3px;
 	/* box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); */
@@ -48,6 +48,11 @@
     margin-left: 15px;
     margin-top: 15px;
     border-radius: 80px;
+}
+
+#UserListFlag {
+    margin-right: 25px;
+    margin-bottom: 30px;
 }
 
 .image{

@@ -31,6 +31,8 @@
 }
 
 .categoryIn:hover .text{
+    font-family: 'Noto Sans KR';
+    font-weight: bolder;
     visibility: visible;
 }
 

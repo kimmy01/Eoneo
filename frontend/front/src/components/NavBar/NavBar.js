@@ -27,7 +27,7 @@ function NavBar() {
 					<Container>
 						<div className='mynav'>
 							<div className='mynavItem'>
-								<Nav.Link href='/chat'>CHAT</Nav.Link>
+								<Nav.Link href='/chat'>Chat</Nav.Link>
 							</div>
 							<div className='mynavItem item2'>
 								<Nav.Link className='logo' href='/searchFriends'>
@@ -35,9 +35,9 @@ function NavBar() {
 								</Nav.Link>
 							</div>
 							<div className='mynavItem item3'>
-								<Nav.Link href='/mypage'>MyPage</Nav.Link>
+								<Nav.Link href='/mypage'>Mypage</Nav.Link>
 								<Nav.Link onClick={handlelogout} href='/'>
-									LogOut
+									Logout
 								</Nav.Link>
 							</div>
 						</div>
