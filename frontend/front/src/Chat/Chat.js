@@ -37,6 +37,7 @@ function Chat() {
 	const [mydata, setMydata] = useState({});
 	const [selectChatroomId, setSelectChatroomId] = useState('');
 	const [chatrooms, setChatrooms] = useState([]);
+    const [UidState, setUidState] = useState('')
 	// const [opponentData, setOpponentData] = useState({});
 	// const [opponentName, setOpponentName] = useState({});
 
@@ -203,10 +204,13 @@ function Chat() {
 			setOpponentUid(user1UId);
 		}
 		setSelectChatroomId(chatRoomId);
+        disconnect()
+        connect()
 	};
 
 	return (
 		<div>
+            <h1>{myUid}</h1>
 			<div id='frame'>
 				{/* 사이드바 */}
 				<div id='sidepanel'>
