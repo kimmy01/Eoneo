@@ -50,8 +50,6 @@ function UserList() {
 				setUser2UId(response.data.data.user2UId);
 				setRoomSeq(response.data.data.chatRoomId);
 				setRoomSeq(response.data.data.chatRoomId, history.push('/chat'));
-
-				console.log(response);
 			})
 			.catch((err) => console.log(err));
 	};
@@ -77,7 +75,7 @@ function UserList() {
 							}>
 							<img
 								class='profileImage'
-								src='https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F9931CB4B5D904D76076758'
+								src={'/static/img/' + user.userDetail?.profile_image}
 								alt='profile'
 							/>
 						</Badge>

@@ -11,7 +11,6 @@ const UserOverview = ({ overview }) => {
 	} else {
 		gender = 'female';
 	}
-	console.log(data);
 	// const nationality = data.nationality;
 	let location = '/static/img/' + data.profile_image;
 	// let location = '/upload/' + data.profile_image;

@@ -6,7 +6,7 @@ import { userDetailState } from '../state/state';
 import { useRecoilValue, useRecoilState, useRecoilValueLoadable } from 'recoil';
 import { Redirect } from 'react-router-dom';
 
-const MyPage = ({ }) => {
+const MyPage = ({}) => {
 	// const [userId, setUserId] = useState('');
 	const [userOverview, setUserOverview] = useState({
 		profile_image: '',
@@ -37,18 +37,28 @@ const MyPage = ({ }) => {
 				})
 				.then((res) => {
 					const data = res.data;
-					console.log(data);
 					setUserAllDetail(data);
 					if (data.userDetail == null) {
-						alert("please insert your data first.")
-						window.location.href = '/update/user_detail'
+						alert('please insert your data first.');
+						window.location.href = '/update/user_detail';
 					}
 					setUserOverview({
-						profile_image: data.userDetail.profile_image == null ? "" : data.userDetail.profile_image,
-						description: data.userDetail.description == null ? "" : data.userDetail.description,
-						gender: data.userDetail.gender == null ? "" : data.userDetail.gender,
-						nationality: data.userDetail.nationality == null ? {} : data.userDetail.nationality,
-						nickname: data.userDetail.nickname == null ? "" : data.userDetail.nickname,
+						profile_image:
+							data.userDetail.profile_image == null
+								? ''
+								: data.userDetail.profile_image,
+						description:
+							data.userDetail.description == null
+								? ''
+								: data.userDetail.description,
+						gender:
+							data.userDetail.gender == null ? '' : data.userDetail.gender,
+						nationality:
+							data.userDetail.nationality == null
+								? {}
+								: data.userDetail.nationality,
+						nickname:
+							data.userDetail.nickname == null ? '' : data.userDetail.nickname,
 						username: data.username,
 					});
 					setUserDeatil({
@@ -57,7 +67,6 @@ const MyPage = ({ }) => {
 						email: data.email,
 						joindate: data.joindate,
 					});
-
 				});
 		};
 		getUserData();
