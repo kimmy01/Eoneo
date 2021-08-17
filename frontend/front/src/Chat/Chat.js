@@ -225,7 +225,7 @@ function Chat() {
 
 	const videoMessage = (event) => {
 		event.stopPropagation();
-		alert("video start!!")
+		console.log("start chat")
 		// publish("start chat")
 	}
 
