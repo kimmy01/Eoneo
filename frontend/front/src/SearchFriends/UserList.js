@@ -98,7 +98,7 @@ function UserList() {
 						</div>
 					</div>
 					
-					<p id="explain">Are you chat with {user.userDetail?.nickname}?</p>
+					<p id="explain">Do you wanna chat with {user.userDetail?.nickname}?</p>
 					
 				</div>
 			))}
