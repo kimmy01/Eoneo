@@ -71,8 +71,7 @@ function Chat() {
 		client.current = new StompJs.Client({
 			// brokerURL: 'ws://13.124.171.154:8080/chatEonoe-websocket',
 			// webSocketFactory: () => new SockJS("/chatEonoe-websocket"), // proxy를 통한 접속 //internet explore
-			webSocketFactory: () =>
-				new SockJS('https://13.124.171.154:8080/chatEonoe-websocket'),
+			webSocketFactory: () => new SockJS('/chatEonoe-websocket'),
 			connectHeaders: { Authorization: jwttoken },
 			debug: function (str) {
 				console.log(str);
