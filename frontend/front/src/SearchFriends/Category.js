@@ -22,7 +22,7 @@ function Category() {
 						}}
 						class='categoryIn'>
 						<div class='text'>
-							<p class='topic'>{topic.topic}</p>
+							<p id="topicFont" class='topic'>{topic.topic}</p>
 						</div>
 						<img class='categoryImg' src={topic.image} alt={topic.topic} />
 					</div>

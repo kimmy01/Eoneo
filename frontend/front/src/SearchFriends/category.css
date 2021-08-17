@@ -31,12 +31,16 @@
 }
 
 .categoryIn:hover .text{
-    font-family: 'Noto Sans KR';
-    font-weight: 900;
+   
     visibility: visible;
 }
 
 .categoryImg{
     height: 270px;
     width: 400px;
+}
+
+.topicFont{
+    font-family: 'Noto Sans KR';
+    font-weight: 900;
 }
