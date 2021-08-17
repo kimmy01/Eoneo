@@ -282,7 +282,7 @@ function Chat() {
                                         <div style={{display: "inline-block",float: "right", marginRight:40}}>
                                             {chatroom.chatRoomId && chatroom.chatRoomId === selectChatroomId 
                                          
-                                                ? <FontAwesomeIcon icon={faSignOutAlt} onClick={(e)=>{deleteChatroom(chatroom.chatRoomId, e)}} />
+                                                ? <FontAwesomeIcon style= {{height:10}} icon={faSignOutAlt} onClick={(e)=>{deleteChatroom(chatroom.chatRoomId, e)}} />
                                                 : <p></p>
                                             }
                                         </div>
