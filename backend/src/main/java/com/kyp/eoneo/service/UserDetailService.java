@@ -19,9 +19,7 @@ import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -172,6 +170,9 @@ public class UserDetailService {
         List<PrefTopic> list = userDetailRepository.getTopic(id).getPrefTopics_Topic();
         List<UserDto> userList = new ArrayList<>();
 
+        List<UserDto> nativeList = new ArrayList<>();
+        List<UserDto> fluentList = new ArrayList<>();
+
         String myWantLanguage = my.getUserLanguage().getWantLanguage().getCode();
 
         for(int i=0; i<list.size(); i++){
@@ -190,14 +191,8 @@ public class UserDetailService {
                         .username(user.getUsername()).userLanguage(user.getUserLanguage()).joindate(user.getJoindate())
                         .userDetail(user.getUserDetail()).topicList(topicList).build();
 
-                userList.add(userDto);
-            }
-        }
-
-        for(int i=0; i<list.size(); i++){
-            User user = list.get(i).getUser();
-
-            if(user.getUserLanguage().getFluentLanguage().getCode().equals(myWantLanguage) && user.getId() != userid){
+                nativeList.add(userDto);
+            }else if(user.getUserLanguage().getFluentLanguage().getCode().equals(myWantLanguage) && user.getId() != userid){
                 List<Topic> topicList = new ArrayList<>();
 
                 for(int j=0; j<user.getPrefTopics_User().size(); j++){
@@ -209,11 +204,12 @@ public class UserDetailService {
                         .username(user.getUsername()).userLanguage(user.getUserLanguage()).joindate(user.getJoindate())
                         .userDetail(user.getUserDetail()).topicList(topicList).build();
 
-                if(!userList.contains(userDto)){
-                    userList.add(userDto);
-                }
+                fluentList.add(userDto);
             }
         }
+
+        userList.addAll(nativeList);
+        userList.addAll(fluentList);
 
         return userList;
     }
