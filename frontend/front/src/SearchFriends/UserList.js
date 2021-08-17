@@ -68,10 +68,11 @@ function UserList() {
 					}}>
 					<div class='image'>
 						<Badge
-							overlap='rectangle'
+							overlap='circle'
 							anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 							badgeContent={
 								<img
+									ID= "UserListFlag"
 									src={user.userDetail?.nationality?.flag}
 									width='40px'
 									alt='flag'
@@ -97,7 +98,7 @@ function UserList() {
 						</div>
 					</div>
 					
-					<p id="explain">let's chat!</p>
+					<p id="explain">Are you chat with {user.userDetail?.nickname}?</p>
 					
 				</div>
 			))}

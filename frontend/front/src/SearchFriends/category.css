@@ -32,7 +32,7 @@
 
 .categoryIn:hover .text{
     font-family: 'Noto Sans KR';
-    font-weight: bolder;
+    font-weight: 900;
     visibility: visible;
 }
 
