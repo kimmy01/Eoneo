@@ -33,7 +33,7 @@ function Chat() {
 	const my_id = localStorage.getItem('user_id');
     const defaultData = {
 
-        username:'관리자', 
+        username:'Eoneo Bot', 
         userDetail:{
             // ? i I?
             profile_image:'1925626731595746.png'},
@@ -223,6 +223,12 @@ function Chat() {
         // connect()
 	};
 
+	const videoMessage = (e) => {
+		e.stopPropagation();
+		alert("video start!!")
+		// publish("start chat")
+	}
+
 	return (
 		<div>
             {/* <h1>{RoomSeq}</h1>
@@ -320,7 +326,7 @@ function Chat() {
 							/>
 							<p className='contact-profilename'>{opponentdata.username}</p>
 							<div style={{ float: 'right', marginTop: 10 }}>
-								<ModalComponent/>
+								<ModalComponent onClick={videoMessage()}/>
 							</div>
 						</div>
 
