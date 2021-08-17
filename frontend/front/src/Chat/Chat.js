@@ -191,19 +191,14 @@ function Chat() {
 		user1UId,
 		user2Id,
 		user2UId
-		// user1Name,
-		// user2Name,
-		// opponentUserData
+	
 	) => {
 		setRoomSeq(chatRoomId);
-		// setOpponentData(opponentUserData);
 		if (user1Id === parseInt(my_id)) {
 			getUserData(user2Id);
-			// setOpponentName(user2Name);
 			setMyUid(user1UId);
 			setOpponentUid(user2UId);
 		} else {
-			// setOpponentName(user1Name);
 			getUserData(user1Id);
 			setMyUid(user2UId);
 			setOpponentUid(user1UId);
@@ -320,7 +315,7 @@ function Chat() {
 							/>
 							<p className='contact-profilename'>{opponentdata.username}</p>
 							<div style={{ float: 'right', marginTop: 10 }}>
-								<ModalCompontet />
+								<ModalCompontet onClick={publish("start chat!")} />
 							</div>
 						</div>
 
