@@ -326,7 +326,8 @@ function Chat() {
 							/>
 							<p className='contact-profilename'>{opponentdata.username}</p>
 							<div style={{ float: 'right', marginTop: 10 }}>
-								<ModalComponent onClick={(e) => videoMessage(e)}/>
+								<button onClick={(e) => videoMessage(e)}> kkkkkkk</button>
+								<ModalComponent />
 							</div>
 						</div>
 
