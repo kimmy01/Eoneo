@@ -22,7 +22,7 @@ import SendIcon from '@material-ui/icons/Send';
 import axios from 'axios'
 import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
 import { Badge } from '@material-ui/core';
-import ModalCompontet from "../Openvidu/ModalComponent";
+import ModalComponent from "../Openvidu/ModalComponent";
 
 
 function Chat() {
@@ -304,7 +304,7 @@ function Chat() {
 							/>
 							<p className='contact-profilename'>{opponentdata.username}</p>
 							<div style={{ float: 'right', marginTop: 10 }}>
-								<ModalCompontet />
+								<ModalComponent onClick={publish("message")}/>
 							</div>
 						</div>
 
