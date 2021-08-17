@@ -207,7 +207,7 @@ class Openvidu extends Component {
                         {/* close 버튼 */}
                         <div id="session-header">
                             <form onSubmit={this.closeSubmit}>
-                                <button>close</button>
+                                <button id="openViduCloseButton">close</button>
                              </form>
                         </div>
                         {/* my video */}

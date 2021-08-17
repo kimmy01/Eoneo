@@ -1,3 +1,11 @@
 .stream-container {
 	padding: 0;
 }
+
+#openViduCloseButton {
+	border: none;
+	background-color: #a59dff;
+	color: white;
+	display: flex;
+	justify-content: center;
+}

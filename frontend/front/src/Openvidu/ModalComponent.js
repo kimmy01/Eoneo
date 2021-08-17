@@ -36,7 +36,7 @@ import { faVideo } from "@fortawesome/free-solid-svg-icons";
         <Modal id="openvidu-modal" show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
           {/* close button header */}
           <Modal.Header>
-            <Modal.Title>Video Chat</Modal.Title>
+            <Modal.Title style={{textAlign:'center'}}>Video Chat</Modal.Title>
           </Modal.Header>
           <Modal.Body  >
             <Openvidu onClose={closeModal}/>
