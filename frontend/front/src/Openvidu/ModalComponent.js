@@ -28,7 +28,7 @@ import { faVideo } from "@fortawesome/free-solid-svg-icons";
       <>
        {/* modal button */}
         <Button className="video-button" onClick={() => handleShow(true)}>
-          <FontAwesomeIcon style={{fontSize: 25, color: '#a59dff'}} icon={faVideo} />
+          <FontAwesomeIcon id="videoicon"  icon={faVideo} />
           {typeof true === 'string' && `below ${true.split('-')[0]}`}
         </Button>
 

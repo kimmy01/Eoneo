@@ -19,10 +19,14 @@
     border: 0;
     cursor: pointer;
   }
+
+  #videoicon {
+    font-size: 25;
+    color: '#a59dff'
+  }
   
-  .video-button:hover {
+  #videoicon:hover {
       color: #261F74;
-      color: #fff;
       text-decoration: none;
       transition: none
     }
