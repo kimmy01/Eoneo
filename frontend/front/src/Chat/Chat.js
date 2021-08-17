@@ -15,6 +15,9 @@ import {
 import * as StompJs from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
 
+// import Stomp from 'webstomp-client';
+// import SockJS from 'sockjs-client';
+
 //css
 import './Chat.css';
 import SendIcon from '@material-ui/icons/Send';
@@ -69,7 +72,7 @@ function Chat() {
 	// websocket 연결
 	const connect = () => {
 		client.current = new StompJs.Client({
-			// brokerURL: 'ws://13.124.171.154:8080/chatEonoe-websocket',
+			brokerURL: 'wss://chatEonoe-websocket',
 			// webSocketFactory: () => new SockJS("/chatEonoe-websocket"), // proxy를 통한 접속 //internet explore
 			webSocketFactory: () => new SockJS('/chatEonoe-websocket'),
 			connectHeaders: { Authorization: jwttoken },

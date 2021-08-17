@@ -65,7 +65,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public UserDto getUserInfo(Long id){
         User user = userRepository.findUserById(id);
-        System.out.println(user.getAuthorities()); //테이블3개 user, user_authority, authority,
+//        System.out.println(user.getAuthorities()); //테이블3개 user, user_authority, authority,
 //        Set<Authority> authorities = user.getAuthorities();
         List<Topic> topicList = new ArrayList<>();
 
