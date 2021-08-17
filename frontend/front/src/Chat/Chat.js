@@ -223,11 +223,11 @@ function Chat() {
         // connect()
 	};
 
-	// const videoMessage = (event) => {
-	// 	event.stopPropagation();
-	// 	// console.log("start chat")
-	// 	publish("start chat")
-	// }
+	const videoMessage = (event) => {
+		event.stopPropagation();
+		// console.log("start chat")
+		publish("start chat")
+	}
 
 	return (
 		<div>
@@ -326,7 +326,7 @@ function Chat() {
 							/>
 							<p className='contact-profilename'>{opponentdata.username}</p>
 							<div style={{ float: 'right', marginTop: 10 }}>
-								<ModalComponent onClick={publish("start chat")}/>
+								<ModalComponent onClick={(e) => videoMessage(e)}/>
 							</div>
 						</div>
 
