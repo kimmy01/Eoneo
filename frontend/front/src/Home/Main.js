@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginPage from '../components/LoginPage/LoginPage'
 import mainlogo from "../assets/main/mainlogo.png";
-import enoeo_intro from '../../../src/assets/main/enoeo_intro.png';
+import enoeo_intro from '../../src/assets/main/enoeo_intro.png';
 import './main.css';
 
 
