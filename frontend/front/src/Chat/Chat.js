@@ -204,8 +204,8 @@ function Chat() {
 			setOpponentUid(user1UId);
 		}
 		setSelectChatroomId(chatRoomId);
-        disconnect()
-        connect()
+        // disconnect()
+        // connect()
 	};
 
 	return (
