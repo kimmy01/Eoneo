@@ -16,8 +16,7 @@ import {
 
 import axios from 'axios';
 import './formmypage.css';
-import { textAlign } from '@material-ui/system';
-import { readBuilderProgram } from 'typescript';
+import { useHistory } from 'react-router-dom';
 
 const FormMyPage = () => {
 	const [user, setAllDetail] = useRecoilState(userDetailState);
@@ -70,15 +69,10 @@ const FormMyPage = () => {
 				);
 			});
 		}
-		// console.log(checkedTopic)
-		console.log(user);
-		console.log(userDetail);
 	}, []);
 
 	const handleTopic = (data, e) => {
 		// e.preventDefault();
-		console.log(checkedTopic);
-		console.log(selectTopic);
 
 		if (checkedTopic[data]) {
 			selectTopic.delete(data);
@@ -96,7 +90,7 @@ const FormMyPage = () => {
 	//nationality, gender, nickname, profile_image
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		console.log(name + ' ' + value);
+		// console.log(name + ' ' + value);
 		setUserDetail({
 			...userDetail,
 			[name]: value,
@@ -115,11 +109,11 @@ const FormMyPage = () => {
 		};
 		render.readAsDataURL(file);
 
-		console.log(file);
+		// console.log(file);
 
 		///////////////////////////////////이 위로
 
-		console.log(e.target);
+		// console.log(e.target);
 		const name = e.target.name;
 		setUserDetail({
 			...userDetail,
@@ -130,14 +124,16 @@ const FormMyPage = () => {
 
 	const token = 'Bearer ' + localStorage.getItem('token');
 
+	let history = useHistory();
+
 	const handlePutSubmit = async (e) => {
 		e.preventDefault();
 		userDetail.topicList = Array.from(selectTopic);
 		let data = userDetail;
 		// data.userid = userId;
-		console.log(data);
+		// console.log(data);
 		data = JSON.stringify(data);
-		console.log('Json' + data);
+		// console.log('Json' + data);
 		//text 파일
 		if (user.userDetail?.id) {
 			await axios
@@ -178,7 +174,8 @@ const FormMyPage = () => {
 					console.log(res);
 				});
 		}
-		// window.location.href = "/mypage"
+
+		history.push('/mypage');
 	};
 
 	return (

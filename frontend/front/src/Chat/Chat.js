@@ -72,9 +72,9 @@ function Chat() {
 	// websocket 연결
 	const connect = () => {
 		client.current = new StompJs.Client({
-			brokerURL: 'wss://api/chatEonoe-websocket',
+			// brokerURL: 'wss://api/chatEonoe-websocket',
 			// webSocketFactory: () => new SockJS("/chatEonoe-websocket"), // proxy를 통한 접속 //internet explore
-			// webSocketFactory: () => new SockJS('/api/chatEonoe-websocket'),
+			webSocketFactory: () => new SockJS('/api/chatEonoe-websocket'),
 			connectHeaders: { Authorization: jwttoken },
 			debug: function (str) {
 				console.log(str);
@@ -198,15 +198,11 @@ function Chat() {
 		setRoomSeq(chatRoomId);
 		// setOpponentData(opponentUserData);
 		if (user1Id === parseInt(my_id)) {
-			console.log(mydata.id);
-			console.log('2', user2Id);
 			getUserData(user2Id);
 			// setOpponentName(user2Name);
 			setMyUid(user1UId);
 			setOpponentUid(user2UId);
 		} else {
-			console.log(my_id);
-			console.log('1', user1Id);
 			// setOpponentName(user1Name);
 			getUserData(user1Id);
 			setMyUid(user2UId);

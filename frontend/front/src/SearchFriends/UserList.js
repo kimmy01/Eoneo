@@ -50,8 +50,6 @@ function UserList() {
 				setUser2UId(response.data.data.user2UId);
 				setRoomSeq(response.data.data.chatRoomId);
 				setRoomSeq(response.data.data.chatRoomId, history.push('/chat'));
-
-				console.log(response);
 			})
 			.catch((err) => console.log(err));
 	};
