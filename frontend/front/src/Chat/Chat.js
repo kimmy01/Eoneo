@@ -299,7 +299,7 @@ function Chat() {
 								src={'/static/img/' + opponentdata?.userDetail?.profile_image}
 							/>
 							<p className='contact-profilename'>{opponentdata.username}</p>
-							<div onClick={publish("start chat")} style={{ float: 'right', marginTop: 10 }}>
+							<div style={{ float: 'right', marginTop: 10 }}>
 								<ModalCompontet />
 							</div>
 						</div>
