@@ -9,6 +9,7 @@ import {
 	user2IdState,
 	user2UIdState,
 	roomSeqState,
+	myUidState
 } from '../state/state.js';
 import { Badge } from '@material-ui/core';
 import axios from 'axios';
@@ -24,6 +25,7 @@ function UserList() {
 	const [user2Id, setUser2Id] = useRecoilState(user2IdState);
 	const [user2UId, setUser2UId] = useRecoilState(user2UIdState);
 	const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState);
+	const [myUid, setMyUid] = useRecoilState(myUidState);
 
 	// const [RoomSeq2, setRoomSeq2] = useState("test");
 	const jwttoken = 'Bearer ' + localStorage.getItem('token');
@@ -48,6 +50,12 @@ function UserList() {
 			})
 			.then((response) => {
 				console.log(response)
+				if (user1Id === parseInt(myId)) {
+					setMyUid(response.data.data.user1UId)
+				}
+				else {
+					setMyUid(response.data.data.user2UId)
+				}
 				setUser1Id(response.data.data.user1Id);
 				setUser2Id(response.data.data.user2Id);
 				setUser1UId(response.data.data.user1UId);

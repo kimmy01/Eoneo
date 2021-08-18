@@ -57,7 +57,7 @@ function Chat() {
 	const [selectChatroomId, setSelectChatroomId] = useState('');
 	const [chatrooms, setChatrooms] = useState([]);
 	const [opponentdata, setOpponentdata] = useState(defaultData);
-	const [myUid, setMyUid] = useState("12");
+	// const [myUid, setMyUid] = useState("");
 
 	//openvidu state
 	const [fullscreen, setFullscreen] = useState(true);
@@ -66,7 +66,7 @@ function Chat() {
 
 	//recoildata
 	const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState);
-	// const [myUid, setMyUid] = useRecoilState(myUidState);
+	const [myUid, setMyUid] = useRecoilState(myUidState);
 	const [opponentUid, setOpponentUid] = useRecoilState(opponentUidState);
 
 	// recoil only get
