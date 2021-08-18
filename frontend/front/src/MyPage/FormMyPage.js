@@ -135,11 +135,12 @@ const FormMyPage = () => {
 	const handlePutSubmit = async (e) => {
 		e.preventDefault();
 		userDetail.topicList = Array.from(selectTopic);
+		userDetail.profile_image = '2001798500230046.png';
 		let data = userDetail;
 		// data.userid = userId;
 		// console.log(data);
 		data = JSON.stringify(data);
-		// console.log('Json' + data);
+		console.log('Json' + data);
 		//text 파일
 		if (user.userDetail?.id) {
 			await axios
@@ -165,24 +166,21 @@ const FormMyPage = () => {
 				});
 		}
 
-		const formData = new FormData();
-		formData.append('id', userId);
 		if (profileImage != '') {
+			const formData = new FormData();
+			formData.append('id', userId);
 			formData.append('multipartFile', profileImage);
-		} else {
-			formData.append('multipartFile', defaultImg);
+			await axios
+				.post('/api/profileimage', formData, {
+					headers: {
+						Authorization: token,
+					},
+				})
+				.then((res) => {
+					console.log(res);
+				});
+			history.push('/mypage');
 		}
-
-		await axios
-			.post('/api/profileimage', formData, {
-				headers: {
-					Authorization: token,
-				},
-			})
-			.then((res) => {
-				console.log(res);
-			});
-		history.push('/mypage');
 	};
 
 	return (

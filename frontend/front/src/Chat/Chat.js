@@ -86,30 +86,38 @@ function Chat() {
 	useEffect(() => {
 		// 자신의 대한 자세한 데이터가 왜 필요한 걸까요..?
 		getMyData();
+		getChatroomList();
 		//SearchFriend에서 클릭해서 왔을 경우 Room 번호 설정해주기
+		console.log(RoomSeq);
 		if (RoomSeq) {
 			setRoomId(RoomSeq);
 			if (user1Id === my_id) {
 				setMyUid(user1UId);
 				setOppUid(user2UId);
 				setOppId(user2Id);
+				connect(user1UId);
 			} else {
 				setMyUid(user2UId);
 				setOppUid(user1UId);
 				setOppId(user1Id);
+				connect(user2UId);
 			}
+			// connect();
+			getDBdata();
 		} else {
 			setOpponentdata(defaultData);
 		}
+		console.log('처음 렌더링 될 때');
 	}, []);
 
-	useEffect(() => {
-		getChatroomList();
-		getDBdata();
-		if (setOpponentdata.username !== 'Eoneo Bot') {
-			connect();
-		}
-	}, [roomId]);
+	// useEffect(() => {
+	// 	console.log(roomId);
+	// 	getDBdata();
+	// 	console.log('roomId' + roomId);
+	// 	if (roomId) {
+	// 		connect();
+	// 	}
+	// }, [roomId]);
 
 	// useEffect(() => {
 	// 	dafaultcheck();
@@ -121,7 +129,7 @@ function Chat() {
 	};
 
 	// websocket 연결
-	const connect = () => {
+	const connect = (uid) => {
 		client.current = new StompJs.Client({
 			// brokerURL: 'wss://api/chatEonoe-websocket',
 			// webSocketFactory: () => new SockJS("/chatEonoe-websocket"), // proxy를 통한 접속 //internet explore
@@ -134,7 +142,7 @@ function Chat() {
 			heartbeatIncoming: 4000,
 			heartbeatOutgoing: 4000,
 			onConnect: () => {
-				subscribe();
+				subscribe(uid);
 			},
 			onStompError: (frame) => {
 				console.error(frame);
@@ -148,9 +156,9 @@ function Chat() {
 	};
 
 	// 메시지 구독
-	const subscribe = () => {
+	const subscribe = (uid) => {
 		client.current.subscribe(
-			'/subscribe/' + myUid + '/queue/message',
+			'/subscribe/' + uid + '/queue/message',
 			({ body }) => {
 				setChatMessages((chatMessages) => [...chatMessages, JSON.parse(body)]);
 			}
@@ -273,12 +281,13 @@ function Chat() {
 			setMyUid(user1UId);
 			setOppUid(user2UId);
 			setOppId(user2Id);
+			connect(user1Id);
 		} else {
 			setMyUid(user2UId);
 			setOppUid(user1UId);
 			setOppId(user1Id);
+			user1Id(user2UId);
 		}
-		connect();
 	};
 
 	return (
