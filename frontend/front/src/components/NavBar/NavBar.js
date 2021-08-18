@@ -28,7 +28,11 @@ function NavBar() {
 	};
 
 	const navChat = () => {
-		setRoomSeq("", history.push('/chat'));
+		if (RoomSeq === "0"){
+			setRoomSeq("1", history.push('/chat'));
+		} else {
+			setRoomSeq("0", history.push('/chat'));
+		}
 	}
 
 	return (
