@@ -39,12 +39,12 @@ const UserOverview = ({ overview }) => {
 					?
 					<div>
 						<FontAwesomeIcon style= {{color:"blue", fontSize:20, display:'inline-block'}} icon={faMars} />
-						<h3 style={{display:'inline-block'}}> &nbsp {data.nickname} ({data.username})</h3>
+						<h3 style={{display:'inline-block'}}> {data.nickname} ({data.username})</h3>
 					</div>
 					:
 					<div>
 						<FontAwesomeIcon style= {{color: "pink",fontSize:20, display:'inline-block'}} icon={faVenus} />
-						<h3 style={{display:'inline-block'}}>&nbsp {data.nickname} ({data.username})</h3>
+						<h3 style={{display:'inline-block'}}> {data.nickname} ({data.username})</h3>
 					</div>
 				
 				}
