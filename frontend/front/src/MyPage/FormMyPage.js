@@ -46,9 +46,11 @@ const FormMyPage = () => {
 			: defaultImg,
 	});
 	//이미지를 업로드 할 때 필요한 데이터
-	const [profileImage, setProfileImage] = useState(userDetail.profile_image);
+	const [profileImage, setProfileImage] = useState(defaultImg);
 	//미리 보여주는 이미지
-	const [profileimagepreview, setProfileImagePreview] = useState(profileImage);
+	const [profileimagepreview, setProfileImagePreview] = useState(
+		userDetail.profile_image
+	);
 	const [selectTopic, setSelectTopic] = useState(new Set());
 
 	const topics = useMemo(() => {
@@ -163,22 +165,23 @@ const FormMyPage = () => {
 				});
 		}
 
+		const formData = new FormData();
+		formData.append('id', userId);
 		if (profileImage != '') {
-			const formData = new FormData();
-			formData.append('id', userId);
 			formData.append('multipartFile', profileImage);
-
-			await axios
-				.post('/api/profileimage', formData, {
-					headers: {
-						Authorization: token,
-					},
-				})
-				.then((res) => {
-					console.log(res);
-				});
+		} else {
+			formData.append('multipartFile', defaultImg);
 		}
 
+		await axios
+			.post('/api/profileimage', formData, {
+				headers: {
+					Authorization: token,
+				},
+			})
+			.then((res) => {
+				console.log(res);
+			});
 		history.push('/mypage');
 	};
 

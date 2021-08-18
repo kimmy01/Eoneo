@@ -106,7 +106,9 @@ function Chat() {
 	useEffect(() => {
 		getChatroomList();
 		getDBdata();
-		connect();
+		if (setOpponentdata.username !== 'Eoneo Bot') {
+			connect();
+		}
 	}, [roomId]);
 
 	// useEffect(() => {
@@ -161,11 +163,11 @@ function Chat() {
 			return;
 		}
 		let messagesdata = {
-			chatRoomId: RoomSeq,
+			chatRoomId: roomId,
 			sendUserId: mydata.id,
 			message: message,
 			sendUserUId: myUid,
-			receiveUserUId: opponentUid,
+			receiveUserUId: oppUid,
 		};
 
 		client.current.publish({
@@ -196,19 +198,19 @@ function Chat() {
 			.catch((Err) => console.error(Err));
 	};
 
-	const getUserData = async (userId) => {
-		await axios
-			.get(`/api/userinfo/${userId}`, config)
-			.then((response) => {
-				setOpponentdata(response.data);
-			})
-			.catch((Err) => console.error(Err));
-	};
+	// const getUserData = async (userId) => {
+	// 	await axios
+	// 		.get(`/api/userinfo/${userId}`, config)
+	// 		.then((response) => {
+	// 			setOpponentdata(response.data);
+	// 		})
+	// 		.catch((Err) => console.error(Err));
+	// };
 
 	// 채팅메시지: 해당채팅방 메시지정보 불러오는 함수
 	const getDBdata = async () => {
 		await axios
-			.get(`/api/chatroom/room/${RoomSeq}/`, config)
+			.get(`/api/chatroom/room/${roomId}/`, config)
 			.then(setChatMessages([])) //메세지 값 비어주고
 			.then((response) => {
 				response.data.data.chats.map((chat, chatMessageId) =>
@@ -265,6 +267,7 @@ function Chat() {
 		user2Id,
 		user2UId
 	) => {
+		disconnect();
 		setRoomId(chatRoomId);
 		if (user1Id === parseInt(my_id)) {
 			setMyUid(user1UId);
@@ -275,7 +278,6 @@ function Chat() {
 			setOppUid(user1UId);
 			setOppId(user1Id);
 		}
-		disconnect();
 		connect();
 	};
 

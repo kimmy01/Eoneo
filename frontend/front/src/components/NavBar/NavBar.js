@@ -5,16 +5,13 @@ import { withRouter } from 'react-router-dom';
 import mainlogo from '../../../src/assets/main/mainlogo2.png';
 import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import {
-    roomSeqState
-} from "../../state/state";
-
+import { roomSeqState } from '../../state/state';
 
 function NavBar() {
 	const [isLogin, setisLogin] = useState(false);
-	const [RoomSeq,setRoomSeq] = useRecoilState(roomSeqState)
+	const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState);
 	let history = useHistory();
-	
+
 	useEffect(() => {
 		if (localStorage.getItem('token')) {
 			setisLogin(true);
@@ -28,12 +25,8 @@ function NavBar() {
 	};
 
 	const navChat = () => {
-		if (RoomSeq === "0"){
-			setRoomSeq("1", history.push('/chat'));
-		} else {
-			setRoomSeq("0", history.push('/chat'));
-		}
-	}
+		setRoomSeq('', history.push('/chat'));
+	};
 
 	return (
 		<div>

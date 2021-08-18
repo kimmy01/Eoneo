@@ -104,7 +104,6 @@ export const selectChatroomIdState = atom({
 	effects_UNSTABLE: [persistAtom],
 });
 
-
 // searchfriends
 const userid = localStorage.getItem('user_id');
 
@@ -170,7 +169,7 @@ export const userIdState = atom({
 
 export const user1IdState = atom({
 	key: 'user1Id',
-	default: 0,
+	default: '',
 	effects_UNSTABLE: [persistAtom],
 });
 
@@ -182,7 +181,7 @@ export const user1UIdState = atom({
 
 export const user2IdState = atom({
 	key: 'user2Id',
-	default: 0,
+	default: '',
 	effects_UNSTABLE: [persistAtom],
 });
 
