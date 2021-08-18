@@ -49,10 +49,11 @@ export default function App() {
                 <Route exact path="/" component={Main} /> 
                 <Route exact path="/signup" component={SignupPage}/>
               </div>
+
               :
             <div>
               <NavBar />
-              <Route exact path="/searchFriends" component={SearchFriends} />
+              <Route exact path="/" component={SearchFriends} />
               {/* chat */}
               <Route exact path="/chat" component={Chat} />
               {/* <Route exact path="/chatvideo" component={ChatVideo} /> */}

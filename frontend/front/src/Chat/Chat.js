@@ -261,10 +261,10 @@ function Chat() {
 
 	return (
 		<div>
-			<h1>{selectChatroomId}</h1>
+			{/* <h1>{selectChatroomId}</h1>
             <h1>{RoomSeq}</h1>
             <h1>{myUid}</h1> 
-            <h1>{opponentUid}</h1> 
+            <h1>{opponentUid}</h1>  */}
 
 			<div id='frame'>
 				{/* 사이드바 */}
