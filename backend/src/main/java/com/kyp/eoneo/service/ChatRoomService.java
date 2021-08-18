@@ -74,12 +74,14 @@ public class ChatRoomService {
 
 //    chatRoomList
     public List<ChatRoomDto> getChatRoomList(Long userId) {
+        System.out.println("userId :" + userId);
         List<ChatRoomDto> lists = chatRoomRepository.findChatRoomList(userId);
         if(lists == null) throw new CustomException(MEMBER_NOT_FOUND);
 
         for(int i=0; i< lists.size(); i++){
             Long opponentId = lists.get(i).getUser1Id() == userId? lists.get(i).getUser2Id() : lists.get(i).getUser1Id();
             lists.get(i).setUnReadCount(chatRoomRepository.getUnReadMessage(lists.get(i).getChatRoomId(), userId));
+            System.out.println("opponentId" + opponentId);
             User user = userRepository.findUserById(opponentId);
             lists.get(i).setUserDetail(user.getUserDetail());
             List<Topic> topic = new ArrayList<>();
