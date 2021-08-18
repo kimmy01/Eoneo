@@ -156,7 +156,7 @@
 }
 
 #frame #sidepanel #contacts {
-	height: calc(100% - 177px);
+	height: 100%;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
