@@ -43,7 +43,7 @@ const FormMyPage = () => {
 			? user.userDetail?.profile_image
 			: '',
 	});
-	const [profileImage, setProfileImage] = useState(userDetail?.profile_image);
+	const [profileImage, setProfileImage] = useState('');
 	const [profileimagepreview, setProfileImagePreview] = useState(profileImage);
 	const [selectTopic, setSelectTopic] = useState(new Set());
 
