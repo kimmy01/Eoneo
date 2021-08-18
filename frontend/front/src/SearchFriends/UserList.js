@@ -63,7 +63,7 @@ function UserList() {
 				setUser1UId(response.data.data.user1UId);
 				setUser2UId(response.data.data.user2UId);
 				setRoomSeq(response.data.data.chatRoomId);
-				setSelectChatroomId(response.data.data.chatRoomId, history.push('/chat'))
+				setSelectChatroomId(response.data.data.chatRoomId, history.push('/chat'));
 			})
 			.catch((err) => console.log(err));
 	};
