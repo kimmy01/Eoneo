@@ -78,6 +78,7 @@ function Chat() {
 		getMyData();
 		setRoomSeq(RoomSeq);
 		selectChatroom(RoomSeq, user1Id, user1UId, user2Id, user2UId);
+		dafaultcheck()
 		getChatroomList();
 		connect();
 	}, []);
@@ -224,6 +225,12 @@ function Chat() {
 	};
 
 	// 채팅방 선택: 채팅방을 선택하는 함수
+	const dafaultcheck = () => {
+		if (RoomSeq === "") {
+			setOpponentdata(defaultData)
+		}
+	}
+
 	const selectChatroom = async (
 		chatRoomId,
 		user1Id,
@@ -237,7 +244,8 @@ function Chat() {
 			getUserData(user2Id);
 			setMyUid(user1UId);
 			setOpponentUid(user2UId);
-		} else {
+		}
+		else {
 			getUserData(user1Id);
 			setMyUid(user2UId);
 			setOpponentUid(user1UId);
