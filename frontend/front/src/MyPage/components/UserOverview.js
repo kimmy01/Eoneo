@@ -3,6 +3,7 @@ import './useroverview.css';
 import { Badge } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMars, faVenus } from "@fortawesome/free-solid-svg-icons";
+import { blue } from '@material-ui/core/colors';
 
 const UserOverview = ({ overview }) => {
 	const data = overview;
@@ -37,13 +38,13 @@ const UserOverview = ({ overview }) => {
 				
 					?
 					<div>
-						<FontAwesomeIcon style= {{fontSize:20, display:'inline-block'}} icon={faMars} />
-						<h3 style={{display:'inline-block'}}>{data.nickname} ({data.username})</h3>
+						<FontAwesomeIcon style= {{color:"blue", fontSize:20, display:'inline-block'}} icon={faMars} />
+						<h3 style={{display:'inline-block'}}> &nbsp {data.nickname} ({data.username})</h3>
 					</div>
 					:
 					<div>
-						<FontAwesomeIcon style= {{fontSize:20, display:'inline-block'}} icon={faVenus} />
-						<h3 style={{display:'inline-block'}}>{data.nickname} ({data.username})</h3>
+						<FontAwesomeIcon style= {{color: "pink",fontSize:20, display:'inline-block'}} icon={faVenus} />
+						<h3 style={{display:'inline-block'}}>&nbsp {data.nickname} ({data.username})</h3>
 					</div>
 				
 				}
