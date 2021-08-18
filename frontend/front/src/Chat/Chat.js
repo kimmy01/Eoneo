@@ -91,7 +91,7 @@ function Chat() {
 		console.log(RoomSeq);
 		if (RoomSeq) {
 			setRoomId(RoomSeq);
-			if (user1Id === my_id) {
+			if (user1Id === parseInt(my_id)) {
 				setMyUid(user1UId);
 				setOppUid(user2UId);
 				getUserData(user2Id);
@@ -296,7 +296,6 @@ function Chat() {
 			setMyUid(user2UId);
 			setOppUid(user1UId);
 			setOppId(user1Id);
-			user1Id(user2UId);
 			connect(user2UId);
 		}
 	};

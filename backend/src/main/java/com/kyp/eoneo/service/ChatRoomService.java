@@ -84,6 +84,7 @@ public class ChatRoomService {
             }else {
                 opponentId = lists.get(i).getUser1Id();
             }
+
             lists.get(i).setUnReadCount(chatRoomRepository.getUnReadMessage(lists.get(i).getChatRoomId(), userId));
             System.out.println("opponentId" + opponentId);
             User user = userRepository.findUserById(opponentId);
