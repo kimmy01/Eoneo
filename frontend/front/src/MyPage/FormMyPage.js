@@ -17,7 +17,7 @@ import {
 import axios from 'axios';
 import './formmypage.css';
 import { useHistory } from 'react-router-dom';
-import defaultImg from '../../../src/assets/mypage/defaultImg.png';
+import defaultImg from '../../src/assets/mypage/defaultImg.png';
 
 const FormMyPage = () => {
 	const [user, setAllDetail] = useRecoilState(userDetailState);
