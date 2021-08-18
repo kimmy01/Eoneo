@@ -10,7 +10,7 @@ import {
 	user2UIdState,
 	roomSeqState,
 	myUidState,
-	selectChatroomIdState
+	selectChatroomIdState,
 } from '../state/state.js';
 import { Badge } from '@material-ui/core';
 import axios from 'axios';
@@ -20,7 +20,9 @@ function UserList() {
 	let history = useHistory();
 	const [userList] = useRecoilState(getUserListState);
 	const [myId] = useRecoilState(userIdState);
-	const [selectChatroomId, setSelectChatroomId] = useRecoilState(selectChatroomIdState);
+	const [selectChatroomId, setSelectChatroomId] = useRecoilState(
+		selectChatroomIdState
+	);
 	// const [roomData , setRoomData] = useRecoilState(roomDataState);
 	const [user1Id, setUser1Id] = useRecoilState(user1IdState);
 	const [user1UId, setUser1UId] = useRecoilState(user1UIdState);
@@ -33,8 +35,8 @@ function UserList() {
 	const jwttoken = 'Bearer ' + localStorage.getItem('token');
 
 	const clickHandler = (params, e) => {
-		const Uid1 = (Math.random().toString(36).substr(2, 11))
-		const Uid2 = (Math.random().toString(36).substr(2, 11))
+		const Uid1 = Math.random().toString(36).substr(2, 11);
+		const Uid2 = Math.random().toString(36).substr(2, 11);
 		setUser1UId(Uid1);
 		setUser2UId(Uid2);
 		// setUser2Id(params);
@@ -51,19 +53,25 @@ function UserList() {
 				headers: { Authorization: jwttoken },
 			})
 			.then((response) => {
-				console.log(response)
+				console.log(response);
+				// setMyUid를 담는 이유가 무엇인가...
 				if (user1Id === parseInt(myId)) {
-					setMyUid(response.data.data.user1UId)
+					setMyUid(response.data.data.user1UId);
+				} else {
+					setMyUid(response.data.data.user2UId);
 				}
-				else {
-					setMyUid(response.data.data.user2UId)
-				}
+				//여기서도 담는데... 비동기?
 				setUser1Id(response.data.data.user1Id);
 				setUser2Id(response.data.data.user2Id);
 				setUser1UId(response.data.data.user1UId);
 				setUser2UId(response.data.data.user2UId);
+				//여기서도 두번 담는 이유가 도대체 뭔지 모르겠음
+				//우선 리코일에 데이터를 저장
 				setRoomSeq(response.data.data.chatRoomId);
-				setSelectChatroomId(response.data.data.chatRoomId, history.push('/chat'));
+				setSelectChatroomId(
+					response.data.data.chatRoomId,
+					history.push('/chat')
+				);
 			})
 			.catch((err) => console.log(err));
 	};
@@ -82,7 +90,7 @@ function UserList() {
 							anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 							badgeContent={
 								<img
-									ID= "UserListFlag"
+									ID='UserListFlag'
 									src={user.userDetail?.nationality?.flag}
 									width='40px'
 									alt='flag'
@@ -107,9 +115,10 @@ function UserList() {
 							<p id='native'>{user.userLanguage.nativeLanguage.language}</p>
 						</div>
 					</div>
-					
-					<p id="explain">Do you wanna chat with {user.userDetail?.nickname}?</p>
-					
+
+					<p id='explain'>
+						Do you wanna chat with {user.userDetail?.nickname}?
+					</p>
 				</div>
 			))}
 		</div>

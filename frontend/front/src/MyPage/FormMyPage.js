@@ -17,6 +17,7 @@ import {
 import axios from 'axios';
 import './formmypage.css';
 import { useHistory } from 'react-router-dom';
+import defaultImg from '../../../src/assets/mypage/defaultImg.png';
 
 const FormMyPage = () => {
 	const [user, setAllDetail] = useRecoilState(userDetailState);
@@ -25,25 +26,28 @@ const FormMyPage = () => {
 	const countryList = useRecoilValueLoadable(getCountryState);
 	const [checkedTopic, setcheckedTopic] = useState(new Array(15).fill(false));
 	const userId = localStorage.getItem('user_id');
+	//수정 후 갖고 오는 데이터
 	const [userDetail, setUserDetail] = useState({
 		userid: userId,
 		nationality:
-			user.userDetail == null ? '' : user.userDetail?.nationality.code,
+			user.userDetail == null ? 'KR' : user.userDetail?.nationality.code,
 		gender: user.userDetail == null ? 1 : 0,
 		nickname: user.userDetail == null ? '' : user.userDetail?.nickname,
 		description: user.userDetail == null ? '' : user.userDetail?.description,
 		fluentLanguage:
-			user.userLanguage == null ? '' : user.userLanguage?.fluentLanguage.code,
+			user.userLanguage == null ? 'KR' : user.userLanguage?.fluentLanguage.code,
 		nativeLanguage:
-			user.userLanguage == null ? '' : user.userLanguage?.nativeLanguage.code,
+			user.userLanguage == null ? 'KR' : user.userLanguage?.nativeLanguage.code,
 		wantLanguage:
-			user.userLanguage == null ? '' : user.userLanguage?.wantLanguage.code,
+			user.userLanguage == null ? 'EN' : user.userLanguage?.wantLanguage.code,
 		topicList: user.topicList == [] ? [] : user.topicList,
 		profile_image: user.userDetail?.profile_image
 			? user.userDetail?.profile_image
-			: '',
+			: defaultImg,
 	});
-	const [profileImage, setProfileImage] = useState('');
+	//이미지를 업로드 할 때 필요한 데이터
+	const [profileImage, setProfileImage] = useState(userDetail.profile_image);
+	//미리 보여주는 이미지
 	const [profileimagepreview, setProfileImagePreview] = useState(profileImage);
 	const [selectTopic, setSelectTopic] = useState(new Set());
 
@@ -99,7 +103,6 @@ const FormMyPage = () => {
 	};
 	// profile_image
 
-	
 	const handleFileChange = (e) => {
 		e.preventDefault();
 
@@ -190,9 +193,9 @@ const FormMyPage = () => {
 					<img
 						id='preview'
 						src={
-							profileimagepreview
-							? profileimagepreview
-							: '/static/img/' + user.userDetail?.profile_image
+							profileimagepreview === user.userDetail?.profile_image
+								? '/static/img/' + user.userDetail?.profile_image
+								: profileimagepreview
 						}
 						alt='profile_image'
 					/>
@@ -244,7 +247,6 @@ const FormMyPage = () => {
 							onChange={handleChange}
 						/>
 						<label for='radio1'>Female</label>
-						
 					</label>
 
 					<br />

@@ -1,94 +1,118 @@
 //react
-import React, { useEffect, useRef, useState } from "react";
-import { useRecoilState } from "recoil";
-import ScrollToBottom from "react-scroll-to-bottom";
+import React, { useEffect, useRef, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import ScrollToBottom from 'react-scroll-to-bottom';
 import {
-    myUidState,
-    opponentUidState,
-    roomSeqState,
-    opponentdataState,
-    user1IdState,
-    user2IdState,
-    user1UIdState,
-    user2UIdState,
-	selectChatroomIdState
-} from "../state/state";
-import * as StompJs from "@stomp/stompjs";
-import * as SockJS from "sockjs-client";
+	myUidState,
+	opponentUidState,
+	roomSeqState,
+	opponentdataState,
+	user1IdState,
+	user2IdState,
+	user1UIdState,
+	user2UIdState,
+	selectChatroomIdState,
+} from '../state/state';
+import * as StompJs from '@stomp/stompjs';
+import * as SockJS from 'sockjs-client';
 
 //css
-import "./Chat.css";
+import './Chat.css';
 import SendIcon from '@material-ui/icons/Send';
-import axios from 'axios'
+import axios from 'axios';
 import { Badge } from '@material-ui/core';
 // import ModalComponent from "../Openvidu/ModalComponent";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 //openvidu
 import Openvidu from '../Openvidu/Openvidu';
 // openvidu css
-import {Button,Modal} from "react-bootstrap"
-import { faVideo } from "@fortawesome/free-solid-svg-icons";
-
-
+import { Button, Modal } from 'react-bootstrap';
+import { faVideo } from '@fortawesome/free-solid-svg-icons';
 
 function Chat() {
 	// localstorage
 	const client = useRef({});
 	const jwttoken = 'Bearer ' + localStorage.getItem('token');
 	const my_id = localStorage.getItem('user_id');
-    const defaultData = {
 
-        username:'Eoneo Bot', 
-        userDetail:{
-            // ? i I?
-            profile_image:'1925626731595746.png'},
-        userLanguage:{
-            fluentLanguage:{language:'fluent'},
-            nativeLanguage:{language:'native'},
-            wantLanguage:{language:'want'},
-        }
-    }
-
-	// usestate
-	const [chatMessages, setChatMessages] = useState([]);
-	const [message, setMessage] = useState('');
-	const [mydata, setMydata] = useState({});
-	const [chatrooms, setChatrooms] = useState([]);
-	const [opponentdata, setOpponentdata] = useState(defaultData);
-	// const [myUid, setMyUid] = useState("");
-	
-	//openvidu state
-	const [fullscreen, setFullscreen] = useState(true);
-    const [show, setShow] = useState(false);
-    
-	
 	//recoildata
-	const [selectChatroomId, setSelectChatroomId] = useRecoilState(selectChatroomIdState);
-	const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState);
-	const [myUid, setMyUid] = useRecoilState(myUidState);
-	const [opponentUid, setOpponentUid] = useRecoilState(opponentUidState);
+	// recoil을 쓰는 이유는 serachFriend에서 값을 가져올 때 가져오는 부분
+	// const [selectChatroomId, setSelectChatroomId] = useRecoilState(
+	// 	selectChatroomIdState
+	// );
+
+	// const [myUid, setMyUid] = useRecoilState(myUidState);
+	// const [opponentUid, setOpponentUid] = useRecoilState(opponentUidState);
 
 	// recoil only get
 	const [user1Id, setUser1Id] = useRecoilState(user1IdState);
 	const [user2Id, setUser2Id] = useRecoilState(user2IdState);
 	const [user1UId, setUser1UId] = useRecoilState(user1UIdState);
 	const [user2UId, setUser2UId] = useRecoilState(user2UIdState);
+	const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState);
+
+	const defaultData = {
+		username: 'Eoneo Bot',
+		userDetail: {
+			// ? i I?
+			profile_image: '1925626731595746.png',
+		},
+		userLanguage: {
+			fluentLanguage: { language: 'fluent' },
+			nativeLanguage: { language: 'native' },
+			wantLanguage: { language: 'want' },
+		},
+	};
+
+	// usestate
+	const [chatMessages, setChatMessages] = useState([]);
+	const [message, setMessage] = useState('');
+	const [mydata, setMydata] = useState({});
+	// chat내에서 chatroom이 변경될 때 사용되는 데이터
+	const [chatrooms, setChatrooms] = useState([]);
+	// chat내에서 상대방이 변경될 때 사용되는 데이터
+	const [opponentdata, setOpponentdata] = useState({});
+	const [roomId, setRoomId] = useState('');
+	const [myUid, setMyUid] = useState('');
+	const [oppUid, setOppUid] = useState('');
+	const [oppId, setOppId] = useState('');
+
+	//openvidu state
+	const [fullscreen, setFullscreen] = useState(true);
+	const [show, setShow] = useState(false);
 
 	useEffect(() => {
+		// 자신의 대한 자세한 데이터가 왜 필요한 걸까요..?
 		getMyData();
-		setRoomSeq(RoomSeq);
-		selectChatroom(RoomSeq, user1Id, user1UId, user2Id, user2UId);
-		getChatroomList();
-		connect()
+		//SearchFriend에서 클릭해서 왔을 경우 Room 번호 설정해주기
+		if (RoomSeq) {
+			setRoomId(RoomSeq);
+			if (user1Id === my_id) {
+				setMyUid(user1UId);
+				setOppUid(user2UId);
+				setOppId(user2Id);
+			} else {
+				setMyUid(user2UId);
+				setOppUid(user1UId);
+				setOppId(user1Id);
+			}
+		} else {
+			setOpponentdata(defaultData);
+		}
 	}, []);
 
 	useEffect(() => {
-		dafaultcheck()
+		getChatroomList();
 		getDBdata();
-	
-	}, [RoomSeq]);
+		connect();
+	}, [roomId]);
+
+	// useEffect(() => {
+	// 	dafaultcheck();
+	// 	getDBdata();
+	// }, [RoomSeq]);
 	//공통 인증 헤더
 	const config = {
 		headers: { Authorization: jwttoken },
@@ -150,21 +174,18 @@ function Chat() {
 		});
 	};
 
-
-
 	//modal on function
-	function handleShow2(event,breakpoint) {
+	function handleShow2(event, breakpoint) {
 		event.stopPropagation();
-		publish(mydata.username+" invites you to video chat!")
+		publish(mydata.username + ' invites you to video chat!');
 		setFullscreen(breakpoint);
 		setShow(true);
-		}
-
+	}
 
 	// props modal close function
-    const closeModal = () => {
-		setShow(false)
-	  }
+	const closeModal = () => {
+		setShow(false);
+	};
 
 	// 내 정보 받기
 	const getMyData = async () => {
@@ -188,14 +209,14 @@ function Chat() {
 	const getDBdata = async () => {
 		await axios
 			.get(`/api/chatroom/room/${RoomSeq}/`, config)
-			.then(setChatMessages([]))
+			.then(setChatMessages([])) //메세지 값 비어주고
 			.then((response) => {
 				response.data.data.chats.map((chat, chatMessageId) =>
 					setChatMessages((chatMessages) => [...chatMessages, chat])
 				);
 			})
-			.then(disconnect)
-			.then(connect)
+			// .then(disconnect)
+			// .then(connect)
 			.catch((Err) => console.error(Err));
 	};
 
@@ -214,26 +235,28 @@ function Chat() {
 
 	// 채팅방삭제: 해당 채팅방을 제거하는 함수
 	const deleteChatroom = async (chatRoomId, e) => {
+		e.stopPropagation();
+
 		let data = {
 			roomId: chatRoomId,
 			userId: my_id,
 		};
-		console.log(data);
+
 		await axios
 			.put('/api/chatroom/room', data, config)
 			.then(() => getChatroomList())
-            .then(()=> setChatMessages([]))
-            .then(()=> setOpponentdata(defaultData))
+			.then(() => setChatMessages([]))
+			.then(() => setOpponentdata(defaultData))
 			.catch((Err) => console.error(Err));
 	};
 
 	// 채팅방 선택: 채팅방을 선택하는 함수
-	const dafaultcheck = () => {
-		if (RoomSeq === "0" ||"1") {
-			console.log('check')
-			setOpponentdata(defaultData)
-		}
-	}
+	// const dafaultcheck = () => {
+	// 	if (RoomSeq === '0' || '1') {
+	// 		console.log('check');
+	// 		setOpponentdata(defaultData);
+	// 	}
+	// };
 
 	const selectChatroom = async (
 		chatRoomId,
@@ -241,22 +264,19 @@ function Chat() {
 		user1UId,
 		user2Id,
 		user2UId
-	
 	) => {
-		setRoomSeq(chatRoomId);
+		setRoomId(chatRoomId);
 		if (user1Id === parseInt(my_id)) {
-			getUserData(user2Id);
 			setMyUid(user1UId);
-			setOpponentUid(user2UId);
-		}
-		else {
-			getUserData(user1Id);
+			setOppUid(user2UId);
+			setOppId(user2Id);
+		} else {
 			setMyUid(user2UId);
-			setOpponentUid(user1UId);
+			setOppUid(user1UId);
+			setOppId(user1Id);
 		}
-		setSelectChatroomId(chatRoomId);
-		console.log()
-		console.log(chatRoomId,user1Id,user1UId,user2Id,user2UId)
+		disconnect();
+		connect();
 	};
 
 	return (
@@ -296,8 +316,7 @@ function Chat() {
 										);
 									}}
 									className={
-										chatroom.chatRoomId &&
-										chatroom.chatRoomId === selectChatroomId
+										chatroom.chatRoomId && chatroom.chatRoomId === roomId
 											? 'contact active'
 											: 'contact'
 									}>
@@ -322,47 +341,62 @@ function Chat() {
 											/>
 											{/* #123
                                             "data:image/jpeg;base64,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" /> */}
-                                        </Badge>
-                            
-                                    <div className="meta" >
-                                        {mydata.username === chatroom.user1Name 
-                                            ?  <p className="name" style={{display: "inline-block"}}>{chatroom.user2Name}</p>
-                                            :  <p className="name" style={{display: "inline-block"}}>{chatroom.user1Name}</p>
-                                        }
-                                
-                                        <div style={{display: "inline-block",float: "right", marginRight:20}}>
-                                            {chatroom.chatRoomId && chatroom.chatRoomId === selectChatroomId 
-                                         
-                                                ? <FontAwesomeIcon style= {{fontSize:25}} icon={faSignOutAlt} onClick={(e)=>{deleteChatroom(chatroom.chatRoomId, e)}} />
-                                                : <p></p>
-                                            }
-                                        </div>
-                                    </div>
-                            </div>
-                        </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-                {/* 중앙메시지 창 */}
+										</Badge>
 
-                {/* 1. 중앙 왼쪽 상단에 상대의 사진과 이름 표기 */}
-                <div className="content">
+										<div className='meta'>
+											{mydata.username === chatroom.user1Name ? (
+												<p className='name' style={{ display: 'inline-block' }}>
+													{chatroom.user2Name}
+												</p>
+											) : (
+												<p className='name' style={{ display: 'inline-block' }}>
+													{chatroom.user1Name}
+												</p>
+											)}
 
-                    <div className="contact-profile">
+											<div
+												style={{
+													display: 'inline-block',
+													float: 'right',
+													marginRight: 20,
+												}}>
+												{chatroom.chatRoomId &&
+												chatroom.chatRoomId === roomId ? (
+													<FontAwesomeIcon
+														style={{ fontSize: 25 }}
+														icon={faSignOutAlt}
+														onClick={(e) => {
+															deleteChatroom(chatroom.chatRoomId, e);
+														}}
+													/>
+												) : (
+													<p></p>
+												)}
+											</div>
+										</div>
+									</div>
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+				{/* 중앙메시지 창 */}
 
-                        <div style={{height:30}}>
+				{/* 1. 중앙 왼쪽 상단에 상대의 사진과 이름 표기 */}
+				<div className='content'>
+					<div className='contact-profile'>
+						<div style={{ height: 30 }}>
 							<img
 								src={'/static/img/' + opponentdata?.userDetail?.profile_image}
 							/>
 							<p className='contact-profilename'>{opponentdata.username}</p>
 							<div style={{ float: 'right', marginTop: 10 }}>
-					
-								<Button className="video-button" onClick={(e) => handleShow2(e,true)}>
-									<FontAwesomeIcon id="videoicon"  icon={faVideo} />
+								<Button
+									className='video-button'
+									onClick={(e) => handleShow2(e, true)}>
+									<FontAwesomeIcon id='videoicon' icon={faVideo} />
 									{typeof true === 'string' && `below ${true.split('-')[0]}`}
 								</Button>
-							
 							</div>
 						</div>
 
@@ -386,68 +420,80 @@ function Chat() {
                     메시지전송유저 == 나: clsaa:sent(오른쪽배치)
                     메시지전송유저 != 나: class:replies(왼쪽배치)
                 */}
-                <ScrollToBottom className="messages" style={{height:'100'}}>
-                    <ul style={{paddingLeft:0}}>
-                        {chatMessages.map((msg) => (
-                            <li style={{paddingRight: 10}} className={msg.sendUserId === mydata.id ? "sent" : "replies"}>
-                                {msg.sendUserId !== mydata.id
-                                ?(  <img src= {'/static/img/' +
-                                     opponentdata?.userDetail?.profile_image} alt="" />
-                                    )
-                                :(  <img src= { '/static/img/' +
-                                            mydata.userDetail?.profile_image} alt="" />
-                                    )}
-                                <p>{msg.message}</p>
-                            </li>
-                        ))}
-                    </ul>
-                </ScrollToBottom>
+					<ScrollToBottom className='messages' style={{ height: '100' }}>
+						<ul style={{ paddingLeft: 0 }}>
+							{chatMessages.map((msg) => (
+								<li
+									style={{ paddingRight: 10 }}
+									className={msg.sendUserId === mydata.id ? 'sent' : 'replies'}>
+									{msg.sendUserId !== mydata.id ? (
+										<img
+											src={
+												'/static/img/' + opponentdata?.userDetail?.profile_image
+											}
+											alt=''
+										/>
+									) : (
+										<img
+											src={'/static/img/' + mydata.userDetail?.profile_image}
+											alt=''
+										/>
+									)}
+									<p>{msg.message}</p>
+								</li>
+							))}
+						</ul>
+					</ScrollToBottom>
 
-                {/* 3. 메시지 전송창 */}
-                <div className="message-input">
-                    <div className="wrap">
-                        <input
-                            name="user_input"
-                            size="large"
-                            
-                            placeholder="Write your message..."
-                            value={message}
-                            onChange={(event) => setMessage(event.target.value)}
-                            onKeyPress={(event) => {
-                                if (event.key === "Enter") {
-                                publish(message);
-                                setMessage("");
-                                }
-                            }}
-                        />
-                    </div>
+					{/* 3. 메시지 전송창 */}
+					<div className='message-input'>
+						<div className='wrap'>
+							<input
+								name='user_input'
+								size='large'
+								placeholder='Write your message...'
+								value={message}
+								onChange={(event) => setMessage(event.target.value)}
+								onKeyPress={(event) => {
+									if (event.key === 'Enter') {
+										publish(message);
+										setMessage('');
+									}
+								}}
+							/>
+						</div>
 
-                {/* 4. 메시지 전송버튼 */}
-                <button
-                    id="chat-message-button"
-                    style={{display:'inline-block' }}
-                    onClick={(event) => {
-                        publish(message);
-                        setMessage("");
-                    }}
-                > <SendIcon/></button>
-            </div>
-        </div>
-    </div>
+						{/* 4. 메시지 전송버튼 */}
+						<button
+							id='chat-message-button'
+							style={{ display: 'inline-block' }}
+							onClick={(event) => {
+								publish(message);
+								setMessage('');
+							}}>
+							{' '}
+							<SendIcon />
+						</button>
+					</div>
+				</div>
+			</div>
 
-        {/* modal */}
-        <Modal id="openvidu-modal" show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
-          {/* close button header */}
-          <Modal.Header>
-            <Modal.Title style={{textAlign:'center'}}>Video Chat</Modal.Title>
-          </Modal.Header>
-          <Modal.Body  >
-            <Openvidu onClose={closeModal}/>
-          </Modal.Body>
-        </Modal>
-
-</div>
-    )
+			{/* modal */}
+			<Modal
+				id='openvidu-modal'
+				show={show}
+				fullscreen={fullscreen}
+				onHide={() => setShow(false)}>
+				{/* close button header */}
+				<Modal.Header>
+					<Modal.Title style={{ textAlign: 'center' }}>Video Chat</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<Openvidu onClose={closeModal} />
+				</Modal.Body>
+			</Modal>
+		</div>
+	);
 }
 
 export default Chat;
