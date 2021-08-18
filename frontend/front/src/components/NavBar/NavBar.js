@@ -39,7 +39,7 @@ function NavBar() {
 					<Container>
 						<div className='mynav'>
 							<div className='mynavItem'>
-								<Nav.Link href='/chat'>Chat</Nav.Link>
+								<Nav.Link onClick={navChat}>Chat</Nav.Link>
 							</div>
 							<div className='mynavItem item2'>
 								<Nav.Link className='logo' href='/searchFriends'>
