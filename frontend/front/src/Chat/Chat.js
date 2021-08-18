@@ -277,13 +277,16 @@ function Chat() {
 		user1Id,
 		user1UId,
 		user2Id,
-		user2UId
+		user2UId,
+		event
 	) => {
+		event.stopPropagation();
 		console.log('client ' + client);
 		console.log('client.current' + client.current);
-		// if (client.current) {
-		// 	disconnect();
-		// }
+		console.log(client.current);
+		if (client.current != null) {
+			disconnect();
+		}
 		setRoomId(chatRoomId);
 		getDBdata(chatRoomId);
 		if (user1Id === parseInt(my_id)) {
@@ -332,7 +335,8 @@ function Chat() {
 											chatroom.user1Id,
 											chatroom.user1UId,
 											chatroom.user2Id,
-											chatroom.user2UId
+											chatroom.user2UId,
+											e
 											// chatroom.user1Name,
 											// chatroom.user2Name,
 											// chatroom?.userDetail
