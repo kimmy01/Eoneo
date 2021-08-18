@@ -226,15 +226,6 @@ const FormMyPage = () => {
 					<label for='gender'>
 						<h5>Gender</h5>
 						<input
-							id='radio1'
-							name='gender'
-							type='radio'
-							value='0'
-							checked={userDetail.gender == 0}
-							onChange={handleChange}
-						/>
-						<label for='radio1'>Female</label>
-						<input
 							id='radio2'
 							name='gender'
 							type='radio'
@@ -243,6 +234,16 @@ const FormMyPage = () => {
 							onChange={handleChange}
 						/>
 						<label for='radio2'>Male</label>
+						<input
+							id='radio1'
+							name='gender'
+							type='radio'
+							value='0'
+							checked={userDetail.gender == 0}
+							onChange={handleChange}
+						/>
+						<label for='radio1'>Female</label>
+						
 					</label>
 
 					<br />
