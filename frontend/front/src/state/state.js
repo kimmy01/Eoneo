@@ -98,6 +98,13 @@ export const roomSeqState = atom({
 	effects_UNSTABLE: [persistAtom],
 });
 
+export const selectChatroomIdState = atom({
+	key: 'select_chatroomId',
+	default: '',
+	effects_UNSTABLE: [persistAtom],
+});
+
+
 // searchfriends
 const userid = localStorage.getItem('user_id');
 

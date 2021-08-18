@@ -9,7 +9,8 @@ import {
 	user2IdState,
 	user2UIdState,
 	roomSeqState,
-	myUidState
+	myUidState,
+	selectChatroomIdState
 } from '../state/state.js';
 import { Badge } from '@material-ui/core';
 import axios from 'axios';
@@ -19,6 +20,7 @@ function UserList() {
 	let history = useHistory();
 	const [userList] = useRecoilState(getUserListState);
 	const [myId] = useRecoilState(userIdState);
+	const [selectChatroomId, setSelectChatroomId] = useRecoilState(selectChatroomIdState);
 	// const [roomData , setRoomData] = useRecoilState(roomDataState);
 	const [user1Id, setUser1Id] = useRecoilState(user1IdState);
 	const [user1UId, setUser1UId] = useRecoilState(user1UIdState);
@@ -56,6 +58,7 @@ function UserList() {
 				else {
 					setMyUid(response.data.data.user2UId)
 				}
+				setSelectChatroomId(response.data.data.chatRoomId)
 				setUser1Id(response.data.data.user1Id);
 				setUser2Id(response.data.data.user2Id);
 				setUser1UId(response.data.data.user1UId);

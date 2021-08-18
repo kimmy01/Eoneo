@@ -10,7 +10,8 @@ import {
     user1IdState,
     user2IdState,
     user1UIdState,
-    user2UIdState
+    user2UIdState,
+	selectChatroomIdState
 } from "../state/state";
 import * as StompJs from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
@@ -54,17 +55,17 @@ function Chat() {
 	const [chatMessages, setChatMessages] = useState([]);
 	const [message, setMessage] = useState('');
 	const [mydata, setMydata] = useState({});
-	const [selectChatroomId, setSelectChatroomId] = useState('');
 	const [chatrooms, setChatrooms] = useState([]);
 	const [opponentdata, setOpponentdata] = useState(defaultData);
 	// const [myUid, setMyUid] = useState("");
-
+	
 	//openvidu state
 	const [fullscreen, setFullscreen] = useState(true);
     const [show, setShow] = useState(false);
     
-
+	
 	//recoildata
+	const [selectChatroomId, setSelectChatroomId] = useRecoilState(selectChatroomIdState);
 	const [RoomSeq, setRoomSeq] = useRecoilState(roomSeqState);
 	const [myUid, setMyUid] = useRecoilState(myUidState);
 	const [opponentUid, setOpponentUid] = useRecoilState(opponentUidState);
