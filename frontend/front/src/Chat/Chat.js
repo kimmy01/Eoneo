@@ -80,7 +80,6 @@ function Chat() {
 		setRoomSeq(RoomSeq);
 		selectChatroom(RoomSeq, user1Id, user1UId, user2Id, user2UId);
 		getChatroomList();
-		connect();
 	}, []);
 
 	useEffect(() => {
@@ -207,6 +206,7 @@ function Chat() {
 			.then((response) => {
 				setChatrooms(response.data.data.chatRoomList);
 			})
+			.then(connect)
 
 			.catch((Err) => console.error(Err));
 	};
