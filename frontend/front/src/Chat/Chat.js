@@ -57,7 +57,7 @@ function Chat() {
 	const [selectChatroomId, setSelectChatroomId] = useState('');
 	const [chatrooms, setChatrooms] = useState([]);
 	const [opponentdata, setOpponentdata] = useState(defaultData);
-	const [myUid, setMyUid] = useState("");
+	const [myUid, setMyUid] = useState("12");
 
 	//openvidu state
 	const [fullscreen, setFullscreen] = useState(true);
@@ -244,15 +244,16 @@ function Chat() {
 		setRoomSeq(chatRoomId);
 		if (user1Id === parseInt(my_id)) {
 			getUserData(user2Id);
-			setMyUid(user1UId, connect());
+			setMyUid(user1UId);
 			setOpponentUid(user2UId);
 		}
 		else {
 			getUserData(user1Id);
-			setMyUid(user2UId, connect());
+			setMyUid(user2UId);
 			setOpponentUid(user1UId);
 		}
 		setSelectChatroomId(chatRoomId);
+		console.log()
 		console.log(chatRoomId,user1Id,user1UId,user2Id,user2UId)
 	};
 
