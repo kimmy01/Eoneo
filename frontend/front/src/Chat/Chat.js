@@ -281,7 +281,7 @@ function Chat() {
 		event
 	) => {
 		event.stopPropagation();
-		if (client.current != null || client.current === {}) {
+		if (client.current !== null || client.current !== {}) {
 			disconnect();
 		}
 		setRoomId(chatRoomId);

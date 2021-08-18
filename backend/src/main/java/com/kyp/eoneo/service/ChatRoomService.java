@@ -79,7 +79,9 @@ public class ChatRoomService {
         if(lists == null) throw new CustomException(MEMBER_NOT_FOUND);
 
         for(int i=0; i< lists.size(); i++){
-            Long opponentId = lists.get(i).getUser1Id() == userId? lists.get(i).getUser2Id() : lists.get(i).getUser1Id();
+            System.out.println(lists.get(i).getUser2Id());
+            System.out.println(lists.get(i).getUser1Id());
+            Long opponentId = lists.get(i).getUser1Id() == userId ? lists.get(i).getUser2Id() : lists.get(i).getUser1Id();
             lists.get(i).setUnReadCount(chatRoomRepository.getUnReadMessage(lists.get(i).getChatRoomId(), userId));
             System.out.println("opponentId" + opponentId);
             User user = userRepository.findUserById(opponentId);
