@@ -40,7 +40,7 @@ const UserDetail = ({ detail }) => {
 		<div class="detailrootbox">
 			<div class="detailtextbox">
 				{/* <p>{data.email}</p> */}
-				{/* <p>{gap}</p> */}
+				{/* <p>{gap}</p>. */}
 				<p>It's been {gap} days since You've been with EONEO.</p>
 				<div class="topicbox">
 					{topicList.map((data) => (
