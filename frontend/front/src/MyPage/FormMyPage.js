@@ -24,7 +24,8 @@ const FormMyPage = () => {
 	const languageList = useRecoilValueLoadable(getLanguageState);
 	const countryList = useRecoilValueLoadable(getCountryState);
 	const [checkedTopic, setcheckedTopic] = useState(new Array(15).fill(false));
-	const [profileImage, setProfileImage] = useState('');
+	const [profileImage, setProfileImage] = useState('2001798500230046.png');
+	const [profileimagepreview, setProfileImagePreview] = useState(profileImage);
 	const userId = localStorage.getItem('user_id');
 	const [userDetail, setUserDetail] = useState({
 		userid: userId,
@@ -42,7 +43,7 @@ const FormMyPage = () => {
 		topicList: user.topicList == [] ? [] : user.topicList,
 		profile_image: user.userDetail?.profile_image
 			? user.userDetail?.profile_image
-			: '',
+			: '2001798500230046.png',
 	});
 	const [selectTopic, setSelectTopic] = useState(new Set());
 
@@ -98,7 +99,7 @@ const FormMyPage = () => {
 	};
 	// profile_image
 
-	const [profileimagepreview, setProfileImagePreview] = useState(profileImage);
+	
 	const handleFileChange = (e) => {
 		e.preventDefault();
 
@@ -189,11 +190,9 @@ const FormMyPage = () => {
 					<img
 						id='preview'
 						src={
-							profileimagepreview
-								? profileimagepreview
-								: '/static/img/' + user.userDetail?.profile_image
+							'/static/img/' + profileimagepreview
 						}
-						alt='profileimage'
+						alt='profile_image'
 					/>
 					<br />
 					<br />
@@ -217,7 +216,7 @@ const FormMyPage = () => {
 							value={userDetail.nickname}
 							name='nickname'
 							onChange={handleChange}
-							placeholder='insert your nickname'
+							placeholder='Insert your nickname'
 						/>
 					</label>
 
