@@ -128,7 +128,7 @@ function Chat() {
 
 	useEffect(() => {
 		setOpponentdata(defaultData);
-		setMessage('');
+		setChatMessages([]);
 		// getDBdata();
 	}, [RoomSeq]);
 	//공통 인증 헤더
