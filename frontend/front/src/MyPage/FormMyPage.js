@@ -233,7 +233,7 @@ const FormMyPage = () => {
 							checked={userDetail.gender == 0}
 							onChange={handleChange}
 						/>
-						<label for='radio1'>Woman</label>
+						<label for='radio1'>Female</label>
 						<input
 							id='radio2'
 							name='gender'
@@ -242,7 +242,7 @@ const FormMyPage = () => {
 							checked={userDetail.gender == 1}
 							onChange={handleChange}
 						/>
-						<label for='radio2'>Man</label>
+						<label for='radio2'>Male</label>
 					</label>
 
 					<br />

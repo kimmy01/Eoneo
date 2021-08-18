@@ -41,7 +41,6 @@ const UserDetail = ({ detail }) => {
 			<div class="detailtextbox">
 				{/* <p>{data.email}</p> */}
 				{/* <p>{gap}</p> */}
-				<p>It's been {gap} days since You've been with EONEO.</p>
 				<div class="topicbox">
 					{topicList.map((data) => (
 						<p id="topictext" key={data.id}>{data.topic}</p>
@@ -52,6 +51,7 @@ const UserDetail = ({ detail }) => {
 					<p id="fluentlanguage">fluent : {fluent}</p>
 					<p id="nativelanguage">native : {native}</p>
 				</div>
+				<p>It's been {gap} days since You've been with EONEO.</p>
 			</div>
 			<div class="editbtn">
 				<input type="image" onClick={clicked} src={editbtn} alt="edit" width="30px" class="editbtn"></input>

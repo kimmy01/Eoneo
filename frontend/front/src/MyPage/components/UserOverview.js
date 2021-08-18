@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './useroverview.css';
 import { Badge } from '@material-ui/core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMars, faVenus } from "@fortawesome/free-solid-svg-icons";
 
 const UserOverview = ({ overview }) => {
 	const data = overview;
 
 	var gender = '';
-	if (data.gender === 1) {
-		gender = 'male';
-	} else {
-		gender = 'female';
-	}
+	
 	// const nationality = data.nationality;
 	let location = '/static/img/' + data.profile_image;
 	// let location = '/upload/' + data.profile_image;
@@ -30,13 +28,33 @@ const UserOverview = ({ overview }) => {
 				</Badge>
 			</div>
 			<div class='textbox'>
-				<h3>
-					{data.nickname} ({data.username})
-				</h3>
+			{/* if (data.gender === 1) {
+		gender = 'male';
+	} else {
+		gender = 'female';
+	} */}
+				{data.gender ===1 
+				
+					?
+					<div>
+						<FontAwesomeIcon style= {{fontSize:20, display:'inline-block'}} icon={faMars} />
+						<h3 style={{display:'inline-block'}}>{data.nickname} ({data.username})</h3>
+					</div>
+					:
+					<div>
+						<FontAwesomeIcon style= {{fontSize:20, display:'inline-block'}} icon={faVenus} />
+						<h3 style={{display:'inline-block'}}>{data.nickname} ({data.username})</h3>
+					</div>
+				
+				}
+				
 				{/* <p>{data.username}</p> */}
-				<p>{data.description}</p>
-				<p>{gender}</p>
-				<p>{data.nationality?.name}</p>
+				<div style={{marginTop:5}}>
+					<p>Description</p>
+					<p>{data.description}</p>
+				</div>
+				{/* <p>{gender}</p> */}
+				{/* <p>{data.nationality?.name}</p> */}
 				{/* <img class="flagimage" src={data.nationality?.flag} alt="flag"/> */}
 			</div>
 		</div>

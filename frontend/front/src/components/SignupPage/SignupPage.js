@@ -70,10 +70,6 @@ function Signup(props) {
           <Form.Label className="signuplabel">Name</Form.Label>
           <Form.Control type="text" placeholder="Name" value={Name} onChange={onNameHandler} />
         </Form.Group>
-        <Form.Group className="mb-3" >
-          <Form.Label className="signuplabel">Nickname</Form.Label>
-          <Form.Control type="text" placeholder="Nickname" />
-        </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label className="signuplabel">Password</Form.Label>
           <Form.Control type="password" placeholder="Password" value={Password} onChange={onPasswordHandler} />

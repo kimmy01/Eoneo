@@ -146,7 +146,7 @@
     font-weight: smaller;
     font-family: 'Noto Sans KR';;
     font-size: 13px;
-    height: 10px;
+    height: fit-content;
 }
 
 #username{
