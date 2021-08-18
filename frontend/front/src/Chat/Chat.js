@@ -227,6 +227,7 @@ function Chat() {
 	// 채팅방 선택: 채팅방을 선택하는 함수
 	const dafaultcheck = () => {
 		if (RoomSeq === "") {
+			console.log('check')
 			setOpponentdata(defaultData)
 		}
 	}
