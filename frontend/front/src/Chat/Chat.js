@@ -252,7 +252,7 @@ function Chat() {
 			setMyUid(user2UId);
 			setOpponentUid(user1UId);
 		}
-		setSelectChatroomId(chatRoomId, connect());
+		setSelectChatroomId(chatRoomId);
 		console.log(chatRoomId,user1Id,user1UId,user2Id,user2UId)
 	};
 
