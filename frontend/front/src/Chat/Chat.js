@@ -206,7 +206,6 @@ function Chat() {
 			.then((response) => {
 				setChatrooms(response.data.data.chatRoomList);
 			})
-			.then(connect)
 
 			.catch((Err) => console.error(Err));
 	};
@@ -245,12 +244,12 @@ function Chat() {
 		setRoomSeq(chatRoomId);
 		if (user1Id === parseInt(my_id)) {
 			getUserData(user2Id);
-			setMyUid(user1UId);
+			setMyUid(user1UId, connect());
 			setOpponentUid(user2UId);
 		}
 		else {
 			getUserData(user1Id);
-			setMyUid(user2UId);
+			setMyUid(user2UId, connect());
 			setOpponentUid(user1UId);
 		}
 		setSelectChatroomId(chatRoomId);
