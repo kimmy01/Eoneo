@@ -79,13 +79,13 @@ function Chat() {
 		setRoomSeq(RoomSeq);
 		selectChatroom(RoomSeq, user1Id, user1UId, user2Id, user2UId);
 		getChatroomList();
-		// connect();
+		connect();
 	}, []);
 
 	useEffect(() => {
 		dafaultcheck()
 		getDBdata();
-		connect()
+		// connect()
 	}, [RoomSeq]);
 	//공통 인증 헤더
 	const config = {
@@ -252,10 +252,8 @@ function Chat() {
 			setMyUid(user2UId);
 			setOpponentUid(user1UId);
 		}
-		setSelectChatroomId(chatRoomId);
+		setSelectChatroomId(chatRoomId, connect());
 		console.log(chatRoomId,user1Id,user1UId,user2Id,user2UId)
-        // disconnect()
-        // connect()
 	};
 
 	return (
