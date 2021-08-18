@@ -41,7 +41,7 @@ const FormMyPage = () => {
 		topicList: user.topicList == [] ? [] : user.topicList,
 		profile_image: user.userDetail?.profile_image
 			? user.userDetail?.profile_image
-			: '2001798500230046.png',
+			: '',
 	});
 	const [profileImage, setProfileImage] = useState(userDetail?.profile_image);
 	const [profileimagepreview, setProfileImagePreview] = useState(profileImage);
@@ -190,9 +190,9 @@ const FormMyPage = () => {
 					<img
 						id='preview'
 						src={
-							profileimagepreview === '2001798500230046.png'
-							? '/static/img/' + profileimagepreview
-							: profileimagepreview
+							profileimagepreview
+							? profileimagepreview
+							: '/static/img/' + user.userDetail?.profile_image
 						}
 						alt='profile_image'
 					/>
