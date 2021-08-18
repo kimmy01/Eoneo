@@ -46,7 +46,7 @@ function LoginPage(props) {
             alert("please insert your detail infomation");
             window.location.href = '/update/user_detail'
           } else {
-            window.location.href = '/searchFriends'
+            window.location.href = '/'
           }
           // props.history.push('/searchFriends') // 로그인하면 메인페이지로
         } else {

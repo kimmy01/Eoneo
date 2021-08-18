@@ -46,7 +46,7 @@ function NavBar() {
 								<Nav.Link onClick={navChat}>Chat</Nav.Link>
 							</div>
 							<div className='mynavItem item2'>
-								<Nav.Link className='logo' href='/searchFriends'>
+								<Nav.Link className='logo' href='/'>
 									<img src={mainlogo} alt='mainlogo' width='100px' />
 								</Nav.Link>
 							</div>
