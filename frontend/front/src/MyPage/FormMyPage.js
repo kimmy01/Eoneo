@@ -24,8 +24,6 @@ const FormMyPage = () => {
 	const languageList = useRecoilValueLoadable(getLanguageState);
 	const countryList = useRecoilValueLoadable(getCountryState);
 	const [checkedTopic, setcheckedTopic] = useState(new Array(15).fill(false));
-	const [profileImage, setProfileImage] = useState('2001798500230046.png');
-	const [profileimagepreview, setProfileImagePreview] = useState(profileImage);
 	const userId = localStorage.getItem('user_id');
 	const [userDetail, setUserDetail] = useState({
 		userid: userId,
@@ -45,6 +43,8 @@ const FormMyPage = () => {
 			? user.userDetail?.profile_image
 			: '2001798500230046.png',
 	});
+	const [profileImage, setProfileImage] = useState(userDetail?.profile_image);
+	const [profileimagepreview, setProfileImagePreview] = useState(profileImage);
 	const [selectTopic, setSelectTopic] = useState(new Set());
 
 	const topics = useMemo(() => {
