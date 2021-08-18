@@ -111,6 +111,10 @@ function Chat() {
 			connect('chatbot');
 		}
 		console.log('처음 렌더링 될 때');
+
+		() => {
+			disconnect();
+		};
 	}, []);
 
 	// useEffect(() => {
@@ -282,7 +286,7 @@ function Chat() {
 		event
 	) => {
 		event.stopPropagation();
-		disconnect();
+
 		setRoomId(chatRoomId);
 		getDBdata(chatRoomId);
 		if (user1Id === parseInt(my_id)) {
