@@ -94,11 +94,13 @@ function Chat() {
 			if (user1Id === my_id) {
 				setMyUid(user1UId);
 				setOppUid(user2UId);
+				getUserData(user2Id);
 				setOppId(user2Id);
 				connect(user1UId);
 			} else {
 				setMyUid(user2UId);
 				setOppUid(user1UId);
+				getUserData(user1Id);
 				setOppId(user1Id);
 				connect(user2UId);
 			}
@@ -119,10 +121,11 @@ function Chat() {
 	// 	}
 	// }, [roomId]);
 
-	// useEffect(() => {
-	// 	dafaultcheck();
-	// 	getDBdata();
-	// }, [RoomSeq]);
+	useEffect(() => {
+		setOpponentdata(defaultData);
+		setMessage('');
+		// getDBdata();
+	}, [RoomSeq]);
 	//공통 인증 헤더
 	const config = {
 		headers: { Authorization: jwttoken },
@@ -276,9 +279,11 @@ function Chat() {
 		user2Id,
 		user2UId
 	) => {
-		if (client.current) {
-			disconnect();
-		}
+		console.log('client ' + client);
+		console.log('client.current' + client.current);
+		// if (client.current) {
+		// 	disconnect();
+		// }
 		setRoomId(chatRoomId);
 		getDBdata(chatRoomId);
 		if (user1Id === parseInt(my_id)) {
@@ -286,14 +291,14 @@ function Chat() {
 			setMyUid(user1UId);
 			setOppUid(user2UId);
 			setOppId(user2Id);
-			connect(user1Id);
+			connect(userU1Id);
 		} else {
 			getUserData(user1Id);
 			setMyUid(user2UId);
 			setOppUid(user1UId);
 			setOppId(user1Id);
 			user1Id(user2UId);
-			connect(user2Id);
+			connect(user2UId);
 		}
 	};
 

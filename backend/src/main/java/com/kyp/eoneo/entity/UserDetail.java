@@ -39,4 +39,9 @@ public class UserDetail implements Serializable {
     @Column(name = "profile_image")
     private String profile_image;
 
+    @PrePersist
+    public void defaultImg() {
+        this.profile_image = "2001798500230046.png";
+    }
+
 }
