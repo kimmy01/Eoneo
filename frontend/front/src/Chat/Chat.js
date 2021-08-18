@@ -146,25 +146,16 @@ function Chat() {
 		});
 	};
 
-	//modal on function
-	  function handleShow(breakpoint) {
-		setFullscreen(breakpoint);
-		setShow(true);
-	  }
+
 
 	//modal on function
 	function handleShow2(event,breakpoint) {
 		event.stopPropagation();
-		publish("start chat")
+		publish(mydata.username+" invites you to video chat!")
 		setFullscreen(breakpoint);
 		setShow(true);
 		}
 
-	//modal on function
-	function handleShow3(breakpoint) {
-		setFullscreen(breakpoint);
-		setShow(true);
-	  }
 
 	// props modal close function
     const closeModal = () => {
@@ -353,21 +344,12 @@ function Chat() {
 							/>
 							<p className='contact-profilename'>{opponentdata.username}</p>
 							<div style={{ float: 'right', marginTop: 10 }}>
-								{/* <button onClick={(e) => videoMessage(e)}> kkkkkkk</button> */}
-								 {/* modal button */}
-								 {/* <ModalComponent/> */}
-								 <Button className="video-button" onClick={() => handleShow(true)}>
-									<FontAwesomeIcon id="videoicon"  icon={faVideo} />
-									{typeof true === 'string' && `below ${true.split('-')[0]}`}
-								</Button>
+					
 								<Button className="video-button" onClick={(e) => handleShow2(e,true)}>
 									<FontAwesomeIcon id="videoicon"  icon={faVideo} />
 									{typeof true === 'string' && `below ${true.split('-')[0]}`}
 								</Button>
-								<Button className="video-button" onClick={() => handleShow3()}>
-									<FontAwesomeIcon id="videoicon"  icon={faVideo} />
-									{typeof true === 'string' && `below ${true.split('-')[0]}`}
-								</Button>
+							
 							</div>
 						</div>
 
