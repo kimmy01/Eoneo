@@ -38,12 +38,12 @@ const UserOverview = ({ overview }) => {
 				
 					?
 					<div>
-						<FontAwesomeIcon style= {{color:'#6799FF', marginRight:3, fontSize:20, display:'inline-block'}} icon={faMars} />
+						<FontAwesomeIcon style= {{color:'#6799FF', marginRight:7, fontSize:20, display:'inline-block'}} icon={faMars} />
 						<h3 style={{display:'inline-block'}}> {data.nickname} ({data.username})</h3>
 					</div>
 					:
 					<div>
-						<FontAwesomeIcon style= {{color: "#FFA7A7", marginRight:3, fontSize:20, display:'inline-block'}} icon={faVenus} />
+						<FontAwesomeIcon style= {{color: "#FFA7A7", marginRight:7, fontSize:20, display:'inline-block'}} icon={faVenus} />
 						<h3 style={{display:'inline-block'}}> {data.nickname} ({data.username})</h3>
 					</div>
 				

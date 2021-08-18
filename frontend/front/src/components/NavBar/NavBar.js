@@ -3,10 +3,18 @@ import { Container, Navbar, Nav } from 'react-bootstrap';
 import './NavBar.css';
 import { withRouter } from 'react-router-dom';
 import mainlogo from '../../../src/assets/main/mainlogo2.png';
+import { useHistory } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import {
+    roomSeqState
+} from "../../state/state";
+
 
 function NavBar() {
 	const [isLogin, setisLogin] = useState(false);
-
+	const [RoomSeq,setRoomSeq] = useRecoilState(roomSeqState)
+	let history = useHistory();
+	
 	useEffect(() => {
 		if (localStorage.getItem('token')) {
 			setisLogin(true);
@@ -18,6 +26,10 @@ function NavBar() {
 		localStorage.removeItem('user_id');
 		localStorage.removeItem('recoil-persist');
 	};
+
+	const navChat = () => {
+		setRoomSeq("", history.push('/chat'));
+	}
 
 	return (
 		<div>
