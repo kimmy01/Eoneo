@@ -58,12 +58,12 @@ function UserList() {
 				else {
 					setMyUid(response.data.data.user2UId)
 				}
-				setSelectChatroomId(response.data.data.chatRoomId)
 				setUser1Id(response.data.data.user1Id);
 				setUser2Id(response.data.data.user2Id);
 				setUser1UId(response.data.data.user1UId);
 				setUser2UId(response.data.data.user2UId);
-				setRoomSeq(response.data.data.chatRoomId, history.push('/chat'));
+				setRoomSeq(response.data.data.chatRoomId);
+				setSelectChatroomId(response.data.data.chatRoomId, history.push('/chat'))
 			})
 			.catch((err) => console.log(err));
 	};
