@@ -46,7 +46,7 @@ const FormMyPage = () => {
 			: defaultImg,
 	});
 	//이미지를 업로드 할 때 필요한 데이터
-	const [profileImage, setProfileImage] = useState(defaultImg);
+	const [profileImage, setProfileImage] = useState('');
 	//미리 보여주는 이미지
 	const [profileimagepreview, setProfileImagePreview] = useState(
 		userDetail.profile_image
@@ -138,7 +138,7 @@ const FormMyPage = () => {
 		userDetail.profile_image = '2001798500230046.png';
 		let data = userDetail;
 		// data.userid = userId;
-		// console.log(data);
+		console.log(data);
 		data = JSON.stringify(data);
 		console.log('Json' + data);
 		//text 파일
@@ -166,6 +166,7 @@ const FormMyPage = () => {
 				});
 		}
 
+		console.log('profileImage' + profileImage);
 		if (profileImage != '') {
 			const formData = new FormData();
 			formData.append('id', userId);

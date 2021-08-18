@@ -103,7 +103,7 @@ function Chat() {
 				connect(user2UId);
 			}
 			// connect();
-			getDBdata();
+			getDBdata(RoomSeq);
 		} else {
 			setOpponentdata(defaultData);
 		}
@@ -206,19 +206,19 @@ function Chat() {
 			.catch((Err) => console.error(Err));
 	};
 
-	// const getUserData = async (userId) => {
-	// 	await axios
-	// 		.get(`/api/userinfo/${userId}`, config)
-	// 		.then((response) => {
-	// 			setOpponentdata(response.data);
-	// 		})
-	// 		.catch((Err) => console.error(Err));
-	// };
+	const getUserData = async (userId) => {
+		await axios
+			.get(`/api/userinfo/${userId}`, config)
+			.then((response) => {
+				setOpponentdata(response.data);
+			})
+			.catch((Err) => console.error(Err));
+	};
 
 	// 채팅메시지: 해당채팅방 메시지정보 불러오는 함수
-	const getDBdata = async () => {
+	const getDBdata = async (roomId) => {
 		await axios
-			.get(`/api/chatroom/room/${roomId}/`, config)
+			.get(`/api/chatroom/room/` + roomId, config)
 			.then(setChatMessages([])) //메세지 값 비어주고
 			.then((response) => {
 				response.data.data.chats.map((chat, chatMessageId) =>
@@ -257,6 +257,7 @@ function Chat() {
 			.then(() => getChatroomList())
 			.then(() => setChatMessages([]))
 			.then(() => setOpponentdata(defaultData))
+			.then(() => setRoomSeq(''))
 			.catch((Err) => console.error(Err));
 	};
 
@@ -275,18 +276,24 @@ function Chat() {
 		user2Id,
 		user2UId
 	) => {
-		disconnect();
+		if (client.current) {
+			disconnect();
+		}
 		setRoomId(chatRoomId);
+		getDBdata(chatRoomId);
 		if (user1Id === parseInt(my_id)) {
+			getUserData(user2Id);
 			setMyUid(user1UId);
 			setOppUid(user2UId);
 			setOppId(user2Id);
 			connect(user1Id);
 		} else {
+			getUserData(user1Id);
 			setMyUid(user2UId);
 			setOppUid(user1UId);
 			setOppId(user1Id);
 			user1Id(user2UId);
+			connect(user2Id);
 		}
 	};
 
