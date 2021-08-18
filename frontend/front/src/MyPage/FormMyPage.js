@@ -190,7 +190,9 @@ const FormMyPage = () => {
 					<img
 						id='preview'
 						src={
-							'/static/img/' + profileimagepreview
+							profileimagepreview === '2001798500230046.png'
+							? '/static/img/' + profileimagepreview
+							: profileimagepreview
 						}
 						alt='profile_image'
 					/>
