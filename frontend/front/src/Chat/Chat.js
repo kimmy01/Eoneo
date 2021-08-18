@@ -78,12 +78,12 @@ function Chat() {
 		getMyData();
 		setRoomSeq(RoomSeq);
 		selectChatroom(RoomSeq, user1Id, user1UId, user2Id, user2UId);
-		dafaultcheck()
 		getChatroomList();
 		connect();
 	}, []);
 
 	useEffect(() => {
+		dafaultcheck()
 		getDBdata();
 	}, [RoomSeq]);
 	//공통 인증 헤더
