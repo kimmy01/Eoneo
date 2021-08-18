@@ -180,8 +180,8 @@ const FormMyPage = () => {
 				.then((res) => {
 					console.log(res);
 				});
-			history.push('/mypage');
 		}
+		history.push('/mypage');
 	};
 
 	return (

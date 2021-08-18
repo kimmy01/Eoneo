@@ -291,7 +291,7 @@ function Chat() {
 			setMyUid(user1UId);
 			setOppUid(user2UId);
 			setOppId(user2Id);
-			connect(userU1Id);
+			connect(user1UId);
 		} else {
 			getUserData(user1Id);
 			setMyUid(user2UId);
