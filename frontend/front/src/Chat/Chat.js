@@ -108,6 +108,7 @@ function Chat() {
 			getDBdata(RoomSeq);
 		} else {
 			setOpponentdata(defaultData);
+			connect('chatbot');
 		}
 		console.log('처음 렌더링 될 때');
 	}, []);
@@ -281,9 +282,7 @@ function Chat() {
 		event
 	) => {
 		event.stopPropagation();
-		if (client.current !== null || client.current !== {}) {
-			disconnect();
-		}
+		disconnect();
 		setRoomId(chatRoomId);
 		getDBdata(chatRoomId);
 		if (user1Id === parseInt(my_id)) {
