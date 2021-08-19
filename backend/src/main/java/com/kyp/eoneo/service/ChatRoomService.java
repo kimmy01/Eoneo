@@ -81,7 +81,7 @@ public class ChatRoomService {
             Long opponentId;
             System.out.println(userId);
             System.out.println(lists.get(i).getUser1Id());
-            System.out.println(lists.get(i).getUser1Id());
+            System.out.println(lists.get(i).getUser2Id());
 
             if(userId == lists.get(i).getUser1Id()){
                 opponentId = lists.get(i).getUser2Id();
