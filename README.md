@@ -147,7 +147,7 @@
 몇 가지 사전 준비를 한 뒤, 다음 절차에 따라 진행 해 보세요!
 
 
-### 사전 준비
+### 💜사전 준비
 
 로컬에서 프로젝트를 시작하기 위해 몇 가지를 설치 해야 합니다.
 다음 설명을 참고하여 설치 해 주세요!
@@ -296,7 +296,7 @@ nginx.conf
 ```
 </details>
 
-### 프로젝트 설치 방법
+### 💜프로젝트 설치 방법
 
 1. 깃 레포지토리 클론
    ```sh
@@ -342,8 +342,11 @@ nginx.conf
       docker run -d -p 3000:3000 --network eoneo --name eoneofront eoneofront:v0.1 
     ```
 
+### 💜기술 흐름도
+<img src="./images/%EA%B8%B0%EC%88%A0%ED%9D%90%EB%A6%84%EB%8F%84.png" width="700px">
 
-### 깃 커밋 컨벤션
+
+### 💜깃 커밋 컨벤션
 
   ```sh
     Summary >>> type : title 형식으로 작성
