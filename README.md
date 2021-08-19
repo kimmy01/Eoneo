@@ -150,9 +150,149 @@
 로컬에서 프로젝트를 시작하기 위해 몇 가지를 설치 해야 합니다.
 다음 설명을 참고하여 설치 해 주세요!
 
-* nodejs
+<details>
+<summary>nodejs</summary>
 https://nodejs.org/ko/download/ v14.17.3
+</details>
 
+<details>
+<summary>ec2에 도커 설치</summary>
+
+```sh  
+//구버전 삭제
+sudo apt-get remove docker docker-engine docker.io containerd runc
+
+//패키지 관리(apt: 패키지 관리 명령어)
+sudo apt-get update
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+
+//도커 GPG 키 추가
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+//stable repository 셋업
+echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+//도커 엔진 설치
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+//도커 엔진 구체적인 버전 설치 방법
+//사용 가능한 버전 확인
+apt-cache madison docker-ce 
+apt-cache madison docker-ce-cli
+
+sudo apt-get install docker-ce=<version_string> docker-ce-cli=<version_string> containerd.io
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+
+sudo docker run hello-world
+```
+</details>
+
+<details>
+<summary>Openvidu</summary>
+
+저희 프로젝트와 동일한 버전의 Openvidu를 사용하기 위해 dockerhub에 image들을 올려놨습니다.
+
+```sh
+docker pull seona8854/kurento-media-server
+docker pull seona8854/openvidu-call
+docker pull seona8854/openvidu-server-kms
+docker pull seona8854/openvidu-server
+docker pull seona8854/openvidu-coturn
+docker pull seona8854/openvidu-proxy
+docker pull seona8854/openvidu-redis
+```
+
+Openvidu 실행
+
+```sh
+sudo su
+
+cd /opt
+
+cd openvidu
+
+./openvidu start
+```
+
+추가 수정 사항은 공식문서를 참고 해 주세요!
+https://docs.openvidu.io/en/2.19.0/deployment/ce/on-premises/#1-prerequisites
+
+</details>
+
+<details>
+<summary>NGINX&Certbot</summary>
+
+```sh
+  sudo yum info nginx
+
+  /////에러 발생 시 아래 실행////////////////////////////
+
+  sudo vi /etc/yum.repos.d/nginx.repo 
+  [nginx] name=nginx repo 
+  baseurl=http://nginx.org/packages/centos/7/$basearch/ 
+  gpgcheck=0 
+  enabled=1
+
+  //////////////////////////////////////////////////////
+
+  sudo yum install nginx
+```
+
+Certbot
+```sh
+  sudo apt-get install snapd
+  sudo snap install core;
+  sudo snap install --classic Certbot
+
+  sudo ln -s /snap/bin/certbot /usr/bin/certbot
+  sudo certbot --nginx
+```
+
+nginx.conf
+```sh
+  	server {
+			listen 443 ssl; # managed by Certbot
+			server_name i5a102.p.ssafy.io;
+
+			ssl_certificate /etc/letsencrypt/live/i5a102.p.ssafy.io/fullchain.pem; # managed by Certbot
+      ssl_certificate_key /etc/letsencrypt/live/i5a102.p.ssafy.io/privkey.pem; # managed by Certbot
+      include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+      ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+      location / {
+            proxy_pass http://172.22.0.1:3000;
+       }
+
+      location /api {
+           proxy_pass http://172.22.0.1:8080;
+       }
+
+    }
+
+    server {
+    	    listen 80;
+    	    server_name i5a102.p.ssafy.io;
+
+    	    if ($host = i5a102.p.ssafy.io) {
+                 return 301 https://$host$request_uri;
+            } # managed by Certbot
+           return 404; # managed by Certbot
+    }
+
+}
+```
+</details>
 
 ### 프로젝트 설치 방법
 
@@ -169,68 +309,63 @@ https://nodejs.org/ko/download/ v14.17.3
    npm run start
    ```
 
+4. 스프링부트 빌드 전 ./gradlew 권한 부여
+    ```sh
+      sudo chmod 777 ./gradlew
+    ```
+
+5. 스프링부트 빌드
+   ```sh
+    ./gradlew build && java -jar build/libs/eoneo-0.0.1.jar
+    ```
+
+6. 도커 이미지 생성
+    ```sh  
+      docker build --build-arg JAR_FILE=build/libs/eoneo-0.0.1-SNAPSHOT.jar -t eoneoback:v0.0 .
+    ```
+
+7. 도커 컨테이너 실행 => 8080포트로 포트포워딩 및 이미지 마운트 위한 **-v** 유의
+    ```sh
+      docker run -d -p 8080:8080 --network eoneo --name eoneoback -v /home/ubuntu/images:/var/eoneo/images eoneoback:v0.0
+    ```
+
+8. React 도커 이미지 생성
+    ```sh
+      cd S05P13A102/frontend/front
+      docker build -t eoneofront:v0.1 .
+    ```
+
+9. 이미지 실행 => 컨테이너, 3000번 포트로 포트포워딩
+    ```sh
+      docker run -d -p 3000:3000 --network eoneo --name eoneofront eoneofront:v0.1 
+    ```
 
 
 ### 깃 커밋 컨벤션
 
-```
-Summary >>> type : title 형식으로 작성
-Description >>> 본문은 생략 가능
+  ```sh
+    Summary >>> type : title 형식으로 작성
+    Description >>> 본문은 생략 가능
 
-types = {
-	feat : 새로운 기능에 대한 커밋
-	fix : 버그 수정에 대한 커밋
-	build : 빌드 관련된 파일 수정에 대한 커밋
-	chore : 그 외 자잘한 잡다한 것들 수정에 대한 커밋
-	ci : CI관련 설정 수정에 대한 커밋
-	docs : 문서 수정에 대한 커밋
-	style : 코드 스타일 혹은 포맷 등에 관한 커밋
-	refactor : 코드 리팩토링에 대한 커밋
-	test : 테스트 코드 수정에 대한 커밋
-  design : 프론트 디자인에 대한 커밋
-}
+    types = {
+      feat : 새로운 기능에 대한 커밋
+      fix : 버그 수정에 대한 커밋
+      build : 빌드 관련된 파일 수정에 대한 커밋
+      chore : 그 외 자잘한 잡다한 것들 수정에 대한 커밋
+      ci : CI관련 설정 수정에 대한 커밋
+      docs : 문서 수정에 대한 커밋
+      style : 코드 스타일 혹은 포맷 등에 관한 커밋
+      refactor : 코드 리팩토링에 대한 커밋
+      test : 테스트 코드 수정에 대한 커밋
+      design : 프론트 디자인에 대한 커밋
+    }
 
-커밋 메시지 입력 예시:
-  feat : 로그인 기능 구현
-  feat : Implementation about Login
-  fix : 회원가입 - 페이지 버튼 수정
-```
+    커밋 메시지 입력 예시:
+      feat : 로그인 기능 구현
+      feat : Implementation about Login
+      fix : 회원가입 - 페이지 버튼 수정
+  ```
 
-<!-- ## Usage
-웹사이트에서 적극적이고 진지하게 언어교환을 하고 싶은 사람들을 위해서 나온 프로젝트입니다!
-자신이 배우고 싶은 언어, 할 수 있는 언어, 모국어를 선택 후
-대화하고 싶은 주제가 동일한 사람들과 글로벌하게 토킹하세요!
-
-언어 실력은 대화를 통해 성장합니다!! -->
-
-
-<!-- ## Roadmap
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
- -->
-
-<!-- CONTRIBUTING -->
-<!-- ## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request -->
-
-
-
-<!-- LICENSE -->
-<!-- ## License
-
-Distributed under the MIT License. See `LICENSE` for more information. -->
-
-
-
-<!-- CONTACT -->
 ## 팀원
 
 <img src="./images/%EC%84%A0%EC%95%84.png" width="100px">
@@ -256,37 +391,3 @@ Distributed under the MIT License. See `LICENSE` for more information. -->
 <img src="https://img.shields.io/badge/Gmail-EA4335?style=flat&logo=Gmail&logoColor=white"> devysi0827@gmail.com
 
 
-
-<!-- ACKNOWLEDGEMENTS
-## Acknowledgements
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
-* [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-* [Sticky Kit](http://leafo.net/sticky-kit)
-* [JVectorMap](http://jvectormap.com)
-* [Font Awesome](https://fontawesome.com)
-
-
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-<!--[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png -->
