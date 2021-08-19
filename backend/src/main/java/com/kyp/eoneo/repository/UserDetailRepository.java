@@ -15,14 +15,17 @@ public class UserDetailRepository {
 
     public void createUserDetail(UserDetail userDetail){
         em.persist(userDetail);
+        em.flush();
     }
 
     public void createUserLanguage(UserLanguage userLanguage){
         em.persist(userLanguage);
+        em.flush();
     }
 
     public void createPrefTopic(PrefTopic prefTopic){
         em.persist(prefTopic);
+        em.flush();
     }
 
 
