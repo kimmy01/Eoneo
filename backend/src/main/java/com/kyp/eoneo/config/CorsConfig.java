@@ -20,15 +20,16 @@ public class CorsConfig {
     public CorsConfigurationSource corsFilter(){
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-//        log.info("come?");
+
         config.setAllowCredentials(true);
         config.addAllowedOrigin("https://i5a102.p.ssafy.io");
         config.addAllowedOrigin("https://i5a102.p.ssafy.io:3000");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-//        config.addAllowedMethod("PATCH");
 
-        source.registerCorsConfiguration("/**", config); //여기도
+        source.registerCorsConfiguration("/**", config);
         return source;
     }
 }
+
+
