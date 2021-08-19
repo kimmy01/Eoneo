@@ -83,7 +83,7 @@ public class ChatRoomService {
             System.out.println(lists.get(i).getUser1Id());
             System.out.println(lists.get(i).getUser2Id());
 
-            if(userId == lists.get(i).getUser1Id()){
+            if(userId.equals(lists.get(i).getUser1Id())){
                 opponentId = lists.get(i).getUser2Id();
             }else {
                 opponentId = lists.get(i).getUser1Id();
