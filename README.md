@@ -2,10 +2,10 @@
 <br />
 <p align="center">
 
-  <h3 align="center">Eoneo</h3>
+  <img src="./images/mainlogo.png" width="200px">
+  <h1 align="center">💻EONEO</h1>
 
-  <p align="center">
-    An awesome README template to jumpstart your projects!
+  <!-- <p align="center">
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
@@ -15,32 +15,32 @@
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
     ·
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
-  </p>
+  </p> -->
 </p>
 
 
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
-  <summary>Table of Contents</summary>
+  <summary><b>📃목차</b></summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#프로젝트 소개">프로젝트 소개</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#built-with">개발 환경</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">프로젝트 시작하기</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#prerequisites">사전 준비</a></li>
+        <li><a href="#installation">설치</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
+    <!-- <li><a href="#roadmap">Roadmap</a></li> -->
+    <!-- <li><a href="#contributing">Contributing</a></li> -->
+    <!-- <li><a href="#license">License</a></li> -->
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
@@ -49,7 +49,9 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+<!-- ## About The Project -->
+
+## 프로젝트소개
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
