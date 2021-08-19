@@ -1,8 +1,8 @@
 <!-- PROJECT LOGO -->
 <img src="./images/mainlogo.png" width="200px">
 <br />
-<p align="center">
-  <h1 align="center">EONEO</h1>
+
+  # EONEO
 
   <!-- <p align="center">
     <br />
@@ -15,7 +15,6 @@
     ·
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
   </p> -->
-</p>
 
 
 
@@ -54,15 +53,21 @@
 <!-- ## About The Project -->
 
 ## 프로젝트 소개
+**어너**는 다양한 국가의 다양한 언어를 배우고자 하는 사용자들이 서로 언어를 교환하며 성장 할 수 있는 서비스입니다.  
+웹사이트에서 적극적이고 진지하게 언어교환을 하고 싶은 사람들을 위하여 시작한 프로젝트입니다.
+
+자신이 배우고 싶은 언어, 할 수 있는 언어, 모국어를 선택 후,  
+관심사가 같은 다양한 사람들과 글로벌하게 토킹 해 보세요!☺
 
 
+### 💜배포 환경
+- __URL__ : https://i5a102.p.ssafy.io/
+- __배포 여부__ : O 
+- __접속 가능__ : 접속 가능 
+- __HTTPS 적용__ : O 
 
 
-
-### 배포 환경
-
-
-### 개발 환경
+### 💜개발 환경
 
 #### FrontEnd
 <img src = "https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white"> 
@@ -78,34 +83,55 @@
 <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=flat&logo=intellij-idea&logoColor=white">
 <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=Postman&logoColor=white">
-
+<img src="https://img.shields.io/badge/WebRTC-333333?style=flat&logo=WebRTC&logoColor=white">
 
 #### Collaboration
 <img src="http://img.shields.io/badge/-GitLab-FCA121?style=flat&logo=git&logoColor=FFFFFF">
 <img src="https://img.shields.io/badge/Jira-0052CC?style=flat&logo=Jira&logoColor=white">
 <img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white">
 
-
 #### Distribution
 <img src="https://img.shields.io/badge/AWS-232F3E?style=flat&logo=AmazonAWS&logoColor=white">
 <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=white">
 <img src="https://img.shields.io/badge/NGINX-009639?style=flat&logo=NGINX&logoColor=white">
-
-
 
 #### Design
 <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=Figma&logoColor=white">
 
 
 
-### 핵심 라이브러리
+### 💜핵심 라이브러리
 
+- __OPENVIDU__
+  - __링크__ : https://openvidu.io/
+  - __소개__ : WebRTC 라이브러리
+  - __사용 기능__ : 그룹 화상 회의, 영상 통화를 가능하게 해줌  
+
+
+- __RECOIL__
+  - __링크__ : https://recoiljs.org/ko/
+  - __소개__ : React를 위한 상태관리 라이브러리
+  - __사용 기능__ : props를 대신하여 React 상태 관리
+
+
+- __STOMP__
+  - __링크__ : https://stomp.github.io/
+  - __소개__ : 메시징 프로토콜
+  - __사용 기능__ : 메시지 보내기 위한 SEND 명령, 수신 메시지에 SUBSCRIBE 명령
+
+
+- __SOCKJS client__
+  - __링크__ : https://github.com/sockjs
+  - __소개__ : webSocket 미지원 브라우저 관리
+  - __사용 기능__ : 메시지 통신 시 클라이언트에서 사용
 
 <!-- GETTING STARTED -->
+
 ## 프로젝트 시작하기
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+로컬에서 **어너**프로젝트를 시작하는 방법입니다.
+몇 가지 사전 준비를 한 뒤, 다음 절차에 따라 진행 해 보세요!
+
 
 ### 사전 준비
 
@@ -136,19 +162,42 @@ This is an example of how to list things you need to use the software and how to
 
 ### 깃 커밋 컨벤션
 
-## Usage
+```
+Summary >>> type : title 형식으로 작성
+Description >>> 본문은 생략 가능
+
+types = {
+	feat : 새로운 기능에 대한 커밋
+	fix : 버그 수정에 대한 커밋
+	build : 빌드 관련된 파일 수정에 대한 커밋
+	chore : 그 외 자잘한 잡다한 것들 수정에 대한 커밋
+	ci : CI관련 설정 수정에 대한 커밋
+	docs : 문서 수정에 대한 커밋
+	style : 코드 스타일 혹은 포맷 등에 관한 커밋
+	refactor : 코드 리팩토링에 대한 커밋
+	test : 테스트 코드 수정에 대한 커밋
+  design : 프론트 디자인에 대한 커밋
+}
+
+커밋 메시지 입력 예시:
+  feat : 로그인 기능 구현
+  feat : Implementation about Login
+  fix : 회원가입 - 페이지 버튼 수정
+```
+
+<!-- ## Usage
 웹사이트에서 적극적이고 진지하게 언어교환을 하고 싶은 사람들을 위해서 나온 프로젝트입니다!
 자신이 배우고 싶은 언어, 할 수 있는 언어, 모국어를 선택 후
 대화하고 싶은 주제가 동일한 사람들과 글로벌하게 토킹하세요!
 
-언어 실력은 대화를 통해 성장합니다!!
+언어 실력은 대화를 통해 성장합니다!! -->
 
-ROADMAP
-## Roadmap
+
+<!-- ## Roadmap
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
 
-
+ -->
 
 <!-- CONTRIBUTING -->
 <!-- ## Contributing
@@ -173,9 +222,27 @@ Distributed under the MIT License. See `LICENSE` for more information. -->
 <!-- CONTACT -->
 ## Contact
 
-박선아 - [@ichangeigidcuzodd](https://github.com/SeonA1223) - bsa14523@gmail.com
+<img src="./images/%EC%84%A0%EC%95%84.png" width="100px">
+<p><b>박선아</b></p>
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"> [@ichangeigidcuzodd](https://github.com/SeonA1223)
+<br/>
+<img src="https://img.shields.io/badge/Gmail-EA4335?style=flat&logo=Gmail&logoColor=white"> bsa14523@gmail.com
+
+<img src="./images/%EB%82%98%EC%98%81.png" width="100px">
+<p><b>김나영</b></p>
+
+<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"> [@kimmy01](https://github.com/kimmy01)
+<br/>
+<img src="https://img.shields.io/badge/Gmail-EA4335?style=flat&logo=Gmail&logoColor=white"> lovejb0101@gmail.com
+
+
+<img src="./images/%EC%84%B8%EC%9D%BC.jpg" width="100px">
+<p><b>윤세일</b></p>
+
+<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"> [@devysi0827](https://github.com/devysi0827)
+<br/>
+<img src="https://img.shields.io/badge/Gmail-EA4335?style=flat&logo=Gmail&logoColor=white"> devysi0827@gmail.com
 
 
 
