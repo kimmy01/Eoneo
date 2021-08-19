@@ -1,9 +1,8 @@
 <!-- PROJECT LOGO -->
+<img src="./images/mainlogo.png" width="200px">
 <br />
 <p align="center">
-
-  <img src="./images/mainlogo.png" width="200px">
-  <h1 align="center">💻EONEO</h1>
+  <h1 align="center">EONEO</h1>
 
   <!-- <p align="center">
     <br />
@@ -25,16 +24,19 @@
   <summary><b>📃목차</b></summary>
   <ol>
     <li>
-      <a href="#프로젝트 소개">프로젝트 소개</a>
+      [프로젝트 소개](#프로젝트-소개)
       <ul>
-        <li><a href="#built-with">개발 환경</a></li>
+        <li>[배포 환경](#배포-환경)</li>
+        <li>[개발 환경](#개발-환경)</li>
+        <li>[핵심 라이브러리](#핵심-라이브러리)</li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">프로젝트 시작하기</a>
+      [프로젝트 시작하기](#프로젝트-시작하기)
       <ul>
-        <li><a href="#prerequisites">사전 준비</a></li>
-        <li><a href="#installation">설치</a></li>
+        <li>[사전 준비](#사전-준비)</li>
+        <li>[설치 방법](#설치-방법)</li>
+        <li>[깃 커밋 컨벤션](#깃-커밋-컨벤션)</li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -51,43 +53,61 @@
 <!-- ABOUT THE PROJECT -->
 <!-- ## About The Project -->
 
-## 프로젝트소개
+## 프로젝트 소개
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have have contributed to expanding this template!
 
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+### 배포 환경
 
-### Built With
 
-<img src = "https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white"> <img src = "https://img.shields.io/badge/-CSS3-1572B6?style=flat&logo=css3&logoColor=white">
+### 개발 환경
+
+#### FrontEnd
+<img src = "https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white"> 
+<img src = "https://img.shields.io/badge/-CSS3-1572B6?style=flat&logo=css3&logoColor=white">
 <img src="https://img.shields.io/badge/-JavaScript-eed718?style=flat&logo=javascript&logoColor=ffffff">
 <img src="https://img.shields.io/badge/-React-000000?style=flat&logo=react&logoColor=00c8ff">
-<img src="https://img.shields.io/badge/-MySQL-F29111?style=flat&logo=mysql&logoColor=FFFFFF">
-<img src="http://img.shields.io/badge/-Git-F1502F?style=flat&logo=git&logoColor=FFFFFF">
-<img src="http://img.shields.io/badge/-Github-000000?style=flat&logo=github&logoColor=FFFFFF">
 <img src="http://img.shields.io/badge/-VS%20Code-007ACC?style=flat&logo=visual%20studio%20code&logoColor=white">
-<img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=spring&logoColor=white">
-<img src="https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=Postman&logoColor=white">
-<img src="https://img.shields.io/badge/Jira-0052CC?style=flat&logo=Jira&logoColor=white">
+<img src="http://img.shields.io/badge/-Bootstrap-7952B3?style=flat&logo=Bootstrap&logoColor=white">
+
+#### BackEnd
+<img src="https://img.shields.io/badge/-MySQL-4479A1?style=flat&logo=mysql&logoColor=ffffff">
+<img src="https://img.shields.io/badge/-JWT-000000?style=flat&logo=JSON Web Tokens&logoColor=ffffff">
+<img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=flat&logo=intellij-idea&logoColor=white">
+<img src="https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=Postman&logoColor=white">
+
+
+#### Collaboration
+<img src="http://img.shields.io/badge/-GitLab-FCA121?style=flat&logo=git&logoColor=FFFFFF">
+<img src="https://img.shields.io/badge/Jira-0052CC?style=flat&logo=Jira&logoColor=white">
+<img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white">
+
+
+#### Distribution
+<img src="https://img.shields.io/badge/AWS-232F3E?style=flat&logo=AmazonAWS&logoColor=white">
+<img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=white">
+<img src="https://img.shields.io/badge/NGINX-009639?style=flat&logo=NGINX&logoColor=white">
+
+
+
+#### Design
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=Figma&logoColor=white">
+
+
+
+### 핵심 라이브러리
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## 프로젝트 시작하기
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+### 사전 준비
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
@@ -95,7 +115,7 @@ This is an example of how to list things you need to use the software and how to
   npm install npm@latest -g
   ```
 
-### Installation
+### 설치 방법
 
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
@@ -112,8 +132,10 @@ This is an example of how to list things you need to use the software and how to
    ```
 
 
-
 <!-- USAGE EXAMPLES -->
+
+### 깃 커밋 컨벤션
+
 ## Usage
 웹사이트에서 적극적이고 진지하게 언어교환을 하고 싶은 사람들을 위해서 나온 프로젝트입니다!
 자신이 배우고 싶은 언어, 할 수 있는 언어, 모국어를 선택 후
