@@ -29,7 +29,7 @@
    id : kyp
    password : qwerty2570#
    ```
-   <img src="../images/dbsetting.PNG" width="400px">
+   <img src="../images/dbsetting.png" width="400px">
    
    ```sql
    cd /etc/mysql/mysql.conf.d
@@ -100,13 +100,13 @@
 
   config.addAllowedOrigin("") 부분을 해당 domain으로 수정필요
 
-![Untitled](<img src="../images/corsError1.PNG" width="400px">)
+![Untitled](<img src="../images/corsError1.png" width="400px">)
 
     backend/src/main/java/com/kyp/eoneo/config/WebSocketConfig.js
 
     setAllowedOrigins("") 부분을 해당 domain으로 수정 필요
 
-![Untitled](<img src="../images/corError2.PNG" width="400px">)
+![Untitled](<img src="../images/corError2.png" width="400px">)
 
 ### 외부서비스 정보 문서
 
