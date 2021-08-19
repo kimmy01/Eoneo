@@ -1,6 +1,6 @@
 ### 빌드 및 배포 관련
 
-1. **ip 주소 및 도메인**
+ **ip 주소 및 도메인**
 
 ```
 공인IP : 13.124.171.154
@@ -19,35 +19,17 @@
 
    Intelij : 2021.1
 
-1. SSH 연결
+1. **SSH 연결**
 
    ssh로 접근 시 포트 번호는 "2222", ubuntu 계정으로 접근
 
-1. DB 접속 정보
+1. **DB 접속 정보**
 
    ```sql
    id : kyp
    password : qwerty2570#
    ```
    <img src="../images/dbsetting.png" width="400px">
-   
-   ```sql
-   cd /etc/mysql/mysql.conf.d
-   sudo vi mysqld.cnf
-   bind-address 127.0.0.1 가 적힌줄 맨앞에 # 를 넣어 주석처리 해주기
-   mysql 접속(sudo /usr/bin/mysql -u root -p)
-
-   mysql> create user 'root'@'%' identified by '[password]';
-   mysql> grant all privileges on *.* to 'root'@'%' with grant option;
-
-   create user 'kyp'@'%' identified by '~~qwerty2570#~~';
-   grant all privileges on *.* to 'kyp'@'%';
-   flush privileges;
-
-   sudo ufw allow mysql
-   sudo systemctl start mysql
-   sudo systemctl enable mysql
-   ```
 
 1. **빌드시 주의할 점**
 
