@@ -515,7 +515,7 @@ function Chat() {
 					<Modal.Title style={{ textAlign: 'center' }}>Video Chat</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Openvidu onClose={closeModal} />
+					<Openvidu roomId={roomId} onClose={closeModal} />
 				</Modal.Body>
 			</Modal>
 		</div>
