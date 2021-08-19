@@ -23,6 +23,6 @@ public class DataRepository {
     }
 
     public List<Country> getCountries(){
-        return em.createQuery("select c from Country c").getResultList();
+        return em.createQuery("select c from Country c order by c.name").getResultList();
     }
 }

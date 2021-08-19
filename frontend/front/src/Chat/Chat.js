@@ -88,7 +88,7 @@ function Chat() {
 		getMyData();
 		getChatroomList();
 		//SearchFriend에서 클릭해서 왔을 경우 Room 번호 설정해주기
-		console.log(RoomSeq);
+		// console.log(RoomSeq);
 		if (RoomSeq) {
 			setRoomId(RoomSeq);
 			if (user1Id === parseInt(my_id)) {
@@ -110,7 +110,7 @@ function Chat() {
 			setOpponentdata(defaultData);
 			connect('chatbot');
 		}
-		console.log('처음 렌더링 될 때');
+		// console.log('처음 렌더링 될 때');
 
 		() => {
 			disconnect();

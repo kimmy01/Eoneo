@@ -35,11 +35,11 @@ const FormMyPage = () => {
 		nickname: user.userDetail == null ? '' : user.userDetail?.nickname,
 		description: user.userDetail == null ? '' : user.userDetail?.description,
 		fluentLanguage:
-			user.userLanguage == null ? 'KR' : user.userLanguage?.fluentLanguage.code,
+			user.userLanguage == null ? 'ko' : user.userLanguage?.fluentLanguage.code,
 		nativeLanguage:
-			user.userLanguage == null ? 'KR' : user.userLanguage?.nativeLanguage.code,
+			user.userLanguage == null ? 'ko' : user.userLanguage?.nativeLanguage.code,
 		wantLanguage:
-			user.userLanguage == null ? 'EN' : user.userLanguage?.wantLanguage.code,
+			user.userLanguage == null ? 'en' : user.userLanguage?.wantLanguage.code,
 		topicList: user.topicList == [] ? [] : user.topicList,
 		profile_image: user.userDetail?.profile_image
 			? user.userDetail?.profile_image
@@ -138,9 +138,9 @@ const FormMyPage = () => {
 		userDetail.profile_image = '2001798500230046.png';
 		let data = userDetail;
 		// data.userid = userId;
-		console.log(data);
+		// console.log(data);
 		data = JSON.stringify(data);
-		console.log('Json' + data);
+		// console.log('Json' + data);
 		//text 파일
 		if (user.userDetail?.id) {
 			await axios
@@ -166,7 +166,7 @@ const FormMyPage = () => {
 				});
 		}
 
-		console.log('profileImage' + profileImage);
+		// console.log('profileImage' + profileImage);
 		if (profileImage != '') {
 			const formData = new FormData();
 			formData.append('id', userId);
