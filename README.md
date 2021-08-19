@@ -34,7 +34,7 @@
       [프로젝트 시작하기](#프로젝트-시작하기)
       <ul>
         <li>[사전 준비](#사전-준비)</li>
-        <li>[설치 방법](#설치-방법)</li>
+        <li>[프로젝트 설치 방법](#프로젝트-설치-방법)</li>
         <li>[깃 커밋 컨벤션](#깃-커밋-컨벤션)</li>
       </ul>
     </li>
@@ -50,7 +50,6 @@
 
 
 <!-- ABOUT THE PROJECT -->
-<!-- ## About The Project -->
 
 ## 프로젝트 소개
 **어너**는 다양한 국가의 다양한 언어를 배우고자 하는 사용자들이 서로 언어를 교환하며 성장 할 수 있는 서비스입니다.  
@@ -58,6 +57,27 @@
 
 자신이 배우고 싶은 언어, 할 수 있는 언어, 모국어를 선택 후,  
 관심사가 같은 다양한 사람들과 글로벌하게 토킹 해 보세요!☺
+
+
+#### 로그인
+<img src="./images/login.PNG" width="400px">
+
+#### 회원가입
+<img src="./images/signup.PNG" width="400px">
+
+#### 마이페이지
+<img src="./images/mypage.PNG" width="400px">
+
+#### 사용자 정보 수정
+<img src="./images/editprofile1.PNG" width="400px">
+<img src="./images/editprofile2.PNG" width="400px">
+
+#### 친구 찾기
+<img src="./images/searchfriends.PNG" width="400px">
+
+#### 채팅
+<img src="./images/chatting.PNG" width="400px">
+
 
 
 ### 💜배포 환경
@@ -135,13 +155,15 @@
 
 ### 사전 준비
 
-This is an example of how to list things you need to use the software and how to install them.
+로컬에서 프로젝트를 시작하기 위해 몇 가지를 설치 해야 합니다.
+다음 설명을 참고하여 설치 해 주세요!
+
 * npm
   ```sh
   npm install npm@latest -g
   ```
 
-### 설치 방법
+### 프로젝트 설치 방법
 
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
