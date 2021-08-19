@@ -194,7 +194,7 @@ function Chat() {
 
 	//modal on function
 	function handleShow2(event, breakpoint) {
-		event.stopPropagation();
+		// event.stopPropagation();
 		publish(mydata.username + ' invites you to video chat!');
 		setFullscreen(breakpoint);
 		setShow(true);
