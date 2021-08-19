@@ -79,6 +79,10 @@ public class ChatRoomService {
 
         for(int i=0; i< lists.size(); i++){
             Long opponentId;
+            System.out.println(userId);
+            System.out.println(lists.get(i).getUser1Id());
+            System.out.println(lists.get(i).getUser1Id());
+
             if(userId == lists.get(i).getUser1Id()){
                 opponentId = lists.get(i).getUser2Id();
             }else {
@@ -86,7 +90,7 @@ public class ChatRoomService {
             }
 
             lists.get(i).setUnReadCount(chatRoomRepository.getUnReadMessage(lists.get(i).getChatRoomId(), userId));
-            System.out.println("opponentId" + opponentId);
+            System.out.println("opponentId " + opponentId);
             User user = userRepository.findUserById(opponentId);
             lists.get(i).setUserDetail(user.getUserDetail());
             List<Topic> topic = new ArrayList<>();

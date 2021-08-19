@@ -28,6 +28,7 @@ public class ChatRoomRepository {
     //ChatRoom 생성
     public void createChatRoom(ChatRoom chatRoom) {
         em.persist(chatRoom);
+        em.flush();
     }
 
     //    특정 채팅방에 채팅 다 가져오기
