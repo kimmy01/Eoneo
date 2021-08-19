@@ -29,9 +29,8 @@
    id : kyp
    password : qwerty2570#
    ```
-
-   ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1eb52401-359d-4019-afd4-cda6f87f4fa1/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1eb52401-359d-4019-afd4-cda6f87f4fa1/Untitled.png)
-
+   <img src="./images/dbsetting.PNG" width="400px">
+   
    ```sql
    cd /etc/mysql/mysql.conf.d
    sudo vi mysqld.cnf
@@ -101,13 +100,13 @@
 
   config.addAllowedOrigin("") 부분을 해당 domain으로 수정필요
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/384523de-62c4-4974-8079-f339c0728279/Untitled.png)
+![Untitled](<img src="./images/corsError1.PNG" width="400px">)
 
     backend/src/main/java/com/kyp/eoneo/config/WebSocketConfig.js
 
     setAllowedOrigins("") 부분을 해당 domain으로 수정 필요
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b716a509-02b4-4174-9d4a-63d44ad6d2ab/Untitled.png)
+![Untitled](<img src="./images/corError2.PNG" width="400px">)
 
 ### 외부서비스 정보 문서
 
