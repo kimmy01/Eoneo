@@ -4,20 +4,6 @@
 
   # EONEO
 
-  <!-- <p align="center">
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
-  </p> -->
-
-
-
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><b>📃목차</b></summary>
@@ -119,6 +105,11 @@
 <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=Figma&logoColor=white">
 
 
+- __JVM__ : 1.8, java8 (openjdk:8-jdk-alpine)
+- __NGINX__ : nginx/1.18.0 (ubuntu)
+- __Nodejs__ : 14.17.3
+- __IntelliJ__ : 2021.1
+
 
 ### 💜핵심 라이브러리
 
@@ -158,29 +149,26 @@
 로컬에서 프로젝트를 시작하기 위해 몇 가지를 설치 해야 합니다.
 다음 설명을 참고하여 설치 해 주세요!
 
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* nodejs
+https://nodejs.org/ko/download/ v14.17.3
+
 
 ### 프로젝트 설치 방법
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. 깃 레포지토리 클론
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://lab.ssafy.com/s05-webmobile1-sub3/S05P13A102.git
    ```
-3. Install NPM packages
+2. NPM packages 설치
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
+3. front 디렉토리 이동 후 실행
+   ```sh
+   npm run start
    ```
 
 
-<!-- USAGE EXAMPLES -->
 
 ### 깃 커밋 컨벤션
 
@@ -268,7 +256,7 @@ Distributed under the MIT License. See `LICENSE` for more information. -->
 
 
 
-<!-- ACKNOWLEDGEMENTS -->
+<!-- ACKNOWLEDGEMENTS
 ## Acknowledgements
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 * [Img Shields](https://shields.io)
@@ -288,7 +276,7 @@ Distributed under the MIT License. See `LICENSE` for more information. -->
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+<!--[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
 [forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
@@ -300,4 +288,4 @@ Distributed under the MIT License. See `LICENSE` for more information. -->
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/screenshot.png -->
