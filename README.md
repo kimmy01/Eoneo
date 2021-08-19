@@ -23,13 +23,14 @@
         <li>[프로젝트 설치 방법](#프로젝트-설치-방법)</li>
         <li>[깃 커밋 컨벤션](#깃-커밋-컨벤션)</li>
       </ul>
+      [팀원](#팀원)
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <!-- <li><a href="#usage">Usage</a></li> -->
     <!-- <li><a href="#roadmap">Roadmap</a></li> -->
     <!-- <li><a href="#contributing">Contributing</a></li> -->
     <!-- <li><a href="#license">License</a></li> -->
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <!-- <li><a href="#contact">Contact</a></li> -->
+    <!-- <li><a href="#acknowledgements">Acknowledgements</a></li> -->
   </ol>
 </details>
 
@@ -230,7 +231,7 @@ Distributed under the MIT License. See `LICENSE` for more information. -->
 
 
 <!-- CONTACT -->
-## Contact
+## 팀원
 
 <img src="./images/%EC%84%A0%EC%95%84.png" width="100px">
 <p><b>박선아</b></p>
