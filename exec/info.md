@@ -19,117 +19,6 @@
 
    Intelij : 2021.1
 
-1. 빌드 전 웹서버 reverse proxy
-
-   nginx.conf 수정
-
-   ```sql
-   sudo vi /etc/nginx/nginx.conf
-   ```
-
-   - etc/nginx/nginx.conf
-
-     ```sql
-     user www-data;
-     worker_processes auto;
-     pid /run/nginx.pid;
-     include /etc/nginx/modules-enabled/*.conf;
-
-     events {
-     	worker_connections 768;
-     	# multi_accept on;
-     }
-
-     http {
-
-     	##
-     	# Basic Settings
-     	##
-
-     	sendfile on;
-     	tcp_nopush on;
-     	tcp_nodelay on;
-     	keepalive_timeout 65;
-     	types_hash_max_size 2048;
-     	# server_tokens off;
-
-     	# server_names_hash_bucket_size 64;
-     	# server_name_in_redirect off;
-
-     	include /etc/nginx/mime.types;
-     	default_type application/octet-stream;
-
-     	##
-     	# SSL Settings
-     	##s
-
-     	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
-     	ssl_prefer_server_ciphers on;
-
-     	##
-     	# Logging Settings
-     	##
-
-     	access_log /var/log/nginx/access.log;
-     	error_log /var/log/nginx/error.log;
-
-     	##
-     	# Gzip Settings
-     	##
-
-     	gzip on;
-
-     	# gzip_vary on;
-     	# gzip_proxied any;
-     	# gzip_comp_level 6;
-     	# gzip_buffers 16 8k;
-     	# gzip_http_version 1.1;
-     	# gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
-
-     	##
-     	# Virtual Host Configs
-     	##
-
-     	include /etc/nginx/conf.d/*.conf;
-     	include /etc/nginx/sites-enabled/*;
-
-     	server {
-     			listen 443 ssl; # managed by Certbot
-     			server_name i5a102.p.ssafy.io;
-
-     			ssl_certificate /etc/letsencrypt/live/i5a102.p.ssafy.io/fullchain.pem; # managed by Certbot
-                 ssl_certificate_key /etc/letsencrypt/live/i5a102.p.ssafy.io/privkey.pem; # managed by Certbot
-                 include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-                 ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
-                 location / {
-                     proxy_pass http://172.22.0.1:3000;
-                 }
-
-                 location /api {
-                     proxy_pass http://172.22.0.1:8080;
-                 }
-
-     	    location /static/img {
-     		proxy_pass http://172.22.0.1:8080/static/img;
-     	   }
-
-         }
-
-         server {
-         	    listen 80;
-         	    server_name i5a102.p.ssafy.io;
-
-         	    if ($host = i5a102.p.ssafy.io) {
-                      return 301 https://$host$request_uri;
-                 } # managed by Certbot
-                 return 404; # managed by Certbot
-         }
-
-     }
-
-     ```
-
 1. SSH 연결
 
    ssh로 접근 시 포트 번호는 "2222", ubuntu 계정으로 접근
@@ -140,9 +29,8 @@
    id : kyp
    password : qwerty2570#
    ```
-
-   ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1eb52401-359d-4019-afd4-cda6f87f4fa1/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1eb52401-359d-4019-afd4-cda6f87f4fa1/Untitled.png)
-
+   <img src="./images/dbsetting.PNG" width="400px">
+   
    ```sql
    cd /etc/mysql/mysql.conf.d
    sudo vi mysqld.cnf
@@ -212,13 +100,13 @@
 
   config.addAllowedOrigin("") 부분을 해당 domain으로 수정필요
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/384523de-62c4-4974-8079-f339c0728279/Untitled.png)
+![Untitled](<img src="./images/corsError1.PNG" width="400px">)
 
     backend/src/main/java/com/kyp/eoneo/config/WebSocketConfig.js
 
     setAllowedOrigins("") 부분을 해당 domain으로 수정 필요
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b716a509-02b4-4174-9d4a-63d44ad6d2ab/Untitled.png)
+![Untitled](<img src="./images/corError2.PNG" width="400px">)
 
 ### 외부서비스 정보 문서
 
