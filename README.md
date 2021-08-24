@@ -376,7 +376,7 @@ nginx.conf
 <img src="./images/%EC%84%A0%EC%95%84.png" width="100px">
 <p><b>박선아</b></p>
 
-<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"> [@ichangeigidcuzodd](https://github.com/SeonA1223)
+<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"> [@SeonA1223](https://github.com/SeonA1223)
 <br/>
 <img src="https://img.shields.io/badge/Gmail-EA4335?style=flat&logo=Gmail&logoColor=white"> bsa14523@gmail.com
 
