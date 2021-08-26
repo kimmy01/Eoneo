@@ -32,7 +32,7 @@ function Signup(props) {
     event.preventDefault()
 
     if (Password !== ConfirmPassword) {
-      return alert("비밀번호와 비밀번호 확인은 같아야합니다.")
+      return alert("Password and password confirm must be the same.")
     }
     let body = {
       email: Email,
