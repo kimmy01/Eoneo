@@ -45,9 +45,10 @@ function Signup(props) {
         if (response.payload) {
           window.location.href = '/'
           // props.history.push('/login') // 사인업하면 메인페이지로
-        } else {
-          alert('ERROR')
-        }
+        } 
+        // else {
+        //   alert('ERROR')
+        // }
 
       })
   }
