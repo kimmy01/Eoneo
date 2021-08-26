@@ -29,11 +29,53 @@ function Signup(props) {
     setConfirmPassword(event.currentTarget.value)
   }
 
+  const onPick = value => {
+    swal("Thanks for your rating!", `You rated us ${value}/3`, "success")
+  }
+   
+  const MoodButton = ({ rating, onClick }) => (
+    <button 
+      style={{backgroundColor:"#a59dff"}}
+      data-rating={rating}
+      className="mood-btn" 
+      onClick={() => onClick(rating)}
+    />
+  )
+
   const onSubmitHandler = (event) => {
     event.preventDefault()
 
     if (Password !== ConfirmPassword) {
-      return alert("Password and password confirm must be the same.")
+      // swal(
+      //   <div>
+      //     <p>
+      //       Password and password confirm must be the same.
+      //     </p>
+      //   </div>
+      // )
+
+      swal({
+        text: "How was your experience getting help with this issue?",
+        buttons: {
+          cancel: "Close",
+        },
+        // content: (
+        //   <div>
+        //     <MoodButton 
+        //       rating={1} 
+        //       onClick={onPick}
+        //     />
+        //     <MoodButton 
+        //       rating={2} 
+        //       onClick={onPick}
+        //     />
+        //     <MoodButton 
+        //       rating={3} 
+        //       onClick={onPick}
+        //     />
+        //   </div>
+        // )
+      })
     }
     let body = {
       email: Email,
