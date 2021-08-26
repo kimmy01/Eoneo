@@ -53,8 +53,7 @@ function Signup(props) {
       //     </p>
       //   </div>
       // )
-      return 
-      swal({
+      return swal({
         text: "How was your experience getting help with this issue?",
         buttons: {
           cancel: "Close",
