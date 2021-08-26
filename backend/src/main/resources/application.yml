@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://13.124.171.154:3306/eoneo?serverTimezone=Asia/Seoul&useUnicode=true;
+    url: jdbc:mysql://13.124.230.240:3306/eoneo?serverTimezone=Asia/Seoul&useUnicode=true;
     username: kyp
     password: qwerty2570#
 
