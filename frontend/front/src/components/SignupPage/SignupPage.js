@@ -29,35 +29,29 @@ function Signup(props) {
     setConfirmPassword(event.currentTarget.value)
   }
 
-  const onPick = value => {
-    swal("Thanks for your rating!", `You rated us ${value}/3`, "success")
-  }
+  // const onPick = value => {
+  //   swal("Thanks for your rating!", `You rated us ${value}/3`, "success")
+  // }
    
-  const MoodButton = ({ rating, onClick }) => (
-    <button 
-      style={{backgroundColor:"#a59dff"}}
-      data-rating={rating}
-      className="mood-btn" 
-      onClick={() => onClick(rating)}
-    />
-  )
+  // const MoodButton = ({ rating, onClick }) => (
+  //   <button 
+  //     style={{backgroundColor:"#a59dff"}}
+  //     data-rating={rating}
+  //     className="mood-btn" 
+  //     onClick={() => onClick(rating)}
+  //   />
+  // )
 
   const onSubmitHandler = (event) => {
     event.preventDefault()
 
     if (Password !== ConfirmPassword) {
-      // swal(
-      //   <div>
-      //     <p>
-      //       Password and password confirm must be the same.
-      //     </p>
-      //   </div>
-      // )
       return swal({
         text: "How was your experience getting help with this issue?",
         buttons: {
           cancel: "Close",
         },
+        cancelButtonColor: "#a59dff",
         // content: (
         //   <div>
         //     <MoodButton 
