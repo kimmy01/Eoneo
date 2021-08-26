@@ -47,12 +47,10 @@ function Signup(props) {
 
     if (Password !== ConfirmPassword) {
       return swal({
-        text: "How was your experience getting help with this issue?",
+        text: "Password and password confirm must be the same.",
         buttons: {
           cancel: "Close",
         },
-        cancelButtonColor: "#a59dff",
-        confirmButtonColor: "#DD6B55",
       })
     }
     let body = {
@@ -70,6 +68,7 @@ function Signup(props) {
         else {
           swal(
             <div>
+              <p></p>
               <p>
                 Email duplicated or incorrect entry form
               </p>

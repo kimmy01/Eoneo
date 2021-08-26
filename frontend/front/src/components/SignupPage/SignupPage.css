@@ -33,13 +33,17 @@
 }
 
 .swal-button--confirm {
-  background: #0a0;
+  background: #a59dff;
 }
 
 .swal-button--cancel {
   background: #a59dff;
 }
 
-.swal-button--danger {
-  background: #a00;
+.swal-button--confirm:active {
+  background: #463cbd;
+}
+
+.swal-button--cancel:active {
+  background: #463cbd;
 }
