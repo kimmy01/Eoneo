@@ -5,7 +5,7 @@ import {LOGIN_USER, REGISTER_USER} from './types'
 export function loginUser(dataToSubmit) {
   const request = axios.post('/api/authenticate', dataToSubmit)
       .then(response => response.data)
-      .catch(Error => console.log(Error)
+      .catch(Error => console.log(Error), console.log("error?")
         )
 
   return {
