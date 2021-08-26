@@ -50,26 +50,9 @@ function Signup(props) {
         text: "How was your experience getting help with this issue?",
         buttons: {
           cancel: "Close",
-          color:"#a59dff",
-          backgroundColor:"#a59dff",
         },
         cancelButtonColor: "#a59dff",
-        // content: (
-        //   <div>
-        //     <MoodButton 
-        //       rating={1} 
-        //       onClick={onPick}
-        //     />
-        //     <MoodButton 
-        //       rating={2} 
-        //       onClick={onPick}
-        //     />
-        //     <MoodButton 
-        //       rating={3} 
-        //       onClick={onPick}
-        //     />
-        //   </div>
-        // )
+        confirmButtonColor: "#DD6B55",
       })
     }
     let body = {
