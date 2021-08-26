@@ -50,6 +50,8 @@ function Signup(props) {
         text: "How was your experience getting help with this issue?",
         buttons: {
           cancel: "Close",
+          color:"#a59dff",
+          backgroundColor:"#a59dff",
         },
         cancelButtonColor: "#a59dff",
         // content: (
