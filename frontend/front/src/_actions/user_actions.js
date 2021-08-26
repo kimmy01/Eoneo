@@ -5,9 +5,7 @@ import {LOGIN_USER, REGISTER_USER} from './types'
 export function loginUser(dataToSubmit) {
   const request = axios.post('/api/authenticate', dataToSubmit)
       .then(response => response.data)
-      .catch(
-        
-        alert("confirm email or password")
+      .catch(Error => console.log(Error)
         )
 
   return {
@@ -19,7 +17,7 @@ export function loginUser(dataToSubmit) {
 export function registerUser(dataToSubmit) {
   const request = axios.post('/api/signup', dataToSubmit)
       .then(response => response.data)
-      .catch(Error => console.log(Error), alert("Email duplicated or incorrect entry form"))
+      .catch(Error => console.log(Error))
 
   return {
     type: REGISTER_USER,

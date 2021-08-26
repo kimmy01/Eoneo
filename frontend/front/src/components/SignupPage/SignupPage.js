@@ -50,9 +50,8 @@ function Signup(props) {
         else {
           swal(
             <div>
-              <h1>Hello world!</h1>
               <p>
-                This is now rendered with JSX!
+                Email duplicated or incorrect entry form
               </p>
             </div>
           )

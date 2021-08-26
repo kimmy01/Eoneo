@@ -52,9 +52,8 @@ function LoginPage(props) {
         } else {
           swal(
             <div>
-              <h1>Hello world!</h1>
               <p>
-                This is now rendered with JSX!
+                confirm email or password
               </p>
             </div>
           )
