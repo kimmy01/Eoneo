@@ -39,7 +39,7 @@ function LoginPage(props) {
     }
     dispatch(loginUser(body))
       .then(response => {
-        if (response.payload.token) {
+        if (response?.payload?.token) {
           console.log(response.payload)
           localStorage.setItem("token", response.payload.token)
           localStorage.setItem("user_id", response.payload.id)
