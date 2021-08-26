@@ -32,18 +32,14 @@
   /* border: 1px solid #463cbd; */
 }
 
-.swal-button--confirm {
-  background: #a59dff;
-}
-
 .swal-button--cancel {
   background: #a59dff;
 }
 
-.swal-button--cancel:not([disabled]):hover {
+.swal-button--cancel:not([disabled]):hover{
   background: #463cbd;
 }
 
-.swal-button--cancel:not([disabled]):hover {
-  background: #463cbd;
+.swal-button--cancel{
+  color: white;
 }
