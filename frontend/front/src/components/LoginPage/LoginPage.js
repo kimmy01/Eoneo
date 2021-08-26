@@ -4,6 +4,7 @@ import './LoginPage.css'
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../../../src/_actions/user_actions'
 import { withRouter } from 'react-router-dom'
+import swal from '@sweetalert/with-react'
 // import GoogleLogin from 'react-google-login'
 
 // const clientId = "OAuth Web Client ID"
@@ -49,7 +50,14 @@ function LoginPage(props) {
             window.location.href = '/'
           }
         } else {
-          alert('ERROR')
+          swal(
+            <div>
+              <h1>Hello world!</h1>
+              <p>
+                This is now rendered with JSX!
+              </p>
+            </div>
+          )
         }
       })
 

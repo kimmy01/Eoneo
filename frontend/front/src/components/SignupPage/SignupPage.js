@@ -4,6 +4,7 @@ import "./SignupPage.css"
 import { useDispatch } from 'react-redux'
 import { registerUser } from '../../../src/_actions/user_actions'
 import { withRouter } from 'react-router-dom'
+import swal from '@sweetalert/with-react'
 
 function Signup(props) {
   const dispatch = useDispatch()
@@ -46,9 +47,16 @@ function Signup(props) {
           window.location.href = '/'
           // props.history.push('/login') // 사인업하면 메인페이지로
         } 
-        // else {
-        //   alert('ERROR')
-        // }
+        else {
+          swal(
+            <div>
+              <h1>Hello world!</h1>
+              <p>
+                This is now rendered with JSX!
+              </p>
+            </div>
+          )
+        }
 
       })
   }
