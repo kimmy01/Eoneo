@@ -31,3 +31,15 @@
   color: white;
   /* border: 1px solid #463cbd; */
 }
+
+.swal-button--confirm {
+  background: #0a0;
+}
+
+.swal-button--cancel {
+  background: #a59dff;
+}
+
+.swal-button--danger {
+  background: #a00;
+}
