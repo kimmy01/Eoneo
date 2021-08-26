@@ -50,13 +50,12 @@ function LoginPage(props) {
             window.location.href = '/'
           }
         } else {
-          swal(
-            <div>
-              <p>
-                confirm email or password
-              </p>
-            </div>
-          )
+          swal({
+            text: "Password and password confirm must be the same.",
+            buttons: {
+              cancel: "Close",
+            },
+          })
         }
       })
 

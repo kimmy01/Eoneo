@@ -36,3 +36,19 @@ hr{
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: bold;
 }
+
+.swal-button--confirm {
+  background: #a59dff;
+}
+
+.swal-button--cancel {
+  background: #a59dff;
+}
+
+.swal-button--confirm:active {
+  background: #463cbd;
+}
+
+.swal-button--cancel:active {
+  background: #463cbd;
+}

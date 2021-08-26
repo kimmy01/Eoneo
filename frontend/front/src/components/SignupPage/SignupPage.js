@@ -66,14 +66,12 @@ function Signup(props) {
           // props.history.push('/login') // 사인업하면 메인페이지로
         } 
         else {
-          swal(
-            <div>
-              <p></p>
-              <p>
-                Email duplicated or incorrect entry form
-              </p>
-            </div>
-          )
+          swal({
+            text: "Password and password confirm must be the same.",
+            buttons: {
+              cancel: "Close",
+            },
+          })
         }
 
       })
