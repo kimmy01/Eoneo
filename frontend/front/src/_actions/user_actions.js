@@ -1,10 +1,20 @@
 import axios from 'axios'
 import {LOGIN_USER, REGISTER_USER} from './types'
+import swal from '@sweetalert/with-react'
 
 export function loginUser(dataToSubmit) {
   const request = axios.post('/api/authenticate', dataToSubmit)
       .then(response => response.data)
-      .catch(alert("confirm email or password"))
+      .catch(
+        
+        swal({
+          // title: "Good job!",
+          text: "Please check your password or email",
+          // icon: "success",
+          button: "close",
+        })
+        
+        )
 
   return {
     type: LOGIN_USER,
