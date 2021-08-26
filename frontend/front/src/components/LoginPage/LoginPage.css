@@ -45,10 +45,10 @@ hr{
   background: #a59dff;
 }
 
-.swal-button--confirm:hover {
+.swal-button--cancel:not([disabled]):hover{
   background: #463cbd;
 }
 
-.swal-button--cancel:hover {
+.swal-button--cancel:not([disabled]):hover {
   background: #463cbd;
 }
