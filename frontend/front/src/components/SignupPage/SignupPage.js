@@ -67,7 +67,7 @@ function Signup(props) {
         } 
         else {
           swal({
-            text: "Password and password confirm must be the same.",
+            text: "Email duplicate or incorrect form",
             buttons: {
               cancel: "Close",
             },

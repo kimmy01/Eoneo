@@ -51,7 +51,7 @@ function LoginPage(props) {
           }
         } else {
           swal({
-            text: "Password and password confirm must be the same.",
+            text: "Please check your email or password.",
             buttons: {
               cancel: "Close",
             },
