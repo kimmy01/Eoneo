@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://13.124.230.240:3306/eoneo?serverTimezone=Asia/Seoul&useUnicode=true;
     username: kyp
-    password: qwerty2570#
+    password: #secret
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #MySQL
@@ -31,7 +31,7 @@ logging:
 jwt:
   header: Authorization
   # kyp-project-eoneo-kyp-project-eoneo-kyp-project-eoneo-kyp-project-eoneo-kyp-project-eoneo
-  secret: a3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8ta3lwLXByb2plY3QtZW9uZW8=
+  secret: #secret
   token-validity-in-seconds: 86400
 
 custom:
